@@ -1,3 +1,4 @@
+import 'package:dermabyte/Features/Appoinments/View/appoinments.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,8 @@ class DermaByte extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(),
+      debugShowCheckedModeBanner: false,
+      home: Appoinments(),
     );
   }
 }

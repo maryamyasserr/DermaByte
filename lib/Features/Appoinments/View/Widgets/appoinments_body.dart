@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:flutter/material.dart';
 
 class AppoinmentsBody extends StatelessWidget {
@@ -5,6 +6,10 @@ class AppoinmentsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column();
+    return const Column(
+      children: [
+        CustomAppBar()
+      ],
+    );
   }
 }
