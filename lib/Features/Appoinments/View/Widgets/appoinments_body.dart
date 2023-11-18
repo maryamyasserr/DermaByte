@@ -1,7 +1,9 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Features/Appoinments/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/View/Widgets/header_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppoinmentsBody extends StatelessWidget {
   const AppoinmentsBody({super.key});
@@ -9,20 +11,11 @@ class AppoinmentsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      decoration:const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xffC2E9FF),
-            // Color(0xffDAF2FF),
-            // Color(0xffE9F7FF),
-            Colors.white,
-            Colors.white,
-          ],
-          begin: Alignment.bottomCenter,
-          end: Alignment.center,
-          // stops: 
-          )
-      ),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Assets.kBackground),
+          fit: BoxFit.cover
+        )),
       child: Column(
         children: [
          const CustomAppBar(title: 'Appoinments'),
@@ -41,7 +34,7 @@ class AppoinmentsBody extends StatelessWidget {
             cardSubTitle: "Doctor Mohamed has scheduled an appointment on ....",
             textButton: "View",
           )
-    
+      
         ],
       ),
     );

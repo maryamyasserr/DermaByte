@@ -1,6 +1,7 @@
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key, required this.title});
@@ -10,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30, left: 9, right: 32),
+      padding: const EdgeInsets.only(top: 50, left: 9, right: 32),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -18,19 +19,11 @@ class CustomAppBar extends StatelessWidget {
             title,
             style: Styels.textStyle24_600,
           ),
-          const Row(
+           Row(
             children: [
-              Icon(
-                FontAwesomeIcons.bell,
-                color: Color(0xff0C0B35),
-                size: 30,
-              ),
-              SizedBox(width: 25),
-              Icon(
-                FontAwesomeIcons.user,
-                color: Color(0xff0C0B35),
-                size: 30,
-              ),
+             SvgPicture.asset(Assets.kBellIcon),
+              const SizedBox(width: 25),
+              SvgPicture.asset(Assets.kProfileIcon)
             ],
           )
         ],
