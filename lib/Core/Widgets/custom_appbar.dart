@@ -23,13 +23,13 @@ class CustomAppBar extends StatelessWidget {
               Icon(
                 FontAwesomeIcons.bell,
                 color: Color(0xff0C0B35),
-                size: 35,
+                size: 30,
               ),
               SizedBox(width: 25),
               Icon(
                 FontAwesomeIcons.user,
                 color: Color(0xff0C0B35),
-                size: 35,
+                size: 30,
               ),
             ],
           )
