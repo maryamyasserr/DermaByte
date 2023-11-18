@@ -13,7 +13,7 @@ class CustomCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.94,
       height: MediaQuery.of(context).size.height * 0.17,
       decoration: BoxDecoration(
-          color: Color(0xffF3FBFF),
+          color: OurColors.kCardColor,
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [
             BoxShadow(
@@ -22,12 +22,13 @@ class CustomCard extends StatelessWidget {
               blurRadius: 6.0,
             )
           ]),
-      child: Row(children: [
+      child: Row(
+        children: [
         Padding(
           padding: const EdgeInsets.only(top: 15),
           child: SvgPicture.asset(
             iconCard,
-            height: 150,
+            height: 140,
           ),
         ),
         CardTitle(cardTitle: cardTitle, cardSubTitle: cardSubTitle),
