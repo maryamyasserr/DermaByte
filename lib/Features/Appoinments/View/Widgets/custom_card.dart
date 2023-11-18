@@ -13,7 +13,7 @@ class CustomCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.94,
       height: MediaQuery.of(context).size.height * 0.17,
       decoration: BoxDecoration(
-          color: OurColors.kCardColor,
+          color: Color(0xffF3FBFF),
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [
             BoxShadow(
