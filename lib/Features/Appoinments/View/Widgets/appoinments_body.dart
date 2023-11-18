@@ -8,7 +8,7 @@ class AppoinmentsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        CustomAppBar()
+        CustomAppBar(title: 'Appoinments',)
       ],
     );
   }
