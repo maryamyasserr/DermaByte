@@ -38,7 +38,9 @@ class AppoinmentsBody extends StatelessWidget {
             cardTitle: "Upcoming appoinment!",
             cardSubTitle: "Doctor Mohamed has scheduled an appointment on ....",
             textButton: "View",
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kUpcoming);
+            },
             width: MediaQuery.of(context).size.width * 0.37,
           )
         ],
