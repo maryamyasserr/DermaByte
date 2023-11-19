@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';

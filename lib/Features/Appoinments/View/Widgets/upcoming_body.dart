@@ -2,7 +2,6 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/header_text.dart';
 import 'package:flutter/material.dart';
 
 class UpComingBody extends StatelessWidget {
