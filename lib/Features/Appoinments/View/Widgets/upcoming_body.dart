@@ -41,7 +41,7 @@ class UpComingBody extends StatelessWidget {
           ElevatedButton(
             onPressed: (){},
             style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.33,vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.34,vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               backgroundColor: OurColors.kPrimaryColor
             ),
