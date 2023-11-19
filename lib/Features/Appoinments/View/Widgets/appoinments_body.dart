@@ -3,7 +3,6 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/View/Widgets/header_text.dart';
-import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,6 +27,7 @@ class AppoinmentsBody extends StatelessWidget {
             cardSubTitle:
                 "Follow up with your last appointments, doctor has requested....",
             textButton: "View",
+            width: MediaQuery.of(context).size.width * 0.37,
             onPressed: () {
               GoRouter.of(context).push(AppRoutes.kFollowUp);
             },
@@ -39,6 +39,7 @@ class AppoinmentsBody extends StatelessWidget {
             cardSubTitle: "Doctor Mohamed has scheduled an appointment on ....",
             textButton: "View",
             onPressed: () {},
+            width: MediaQuery.of(context).size.width * 0.37,
           )
         ],
       ),
