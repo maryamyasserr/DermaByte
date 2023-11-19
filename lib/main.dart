@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,10 @@ class DermaByte extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRoutes.router,
       debugShowCheckedModeBanner: false,
-      home: AppoinmentsView(),
+       
     );
   }
 }

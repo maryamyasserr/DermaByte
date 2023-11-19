@@ -3,9 +3,10 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class CardButton extends StatelessWidget {
-  const CardButton({super.key, required this.textButton});
+  const CardButton({super.key, required this.textButton,this.onPressed});
 
   final String textButton;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CardButton extends StatelessWidget {
         child: SizedBox(
           height: 30,
           child: ElevatedButton(
-              onPressed: () {},
+              onPressed: onPressed,
               style: ElevatedButton.styleFrom(
                 backgroundColor: OurColors.kPrimaryColor,
                 shape: RoundedRectangleBorder(
