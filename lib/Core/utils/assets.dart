@@ -4,4 +4,5 @@ class Assets {
   static const kBellIcon = "assets/images/bell.svg";
   static const kWallBlock = "assets/images/wallClock.svg";
   static const kBackground = "assets/images/background.png";
+  static const kProfileAvatar = 'assets/images/profile_avatar.svg';
 }
