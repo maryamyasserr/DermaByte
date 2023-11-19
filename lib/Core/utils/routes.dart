@@ -1,5 +1,6 @@
 import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
+import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRoutes {
@@ -16,10 +17,10 @@ abstract class AppRoutes {
         path: kFollowUp,
         builder: (context,state)=> const FollowUpView()
         ),
-      // GoRoute(
-      //   path: kUpcoming,
-      //   builder: (context,state)=>const
-      //   )
+      GoRoute(
+        path: kUpcoming,
+        builder: (context,state)=>const UpComingView()
+        )
     ]
     );
 }

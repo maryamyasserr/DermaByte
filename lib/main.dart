@@ -1,5 +1,4 @@
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
