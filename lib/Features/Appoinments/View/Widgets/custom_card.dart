@@ -5,8 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key, required this.iconCard, required this.cardTitle, required this.cardSubTitle, required this.textButton});
-  final String iconCard,cardTitle,cardSubTitle,textButton;
+  const CustomCard(
+      {super.key,
+      required this.iconCard,
+      required this.cardTitle,
+      required this.cardSubTitle,
+      required this.textButton,
+      this.onPressed
+      });
+  final String iconCard, cardTitle, cardSubTitle, textButton;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,8 +30,7 @@ class CustomCard extends StatelessWidget {
               blurRadius: 6.0,
             )
           ]),
-      child: Row(
-        children: [
+      child: Row(children: [
         Padding(
           padding: const EdgeInsets.only(top: 15),
           child: SvgPicture.asset(
@@ -32,7 +39,10 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         CardTitle(cardTitle: cardTitle, cardSubTitle: cardSubTitle),
-        CardButton(textButton: textButton)
+        CardButton(
+          textButton: textButton,
+          onPressed: onPressed,
+        )
       ]),
     );
   }

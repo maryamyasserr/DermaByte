@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({super.key, required this.title, this.onTap});
 
   final String title;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +20,15 @@ class CustomAppBar extends StatelessWidget {
             title,
             style: Styels.textStyle24_600,
           ),
-           Row(
+          Row(
             children: [
-             SvgPicture.asset(Assets.kBellIcon),
+              GestureDetector(
+                  onTap: onTap,
+                  child: SvgPicture.asset(Assets.kBellIcon)),
               const SizedBox(width: 25),
-              SvgPicture.asset(Assets.kProfileIcon)
+              GestureDetector(
+                  onTap: onTap,
+                  child: SvgPicture.asset(Assets.kProfileIcon))
             ],
           )
         ],
