@@ -14,7 +14,7 @@ class AppoinmentsBody extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Column(
         children: [
           const CustomAppBar(title: 'Appoinments'),
@@ -22,7 +22,7 @@ class AppoinmentsBody extends StatelessWidget {
               text: "Follow up with your ongoing and future appointments."),
           SizedBox(height: MediaQuery.of(context).size.height * 0.04),
           CustomCard(
-            iconCard: 'assets/images/followUp.svg',
+            iconCard: Assets.kFollowUpIcon,
             cardTitle: "Follow Up!",
             cardSubTitle:
                 "Follow up with your last appointments, doctor has requested....",
@@ -34,7 +34,7 @@ class AppoinmentsBody extends StatelessWidget {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           CustomCard(
-            iconCard: 'assets/images/wallClock.svg',
+            iconCard: Assets.kWallBlock,
             cardTitle: "Upcoming appoinment!",
             cardSubTitle: "Doctor Mohamed has scheduled an appointment on ....",
             textButton: "View",
