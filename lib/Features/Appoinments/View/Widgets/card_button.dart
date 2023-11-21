@@ -19,7 +19,7 @@ class CardButton extends StatelessWidget {
           child: ElevatedButton(
               onPressed: onPressed,
               style: ElevatedButton.styleFrom(
-                backgroundColor: OurColors.kPrimaryColor,
+                backgroundColor: AppColors.kPrimaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

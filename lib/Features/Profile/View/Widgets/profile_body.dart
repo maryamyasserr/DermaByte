@@ -11,11 +11,8 @@ class ProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Assets.kBackground),
-          fit: BoxFit.cover
-        )
-      ),
+          image: DecorationImage(
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Column(
         children: [
           const CustomAppBar(title: ""),
@@ -24,16 +21,13 @@ class ProfileBody extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(2),
                 decoration: const BoxDecoration(
-                  color: OurColors.kPrimaryColor,
-                  shape: BoxShape.circle
-                ),
+                    color: AppColors.kPrimaryColor, shape: BoxShape.circle),
                 child: CircleAvatar(
                   backgroundColor: const Color(0xffB9EEE8),
                   radius: 40,
                   child: SvgPicture.asset(Assets.kProfileAvatar),
-                   ) ,
+                ),
               ),
-              
             ],
           )
         ],
