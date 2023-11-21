@@ -42,7 +42,7 @@ class UpComingBody extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.34,vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              backgroundColor: OurColors.kPrimaryColor
+              backgroundColor: AppColors.kPrimaryColor
             ),
             child: Text("Start Call",style: Styels.textStyle20_700.copyWith(color: Colors.white),))
         ],
