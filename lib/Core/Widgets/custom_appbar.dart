@@ -6,7 +6,7 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class CustomAppBar extends StatefulWidget {
 const CustomAppBar({super.key, required this.title});
