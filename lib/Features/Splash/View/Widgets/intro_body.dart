@@ -14,7 +14,7 @@ class IntroBody extends StatelessWidget {
                   image: AssetImage('assets/images/intro_background.png'),
                   fit: BoxFit.fill)),
         ),
-        Positioned(bottom: 0, child: IntroBottomSheet())
+        const Positioned(bottom: 0, child: IntroBottomSheet())
       ],
     );
   }

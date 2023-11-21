@@ -5,4 +5,5 @@ class Assets {
   static const kWallBlock = "assets/images/wallClock.svg";
   static const kBackground = "assets/images/background.png";
   static const kProfileAvatar = 'assets/images/profile_avatar.svg';
+  static const kDoctorAvatar = 'assets/images/doctor_avatar.svg';
 }
