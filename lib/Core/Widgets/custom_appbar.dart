@@ -48,7 +48,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child: 
                   isPressed?
                   SvgPicture.asset(Assets.kProfileIcon)
-                  :const Icon(Icons.person,color: OurColors.kPrimaryColor,size: 40)
+                  :const Icon(Icons.person,color: AppColors.kPrimaryColor,size: 40)
                   )
             ],
           )

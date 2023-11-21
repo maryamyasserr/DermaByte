@@ -27,13 +27,13 @@ class IntroBottomSheet extends StatelessWidget {
                   Text(
                     'Detect skin cancer \n with 95% accuracy',
                     textAlign: TextAlign.center,
-                    style: Styels.textStyle18_600!.copyWith(fontSize: 28),
+                    style: Styels.textStyle18_600.copyWith(fontSize: 28),
                   ),
                   SizedBox(height: mediaQuery.height * 0.020),
                   Text(
                     'tested with the largest \n datasets from cases \n all around the world.',
                     textAlign: TextAlign.center,
-                    style: Styels.textStyle20_300!
+                    style: Styels.textStyle20_300
                         .copyWith(fontSize: 24, color: const Color(0xff5B52C8)),
                   ),
                 ],
@@ -53,7 +53,7 @@ class IntroBottomSheet extends StatelessWidget {
                       GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
                     },
                     child: Text('Continue',
-                        style: Styels.textStyle20_700!
+                        style: Styels.textStyle20_700
                             .copyWith(color: AppColors.kWhiteColor))),
               )
             ]),
