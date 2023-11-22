@@ -7,4 +7,5 @@ class Assets {
   static const kProfileAvatar = 'assets/images/profile_avatar.svg';
   static const String kFacebookIcon = 'assets/images/facebook_icon.svg';
   static const kGoogleIcon = 'assets/images/google_icon.svg';
+  static const kRequiredIcon = 'assets/images/required_icon.svg';
 }
