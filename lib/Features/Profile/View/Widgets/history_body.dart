@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/tab_bar.dart';
 import 'package:flutter/material.dart';
 
 class HistoryBody extends StatelessWidget {
@@ -6,10 +7,11 @@ class HistoryBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
-        CustomAppBar(title: "History"),
-        
+        const CustomAppBar(title: "History"),
+        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+        const Expanded(child: CustomTabBar())
       ],
     );
   }

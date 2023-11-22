@@ -2,8 +2,8 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/profile_photo.dart';
 import 'package:flutter/material.dart';
 
-class HeaderSection extends StatelessWidget {
-  const HeaderSection({super.key});
+class ProfileHeaderSection extends StatelessWidget {
+  const ProfileHeaderSection({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,8 @@ import 'package:dermabyte/Features/Appoinments/View/Widgets/card_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProfileCustomCard extends StatelessWidget {
-  const ProfileCustomCard(
+class FeatureCard extends StatelessWidget {
+  const FeatureCard(
       {super.key,
       required this.iconCard,
       required this.cardTitle,
@@ -35,7 +35,7 @@ class ProfileCustomCard extends StatelessWidget {
         children: [
           Row(children: [
             Padding(
-              padding: const EdgeInsets.only(bottom:10,right: 10),
+              padding: const EdgeInsets.only(bottom: 10, right: 10),
               child: SvgPicture.asset(
                 iconCard,
                 height: MediaQuery.of(context).size.height * 0.15,
@@ -47,12 +47,12 @@ class ProfileCustomCard extends StatelessWidget {
             ),
           ]),
           Positioned(
-          right: 8,
-          bottom: 0,
-          child: CardButton(
-          textButton: textButton,
-          onPressed: onPressed,
-        ))
+              right: 8,
+              bottom: 0,
+              child: CardButton(
+                textButton: textButton,
+                onPressed: onPressed,
+              ))
         ],
       ),
     );

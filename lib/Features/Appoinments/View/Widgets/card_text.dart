@@ -23,7 +23,7 @@ class CardText extends StatelessWidget {
             const SizedBox(height: 7),
             Text(
               cardSubTitle,
-              style: Styels.textStyle12_200,
+              style: Styels.textStyle12_200.copyWith(fontWeight: FontWeight.w300),
             )
           ],
         ),

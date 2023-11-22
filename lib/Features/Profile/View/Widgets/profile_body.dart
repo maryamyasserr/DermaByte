@@ -2,14 +2,12 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_card.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/header_section.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/items_list_view.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/profile_header_section.dart';
 import 'package:flutter/material.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,28 +20,32 @@ class ProfileBody extends StatelessWidget {
         child: Column(
           children: [
             const CustomAppBar(title: ""),
-            const HeaderSection(),
+            const ProfileHeaderSection(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-           ItemsListView(),
-           const SizedBox(height: 7),
-           const Divider(
-            thickness: 0.7,
-            color: Colors.black,
-           ),
-           SizedBox(height: MediaQuery.of(context).size.height*0.02),
+            ItemsListView(),
+            const SizedBox(height: 7),
+            const Divider(
+              thickness: 0.7,
+              color: Colors.black,
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Align(
-            alignment: Alignment.centerLeft,
-            child: Text("Doctors you have consulted",style: Styels.textStyle18_600,)),
-           SizedBox(height: MediaQuery.of(context).size.height*0.04),
-             ProfileCustomCard(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Doctors you have consulted",
+                  style: Styels.textStyle18_600,
+                )),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            FeatureCard(
               iconCard: Assets.kDoctorAvatar,
-              cardTitle:"Dr. Luka Modrich",
-              cardSubTitle: "An eye doctor to spread magic, creativity and happiness to us",
+              cardTitle: "Dr. Luka Modrich",
+              cardSubTitle:
+                  "An eye doctor to spread magic, creativity and happiness to us",
               textButton: "View",
-              onPressed: (){},
-              )
+              onPressed: () {},
+            )
           ],
         ),
       ),

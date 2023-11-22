@@ -33,10 +33,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           Row(
             children: [
               GestureDetector(
-                  onTap: () {
-                  
-                  },
-                  child: SvgPicture.asset(Assets.kBellIcon)),
+                  onTap: () {}, child: SvgPicture.asset(Assets.kBellIcon)),
               const SizedBox(width: 25),
               GestureDetector(
                   onTap: () {
@@ -44,11 +41,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     isPressed = true;
                     setState(() {});
                   },
-                  child: 
-                  isPressed?
-                  SvgPicture.asset(Assets.kProfileIcon)
-                  :const Icon(Icons.person,color: AppColors.kPrimaryColor,size: 40)
-                  )
+                  child: SvgPicture.asset(Assets.kProfileIcon))
             ],
           )
         ],
