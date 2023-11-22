@@ -44,7 +44,7 @@ class RequiredTextForm extends StatelessWidget {
                 hintText: label,
                 hintStyle: Styels.textStyle20_200.copyWith(
                   color: AppColors.kTextInForm.withOpacity(0.8),
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
