@@ -1,71 +1,63 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Styels {
-  static const textStyle40 = TextStyle(
+  static final textStyle40 = GoogleFonts.lexend(
       fontSize: 40,
       fontWeight: FontWeight.w700,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle20_700 = TextStyle(
+  static final textStyle20_700 = GoogleFonts.lexend(
       fontSize: 20,
       fontWeight: FontWeight.w700,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle20_200 = TextStyle(
+  static final textStyle20_200 = GoogleFonts.lexend(
       fontSize: 20,
       fontWeight: FontWeight.w200,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle20_300 = TextStyle(
+  static final textStyle20_300 = GoogleFonts.lexend(
       fontSize: 20,
       fontWeight: FontWeight.w300,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle15_300 = TextStyle(
+  static final textStyle15_300 = GoogleFonts.lexend(
       fontSize: 15,
       fontWeight: FontWeight.w300,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle18_400 = TextStyle(
+  static final textStyle18_400 = GoogleFonts.lexend(
       fontSize: 18,
       fontWeight: FontWeight.w400,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
 
-  static const textStyle24_600 = TextStyle(
+  static final textStyle24_600 = GoogleFonts.lexend(
       fontSize: 24,
       fontWeight: FontWeight.w600,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle18_600 = TextStyle(
+  static final textStyle18_600 = GoogleFonts.lexend(
       fontSize: 18,
       fontWeight: FontWeight.w600,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle12_200 = TextStyle(
+  static final textStyle12_200 = GoogleFonts.lexend(
       fontSize: 12,
       fontWeight: FontWeight.w200,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle14_300 = TextStyle(
+  static final textStyle14_300 = GoogleFonts.lexend(
       fontSize: 14,
       fontWeight: FontWeight.w300,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle12_700 = TextStyle(
+  static final textStyle12_700 = GoogleFonts.lexend(
       fontSize: 12,
       fontWeight: FontWeight.w700,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle16_400 = TextStyle(
+  static final textStyle16_400 = GoogleFonts.lexend(
       fontSize: 16,
       fontWeight: FontWeight.w400,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
-  static const textStyle18_300 = TextStyle(
+  static final textStyle18_300 = GoogleFonts.lexend(
       fontSize: 18,
       fontWeight: FontWeight.w300,
-      fontFamily: 'Lexend',
       color: AppColors.kPrimaryColor);
+  static final textStyle15_400 = GoogleFonts.lexend(
+      fontSize: 15,
+      fontWeight: FontWeight.w400,
+      color: AppColors.kPrimaryColor);    
 }

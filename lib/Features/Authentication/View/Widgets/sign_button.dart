@@ -16,7 +16,7 @@ class SignButton extends StatelessWidget {
     return ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                            horizontal: mediaQuery.width * 0.36,
+                            horizontal: mediaQuery.width * 0.35,
                             vertical: mediaQuery.height * 0.015),
                         backgroundColor: AppColors.kPrimaryColor,
                         shape: RoundedRectangleBorder(
