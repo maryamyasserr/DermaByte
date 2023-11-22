@@ -112,6 +112,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               RequiredTextForm(label: 'Mobile', controller: SignUpPatientBody.mobileController),
             ],
           ),
+          SizedBox(height: mediaQuery.height * 0.008),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -120,7 +121,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               RequiredTextForm(label: 'Year', controller: SignUpPatientBody.yearController),
             ],
           ),
-          SizedBox(height: mediaQuery.height * 0.05),
+          SizedBox(height: mediaQuery.height * 0.035),
           const SignButton(buttonName: 'Sign Up'),
           SizedBox(height: mediaQuery.height * 0.03),
           IntrinsicHeight(
