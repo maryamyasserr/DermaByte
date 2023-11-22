@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/disease_body_section.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/disease_header_section.dart';
 import 'package:flutter/material.dart';
 
 class DiseaseBody extends StatelessWidget {
@@ -8,19 +8,17 @@ class DiseaseBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-       const CustomAppBar(title: "History"),
-        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Text("10/10/2023",style: Styels.textStyle14_300,)),
-          
-        Image.asset(
-          Assets.kDiseasePhoto,
-          fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height*0.23,)
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          const CustomAppBar(title: "History"),
+          SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+          const DiseaseHeaderSection(),
+          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+          const DiseaseBodySection()
+        ],
+      ),
     );
   }
 }
