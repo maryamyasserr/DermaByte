@@ -1,3 +1,4 @@
+import 'package:dermabyte/Features/Profile/View/Widgets/Setting/settings_body.dart';
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget {
@@ -5,6 +6,10 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const SafeArea(
+      child: Scaffold(
+        body: SettingsBody(),
+      ),
+    );
   }
 }

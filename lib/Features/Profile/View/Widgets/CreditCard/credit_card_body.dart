@@ -24,11 +24,13 @@ class CreditCardBody extends StatelessWidget {
               Text("Credit Card",style: Styels.textStyle24_600,),
               SizedBox(height: MediaQuery.of(context).size.height*0.01,),
               CustomTextField(
+                keyboardType: TextInputType.name,
                 isrequired: true,
                 padding: const EdgeInsets.only(right: 20),
                 hintext: "Card holder name",
                 width: MediaQuery.of(context).size.height*0.9),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 isrequired: true,
                 padding: const EdgeInsets.only(right: 20),
                 hintext: "Card Number",
@@ -37,12 +39,14 @@ class CreditCardBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomTextField(
+                    keyboardType: TextInputType.datetime,
                     isrequired: true,
                     padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width*0.33) ,
                     hintext: "Expiration Date",
                     width: MediaQuery.of(context).size.height*0.22),
                   SizedBox(width: MediaQuery.of(context).size.width*0.04),
                   CustomTextField(
+                    keyboardType: TextInputType.number,
                     isrequired: true,
                     padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width*0.33),
                     hintext: "Security Code",

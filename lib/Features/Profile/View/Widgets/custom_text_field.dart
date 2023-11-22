@@ -6,10 +6,11 @@ import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
-      {super.key, required this.hintext, required this.width, this.padding, required this.isrequired});
+      {super.key, required this.hintext, required this.width, this.padding, required this.isrequired, required this.keyboardType});
   final String hintext;
   final double width;
   final EdgeInsetsGeometry? padding;
+  final TextInputType keyboardType;
   final bool isrequired;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class CustomTextField extends StatelessWidget {
             width: width,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(15),
                 color: AppColors.kCardColor,
                 boxShadow: const [
                   BoxShadow(
@@ -39,7 +40,7 @@ class CustomTextField extends StatelessWidget {
                   )
                 ]),
             child: TextFormField(
-              keyboardType: TextInputType.text,
+              keyboardType: keyboardType,
               textInputAction: TextInputAction.next,
               cursorColor: AppColors.kPrimaryColor,
               decoration: InputDecoration(

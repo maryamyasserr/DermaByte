@@ -8,8 +8,9 @@ import 'package:dermabyte/Features/Profile/View/address_view.dart';
 import 'package:dermabyte/Features/Profile/View/consults_view.dart';
 import 'package:dermabyte/Features/Profile/View/credit_card_view.dart';
 import 'package:dermabyte/Features/Profile/View/disease_view.dart';
+import 'package:dermabyte/Features/Profile/View/edit_profile.dart';
 import 'package:dermabyte/Features/Profile/View/help_view.dart';
-import 'package:dermabyte/Features/Profile/View/history.dart';
+import 'package:dermabyte/Features/Profile/View/history_view.dart';
 import 'package:dermabyte/Features/Profile/View/profile_view.dart';
 import 'package:dermabyte/Features/Profile/View/settings_view.dart';
 import 'package:dermabyte/Features/Splash/View/intro_view.dart';
@@ -33,6 +34,7 @@ abstract class AppRoutes {
   static String kSettings = '/settings';
   static String kHelp = '/help';
   static String kAccount = '/account';
+  static String kEditProfile = '/editProfile';
 
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const ProfileView()),
@@ -52,6 +54,7 @@ abstract class AppRoutes {
     GoRoute(path: kAccount , builder: (context, state) => const AccountView()),
     GoRoute(path: kAddress , builder: (context, state) => const AddressView()),
     GoRoute(path: kHelp , builder: (context, state) => const HelpView()),
+    GoRoute(path: kEditProfile , builder: (context, state) => const EditProfile()),
 
   ]);
 }

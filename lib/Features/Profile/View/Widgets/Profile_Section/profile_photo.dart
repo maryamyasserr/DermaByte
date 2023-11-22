@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfilePhoto extends StatelessWidget {
-  const ProfilePhoto({super.key});
-
+  const ProfilePhoto({super.key, required this.radius});
+  final double radius;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +14,7 @@ class ProfilePhoto extends StatelessWidget {
           color: AppColors.kPrimaryColor, shape: BoxShape.circle),
       child: CircleAvatar(
         backgroundColor: const Color(0xffB9EEE8),
-        radius: 40,
+        radius: radius,
         child: SvgPicture.asset(Assets.kProfileAvatar),
       ),
     );
