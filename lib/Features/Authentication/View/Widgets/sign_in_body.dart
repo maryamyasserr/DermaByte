@@ -18,7 +18,7 @@ class SignInBody extends StatefulWidget {
 }
 
 class _SignInBodyState extends State<SignInBody> {
-  bool isVisible = false;
+  bool passwordVisible = false;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -44,10 +44,10 @@ class _SignInBodyState extends State<SignInBody> {
             controller: SignInBody.passwordController,
             suffixIcon: GestureDetector(
                 onTap: () {
-                  isVisible = !isVisible;
+                  passwordVisible = !passwordVisible;
                   setState(() {});
                 },
-                child: isVisible == true
+                child: passwordVisible == true
                     ? const Icon(
                         Icons.visibility_off_outlined,
                         size: 28,
@@ -58,18 +58,21 @@ class _SignInBodyState extends State<SignInBody> {
                         size: 28,
                         color: AppColors.kPrimaryColor,
                       )),
-            obscureText: !isVisible,
+            obscureText: !passwordVisible,
           ),
           SizedBox(height: mediaQuery.height * 0.04),
           const SignButton(buttonName: 'Sign in'),
-          SizedBox(height: mediaQuery.height * 0.021),
-          Text(
-            'forgot password?',
-            style: Styels.textStyle15_400
-                .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.6)),
-            textAlign: TextAlign.left,
+          SizedBox(height: mediaQuery.height * 0.028),
+          InkWell(
+            onTap: (){},
+            child: Text(
+              'forgot password?',
+              style: Styels.textStyle15_400
+                  .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.6)),
+              textAlign: TextAlign.center,
+            ),
           ),
-          SizedBox(height: mediaQuery.height * 0.03),
+          SizedBox(height: mediaQuery.height * 0.05),
           IntrinsicHeight(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -111,27 +114,25 @@ class _SignInBodyState extends State<SignInBody> {
               image: Assets.kGoogleIcon,
               buttonName: 'Continue with Google',
               backgroundColor: AppColors.kWhiteColor),
-          SizedBox(height: mediaQuery.height * 0.04),
-          InkWell(
-            onTap: () {
-              GoRouter.of(context).push(AppRoutes.kSignUp);
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Don’t have an account?',
-                  style: Styels.textStyle18_300
-                      .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-                ),
-                SizedBox(width: mediaQuery.width * 0.01),
-                Text(
-                  'sign up ',
-                  style: Styels.textStyle15_300
-                      .copyWith(color: Color.fromRGBO(150, 1, 1, 0.5)),
-                )
-              ],
-            ),
+          SizedBox(height: mediaQuery.height * 0.05),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Don’t have an account?',
+                style: Styels.textStyle18_300
+                    .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
+              ),
+              SizedBox(width: mediaQuery.width *  0.0002),
+              TextButton(
+                onPressed: () {
+                  GoRouter.of(context).push(AppRoutes.kSignUpPatient);
+                  }, child: Text('sign up',
+                style: Styels.textStyle15_300
+                    .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
+              ),
+          )
+            ],
           )
         ]),
       ),

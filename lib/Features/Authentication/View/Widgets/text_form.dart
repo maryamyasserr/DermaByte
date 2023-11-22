@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class TextForm extends StatelessWidget {
   final TextEditingController controller;
   final FormFieldValidator<String>? validator;

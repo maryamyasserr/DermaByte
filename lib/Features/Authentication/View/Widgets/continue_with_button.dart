@@ -1,5 +1,3 @@
-import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
