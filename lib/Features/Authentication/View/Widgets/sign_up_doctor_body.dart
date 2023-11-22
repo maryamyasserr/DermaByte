@@ -9,23 +9,22 @@ import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpPatientBody extends StatefulWidget {
+class SignUpDoctorBody extends StatefulWidget {
   static TextEditingController emailController = TextEditingController();
   static TextEditingController passwordController = TextEditingController();
   static TextEditingController rePasswordController = TextEditingController();
   static TextEditingController firstNameController = TextEditingController();
   static TextEditingController lastNameController = TextEditingController();
   static TextEditingController mobileController = TextEditingController();
-  static TextEditingController dayController = TextEditingController();
-  static TextEditingController monthController = TextEditingController();
-  static TextEditingController yearController = TextEditingController();
-  const SignUpPatientBody({super.key});
+  static TextEditingController locationController = TextEditingController();
+  static TextEditingController specilazationController = TextEditingController();
+  const SignUpDoctorBody({super.key});
 
   @override
-  State<SignUpPatientBody> createState() => _SignUpPatientBodyState();
+  State<SignUpDoctorBody> createState() => _SignUpPatientBodyState();
 }
 
-class _SignUpPatientBodyState extends State<SignUpPatientBody> {
+class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
   bool passwordVisible = false;
   bool rePasswordVisible = false;
   @override
@@ -48,7 +47,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
             height: mediaQuery.height *0.054,
             child: TextForm(
               label: 'Email',
-              controller: SignUpPatientBody.emailController,
+              controller: SignUpDoctorBody.emailController,
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.014),
@@ -57,7 +56,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
             height: mediaQuery.height *0.054,
             child: TextForm(
               label: 'Password',
-              controller: SignUpPatientBody.passwordController,
+              controller: SignUpDoctorBody.passwordController,
               suffixIcon: GestureDetector(
                   onTap: () {
                     passwordVisible = !passwordVisible;
@@ -83,7 +82,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
             height: mediaQuery.height *0.054,
             child: TextForm(
               label: 'Re-type Password',
-              controller: SignUpPatientBody.rePasswordController,
+              controller: SignUpDoctorBody.rePasswordController,
               suffixIcon: GestureDetector(
                   onTap: () {
                     rePasswordVisible = !rePasswordVisible;
@@ -103,25 +102,34 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               obscureText: !rePasswordVisible,
             ),
           ),
-          SizedBox(height: mediaQuery.height * 0.02),
+          SizedBox(height: mediaQuery.height * 0.009),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              RequiredTextForm(label: 'First name', controller: SignUpPatientBody.firstNameController),
-              RequiredTextForm(label: 'Last name', controller: SignUpPatientBody.lastNameController),
-              RequiredTextForm(label: 'Mobile', controller: SignUpPatientBody.mobileController),
+              RequiredTextForm(label: 'First name', controller: SignUpDoctorBody.firstNameController),
+              RequiredTextForm(label: 'Last name', controller: SignUpDoctorBody.lastNameController),
+              RequiredTextForm(label: 'Mobile', controller: SignUpDoctorBody.mobileController),
             ],
           ),
-          SizedBox(height: mediaQuery.height * 0.008),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RequiredTextForm(label: 'Day', controller: SignUpPatientBody.dayController),
-              RequiredTextForm(label: 'Month', controller: SignUpPatientBody.monthController),
-              RequiredTextForm(label: 'Year', controller: SignUpPatientBody.yearController),
-            ],
+          SizedBox(height: mediaQuery.height * 0.014),
+           // ignore: sized_box_for_whitespace
+           Container(
+            height: mediaQuery.height *0.054,
+            child: TextForm(
+              label: 'Location',
+              controller:SignUpDoctorBody.locationController,
+            ),
           ),
-          SizedBox(height: mediaQuery.height * 0.035),
+          SizedBox(height: mediaQuery.height * 0.014),
+           // ignore: sized_box_for_whitespace
+           Container(
+            height: mediaQuery.height *0.054,
+            child: TextForm(
+              label: 'Specialization ',
+              controller: SignUpDoctorBody.specilazationController,
+            ),
+          ),
+          SizedBox(height: mediaQuery.height * 0.015),
           const SignButton(buttonName: 'Sign Up'),
           SizedBox(height: mediaQuery.height * 0.03),
           IntrinsicHeight(
