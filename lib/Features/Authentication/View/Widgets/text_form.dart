@@ -7,9 +7,9 @@ class TextForm extends StatelessWidget {
   final TextEditingController controller;
   final FormFieldValidator<String>? validator;
   final String label;
-  bool obscureText;
-  Widget? suffixIcon;
-  TextForm({super.key,
+  final bool obscureText;
+  final Widget? suffixIcon;
+  const TextForm({super.key,
    required this.label, 
    required this.controller ,  
    this.validator , 

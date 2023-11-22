@@ -1,26 +1,27 @@
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/profile_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ItemsListView extends StatelessWidget {
-   ItemsListView({super.key});
+  ItemsListView({super.key});
 
-    final List<String> items = [
-    'Address',
-    'Account',
-    'Credit Card',
-    'History',
-    'Settings',
-    'Logout'
+  final List<String> items = [
+    'Address', 'Account', 'Credit Card', 'History', 'Settings', 'Logout',
   ];
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-            height: MediaQuery.of(context).size.height*0.3,
-            child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return ProfileItem(item: items[index]);
-                }),
-          );
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.3,
+      child: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return ProfileItem(
+                onTap: () {
+                  GoRouter.of(context).push(AppRoutes.kHistory);
+                },
+                item: items[index]);
+          }),
+    );
   }
 }
