@@ -2,10 +2,17 @@ import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
-import 'package:dermabyte/Features/Authentication/View/sign_up_patient.dart';
+
+import 'package:dermabyte/Features/Profile/View/account_view.dart';
+import 'package:dermabyte/Features/Profile/View/address_view.dart';
+import 'package:dermabyte/Features/Profile/View/consults_view.dart';
+import 'package:dermabyte/Features/Profile/View/credit_card_view.dart';
 import 'package:dermabyte/Features/Profile/View/disease_view.dart';
-import 'package:dermabyte/Features/Profile/View/history.dart';
+import 'package:dermabyte/Features/Profile/View/edit_profile.dart';
+import 'package:dermabyte/Features/Profile/View/help_view.dart';
+import 'package:dermabyte/Features/Profile/View/history_view.dart';
 import 'package:dermabyte/Features/Profile/View/profile_view.dart';
+import 'package:dermabyte/Features/Profile/View/settings_view.dart';
 import 'package:dermabyte/Features/Splash/View/intro_view.dart';
 import 'package:dermabyte/Features/Splash/View/splash_view.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +28,13 @@ abstract class AppRoutes {
   static String kSignUpPatient = '/SignUpPatient';
   static String kHistory = '/history';
   static String kDisease = '/disease';
+  static String kConsults = '/consults';
+  static String kCreditCard = '/creditcard';
+  static String kAddress = '/Address';
+  static String kSettings = '/settings';
+  static String kHelp = '/help';
+  static String kAccount = '/account';
+  static String kEditProfile = '/editProfile';
 
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const ProfileView()),
@@ -34,6 +48,13 @@ abstract class AppRoutes {
     GoRoute(path: kSignUpPatient , builder: (context, state) => const SignUpPatient()),
     GoRoute(path: kHistory , builder: (context, state) => const HistoryView()),
     GoRoute(path: kDisease , builder: (context, state) => const DiseaseView()),
+    GoRoute(path: kConsults , builder: (context, state) => const ConsultsView()),
+    GoRoute(path: kCreditCard , builder: (context, state) => const CreditCardView()),
+    GoRoute(path: kSettings , builder: (context, state) => const SettingsView()),
+    GoRoute(path: kAccount , builder: (context, state) => const AccountView()),
+    GoRoute(path: kAddress , builder: (context, state) => const AddressView()),
+    GoRoute(path: kHelp , builder: (context, state) => const HelpView()),
+    GoRoute(path: kEditProfile , builder: (context, state) => const EditProfile()),
 
   ]);
 }
