@@ -10,10 +10,10 @@ class HeaderSection extends StatelessWidget {
     return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+               Row(
                 children: [
-                  ProfilePhoto(),
-                  SizedBox(
+                  const ProfilePhoto(),
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
