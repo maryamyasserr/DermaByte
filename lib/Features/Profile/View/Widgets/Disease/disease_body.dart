@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/disease_body_section.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/disease_header_section.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Disease/disease_body_section.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Disease/disease_header_section.dart';
 import 'package:flutter/material.dart';
 
 class DiseaseBody extends StatelessWidget {

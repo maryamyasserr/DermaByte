@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/consults_body_section.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/consults_header_section.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Consults/consults_body_section.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Consults/consults_header_section.dart';
 import 'package:flutter/material.dart';
 
 class ConsultsBody extends StatelessWidget {

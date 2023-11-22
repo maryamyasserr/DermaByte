@@ -9,4 +9,5 @@ class Assets {
   static const kGoogleIcon = 'assets/images/google_icon.svg';
   static const kDoctorAvatar = 'assets/images/doctor_avatar.svg';
   static const kDiseasePhoto = 'assets/images/disease.jpg';
+  static const krequirment = 'assets/images/Requirment.svg';
 }

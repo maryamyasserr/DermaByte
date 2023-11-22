@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Profile/View/Widgets/consults_body.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Consults/consults_body.dart';
 import 'package:flutter/material.dart';
 
 class ConsultsView extends StatelessWidget {

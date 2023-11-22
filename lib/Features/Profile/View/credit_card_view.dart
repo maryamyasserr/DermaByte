@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Profile/View/Widgets/credit_card_body.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/CreditCard/credit_card_body.dart';
 import 'package:flutter/material.dart';
 
 class CreditCardView extends StatelessWidget {
