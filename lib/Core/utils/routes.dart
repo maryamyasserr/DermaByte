@@ -17,6 +17,7 @@ abstract class AppRoutes {
   static String kAppIntro = '/AppIntro';
   static String kSignIn = '/SignIn';
   static String kSignUp = '/SignUp';
+  static String kHistory = '/history';
 
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const ProfileView()),
