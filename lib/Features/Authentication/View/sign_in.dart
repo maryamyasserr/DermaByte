@@ -1,3 +1,4 @@
+import 'package:dermabyte/Features/Authentication/View/Widgets/sign_in_body.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {
@@ -5,6 +6,8 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: SignInBody(),
+    );
   }
 }
