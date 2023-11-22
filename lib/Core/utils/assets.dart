@@ -8,4 +8,5 @@ class Assets {
   static const String kFacebookIcon = 'assets/images/facebook_icon.svg';
   static const kGoogleIcon = 'assets/images/google_icon.svg';
   static const kDoctorAvatar = 'assets/images/doctor_avatar.svg';
+  static const kDiseasePhoto = 'assets/images/disease.jpg';
 }
