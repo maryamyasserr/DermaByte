@@ -2,6 +2,7 @@ import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
+import 'package:dermabyte/Features/Authentication/View/sign_up_patient.dart';
 
 import 'package:dermabyte/Features/Profile/View/account_view.dart';
 import 'package:dermabyte/Features/Profile/View/address_view.dart';
