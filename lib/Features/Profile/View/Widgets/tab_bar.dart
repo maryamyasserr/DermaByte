@@ -104,7 +104,9 @@ class _CustomTabBarState extends State<CustomTabBar>
                               cardSubTitle:
                                   "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
                               textButton: "View",
-                              onPressed: () {},
+                              onPressed: () {
+                                GoRouter.of(context).push(AppRoutes.kConsults);
+                              },
                             ),
                           )
                         ],
