@@ -8,40 +8,39 @@ class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Row(
-                children: [
-                  ProfilePhoto(),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ahmed Mohamed",
-                        style: Styels.textStyle20_700,
-                      ),
-                      Text(
-                        "patient",
-                        style: Styels.textStyle14_300,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Padding(
-
-                padding: const EdgeInsets.all(0),
-                child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.edit_outlined,
-                      size: 30,
-                    )),
-              )
-            ],
-          );
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            ProfilePhoto(),
+            SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Ahmed Mohamed",
+                  style: Styels.textStyle20_700,
+                ),
+                Text(
+                  "patient",
+                  style: Styels.textStyle14_300,
+                ),
+              ],
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.edit_outlined,
+                size: 30,
+              )),
+        )
+      ],
+    );
   }
 }
