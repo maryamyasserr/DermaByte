@@ -24,12 +24,12 @@ class UpComingBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children:[
-                const Text(
+                Text(
                   "The doctor has scheduled an online appointment for you on Tuesday 10/24/2023, at 2:30 PM.",
                   style: Styels.textStyle18_400
                   ),
                 SizedBox(height: MediaQuery.of(context).size.height*0.07,),
-                const Text(
+                Text(
                   "please click on the call button right 5 minutes before the appointment.",
                   style: Styels.textStyle14_300
                   ),
