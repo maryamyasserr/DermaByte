@@ -8,4 +8,6 @@ class Assets {
   static const kFacebookIcon = 'assets/images/facebook_icon.svg';
   static const kGoogleIcon = 'assets/images/google_icon.svg';
   static const kRequiredIcon = 'assets/images/required_icon.svg';
+  static const kCheckIcon = 'assets/images/check_icon.svg';
+  static const kAlphaScan = 'assets/images/alpha_scan.svg';
 }

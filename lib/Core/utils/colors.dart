@@ -7,4 +7,5 @@ class AppColors {
   static const kFilledTextForm = Color.fromARGB(255, 239, 239, 239);
   static const kTextInForm = Color.fromARGB(255, 86, 86, 86);
   static const kfacebookButton = Color(0xff083EA8);
+  static const kScanButton = Color(0xff1F1870);
 }

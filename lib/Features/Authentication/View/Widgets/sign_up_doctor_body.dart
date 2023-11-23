@@ -79,7 +79,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
           SizedBox(height: mediaQuery.height * 0.014),
           // ignore: sized_box_for_whitespace
           Container(
-            height: mediaQuery.height *0.054,
+            height: mediaQuery.height *0.05,
             child: TextForm(
               label: 'Re-type Password',
               controller: SignUpDoctorBody.rePasswordController,

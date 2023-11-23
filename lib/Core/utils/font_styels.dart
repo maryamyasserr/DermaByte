@@ -36,6 +36,10 @@ class Styels {
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: AppColors.kPrimaryColor);
+   static final textStylee20_700 = GoogleFonts.roboto(
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
+      color: AppColors.kWhiteColor);    
   static final textStyle12_200 = GoogleFonts.lexend(
       fontSize: 12,
       fontWeight: FontWeight.w200,
