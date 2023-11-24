@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile_Section/profile_body.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {

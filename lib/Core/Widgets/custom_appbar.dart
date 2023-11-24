@@ -32,7 +32,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
           Row(
             children: [
               GestureDetector(
-                  onTap: () {}, child: SvgPicture.asset(Assets.kBellIcon)),
+                  onTap: () {
+                    GoRouter.of(context).push(AppRoutes.kNotification);
+                  },
+                  child: SvgPicture.asset(Assets.kBellIcon)),
               const SizedBox(width: 25),
               GestureDetector(
                   onTap: () {
