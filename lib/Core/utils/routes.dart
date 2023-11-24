@@ -1,16 +1,8 @@
 import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
-import 'package:dermabyte/Features/Authentication/View/sign_up_doctor.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
-<<<<<<< HEAD
-import 'package:dermabyte/Features/Authentication/View/sign_up_lab.dart';
-import 'package:dermabyte/Features/Authentication/View/sign_up_patient.dart';
-
-=======
-import 'package:dermabyte/Features/Authentication/View/sign_up.dart';
 import 'package:dermabyte/Features/Notification/View/notification_view.dart';
->>>>>>> dev
 import 'package:dermabyte/Features/Profile/View/account_view.dart';
 import 'package:dermabyte/Features/Profile/View/address_view.dart';
 import 'package:dermabyte/Features/Profile/View/consults_view.dart';
@@ -52,7 +44,6 @@ abstract class AppRoutes {
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
     GoRoute(path: kSplash, builder: (context, state) => const SplashView()),
-<<<<<<< HEAD
     GoRoute(path: kAppoinments , builder: (context, state) => const AppoinmentsView()),
     GoRoute(path: kAppIntro , builder: (context, state) => const AppIntro()),
     GoRoute(path: kSignIn , builder: (context, state) => const SignIn()),
@@ -66,13 +57,11 @@ abstract class AppRoutes {
     GoRoute(path: kHelp , builder: (context, state) => const HelpView()),
     GoRoute(path: kEditProfile , builder: (context, state) => const EditProfile()),
 
-=======
     GoRoute(
         path: kAppoinments,
         builder: (context, state) => const AppoinmentsView()),
     GoRoute(path: kAppIntro, builder: (context, state) => const AppIntro()),
     GoRoute(path: kSignIn, builder: (context, state) => const SignIn()),
-    GoRoute(path: kSignUp, builder: (context, state) => const SignUp()),
     GoRoute(path: kHistory, builder: (context, state) => const HistoryView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
@@ -87,6 +76,5 @@ abstract class AppRoutes {
     GoRoute(
         path: kNotification,
         builder: (context, state) => const NotificationsView()),
->>>>>>> dev
   ]);
 }
