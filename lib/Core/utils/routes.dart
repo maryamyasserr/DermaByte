@@ -40,7 +40,7 @@ abstract class AppRoutes {
   static String kEditProfile = '/editProfile';
 
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const SignUpLab()),
+    // GoRoute(path: '/', builder: (context, state) => const SignUpLab()),
     GoRoute(path: '/', builder: (context, state) => const ProfileView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
