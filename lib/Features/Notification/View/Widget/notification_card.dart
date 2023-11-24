@@ -1,21 +1,12 @@
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class FeatureCard extends StatelessWidget {
-  const FeatureCard(
-      {super.key,
-      required this.iconCard,
-      required this.cardTitle,
-      required this.cardSubTitle,
-      required this.textButton,
-      this.onPressed,
-      this.width});
-  final String iconCard, cardTitle, cardSubTitle, textButton;
-  final void Function()? onPressed;
-  final double? width;
+class NotificationCard extends StatelessWidget {
+  const NotificationCard({super.key, required this.cardTitle, required this.cardSubTitle, required this.textButton, required this.onPressed});
+  final String cardTitle, cardSubTitle, textButton;
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,17 +24,14 @@ class FeatureCard extends StatelessWidget {
           ]),
       child: Stack(
         children: [
-          Row(children: [
+          Row(
+            children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 10, right: 10),
-              child: SvgPicture.asset(
-                iconCard,
-                height: MediaQuery.of(context).size.height * 0.15,
+              padding: const EdgeInsets.only(left: 20),
+              child: CardText(
+                cardTitle: cardTitle,
+                cardSubTitle: cardSubTitle,
               ),
-            ),
-            CardText(
-              cardTitle: cardTitle,
-              cardSubTitle: cardSubTitle,
             ),
           ]),
           Positioned(

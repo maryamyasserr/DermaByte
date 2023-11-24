@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile_Section/profile_item.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

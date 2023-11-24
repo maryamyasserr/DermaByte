@@ -2,8 +2,8 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_card.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile_Section/items_list_view.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile_Section/profile_header_section.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/items_list_view.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_header_section.dart';
 import 'package:flutter/material.dart';
 
 class ProfileBody extends StatelessWidget {

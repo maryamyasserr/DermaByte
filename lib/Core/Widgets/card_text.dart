@@ -12,19 +12,27 @@ class CardText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width*0.44,
+        width: MediaQuery.of(context).size.width*0.6,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               cardTitle,
-              style: Styels.textStyle18_600,
+              maxLines: 1,
+              style: Styels.textStyle18_600.copyWith(
+                overflow: TextOverflow.ellipsis,
+                
+                ),
             ),
             const SizedBox(height: 7),
             Text(
               cardSubTitle,
-              style: Styels.textStyle12_200.copyWith(fontWeight: FontWeight.w300),
-            )
+              maxLines: 4,
+              style:Styels.textStyle14_300.copyWith(
+                overflow: TextOverflow.ellipsis
+              )
+            ),
+            
           ],
         ),
       ),
