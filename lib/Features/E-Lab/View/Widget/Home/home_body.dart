@@ -17,7 +17,7 @@ class HomeBody extends StatelessWidget {
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * 0.04,
+            vertical: MediaQuery.of(context).size.height * 0.08,
             horizontal: MediaQuery.of(context).size.width * 0.025),
         child: Column(
           children: [
@@ -28,14 +28,14 @@ class HomeBody extends StatelessWidget {
                     style: Styels.textStyle24_600.copyWith(fontSize: 30)),
                 IconButton(
                     onPressed: () {},
-                    icon: const Icon(FontAwesomeIcons.magnifyingGlass))
+                    icon: const Icon(FontAwesomeIcons.magnifyingGlass,size: 30,))
               ],
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             SizedBox(
-                height: MediaQuery.of(context).size.height * 0.75,
+                height: MediaQuery.of(context).size.height * 0.57,
                 child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: 20,

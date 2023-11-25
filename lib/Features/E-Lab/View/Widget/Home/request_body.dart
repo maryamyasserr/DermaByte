@@ -23,7 +23,7 @@ class RequestBody extends StatelessWidget {
                 horizontal: MediaQuery.of(context).size.width * 0.03),
             child: Column(
               children: [
-                const PatientPhoto(radius: 40),
+                const PatientPhoto(radius: 50),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 const PatientInfo(info: 'Name :', data: " Seif Tariq"),
                 const PatientInfo(info: 'Age :', data: " 21"),
@@ -36,11 +36,7 @@ class RequestBody extends StatelessWidget {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 const FileUpload(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                const FileUpload(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                const FileUpload(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.07),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
