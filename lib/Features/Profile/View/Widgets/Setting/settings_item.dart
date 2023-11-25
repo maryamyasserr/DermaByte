@@ -23,6 +23,6 @@ class SettingsItem extends StatelessWidget {
         ),
       ),
     );
-    ;
+    
   }
 }
