@@ -60,7 +60,7 @@ class LabItem extends StatelessWidget {
             child: CardButton(
             textButton: textButton,
             onPressed: (){
-              GoRouter.of(context).push(AppRoutes.kReservationView);
+              GoRouter.of(context).push(AppRoutes.kLabReservationView);
             },
           )),
           Positioned

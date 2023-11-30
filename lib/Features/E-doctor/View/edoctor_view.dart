@@ -1,3 +1,4 @@
+import 'package:dermabyte/Features/E-doctor/View/Widgets/edoctor_view_body.dart';
 import 'package:flutter/material.dart';
 
 class EdoctorView extends StatelessWidget {
@@ -5,6 +6,6 @@ class EdoctorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return EdoctorViewBody();
   }
 }

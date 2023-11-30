@@ -24,4 +24,7 @@ class Assets {
   static const kSugarTestIcon = 'assets/images/sugartest_icon.svg';
   static const kVirusTestIcon = 'assets/images/virustest_icon.svg';
   static const kXrayTestIcon = 'assets/images/xray_icon.svg';
+  static const kManIcon = 'assets/images/man_icon.svg';
+  static const kWomanIcon = 'assets/images/woman_icon.svg';
+  static const kAddIcon = 'assets/images/add_icon.svg';
 }

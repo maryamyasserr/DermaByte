@@ -6,8 +6,8 @@ import 'package:dermabyte/Features/Authentication/View/sign_up_doctor.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_up_lab.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_up_patient.dart';
-import 'package:dermabyte/Features/E-lab/View/Widgets/reservation_view_body.dart';
-import 'package:dermabyte/Features/E-lab/View/reservation_view.dart';
+import 'package:dermabyte/Features/E-doctor/View/doctor_reservation_view.dart';
+import 'package:dermabyte/Features/E-lab/View/lab_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/View/scan_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Profile/View/profile_view.dart';
@@ -28,7 +28,8 @@ abstract class AppRoutes {
   static String kSignUpLab = '/SignUpLab';
   static String kHomeView = '/HomeView';
   static String kScanView = '/ScanView';
-  static String kReservationView = '/ReservationView';
+  static String kLabReservationView = '/LabReservationView';
+  static String kDoctorReservationView = '/DoctorReservationView';
 
 
   static final router = GoRouter(routes: [
@@ -45,6 +46,7 @@ abstract class AppRoutes {
     GoRoute(path: kSignUpLab, builder: (context, state) => const SignUpLab()),
     GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
     GoRoute(path: kScanView, builder: (context, state) => const ScanView()),
-    GoRoute(path: kReservationView, builder: (context, state) => const ReservationView()),
+    GoRoute(path: kLabReservationView, builder: (context, state) => const LabReservationView()),
+    GoRoute(path: kDoctorReservationView, builder: (context, state) => const DoctorReservationView()),
   ]);
 }
