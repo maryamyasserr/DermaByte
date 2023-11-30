@@ -30,8 +30,9 @@ class _FileUploadState extends State<FileUpload> {
       },
       child: imgPath!=null? Image.file(
         File(imgPath!),
-        height: 200,
-        width: 200,
+        height: MediaQuery.of(context).size.height*0.3,
+        width: MediaQuery.of(context).size.width*0.9,
+        fit: BoxFit.cover,
       ):
       Container(
         width: MediaQuery.of(context).size.width * 0.9,
