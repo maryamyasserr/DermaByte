@@ -1,3 +1,4 @@
+import 'package:dermabyte/Features/E-lab/View/Widgets/elab_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ElabView extends StatelessWidget {
@@ -5,6 +6,6 @@ class ElabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return ElabViewBody();
   }
 }
