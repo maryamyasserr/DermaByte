@@ -62,7 +62,7 @@ class _SignInBodyState extends State<SignInBody> {
           ),
           SizedBox(height: mediaQuery.height * 0.04),
           const SignButton(buttonName: 'Sign in'),
-          SizedBox(height: mediaQuery.height * 0.028),
+          SizedBox(height: mediaQuery.height * 0.05),
           InkWell(
             onTap: (){},
             child: Text(
@@ -72,49 +72,7 @@ class _SignInBodyState extends State<SignInBody> {
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(height: mediaQuery.height * 0.05),
-          IntrinsicHeight(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 2.0,
-                  width: mediaQuery.width * 0.23,
-                  color: const Color.fromRGBO(0, 0, 0, 0.4),
-                  margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                ),
-                Text(
-                  'Or continue with',
-                  style: Styels.textStyle15_400
-                      .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-                  textAlign: TextAlign.center,
-                ),
-                Container(
-                  height: 2.0,
-                  width: mediaQuery.width * 0.23,
-                  color: const Color.fromRGBO(0, 0, 0, 0.4),
-                  margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: mediaQuery.height * 0.035),
-          ContinueWithButton(
-              borderSideColor: AppColors.kfacebookButton,
-              textStyle: Styels.textStyle12_700
-                  .copyWith(fontSize: 18, color: AppColors.kWhiteColor),
-              image: Assets.kFacebookIcon,
-              buttonName: 'Continue with Facebook',
-              backgroundColor: AppColors.kfacebookButton),
-          SizedBox(height: mediaQuery.height * 0.02),
-          ContinueWithButton(
-              borderSideColor: Colors.black,
-              textStyle: Styels.textStyle12_700
-                  .copyWith(fontSize: 18, color: Colors.black),
-              image: Assets.kGoogleIcon,
-              buttonName: 'Continue with Google',
-              backgroundColor: AppColors.kWhiteColor),
-          SizedBox(height: mediaQuery.height * 0.05),
+          SizedBox(height: mediaQuery.height * 0.03),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

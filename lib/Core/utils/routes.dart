@@ -37,7 +37,7 @@ abstract class AppRoutes {
 
 
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const CustomScreen()),
+    GoRoute(path: '/', builder: (context, state) => const SignUpDoctor()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
