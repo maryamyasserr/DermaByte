@@ -11,6 +11,8 @@ import 'package:dermabyte/Features/E-lab/View/lab_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/View/scan_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Profile/View/profile_view.dart';
+import 'package:dermabyte/Features/Scan/View/camera_view.dart';
+import 'package:dermabyte/Features/Scan/View/scan_ways_view.dart';
 import 'package:dermabyte/Features/Splash/View/intro_view.dart';
 import 'package:dermabyte/Features/Splash/View/splash_view.dart';
 import 'package:go_router/go_router.dart';
@@ -30,6 +32,8 @@ abstract class AppRoutes {
   static String kScanView = '/ScanView';
   static String kLabReservationView = '/LabReservationView';
   static String kDoctorReservationView = '/DoctorReservationView';
+  static String kScanWaysView = '/ScanWaysView';
+  static String kCameraView = '/CameraView';
 
 
   static final router = GoRouter(routes: [
@@ -48,5 +52,7 @@ abstract class AppRoutes {
     GoRoute(path: kScanView, builder: (context, state) => const ScanView()),
     GoRoute(path: kLabReservationView, builder: (context, state) => const LabReservationView()),
     GoRoute(path: kDoctorReservationView, builder: (context, state) => const DoctorReservationView()),
+    GoRoute(path: kScanWaysView, builder: (context, state) => const ScanWaysView()),
+    GoRoute(path: kCameraView, builder: (context, state) => const CameraView()),
   ]);
 }

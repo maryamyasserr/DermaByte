@@ -1,12 +1,14 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:dermabyte/Features/E-doctor/View/edoctor_view.dart';
 import 'package:dermabyte/Features/E-lab/View/elab_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomScreen extends StatefulWidget {
   const CustomScreen({Key? key}) : super(key: key);
@@ -53,7 +55,9 @@ class _CustomScreenState extends State<CustomScreen> {
           onPressed: () {},
           // ignore: sort_child_properties_last
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kScanWaysView);
+            },
             child: Text(
               'Scan',
               style: Styels.textStylee20_700,

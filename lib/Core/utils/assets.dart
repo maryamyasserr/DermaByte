@@ -27,4 +27,7 @@ class Assets {
   static const kManIcon = 'assets/images/man_icon.svg';
   static const kWomanIcon = 'assets/images/woman_icon.svg';
   static const kAddIcon = 'assets/images/add_icon.svg';
+  static const kTakePhoto = 'assets/images/take_photo.png';
+  static const kUploadPhoto = 'assets/images/upload_photo.png';
+  static const kCameraIcon = 'assets/images/camera_icon.svg';
 }

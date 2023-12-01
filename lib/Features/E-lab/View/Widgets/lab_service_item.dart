@@ -4,6 +4,7 @@ import 'package:dermabyte/Features/E-lab/Data/lab_service_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// ignore: must_be_immutable
 class LabServiceItem extends StatelessWidget {
   LabServiceItem({super.key, required this.labServiceData});
   LabServiceData labServiceData;
