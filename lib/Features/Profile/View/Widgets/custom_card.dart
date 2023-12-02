@@ -42,6 +42,7 @@ class FeatureCard extends StatelessWidget {
               ),
             ),
             CardText(
+              width: MediaQuery.of(context).size.width*0.6,
               cardTitle: cardTitle,
               cardSubTitle: cardSubTitle,
             ),

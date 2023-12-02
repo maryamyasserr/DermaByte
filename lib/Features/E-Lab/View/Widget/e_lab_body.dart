@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/E-Lab/View/Widget/Home/home_body.dart';
@@ -47,11 +48,19 @@ class _ElabBodyState extends State<ElabBody> {
             ],
           ),
         ),
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: (page){},
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [HomeBody(),ElabProfile()],
+        body: Container(
+           decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Assets.kBackground),
+            fit: BoxFit.cover
+            )
+        ),
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (page){},
+            physics: const NeverScrollableScrollPhysics(),
+            children: const [HomeBody(),ElabProfile()],
+          ),
         ));
   }
 }

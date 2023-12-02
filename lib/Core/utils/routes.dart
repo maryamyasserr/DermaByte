@@ -3,6 +3,7 @@ import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_up.dart';
+import 'package:dermabyte/Features/E-Doctor/View/e_doctor_view.dart';
 import 'package:dermabyte/Features/E-Lab/View/Widget/Home/request_body.dart';
 import 'package:dermabyte/Features/E-Lab/View/e-lab._view.dart';
 import 'package:dermabyte/Features/Notification/View/notification_view.dart';
@@ -41,9 +42,11 @@ abstract class AppRoutes {
   static String kNotification = '/notification';
   static String kElabHome = '/e-lab_home';
   static String kRequestBody = '/requestBody';
+  static String kEdoctor = '/e-doctor';
 
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const ELabView()),
+    GoRoute(path: '/', builder: (context, state) => const EdoctorView()),
+    // GoRoute(path: '/', builder: (context, state) => const ELabView()),
     // GoRoute(path: '/', builder: (context, state) => const ProfileView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
@@ -65,5 +68,6 @@ abstract class AppRoutes {
     GoRoute(path: kNotification,builder: (context, state) => const NotificationsView()),
     GoRoute(path: kElabHome, builder: (context, state) => const ELabView()),
     GoRoute(path: kRequestBody, builder: (context, state) => const RequestBody()),
+    GoRoute(path: kEdoctor, builder: (context, state) => const EdoctorView()),
   ]);
 }
