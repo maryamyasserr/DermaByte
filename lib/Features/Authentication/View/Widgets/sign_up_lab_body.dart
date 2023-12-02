@@ -2,7 +2,6 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/continue_with_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
 import 'package:flutter/material.dart';
@@ -131,51 +130,11 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
               controller: SignUpLabBody.locationController,
             ),
           ),
-          SizedBox(height: mediaQuery.height * 0.025),
-          const SignButton(buttonName: 'Sign Up'),
-          SizedBox(height: mediaQuery.height * 0.03),
-          IntrinsicHeight(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 2.0,
-                  width: mediaQuery.width * 0.23,
-                  color: const Color.fromRGBO(0, 0, 0, 0.4),
-                  margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                ),
-                Text(
-                  'Or continue with',
-                  style: Styels.textStyle15_400
-                      .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-                  textAlign: TextAlign.center,
-                ),
-                Container(
-                  height: 2.0,
-                  width: mediaQuery.width * 0.23,
-                  color: const Color.fromRGBO(0, 0, 0, 0.4),
-                  margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: mediaQuery.height * 0.035),
-          ContinueWithButton(
-              borderSideColor: AppColors.kfacebookButton,
-              textStyle: Styels.textStyle12_700
-                  .copyWith(fontSize: 18, color: AppColors.kWhiteColor),
-              image: Assets.kFacebookIcon,
-              buttonName: 'Continue with Facebook',
-              backgroundColor: AppColors.kfacebookButton),
-          SizedBox(height: mediaQuery.height * 0.02),
-          ContinueWithButton(
-              borderSideColor: Colors.black,
-              textStyle: Styels.textStyle12_700
-                  .copyWith(fontSize: 18, color: Colors.black),
-              image: Assets.kGoogleIcon,
-              buttonName: 'Continue with Google',
-              backgroundColor: AppColors.kWhiteColor),
-          SizedBox(height: mediaQuery.height * 0.015),
+          SizedBox(height: mediaQuery.height * 0.04),
+          SignButton(buttonName: 'Sign Up',onClicked: (){
+            GoRouter.of(context).pushReplacement('');
+          }),
+          SizedBox(height: mediaQuery.height * 0.25),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

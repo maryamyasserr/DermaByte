@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,15 @@ class DermaByte extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: AppRoutes.router,
       debugShowCheckedModeBanner: false,
-       
+      
+      theme: ThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            selectedItemColor: AppColors.kPrimaryColor,
+            unselectedItemColor: Colors.grey,
+            ),
+      ),
     );
   }
 }
