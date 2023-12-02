@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/custom_screen.dart';
 import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
+import 'package:dermabyte/Features/Authentication/View/sign_up_as_view.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_up_doctor.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_up_lab.dart';
@@ -37,10 +38,11 @@ abstract class AppRoutes {
   static String kCameraView = '/CameraView';
   static String kServiceSelectionView = '/ServiceSelectionView';
   static String kCustomScreen = '/CustomScreen';
+  static String kSignUpAs = '/SignUpAs';
 
 
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const SignUpPatient()),
+    GoRoute(path: '/', builder: (context, state) => const SplashView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
@@ -59,5 +61,6 @@ abstract class AppRoutes {
     GoRoute(path: kCameraView, builder: (context, state) => const CameraView()),
     GoRoute(path: kCustomScreen, builder: (context, state) => const CustomScreen()),
     GoRoute(path: kServiceSelectionView, builder: (context, state) => const ServiceSelectionView()),
+    GoRoute(path: kSignUpAs, builder: (context, state) => const SignUpAsView()),
   ]);
 }

@@ -36,6 +36,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
+      // ignore: use_build_context_synchronously
       GoRouter.of(context)
           .go('${AppRoutes.kSignUpDoctor}?imagePath=${pickedFile.path}');
     }

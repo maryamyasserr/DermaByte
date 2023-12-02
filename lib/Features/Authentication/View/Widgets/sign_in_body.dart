@@ -60,7 +60,7 @@ class _SignInBodyState extends State<SignInBody> {
           ),
           SizedBox(height: mediaQuery.height * 0.04),
           SignButton(buttonName: 'Sign in',onClicked: (){
-            GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+            GoRouter.of(context).push(AppRoutes.kCustomScreen);
           },),
           SizedBox(height: mediaQuery.height * 0.05),
           InkWell(
@@ -84,7 +84,7 @@ class _SignInBodyState extends State<SignInBody> {
               SizedBox(width: mediaQuery.width *  0.0002),
               TextButton(
                 onPressed: () {
-                  GoRouter.of(context).push(AppRoutes.kSignUpPatient);
+                  GoRouter.of(context).push(AppRoutes.kSignUpAs);
                   }, child: Text('sign up',
                 style: Styels.textStyle15_300
                     .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
