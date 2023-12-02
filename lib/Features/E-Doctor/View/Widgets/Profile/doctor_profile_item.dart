@@ -1,10 +1,10 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
-class SettingsItem extends StatelessWidget {
-  const SettingsItem({super.key, required this.onTap, required this.item});
-  final void Function() onTap;
+class DoctorProfileItem extends StatelessWidget {
+  const DoctorProfileItem({super.key, required this.item, required this.onTap});
   final String item;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,6 +23,5 @@ class SettingsItem extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

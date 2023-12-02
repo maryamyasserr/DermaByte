@@ -29,6 +29,7 @@ class NotificationCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: CardText(
+                width: MediaQuery.of(context).size.width*0.6,
                 cardTitle: cardTitle,
                 cardSubTitle: cardSubTitle,
               ),

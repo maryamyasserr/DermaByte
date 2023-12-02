@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CardText extends StatelessWidget {
   const CardText(
-      {super.key, required this.cardTitle, required this.cardSubTitle, this.width});
+      {super.key, required this.cardTitle, required this.cardSubTitle, required this.width});
   final String cardTitle, cardSubTitle;
   final double? width;
 
@@ -12,7 +12,7 @@ class CardText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width*0.6,
+        width: width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
