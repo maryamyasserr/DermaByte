@@ -40,8 +40,8 @@ class _EdoctorBodyState extends State<EdoctorBody> {
           BottomNavigationBarItem(
               icon: SvgPicture.asset(Assets.kAppoinments),
               label: "Appoinments"),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
+          // BottomNavigationBarItem(
+          //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(Assets.kProfileIcon), label: "Profile"),
         ],
@@ -57,7 +57,7 @@ class _EdoctorBodyState extends State<EdoctorBody> {
             controller: _pageController,
             onPageChanged: (page){},
             physics: const NeverScrollableScrollPhysics(),
-            children: const [EdoctorHome(),EdoctorAppoinments(),EdoctorRequests(),EdoctorProfile()],
+            children: [const EdoctorHome(),const EdoctorAppoinments(),EdoctorProfile()],
           ),
       )
     );

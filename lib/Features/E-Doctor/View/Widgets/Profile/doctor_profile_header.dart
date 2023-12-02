@@ -13,7 +13,7 @@ class DoctorProfileHeader extends StatelessWidget {
         Row(
           children: [
             const ProfilePhoto(
-              radius: 30,
+              radius: 35,
             ),
             const SizedBox(
               width: 20,

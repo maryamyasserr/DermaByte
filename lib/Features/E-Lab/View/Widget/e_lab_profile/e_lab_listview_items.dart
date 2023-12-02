@@ -22,7 +22,7 @@ class ElabItemsListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return ElabProfileItem(
                 onTap: () {
-                  GoRouter.of(context).push(items.values.elementAt(index));
+                  // GoRouter.of(context).push(items.values.elementAt(index));
                 },
                 item: items.keys.elementAt(index));
           }),
