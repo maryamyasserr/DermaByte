@@ -9,6 +9,7 @@ import 'package:dermabyte/Features/Authentication/View/sign_up_patient.dart';
 import 'package:dermabyte/Features/E-doctor/View/doctor_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/View/lab_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/View/scan_view.dart';
+import 'package:dermabyte/Features/E-lab/View/service_selection_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Profile/View/profile_view.dart';
 import 'package:dermabyte/Features/Scan/View/camera_view.dart';
@@ -34,10 +35,12 @@ abstract class AppRoutes {
   static String kDoctorReservationView = '/DoctorReservationView';
   static String kScanWaysView = '/ScanWaysView';
   static String kCameraView = '/CameraView';
+  static String kServiceSelectionView = '/ServiceSelectionView';
+  static String kCustomScreen = '/CustomScreen';
 
 
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const SignUpDoctor()),
+    GoRoute(path: '/', builder: (context, state) => const SignUpPatient()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
@@ -54,5 +57,7 @@ abstract class AppRoutes {
     GoRoute(path: kDoctorReservationView, builder: (context, state) => const DoctorReservationView()),
     GoRoute(path: kScanWaysView, builder: (context, state) => const ScanWaysView()),
     GoRoute(path: kCameraView, builder: (context, state) => const CameraView()),
+    GoRoute(path: kCustomScreen, builder: (context, state) => const CustomScreen()),
+    GoRoute(path: kServiceSelectionView, builder: (context, state) => const ServiceSelectionView()),
   ]);
 }

@@ -233,7 +233,9 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                 ],
               ),
               SizedBox(height: mediaQuery.height * 0.03),
-              const SignButton(buttonName: 'Sign Up'),
+              SignButton(buttonName: 'Sign Up',onClicked: (){
+                GoRouter.of(context).pushReplacement('');
+              }),
               SizedBox(height: mediaQuery.height * 0.006),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

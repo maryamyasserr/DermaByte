@@ -1,8 +1,6 @@
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/continue_with_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +59,9 @@ class _SignInBodyState extends State<SignInBody> {
             obscureText: !passwordVisible,
           ),
           SizedBox(height: mediaQuery.height * 0.04),
-          const SignButton(buttonName: 'Sign in'),
+          SignButton(buttonName: 'Sign in',onClicked: (){
+            GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+          },),
           SizedBox(height: mediaQuery.height * 0.05),
           InkWell(
             onTap: (){},

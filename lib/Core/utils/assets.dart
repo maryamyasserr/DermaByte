@@ -30,4 +30,6 @@ class Assets {
   static const kTakePhoto = 'assets/images/take_photo.png';
   static const kUploadPhoto = 'assets/images/upload_photo.png';
   static const kCameraIcon = 'assets/images/camera_icon.svg';
+  static const kUnselectedIcon = 'assets/images/unselected_icon.svg';
+  static const kSelectedIcon = 'assets/images/selected_icon.svg';
 }
