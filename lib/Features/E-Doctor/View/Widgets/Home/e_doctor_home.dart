@@ -34,7 +34,7 @@ class EdoctorHome extends StatelessWidget {
                         cardTitle: "Jude Bellengham",
                         cardSubTitle:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        view: () {
+                         diagnose: () {
                           GoRouter.of(context).push(AppRoutes.kPatientView);
                         },
                         start: () {},

@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-Doctor/View/Widgets/Home/button.dart';
+import 'package:dermabyte/Features/E-Doctor/View/Widgets/button.dart';
 import 'package:dermabyte/Features/E-Doctor/View/Widgets/Home/patient_text_filed_report.dart';
 import 'package:flutter/material.dart';
 
@@ -35,13 +35,13 @@ class PatientView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MyButton(horizontal: MediaQuery.of(context).size.width*0.09, textButton: "Edit"),
-                      MyButton(horizontal: MediaQuery.of(context).size.width*0.08, textButton: "Save"),
-                      MyButton(horizontal: MediaQuery.of(context).size.width*0.07, textButton: "Delete"),
+                      MyButton(horizontal: MediaQuery.of(context).size.width*0.09, textButton: "Edit",onPressed: (){},),
+                      MyButton(horizontal: MediaQuery.of(context).size.width*0.08, textButton: "Save",onPressed: (){},),
+                      MyButton(horizontal: MediaQuery.of(context).size.width*0.07, textButton: "Delete",onPressed: (){}),
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height*0.05),
-                  MyButton(horizontal: MediaQuery.of(context).size.width*0.2, textButton: "Send Report"),
+                  MyButton(horizontal: MediaQuery.of(context).size.width*0.2, textButton: "Send Report",onPressed: (){},),
                 ],
               ),
             ),

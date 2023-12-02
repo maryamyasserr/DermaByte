@@ -1,11 +1,9 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/Widgets/profile_photo.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class ProfileHeaderSection extends StatelessWidget {
-  const ProfileHeaderSection({super.key});
+class DoctorProfileHeader extends StatelessWidget {
+  const DoctorProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +12,9 @@ class ProfileHeaderSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            const ProfilePhoto(radius: 40,),
+            const ProfilePhoto(
+              radius: 30,
+            ),
             const SizedBox(
               width: 20,
             ),
@@ -26,7 +26,7 @@ class ProfileHeaderSection extends StatelessWidget {
                   style: Styels.textStyle20_700,
                 ),
                 Text(
-                  "patient",
+                  "Doctor",
                   style: Styels.textStyle14_300,
                 ),
               ],
@@ -36,9 +36,7 @@ class ProfileHeaderSection extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(0),
           child: IconButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRoutes.kEditProfile);
-              },
+              onPressed: () {},
               icon: const Icon(
                 Icons.edit_outlined,
                 size: 30,

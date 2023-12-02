@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_photo.dart';
+import 'package:dermabyte/Core/Widgets/profile_photo.dart';
 
 import 'package:flutter/material.dart';
 
