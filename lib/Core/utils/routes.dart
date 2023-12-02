@@ -3,6 +3,7 @@ import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_in.dart';
 import 'package:dermabyte/Features/Authentication/View/sign_up.dart';
+import 'package:dermabyte/Features/E-Doctor/View/Widgets/Home/patient_view.dart';
 import 'package:dermabyte/Features/E-Doctor/View/e_doctor_view.dart';
 import 'package:dermabyte/Features/E-Lab/View/Widget/Home/request_body.dart';
 import 'package:dermabyte/Features/E-Lab/View/e-lab._view.dart';
@@ -43,6 +44,7 @@ abstract class AppRoutes {
   static String kElabHome = '/e-lab_home';
   static String kRequestBody = '/requestBody';
   static String kEdoctor = '/e-doctor';
+  static String kPatientView = '/patientView';
 
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const EdoctorView()),
@@ -69,5 +71,6 @@ abstract class AppRoutes {
     GoRoute(path: kElabHome, builder: (context, state) => const ELabView()),
     GoRoute(path: kRequestBody, builder: (context, state) => const RequestBody()),
     GoRoute(path: kEdoctor, builder: (context, state) => const EdoctorView()),
+    GoRoute(path: kPatientView, builder: (context, state) => const PatientView()),
   ]);
 }

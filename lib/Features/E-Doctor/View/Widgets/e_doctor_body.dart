@@ -2,7 +2,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/E-Doctor/View/Widgets/Appoinments/e_doctor_appoinments.dart';
-import 'package:dermabyte/Features/E-Doctor/View/Widgets/Home/e_doctor_home_body.dart';
+import 'package:dermabyte/Features/E-Doctor/View/Widgets/Home/e_doctor_home.dart';
 import 'package:dermabyte/Features/E-Doctor/View/Widgets/Profile/e_doctor_profile.dart';
 import 'package:dermabyte/Features/E-Doctor/View/Widgets/Requests/e_doctor_requests.dart';
 import 'package:flutter/material.dart';

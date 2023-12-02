@@ -11,9 +11,10 @@ class PatientCard extends StatelessWidget {
       required this.iconCard,
       required this.cardTitle,
       required this.cardSubTitle,
-      required this.onPressed});
+      required this.view,
+      required this.start});
   final String iconCard, cardTitle, cardSubTitle;
-  final void Function() onPressed;
+  final void Function() view,start;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,14 +54,14 @@ class PatientCard extends StatelessWidget {
               bottom: 0,
               child: CardButton(
                 textButton: "View",
-                onPressed: onPressed,
+                onPressed: view,
               )),
           Positioned(
             right: MediaQuery.of(context).size.width*0.28,
               bottom: 0,
               child: CardButton(
                 textButton: "Start",
-                onPressed: onPressed,
+                onPressed: start,
               )),
         ],
       ),
