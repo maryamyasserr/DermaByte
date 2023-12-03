@@ -73,7 +73,7 @@ abstract class AppRoutes {
     // GoRoute(path: '/', builder: (context, state) => const SignUpLab()),
     // GoRoute(path: '/', builder: (context, state) => const ProfileView()),
     //GoRoute(path: '/', builder: (context, state) => const ProfileView()),
-    GoRoute(path: '/', builder: (context, state) => const SignUpDoctor()),
+    GoRoute(path: '/', builder: (context, state) => const SignUpLab()),
     //GoRoute(path: '/', builder: (context, state) => const EdoctorView()),
     // GoRoute(path: '/', builder: (context, state) => const ELabView()),
     // GoRoute(path: '/', builder: (context, state) => const ProfileView()),

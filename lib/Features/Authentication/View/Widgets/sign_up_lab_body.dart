@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
+import 'package:dermabyte/Features/Doctor/View/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,9 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: EdgeInsets.symmetric(
+          vertical: mediaQuery.height * 0.05,
+          horizontal: mediaQuery.width * 0.03),
       child: SingleChildScrollView(
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -40,16 +43,16 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
           SizedBox(height: mediaQuery.height * 0.04),
           // ignore: sized_box_for_whitespace
           Container(
-            height: mediaQuery.height *0.054,
+            height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Email',
               controller: SignUpLabBody.emailController,
             ),
           ),
-          SizedBox(height: mediaQuery.height * 0.014),
+          SizedBox(height: mediaQuery.height * 0.02),
           // ignore: sized_box_for_whitespace
           Container(
-            height: mediaQuery.height *0.054,
+            height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Password',
               controller: SignUpLabBody.passwordController,
@@ -72,10 +75,10 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
               obscureText: !passwordVisible,
             ),
           ),
-          SizedBox(height: mediaQuery.height * 0.014),
+          SizedBox(height: mediaQuery.height * 0.02),
           // ignore: sized_box_for_whitespace
           Container(
-            height: mediaQuery.height *0.054,
+            height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Re-type Password',
               controller: SignUpLabBody.rePasswordController,
@@ -101,40 +104,54 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
           SizedBox(height: mediaQuery.height * 0.009),
           Padding(
             padding: const EdgeInsets.all(2.0),
-            child: SvgPicture.asset(Assets.kRequiredIcon,
-            alignment: Alignment.centerLeft,
+            child: SvgPicture.asset(
+              Assets.kRequiredIcon,
+              alignment: Alignment.centerLeft,
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.009),
-           // ignore: sized_box_for_whitespace
-           Container(
-            height: mediaQuery.height *0.054,
+          // ignore: sized_box_for_whitespace
+          Container(
+            height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Lab Name',
-              controller:SignUpLabBody.labNameController,
+              controller: SignUpLabBody.labNameController,
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.014),
           Padding(
             padding: const EdgeInsets.all(2.0),
-            child: SvgPicture.asset(Assets.kRequiredIcon,
-            alignment: Alignment.centerLeft,
+            child: SvgPicture.asset(
+              Assets.kRequiredIcon,
+              alignment: Alignment.centerLeft,
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.009),
-           // ignore: sized_box_for_whitespace
-           Container(
-            height: mediaQuery.height *0.054,
+          // ignore: sized_box_for_whitespace
+          Container(
+            height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Location ',
               controller: SignUpLabBody.locationController,
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.04),
-          SignButton(buttonName: 'Sign Up',onClicked: (){
-            GoRouter.of(context).pushReplacement('');
-          }),
-          SizedBox(height: mediaQuery.height * 0.25),
+          ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(AppRoutes.kServiceSelectionView);
+              },
+              child: const Text(
+                "Choose Your Services",
+                style: TextStyle(fontSize: 20),
+              )),
+          SizedBox(height: mediaQuery.height * 0.01),
+          SignButton(
+              buttonName: 'Sign Up',
+              onClicked: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRoutes.kElabHome);
+              }),
+          SizedBox(height: mediaQuery.height * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -147,11 +164,14 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
               TextButton(
                 onPressed: () {
                   GoRouter.of(context).push(AppRoutes.kSignIn);
-                  }, child: Text('sign in',
-                style: Styels.textStyle15_300
-                    .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
-              ),
-          )],
+                },
+                child: Text(
+                  'sign in',
+                  style: Styels.textStyle15_300
+                      .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
+                ),
+              )
+            ],
           )
         ]),
       ),
