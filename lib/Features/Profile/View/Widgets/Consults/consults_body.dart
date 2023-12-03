@@ -8,17 +8,19 @@ class ConsultsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          const CustomAppBar(title: "History"),
-          SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-          const ConsutlsHeaderSection(),
-          SizedBox(height: MediaQuery.of(context).size.height*0.014,),
-          const ConsultsBodySection()
-    
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            const CustomAppBar(title: "History"),
+            SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+            const ConsutlsHeaderSection(),
+            SizedBox(height: MediaQuery.of(context).size.height*0.014,),
+            const ConsultsBodySection()
+            
+          ],
+        ),
       ),
     );
   }

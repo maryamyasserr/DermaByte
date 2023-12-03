@@ -6,10 +6,6 @@ class AppoinmentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: AppoinmentsBody(),
-      ),
-    );
+    return const AppoinmentsBody();
   }
 }

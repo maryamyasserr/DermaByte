@@ -27,9 +27,10 @@ class TextForm extends StatelessWidget {
         suffixIcon: suffixIcon,
         fillColor: AppColors.kFilledTextForm,
         filled: true,
-        hintText: label,
-        hintStyle: Styels.textStyle20_200
-            .copyWith(color: AppColors.kTextInForm.withOpacity(0.8),
+        labelText: label,
+        labelStyle: Styels.textStyle20_200
+            .copyWith(
+              color: AppColors.kTextInForm.withOpacity(0.8),
             ),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
