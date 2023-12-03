@@ -170,7 +170,9 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                         ),
                         Wrap(
                           children: selectedTests
-                              .map((e) => Chip(label: Text(e)))
+                              .map((e) => Container(
+                                margin: EdgeInsets.symmetric(horizontal: mediaQuery.width*0.01),
+                                child: Chip(label: Text(e))))
                               .toList(),
                         ),
                     ]),

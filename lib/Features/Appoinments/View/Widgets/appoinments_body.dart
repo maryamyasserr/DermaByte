@@ -15,35 +15,41 @@ class AppoinmentsBody extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: Column(
-        children: [
-          const CustomAppBar(title: 'Appoinments'),
-          const HeaderText(
-              text: "Follow up with your ongoing and future appointments."),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-          CustomCard(
-            iconCard: Assets.kFollowUpIcon,
-            cardTitle: "Follow Up!",
-            cardSubTitle:
-                "Follow up with your last appointments, doctor has requested....",
-            textButton: "View",
-            width: MediaQuery.of(context).size.width * 0.37,
-            onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kFollowUp);
-            },
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          CustomCard(
-            iconCard: Assets.kWallBlock,
-            cardTitle: "Upcoming appoinment!",
-            cardSubTitle: "Doctor Mohamed has scheduled an appointment on ....",
-            textButton: "View",
-            onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kUpcoming);
-            },
-            width: MediaQuery.of(context).size.width * 0.37,
-          )
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height*0.05,
+          horizontal: MediaQuery.of(context).size.width*0.02
+        ),
+        child: Column(
+          children: [
+            const CustomAppBar(title: 'Appoinments'),
+            const HeaderText(
+                text: "Follow up with your ongoing and future appointments."),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            CustomCard(
+              iconCard: Assets.kFollowUpIcon,
+              cardTitle: "Follow Up!",
+              cardSubTitle:
+                  "Follow up with your last appointments, doctor has requested....",
+              textButton: "View",
+              width: MediaQuery.of(context).size.width * 0.37,
+              onPressed: () {
+                GoRouter.of(context).push(AppRoutes.kFollowUp);
+              },
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            CustomCard(
+              iconCard: Assets.kWallBlock,
+              cardTitle: "Upcoming appoinment!",
+              cardSubTitle: "Doctor Mohamed has scheduled an appointment on ....",
+              textButton: "View",
+              onPressed: () {
+                GoRouter.of(context).push(AppRoutes.kUpcoming);
+              },
+              width: MediaQuery.of(context).size.width * 0.37,
+            )
+          ],
+        ),
       ),
     );
   }

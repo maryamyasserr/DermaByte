@@ -15,37 +15,43 @@ class UpComingBody extends StatelessWidget {
             image: AssetImage(Assets.kBackground),
             fit: BoxFit.cover
             )),
-      child: Column(
-        children: [
-          const CustomAppBar(title: "Upcoming"),
-          SizedBox(height: MediaQuery.of(context).size.height*0.08),
-          SizedBox(
-            width: MediaQuery.of(context).size.width*0.95,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:[
-                Text(
-                  "The doctor has scheduled an online appointment for you on Tuesday 10/24/2023, at 2:30 PM.",
-                  style: Styels.textStyle18_400
-                  ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.07,),
-                Text(
-                  "please click on the call button right 5 minutes before the appointment.",
-                  style: Styels.textStyle14_300
-                  ),
-              ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.05,
+            horizontal: MediaQuery.of(context).size.width * 0.03
+        ),
+        child: Column(
+          children: [
+            const CustomAppBar(title: "Upcoming"),
+            SizedBox(height: MediaQuery.of(context).size.height*0.08),
+            SizedBox(
+              width: MediaQuery.of(context).size.width*0.95,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:[
+                  Text(
+                    "The doctor has scheduled an online appointment for you on Tuesday 10/24/2023, at 2:30 PM.",
+                    style: Styels.textStyle18_400
+                    ),
+                  SizedBox(height: MediaQuery.of(context).size.height*0.07,),
+                  Text(
+                    "please click on the call button right 5 minutes before the appointment.",
+                    style: Styels.textStyle14_300
+                    ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height*0.1),
-          ElevatedButton(
-            onPressed: (){},
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.34,vertical: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              backgroundColor: AppColors.kPrimaryColor
-            ),
-            child: Text("Start Call",style: Styels.textStyle20_700.copyWith(color: Colors.white),))
-        ],
+            SizedBox(height: MediaQuery.of(context).size.height*0.1),
+            ElevatedButton(
+              onPressed: (){},
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.34,vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                backgroundColor: AppColors.kPrimaryColor
+              ),
+              child: Text("Start Call",style: Styels.textStyle20_700.copyWith(color: Colors.white),))
+          ],
+        ),
       ),
     );
   }

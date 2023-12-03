@@ -6,6 +6,7 @@ import 'package:dermabyte/Features/Doctor/View/Widgets/Home/e_doctor_home.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/e_doctor_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EdoctorBody extends StatefulWidget {
   const EdoctorBody({super.key});
@@ -34,15 +35,15 @@ class _EdoctorBodyState extends State<EdoctorBody> {
         selectedItemColor: AppColors.kPrimaryColor,
         unselectedItemColor: Colors.grey,
         currentIndex: selectedIndex,
-        items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.kAppoinments),
+        items: const <BottomNavigationBarItem>[
+           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+           BottomNavigationBarItem(
+              icon:  Icon(FontAwesomeIcons.calendarCheck),
               label: "Appoinments"),
           // BottomNavigationBarItem(
           //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.kProfileIcon), label: "Profile"),
+           BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.userDoctor), label: "Profile"),
         ],
       ),
       body:  Container(

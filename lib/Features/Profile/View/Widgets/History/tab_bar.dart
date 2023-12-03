@@ -58,7 +58,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                               iconCard: Assets.kDoctorAvatar,
                               cardTitle: "Melanoma",
                               cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
+                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                               textButton: "View",
                               onPressed: () {
                                 GoRouter.of(context).push(AppRoutes.kDisease);
@@ -81,7 +81,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                               iconCard: Assets.kDoctorAvatar,
                               cardTitle: "Melanoma",
                               cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
+                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                               textButton: "View",
                               onPressed: () {},
                             ),
@@ -102,7 +102,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                               iconCard: Assets.kDoctorAvatar,
                               cardTitle: "Melanoma",
                               cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
+                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                               textButton: "View",
                               onPressed: () {
                                 GoRouter.of(context).push(AppRoutes.kConsults);
