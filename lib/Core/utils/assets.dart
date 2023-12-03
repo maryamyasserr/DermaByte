@@ -5,9 +5,10 @@ class Assets {
   static const kWallBlock = "assets/images/wallClock.svg";
   static const kBackground = "assets/images/background.png";
   static const kProfileAvatar = 'assets/images/profile_avatar.svg';
-  static const kDoctorAvatar = 'assets/images/profile_avatar.svg';
   static const kFacebookIcon = 'assets/images/facebook_icon.svg';
   static const kGoogleIcon = 'assets/images/google_icon.svg';
+  static const kDoctorAvatar = 'assets/images/doctor_avatar.svg';
+  static const kDiseasePhoto = 'assets/images/disease.jpg';
   static const kRequiredIcon = 'assets/images/required_icon.svg';
   static const kCheckIcon = 'assets/images/check_icon.svg';
   static const kAlphaScan = 'assets/images/alpha_scan.svg';
@@ -33,4 +34,8 @@ class Assets {
   static const kCameraIcon = 'assets/images/camera_icon.svg';
   static const kUnselectedIcon = 'assets/images/unselected_icon.svg';
   static const kSelectedIcon = 'assets/images/selected_icon.svg';
+  static const krequirment = 'assets/images/Requirment.svg';
+  static const kHome = 'assets/images/Home.svg';
+  static const kRequests = 'assets/images/Requests.svg';
+  static const kAppoinments = 'assets/images/Appoinments.svg';
 }

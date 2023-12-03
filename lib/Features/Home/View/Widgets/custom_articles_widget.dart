@@ -45,15 +45,26 @@ class CustomArticlesWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: mediaQuery.height * 0.005),
-        Text(
-          'Loren Ipsum',
-          style: Styels.textStyle16_400.copyWith(
-            fontSize: 20,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Loren Ipsum',
+                style: Styels.textStyle16_400.copyWith(
+                  fontSize: 20,
+                ),
+              ),
+              Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula porttitor eros,',
+                style: Styels.textStyle18_300.copyWith(
+                  fontSize: 16
+                ),
+                maxLines: 3,
+              ),
+            ],
           ),
-        ),
-        Text(
-          'Lorem ipsum dolor sit amet, consectetur \n adipiscing elit. Sed vehicula porttitor \n eros,',
-          style: Styels.textStyle18_300,
         )
       ]),
     );

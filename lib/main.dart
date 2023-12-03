@@ -14,7 +14,6 @@ class DermaByte extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: AppRoutes.router,
       debugShowCheckedModeBanner: false,
-      
       theme: ThemeData(
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             showSelectedLabels: true,

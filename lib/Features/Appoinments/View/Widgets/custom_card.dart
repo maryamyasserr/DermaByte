@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/card_button.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/card_text.dart';
+import 'package:dermabyte/Core/Widgets/card_button.dart';
+import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -42,6 +42,7 @@ class CustomCard extends StatelessWidget {
               ),
             ),
             CardText(
+              width: MediaQuery.of(context).size.width*0.6,
               cardTitle: cardTitle,
               cardSubTitle: cardSubTitle,
             ),

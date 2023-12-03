@@ -16,29 +16,31 @@ class HomeViewBody extends StatelessWidget {
         image: DecorationImage(
             image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          const CustomAppBar(title: ''),
-          SizedBox(height: mediaQuery.height * 0.06),
-          Text(
-            'Hi Maryam !',
-            style: Styels.textStyle24_600,
-          ),
-          SizedBox(height: mediaQuery.height * 0.025),
-          Text(
-            'It’s nice to have you back.',
-            style: Styels.textStyle18_400.copyWith(
-              fontSize: 20
+      child: SingleChildScrollView(
+        child: Padding(
+          padding:  EdgeInsets.symmetric(vertical: mediaQuery.height*0.05 ,horizontal: mediaQuery.width*0.05),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            const CustomAppBar(title: ''),
+            SizedBox(height: mediaQuery.height * 0.04),
+            Text(
+              'Hi Maryam !',
+              style: Styels.textStyle24_600,
             ),
-          ),
-         SizedBox(height: mediaQuery.height * 0.05),
-         const CustomTrackWidget(),
-        SizedBox(height: mediaQuery.height * 0.06),
-         const CustomArticlesWidget(),
-        ]),
+            SizedBox(height: mediaQuery.height * 0.025),
+            Text(
+              'It’s nice to have you back.',
+              style: Styels.textStyle18_400.copyWith(
+                fontSize: 20
+              ),
+            ),
+           SizedBox(height: mediaQuery.height * 0.05),
+           const CustomTrackWidget(),
+          SizedBox(height: mediaQuery.height * 0.06),
+           const CustomArticlesWidget(),
+          ]),
+        ),
       ),
     );
   }

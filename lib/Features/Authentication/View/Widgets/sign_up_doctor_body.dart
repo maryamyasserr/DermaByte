@@ -235,7 +235,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
               ),
               SizedBox(height: mediaQuery.height * 0.03),
               SignButton(buttonName: 'Sign Up',onClicked: (){
-                GoRouter.of(context).pushReplacement('');
+                GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
               }),
               SizedBox(height: mediaQuery.height * 0.006),
               Row(

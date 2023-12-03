@@ -3,8 +3,8 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ProfilePhoto extends StatelessWidget {
-  const ProfilePhoto({super.key});
+class ElapPhoto extends StatelessWidget {
+  const ElapPhoto({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
+import 'package:dermabyte/Core/Widgets/card_button.dart';
+import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/card_button.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/card_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +22,7 @@ class DoctorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.16,
+      height: MediaQuery.of(context).size.height * 0.18,
       decoration: BoxDecoration(
           color: AppColors.kCardColor,
           borderRadius: BorderRadius.circular(20),
@@ -47,7 +47,7 @@ class DoctorItem extends StatelessWidget {
             SizedBox(width: MediaQuery.of(context).size.width * 0.025),
             CardText(
               cardTitle: doctorTitle,
-              cardSubTitle: doctorSubTitle,
+              cardSubTitle: doctorSubTitle, width: MediaQuery.of(context).size.width * 0.5,
             ),
           ]),
           Positioned(

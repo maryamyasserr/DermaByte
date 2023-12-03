@@ -1,11 +1,11 @@
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/card_button.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/card_text.dart';
+import 'package:dermabyte/Core/Widgets/card_button.dart';
+import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProfileCustomCard extends StatelessWidget {
-  const ProfileCustomCard(
+class FeatureCard extends StatelessWidget {
+  const FeatureCard(
       {super.key,
       required this.iconCard,
       required this.cardTitle,
@@ -42,6 +42,7 @@ class ProfileCustomCard extends StatelessWidget {
               ),
             ),
             CardText(
+              width: MediaQuery.of(context).size.width*0.6,
               cardTitle: cardTitle,
               cardSubTitle: cardSubTitle,
             ),

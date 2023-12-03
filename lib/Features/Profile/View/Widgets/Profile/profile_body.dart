@@ -2,8 +2,8 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_card.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/header_section.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/items_list_view.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/items_list_view.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_header_section.dart';
 import 'package:flutter/material.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -20,7 +20,7 @@ class ProfileBody extends StatelessWidget {
         child: Column(
           children: [
             const CustomAppBar(title: ""),
-            const HeaderSection(),
+            const ProfileHeaderSection(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
@@ -37,8 +37,9 @@ class ProfileBody extends StatelessWidget {
                   "Doctors you have consulted",
                   style: Styels.textStyle18_600,
                 )),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            ProfileCustomCard(
+           
+           SizedBox(height: MediaQuery.of(context).size.height*0.04),
+             FeatureCard(
               iconCard: Assets.kDoctorAvatar,
               cardTitle: "Dr. Luka Modrich",
               cardSubTitle:

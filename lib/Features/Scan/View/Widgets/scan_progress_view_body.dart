@@ -80,7 +80,7 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                                 ),
                                 SizedBox(height: mediaQuery.height * 0.020),
                                 Container(
-                                    height: mediaQuery.height * 0.18,
+                                    height: mediaQuery.height * 0.19,
                                     width: double.infinity,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15, vertical: 10),
@@ -107,7 +107,8 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                                           ),
                                           SizedBox(height: mediaQuery.height * 0.005),
                                           Text(
-                                            'our diagnoses should not be treated as\na professional examination, it’s always\nbetter to consult a doctor and make sure\nof your condition.',
+                                            'our diagnoses should not be treated as a professional examination, it’s always better to consult a doctor and make sure of your condition.',
+                                           maxLines: 4,
                                             style: Styels.textStyle18_300
                                                 .copyWith(
                                                     fontSize: 16,

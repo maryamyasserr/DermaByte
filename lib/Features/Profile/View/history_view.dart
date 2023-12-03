@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Profile/View/Widgets/history_body.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/History/history_body.dart';
 import 'package:flutter/material.dart';
 
 class HistoryView extends StatelessWidget {

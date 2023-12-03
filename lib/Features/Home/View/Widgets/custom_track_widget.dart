@@ -11,7 +11,7 @@ class CustomTrackWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return Container(
-      height: mediaQuery.height * 0.12,
+      height: mediaQuery.height * 0.13,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       decoration: BoxDecoration(

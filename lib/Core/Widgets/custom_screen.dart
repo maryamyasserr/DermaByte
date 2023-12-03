@@ -52,36 +52,30 @@ class _CustomScreenState extends State<CustomScreen> {
             const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
         padding: const EdgeInsets.all(8),
         child: FloatingActionButton(
-          onPressed: () {},
+          shape: CircleBorder(),
+          onPressed: () {
+            GoRouter.of(context).push(AppRoutes.kScanWaysView);
+          },
           // ignore: sort_child_properties_last
-          child: TextButton(
-            onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kScanWaysView);
-            },
-            child: Text(
-              'Scan',
-              style: Styels.textStylee20_700,
-            ),
+          child: Text(
+            'Scan',
+            style: Styels.textStylee20_700,
           ),
           backgroundColor: AppColors.kScanButton,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      extendBody: false,
       body: pages[selectedIndex],
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 5,
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
           currentIndex: selectedIndex,
           onTap: (value) {
             setState(() {
               selectedIndex = value;
             });
           },
-          items: [
-            BottomNavigationBarItem(
+        items: [
+        BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 selectedIndex == 0
                     ? selectedIcons[0]
@@ -89,7 +83,7 @@ class _CustomScreenState extends State<CustomScreen> {
               ),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
+         BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 selectedIndex == 1
                     ? selectedIcons[1]
@@ -97,7 +91,7 @@ class _CustomScreenState extends State<CustomScreen> {
               ),
               label: 'Appointments',
             ),
-            BottomNavigationBarItem(
+         BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 selectedIndex == 2
                     ? selectedIcons[2]
@@ -105,7 +99,8 @@ class _CustomScreenState extends State<CustomScreen> {
               ),
               label: 'E-Lab',
             ),
-            BottomNavigationBarItem(
+        
+        BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 selectedIndex == 3
                     ? selectedIcons[3]
@@ -113,9 +108,7 @@ class _CustomScreenState extends State<CustomScreen> {
               ),
               label: 'E-Doctor',
             ),
-          ],
-        ),
-      ),
+      ]),
     );
   }
 }
