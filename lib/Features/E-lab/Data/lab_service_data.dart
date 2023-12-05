@@ -15,24 +15,24 @@ class LabServiceData {
     return [
       LabServiceData(
         title: 'Blood test',
-        subTitle: 'Lorem ipsum dolor sit amet,\n consectetur adipiscing elit.' ,
+        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ,
         image: Assets.kBloodTestIcon,
 
       ),
       LabServiceData(
         title: 'Sugar test',
-        subTitle: 'Lorem ipsum dolor sit amet,\n consectetur adipiscing elit.',
+        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: Assets.kSugarTestIcon,
       ),
       LabServiceData(
         title: 'Virus test',
-        subTitle:'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit.',
+        subTitle:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: Assets.kVirusTestIcon,
         
       ),
       LabServiceData(
         title: 'X-ray & Scan',
-        subTitle: 'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit.' ,
+        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ,
         image: Assets.kXrayTestIcon,
         
       ),

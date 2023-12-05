@@ -22,7 +22,9 @@ class ScanViewBody extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: mediaQuery.width*0.02
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -42,13 +44,13 @@ class ScanViewBody extends StatelessWidget {
             ),
             textAlign: TextAlign.left,
           ),
-          SizedBox(
-            height: 500,
+          Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 20,
+                mainAxisSpacing: 50,
                 crossAxisSpacing: 5 ,
+                childAspectRatio: 0.9
               ),
               itemBuilder: (context, index) {
                 return LabServiceItem(labServiceData: serviceList[index]);

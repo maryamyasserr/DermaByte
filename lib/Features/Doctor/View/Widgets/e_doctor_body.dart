@@ -5,7 +5,6 @@ import 'package:dermabyte/Features/Doctor/View/Widgets/Appoinments/e_doctor_appo
 import 'package:dermabyte/Features/Doctor/View/Widgets/Home/e_doctor_home.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/e_doctor_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EdoctorBody extends StatefulWidget {

@@ -44,74 +44,73 @@ class _CustomTabBarState extends State<CustomTabBar>
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
-          child: TabBarView(controller: tabController, children: [
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 6,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: FeatureCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: "Melanoma",
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                              textButton: "View",
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRoutes.kDisease);
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    })),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 4,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: FeatureCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: "Melanoma",
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                              textButton: "View",
-                              onPressed: () {},
-                            ),
-                          )
-                        ],
-                      );
-                    })),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 4,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: FeatureCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: "Melanoma",
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                              textButton: "View",
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRoutes.kConsults);
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    })),
+          child: TabBarView(
+            controller: tabController,
+            children: [
+            ListView.builder(
+                itemCount: 6,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: FeatureCard(
+                          iconCard: Assets.kDoctorAvatar,
+                          cardTitle: "Melanoma",
+                          cardSubTitle:
+                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          textButton: "View",
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRoutes.kDisease);
+                          },
+                        ),
+                      )
+                    ],
+                  );
+                }),
+            ListView.builder(
+                itemCount: 4,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: FeatureCard(
+                          iconCard: Assets.kDoctorAvatar,
+                          cardTitle: "Melanoma",
+                          cardSubTitle:
+                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          textButton: "View",
+                          onPressed: () {},
+                        ),
+                      )
+                    ],
+                  );
+                }),
+            ListView.builder(
+                itemCount: 4,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: FeatureCard(
+                          iconCard: Assets.kDoctorAvatar,
+                          cardTitle: "Melanoma",
+                          cardSubTitle:
+                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          textButton: "View",
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRoutes.kConsults);
+                          },
+                        ),
+                      )
+                    ],
+                  );
+                }),
           ]),
         )
       ],
