@@ -33,12 +33,13 @@ class RequestCard extends StatelessWidget {
         children: [
           Row(children: [
             Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: SvgPicture.asset(
-                iconCard,
-                height: MediaQuery.of(context).size.height * 0.17,
+                padding: const EdgeInsets.only(left: 10,right: 10,bottom: 20),
+                child: SvgPicture.asset(
+                  iconCard,
+                  color: Colors.grey[600],
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
               ),
-            ),
             CardText(
               width: MediaQuery.of(context).size.width*0.6,
               cardTitle: cardTitle,

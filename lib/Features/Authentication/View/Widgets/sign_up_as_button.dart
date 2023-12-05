@@ -23,9 +23,10 @@ class _SignUpAsButtonState extends State<SignUpAsButton> {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(
           horizontal: mediaQuery.width * 0.3,
-          vertical: mediaQuery.height * 0.015,
+          vertical: mediaQuery.height * 0.027,
         ),
-        backgroundColor: isClicked ? AppColors.kPrimaryColor : const Color(0xffE7E6F1),
+        // backgroundColor: isClicked ? AppColors.kPrimaryColor : const Color(0xffE7E6F1),
+        backgroundColor: AppColors.kPrimaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -41,7 +42,8 @@ class _SignUpAsButtonState extends State<SignUpAsButton> {
       child: Text(
         widget.buttonName,
         style: Styels.textStyle20_700.copyWith(
-          color: isClicked ? AppColors.kWhiteColor : AppColors.kPrimaryColor,
+          color: AppColors.kWhiteColor ,
+          // color: isClicked ? AppColors.kWhiteColor : AppColors.kPrimaryColor,
         ),
       ),
     );

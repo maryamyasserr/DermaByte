@@ -30,7 +30,7 @@ class EdoctorHome extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7),
                       child: PatientCard(
-                        iconCard: Assets.kDoctorAvatar,
+                        iconCard: Assets.kAvatar,
                         cardTitle: "Jude Bellengham",
                         cardSubTitle:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

@@ -35,21 +35,21 @@ class EditProfileBody extends StatelessWidget {
               ],
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.02),
-            CustomTextField(
+            SCustomTextField(
               keyboardType: TextInputType.text,
-              hintext: "Full Name",
+              labelText: "Full Name",
               width: MediaQuery.of(context).size.width,
               isrequired: false),
             SizedBox(height: MediaQuery.of(context).size.height*0.01),
-            CustomTextField(
+            SCustomTextField(
               keyboardType: TextInputType.number,
-              hintext: "Mobile Number",
+              labelText: "Mobile Number",
               width: MediaQuery.of(context).size.width,
               isrequired: false),
             SizedBox(height: MediaQuery.of(context).size.height*0.01),
-            CustomTextField(
+            SCustomTextField(
               keyboardType: TextInputType.datetime,
-              hintext: "Birth Date",
+              labelText: "Birth Date",
               width: MediaQuery.of(context).size.width,
               isrequired: false),
             SizedBox(height: MediaQuery.of(context).size.height*0.03,),

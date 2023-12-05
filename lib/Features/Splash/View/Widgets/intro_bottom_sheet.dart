@@ -13,9 +13,12 @@ class IntroBottomSheet extends StatelessWidget {
     return Container(
       height: mediaQuery.height * 0.46,
       width: mediaQuery.width,
-      decoration: BoxDecoration(
+      decoration:const  BoxDecoration(
         color: AppColors.kWhiteColor,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20)
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25),

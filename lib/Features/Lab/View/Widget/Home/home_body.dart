@@ -39,7 +39,7 @@ class HomeBody extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7),
                       child: RequestCard(
-                        iconCard: Assets.kDoctorAvatar,
+                        iconCard: Assets.kAvatar,
                         cardSubTitle:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         cardTitle: "Seif Tariq",

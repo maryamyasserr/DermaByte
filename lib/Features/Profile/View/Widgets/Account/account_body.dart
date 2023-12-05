@@ -25,17 +25,17 @@ class AccountBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,
             ),
-            CustomTextField(
+            SCustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 isrequired: false,
                 padding: const EdgeInsets.only(right: 20),
-                hintext: "seift470@gmail.com",
+                labelText: "seift470@gmail.com",
                 width: MediaQuery.of(context).size.height * 0.9),
-            CustomTextField(
+            SCustomTextField(
                 keyboardType: TextInputType.text,
                 isrequired: false,
                 padding: const EdgeInsets.only(right: 20),
-                hintext: "Hala Madird For Ever",
+                labelText: "Hala Madird For Ever",
                 width: MediaQuery.of(context).size.height * 0.9),
             
             SizedBox(

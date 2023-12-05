@@ -40,7 +40,7 @@ class PatientsDay extends StatelessWidget {
                         cardTitle: "Ahmed Mohamed",
                         cardSubTitle:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        iconCard: Assets.kDoctorAvatar,
+                        iconCard: Assets.kAvatar,
                         start: () {},
                         diagnose: () {},
                       ),

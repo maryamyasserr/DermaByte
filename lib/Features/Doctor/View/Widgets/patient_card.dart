@@ -38,10 +38,15 @@ class PatientCard extends StatelessWidget {
             ]),
         child: Stack(
           children: [
-            Row(children: [
-              SvgPicture.asset(
-                iconCard,
-                height: MediaQuery.of(context).size.height * 0.15,
+            Row(
+              children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10,bottom: 20),
+                child: SvgPicture.asset(
+                  iconCard,
+                  color: Colors.grey[600],
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
               ),
               CardText(
                 width: MediaQuery.of(context).size.width * 0.5,

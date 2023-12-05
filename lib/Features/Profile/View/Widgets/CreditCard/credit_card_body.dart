@@ -1,5 +1,6 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/E-lab/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -38,18 +39,18 @@ class CreditCardBody extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomTextField(
+                  SCustomTextField(
                     keyboardType: TextInputType.datetime,
                     isrequired: true,
                     padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width*0.33) ,
-                    hintext: "Expiration Date",
+                    labelText: "Expiration Date",
                     width: MediaQuery.of(context).size.height*0.22),
                   SizedBox(width: MediaQuery.of(context).size.width*0.04),
-                  CustomTextField(
+                  SCustomTextField(
                     keyboardType: TextInputType.number,
                     isrequired: true,
                     padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width*0.33),
-                    hintext: "Security Code",
+                    labelText: "Security Code",
                     width: MediaQuery.of(context).size.height*0.22),
                 ],
               ),
