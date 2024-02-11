@@ -11,8 +11,9 @@ class ItemsListView extends StatelessWidget {
     "Account":AppRoutes.kAccount,
     "Credit Card":AppRoutes.kCreditCard,
     "History":AppRoutes.kHistory,
-    "Help":AppRoutes.kHelp,
-    "Setting":AppRoutes.kSettings
+    // "Help":AppRoutes.kHelp,
+    "Setting":AppRoutes.kSettings,
+    "Log Out":""
   };
   @override
   Widget build(BuildContext context) {
