@@ -38,10 +38,9 @@ class PatientCard extends StatelessWidget {
             ]),
         child: Stack(
           children: [
-            Row(
-              children: [
+            Row(children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10,right: 10,bottom: 20),
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
                 child: SvgPicture.asset(
                   iconCard,
                   color: Colors.grey[600],
