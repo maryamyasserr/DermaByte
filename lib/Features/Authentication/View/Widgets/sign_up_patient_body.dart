@@ -47,7 +47,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
           ),
 
           SizedBox(height: mediaQuery.height * 0.014),
-         
+
           SizedBox(
             height: mediaQuery.height * 0.054,
             child: TextForm(
@@ -99,33 +99,23 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.02),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RequiredTextForm(
-                  label: 'First name',
-                  controller: SignUpPatientBody.firstNameController),
-              RequiredTextForm(
-                  label: 'Last name',
-                  controller: SignUpPatientBody.lastNameController),
-              RequiredTextForm(
-                  label: 'Mobile',
-                  controller: SignUpPatientBody.mobileController),
-            ],
-          ),
+          RequiredTextForm(
+              label: 'First name',
+              controller: SignUpPatientBody.firstNameController),
+          RequiredTextForm(
+              label: 'Last name',
+              controller: SignUpPatientBody.lastNameController),
+          RequiredTextForm(
+              label: 'Mobile', controller: SignUpPatientBody.mobileController),
+
           SizedBox(height: mediaQuery.height * 0.008),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RequiredTextForm(
-                  label: 'Day', controller: SignUpPatientBody.dayController),
-              RequiredTextForm(
-                  label: 'Month',
-                  controller: SignUpPatientBody.monthController),
-              RequiredTextForm(
-                  label: 'Year', controller: SignUpPatientBody.yearController),
-            ],
-          ),
+          RequiredTextForm(
+              label: 'Day', controller: SignUpPatientBody.dayController),
+          RequiredTextForm(
+              label: 'Month', controller: SignUpPatientBody.monthController),
+          RequiredTextForm(
+              label: 'Year', controller: SignUpPatientBody.yearController),
+
           SizedBox(height: mediaQuery.height * 0.04),
           SignButton(
             buttonName: 'Sign Up',
@@ -133,7 +123,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
             },
           ),
-          SizedBox(height: mediaQuery.height * 0.25),
+          const SizedBox(height:6),
           EmailCheck(
               mediaQuery: mediaQuery,
               text: 'Already have an account?',
@@ -141,27 +131,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               onPressed: () {
                 GoRouter.of(context).push(AppRoutes.kSignIn);
               }),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Already have an account?',
-                style: Styels.textStyle18_300(context)
-                    .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-              ),
-              SizedBox(width: mediaQuery.width * 0.0002),
-              TextButton(
-                onPressed: () {
-                  GoRouter.of(context).push(AppRoutes.kSignIn);
-                },
-                child: Text(
-                  'sign in',
-                  style: Styels.textStyle15_300(context)
-                      .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
-                ),
-              )
-            ],
-          )
+         
         ]),
       ),
     );
