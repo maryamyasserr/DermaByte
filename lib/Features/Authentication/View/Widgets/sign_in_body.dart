@@ -1,8 +1,10 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,10 +28,8 @@ class _SignInBodyState extends State<SignInBody> {
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           SizedBox(height: mediaQuery.height * 0.11),
-          Text(
-            'Sign In',
-            style: Styels.textStyle40,
-            textAlign: TextAlign.center,
+           const CustomTitle(
+            title: 'Sign In',
           ),
           SizedBox(height: mediaQuery.height * 0.07),
           TextForm(
@@ -59,12 +59,15 @@ class _SignInBodyState extends State<SignInBody> {
             obscureText: !passwordVisible,
           ),
           SizedBox(height: mediaQuery.height * 0.04),
-          SignButton(buttonName: 'Sign in',onClicked: (){
-            GoRouter.of(context).push(AppRoutes.kCustomScreen);
-          },),
+          SignButton(
+            buttonName: 'Sign in',
+            onClicked: () {
+              GoRouter.of(context).push(AppRoutes.kCustomScreen);
+            },
+          ),
           SizedBox(height: mediaQuery.height * 0.05),
           InkWell(
-            onTap: (){},
+            onTap: () {},
             child: Text(
               'forgot password?',
               style: Styels.textStyle15_400
@@ -73,24 +76,13 @@ class _SignInBodyState extends State<SignInBody> {
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.03),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Don’t have an account?',
-                style: Styels.textStyle18_300
-                    .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-              ),
-              SizedBox(width: mediaQuery.width *  0.0002),
-              TextButton(
-                onPressed: () {
-                  GoRouter.of(context).push(AppRoutes.kSignUpAs);
-                  }, child: Text('sign up',
-                style: Styels.textStyle15_300
-                    .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
-              ),
-          )
-            ],
+          EmailCheck(
+            mediaQuery: mediaQuery,
+            text: 'Don’t have an account?',
+            textButton: 'sign up',
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kSignUpAs);
+            },
           )
         ]),
       ),

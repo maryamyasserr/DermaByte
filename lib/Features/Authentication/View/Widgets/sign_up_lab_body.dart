@@ -2,8 +2,11 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/text_form_container.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -34,23 +37,16 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           SizedBox(height: mediaQuery.height * 0.06),
-          Text(
-            'Sign Up',
-            style: Styels.textStyle40,
-            textAlign: TextAlign.center,
-          ),
+          const CustomTitle(title: 'Sign Up'),
           SizedBox(height: mediaQuery.height * 0.04),
           // ignore: sized_box_for_whitespace
-          Container(
-            height: mediaQuery.height * 0.054,
-            child: TextForm(
-              label: 'Email',
-              controller: SignUpLabBody.emailController,
-            ),
+          TextFormContainer(
+            mediaQuery: mediaQuery,
+            label: 'Email',
+            controller: SignUpLabBody.emailController,
           ),
           SizedBox(height: mediaQuery.height * 0.02),
-          // ignore: sized_box_for_whitespace
-          Container(
+          SizedBox(
             height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Password',
@@ -75,8 +71,7 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.02),
-          // ignore: sized_box_for_whitespace
-          Container(
+          SizedBox(
             height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Re-type Password',
@@ -109,8 +104,7 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.009),
-          // ignore: sized_box_for_whitespace
-          Container(
+          SizedBox(
             height: mediaQuery.height * 0.054,
             child: TextForm(
               label: 'Lab Name',
@@ -126,13 +120,10 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
             ),
           ),
           SizedBox(height: mediaQuery.height * 0.009),
-          // ignore: sized_box_for_whitespace
-          Container(
-            height: mediaQuery.height * 0.054,
-            child: TextForm(
-              label: 'Location ',
-              controller: SignUpLabBody.locationController,
-            ),
+          TextFormContainer(
+            mediaQuery: mediaQuery,
+            label: 'Location ',
+            controller: SignUpLabBody.locationController,
           ),
           SizedBox(height: mediaQuery.height * 0.04),
           ElevatedButton(
@@ -147,31 +138,17 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
           SignButton(
               buttonName: 'Sign Up',
               onClicked: () {
-                GoRouter.of(context)
-                    .pushReplacement(AppRoutes.kElabHome);
+                GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
               }),
           SizedBox(height: mediaQuery.height * 0.01),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Already have an account?',
-                style: Styels.textStyle18_300
-                    .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-              ),
-              SizedBox(width: mediaQuery.width * 0.0002),
-              TextButton(
-                onPressed: () {
-                  GoRouter.of(context).push(AppRoutes.kSignIn);
-                },
-                child: Text(
-                  'sign in',
-                  style: Styels.textStyle15_300
-                      .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
-                ),
-              )
-            ],
-          )
+          EmailCheck(
+            mediaQuery: mediaQuery,
+            text: 'Already have an account?',
+            textButton: 'sign in',
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kSignIn);
+            },
+          ),
         ]),
       ),
     );

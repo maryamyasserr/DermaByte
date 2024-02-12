@@ -1,15 +1,17 @@
-import 'dart:io';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/profile_picture.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/required_text_form.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/text_form_container.dart';
+import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 
 class SignUpDoctorBody extends StatefulWidget {
   static TextEditingController emailController = TextEditingController();
@@ -31,25 +33,9 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
   bool passwordVisible = false;
   bool rePasswordVisible = false;
 
-  Future<void> uploadPicture(BuildContext context) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      // ignore: use_build_context_synchronously
-      GoRouter.of(context)
-          .go('${AppRoutes.kSignUpDoctor}?imagePath=${pickedFile.path}');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    final Map<String, dynamic>? args =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-
-    String? imagePath = args?['imagePath'];
-
     return Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
@@ -57,80 +43,17 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
               SizedBox(height: mediaQuery.height * 0.06),
-              Text(
-                'Sign Up',
-                style: Styels.textStyle40,
-                textAlign: TextAlign.center,
-              ),
+              const CustomTitle(title: "Sign Up"),
               SizedBox(height: MediaQuery.of(context).size.height * 0.012),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        color: AppColors.kWhiteColor,
-                        shape: BoxShape.circle),
-                    child: CircleAvatar(
-                      backgroundColor: const Color(0xffB9EEE8),
-                      radius: 50,
-                      child: ClipOval(
-                        child: SizedBox(
-                          width: mediaQuery.width *
-                              0.25, // Adjust the size as needed
-                          height: mediaQuery.height * 0.12,
-                          child: imagePath != null
-                              ? Image.file(
-                                  File(imagePath),
-                                  fit: BoxFit.cover,
-                                )
-                              : SvgPicture.asset(Assets.kProfileAvatar),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                      bottom: 0,
-                      right: mediaQuery.height * 0.17,
-                      child: GestureDetector(
-                          onTap: () {
-                            uploadPicture(context);
-                          },
-                          child: const ImageIcon(
-                            AssetImage('assets/images/upload_icon.png'),
-                            size: 30,
-                          )))
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'add a picture',
-                    style: Styels.textStyle20_200
-                        .copyWith(decoration: TextDecoration.underline),
-                  ),
-                  SizedBox(
-                    width: mediaQuery.width * 0.02,
-                  ),
-                  SvgPicture.asset(Assets.kRequiredIcon,
-                      height: mediaQuery.height * 0.01),
-                ],
-              ),
-
+              const ProfilePicture(),
               SizedBox(height: mediaQuery.height * 0.02),
-              // ignore: sized_box_for_whitespace
-              Container(
-                height: mediaQuery.height * 0.054,
-                child: TextForm(
-                  label: 'Email',
-                  controller: SignUpDoctorBody.emailController,
-                ),
+              TextFormContainer(
+                mediaQuery: mediaQuery,
+                controller: SignUpDoctorBody.emailController,
+                label: 'Email',
               ),
               SizedBox(height: mediaQuery.height * 0.014),
-              // ignore: sized_box_for_whitespace
-              Container(
+              SizedBox(
                 height: mediaQuery.height * 0.054,
                 child: TextForm(
                   label: 'Password',
@@ -196,22 +119,16 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                 ],
               ),
               SizedBox(height: mediaQuery.height * 0.014),
-              // ignore: sized_box_for_whitespace
-              Container(
-                height: mediaQuery.height * 0.054,
-                child: TextForm(
-                  label: 'Location',
-                  controller: SignUpDoctorBody.locationController,
-                ),
+              TextFormContainer(
+                mediaQuery: mediaQuery,
+                label: 'Location',
+                controller: SignUpDoctorBody.locationController,
               ),
               SizedBox(height: mediaQuery.height * 0.014),
-              // ignore: sized_box_for_whitespace
-              Container(
-                height: mediaQuery.height * 0.054,
-                child: TextForm(
-                  label: 'Specialization ',
-                  controller: SignUpDoctorBody.specilazationController,
-                ),
+              TextFormContainer(
+                mediaQuery: mediaQuery,
+                label: 'Specialization ',
+                controller: SignUpDoctorBody.specilazationController,
               ),
               SizedBox(height: mediaQuery.height * 0.015),
               SvgPicture.asset(
@@ -234,31 +151,19 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                 ],
               ),
               SizedBox(height: mediaQuery.height * 0.03),
-              SignButton(buttonName: 'Sign Up',onClicked: (){
-                GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
-              }),
+              SignButton(
+                  buttonName: 'Sign Up',
+                  onClicked: () {
+                    GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
+                  }),
               SizedBox(height: mediaQuery.height * 0.006),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Already have an account?',
-                    style: Styels.textStyle18_300
-                        .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
-                  ),
-                  SizedBox(width: mediaQuery.width * 0.0002),
-                  TextButton(
-                    onPressed: () {
-                      GoRouter.of(context).push(AppRoutes.kSignIn);
-                    },
-                    child: Text(
-                      'sign in',
-                      style: Styels.textStyle15_300.copyWith(
-                          color: const Color.fromRGBO(150, 1, 1, 0.5)),
-                    ),
-                  )
-                ],
-              ),
+              EmailCheck(
+                  mediaQuery: mediaQuery,
+                  text: 'Already have an account?',
+                  textButton: 'sign in',
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRoutes.kSignIn);
+                  })
             ])));
   }
 }
