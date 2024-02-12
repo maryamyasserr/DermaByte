@@ -26,12 +26,12 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(height: mediaQuery.height * 0.04),
             Text(
               'Hi Maryam !',
-              style: Styels.textStyle24_600,
+              style: Styels.textStyle24_600(context),
             ),
             SizedBox(height: mediaQuery.height * 0.025),
             Text(
               'It’s nice to have you back.',
-              style: Styels.textStyle18_400.copyWith(
+              style: Styels.textStyle18_400(context).copyWith(
                 fontSize: 20
               ),
             ),

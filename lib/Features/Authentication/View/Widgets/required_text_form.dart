@@ -42,7 +42,7 @@ class RequiredTextForm extends StatelessWidget {
                 fillColor: AppColors.kFilledTextForm,
                 filled: true,
                 labelText: label,
-                labelStyle: Styels.textStyle20_200.copyWith(
+                labelStyle: Styels.textStyle20_200(context).copyWith(
                   color: AppColors.kTextInForm.withOpacity(0.8),
                   fontSize: 18,
                 ),

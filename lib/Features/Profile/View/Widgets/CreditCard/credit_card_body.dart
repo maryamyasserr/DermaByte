@@ -22,7 +22,7 @@ class CreditCardBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Credit Card",style: Styels.textStyle24_600,),
+              Text("Credit Card",style: Styels.textStyle24_600(context),),
               SizedBox(height: MediaQuery.of(context).size.height*0.01,),
               CustomTextField(
                 keyboardType: TextInputType.name,

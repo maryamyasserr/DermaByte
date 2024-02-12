@@ -77,7 +77,7 @@ class ProfilePicture extends StatelessWidget {
           children: [
             Text(
               'add a picture',
-              style: Styels.textStyle20_200
+              style: Styels.textStyle20_200(context)
                   .copyWith(decoration: TextDecoration.underline),
             ),
             SizedBox(

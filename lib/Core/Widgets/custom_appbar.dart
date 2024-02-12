@@ -27,7 +27,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         children: [
           Text(
             widget.title,
-            style: Styels.textStyle24_600,
+            style: Styels.textStyle24_600(context),
           ),
           Row(
             children: [

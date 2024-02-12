@@ -21,7 +21,7 @@ class EditProfileBody extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text("Edit Profile", style: Styels.textStyle24_600.copyWith(fontWeight: FontWeight.w700))),
+              child: Text("Edit Profile", style: Styels.textStyle24_600(context).copyWith(fontWeight: FontWeight.w700))),
             SizedBox(height: MediaQuery.of(context).size.height*0.03),
             Stack(
               children: [

@@ -69,7 +69,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
                           'Reserve your lab tests.',
-                          style: Styels.textStyle15_300,
+                          style: Styels.textStyle15_300(context),
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -122,7 +122,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
                           'Pick a day to take your required tests.',
-                          style: Styels.textStyle15_300,
+                          style: Styels.textStyle15_300(context),
                         ),
                       ),
                       SizedBox(height: mediaQuery.height * 0.02),

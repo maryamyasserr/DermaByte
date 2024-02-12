@@ -66,7 +66,7 @@ class ElabViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'A list of the best laboratories in your era.',
-                style: Styels.textStyle15_300,
+                style: Styels.textStyle15_300(context),
               ),
             ),
             Expanded(

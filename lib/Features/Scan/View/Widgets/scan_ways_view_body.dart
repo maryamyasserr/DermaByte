@@ -43,11 +43,11 @@ class _ScanWaysViewBodyState extends State<ScanWaysViewBody> {
         SizedBox(height: mediaQuery.height * 0.12),
         Text(
           'How do you want your',
-          style: Styels.textStyle20_700,
+          style: Styels.textStyle20_700(context),
         ),
         Text(
           'Scan Taken ?',
-          style: Styels.textStyle20_700,
+          style: Styels.textStyle20_700(context),
         ),
         SizedBox(height: mediaQuery.height * 0.033),
         GestureDetector(
@@ -86,12 +86,12 @@ class _ScanWaysViewBodyState extends State<ScanWaysViewBody> {
                   SizedBox(height: mediaQuery.height * 0.025),
                   Text(
                     'What are the possibilities?',
-                    style: Styels.textStyle20_700,
+                    style: Styels.textStyle20_700(context),
                   ),
                   SizedBox(height: mediaQuery.height * 0.025),
                   Text(
                     'learn about all the possible cases of\nskin changes we cover in our app\nand how to avoid them.',
-                    style: Styels.textStyle18_400,
+                    style: Styels.textStyle18_400(context),
                   ),
                 ],
               )

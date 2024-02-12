@@ -28,7 +28,7 @@ class DiseaseReport extends StatelessWidget {
           children: [
             Text(
               "Melanoma",
-              style: Styels.textStyle24_600,
+              style: Styels.textStyle24_600(context),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.007),
             SizedBox(

@@ -15,7 +15,7 @@ class EdoctorAppoinments extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('This week’s Schedule',
-              style: Styels.textStyle24_600.copyWith(fontSize: 28)),
+              style: Styels.textStyle24_600(context).copyWith(fontSize: 28)),
           Expanded(
             child: ListView.builder(
                 itemCount: 7,

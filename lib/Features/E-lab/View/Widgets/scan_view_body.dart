@@ -31,7 +31,7 @@ class ScanViewBody extends StatelessWidget {
             SizedBox(height: mediaQuery.height *0.09),
           Text(
             'Alpha Scan',
-            style: Styels.textStyle20_700.copyWith(
+            style: Styels.textStyle20_700(context).copyWith(
               fontSize: 28
             ),
             textAlign: TextAlign.center,
@@ -39,7 +39,7 @@ class ScanViewBody extends StatelessWidget {
           SizedBox(height: mediaQuery.height *0.05),
           Text(
             'Services',
-            style: Styels.textStyle20_700.copyWith(
+            style: Styels.textStyle20_700(context).copyWith(
               fontSize: 24
             ),
             textAlign: TextAlign.left,

@@ -11,7 +11,7 @@ class ConsutlsHeaderSection extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.centerRight,
-          child: Text("10/10/2023",style: Styels.textStyle14_300,)),
+          child: Text("10/10/2023",style: Styels.textStyle14_300(context),)),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -31,9 +31,9 @@ class ConsutlsHeaderSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Melanoma",style: Styels.textStyle24_600,),
+                  Text("Melanoma",style: Styels.textStyle24_600(context),),
                   SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                  Text("The scans taken on 10/10/2023 show that you have melanoma.",style: Styels.textStyle14_300,),
+                  Text("The scans taken on 10/10/2023 show that you have melanoma.",style: Styels.textStyle14_300(context),),
                 ],
               ),
             ),

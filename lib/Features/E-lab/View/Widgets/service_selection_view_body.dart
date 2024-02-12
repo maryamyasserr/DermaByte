@@ -30,7 +30,7 @@ class ServiceSelectionViewBody extends StatelessWidget {
             SizedBox(height: mediaQuery.height * 0.1),
             Text(
               'Pick at least 3 services.',
-              style: Styels.textStyle18_600.copyWith(fontSize: 24),
+              style: Styels.textStyle18_600(context).copyWith(fontSize: 24),
             ),
             SizedBox(height: mediaQuery.height * 0.05),
             Row(
@@ -87,7 +87,7 @@ class ServiceSelectionViewBody extends StatelessWidget {
                 GoRouter.of(context).pushReplacement(AppRoutes.kSignUpLab);
               },
               child: Text('confirm',
-                  style: Styels.textStyle20_700
+                  style: Styels.textStyle20_700(context)
                       .copyWith(color: AppColors.kWhiteColor))),
             )
           ],

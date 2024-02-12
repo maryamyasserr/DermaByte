@@ -22,12 +22,12 @@ class CustomArticlesWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
           Text('articles&news',
-          style: Styels.textStyle18_300.copyWith(
+          style: Styels.textStyle18_300(context).copyWith(
             fontSize: 16
           ),
           ),
           Text('view all',
-          style: Styels.textStyle20_700.copyWith(
+          style: Styels.textStyle20_700(context).copyWith(
             fontSize: 16
           )
           ),
@@ -52,13 +52,13 @@ class CustomArticlesWidget extends StatelessWidget {
             children: [
               Text(
                 'Loren Ipsum',
-                style: Styels.textStyle16_400.copyWith(
+                style: Styels.textStyle16_400(context).copyWith(
                   fontSize: 20,
                 ),
               ),
               Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula porttitor eros,',
-                style: Styels.textStyle18_300.copyWith(
+                style: Styels.textStyle18_300(context).copyWith(
                   fontSize: 16
                 ),
                 maxLines: 3,

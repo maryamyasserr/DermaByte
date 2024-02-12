@@ -18,7 +18,7 @@ class EmailCheck extends StatelessWidget {
       children: [
         Text(
           text,
-          style: Styels.textStyle18_300
+          style: Styels.textStyle18_300(context)
               .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
         ),
         SizedBox(width: mediaQuery.width * 0.0002),

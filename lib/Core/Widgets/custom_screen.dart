@@ -59,7 +59,7 @@ class _CustomScreenState extends State<CustomScreen> {
           // ignore: sort_child_properties_last
           child: Text(
             'Scan',
-            style: Styels.textStylee20_700,
+            style: Styels.textStylee20_700(context),
           ),
           backgroundColor: AppColors.kScanButton,
         ),

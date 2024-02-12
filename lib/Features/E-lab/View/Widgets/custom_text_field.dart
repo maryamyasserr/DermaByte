@@ -45,7 +45,7 @@ class CustomTextField extends StatelessWidget {
               cursorColor: AppColors.kPrimaryColor,
               decoration: InputDecoration(
                   hintText: hintext,
-                  hintStyle: Styels.textStyle18_300
+                  hintStyle: Styels.textStyle18_300(context)
                       .copyWith(color: AppColors.kTextInForm),
                   border:
                       const OutlineInputBorder(borderSide: BorderSide.none)),

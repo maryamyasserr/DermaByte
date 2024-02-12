@@ -16,7 +16,7 @@ class DoctorProfileItem extends StatelessWidget {
           children: [
             Text(
               item,
-              style: Styels.textStyle18_400,
+              style: Styels.textStyle18_400(context),
             ),
             const Icon(Icons.arrow_forward_ios_outlined)
           ],

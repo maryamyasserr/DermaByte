@@ -1,6 +1,5 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';

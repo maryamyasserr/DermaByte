@@ -25,7 +25,7 @@ class PatientTextFieldReport extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(hintText,style: Styels.textStyle18_400.copyWith(fontWeight: FontWeight.w600),),
+            Text(hintText,style: Styels.textStyle18_400(context).copyWith(fontWeight: FontWeight.w600),),
              const TextField(
               maxLines: 3,
               keyboardType: TextInputType.text,

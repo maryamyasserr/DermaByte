@@ -54,7 +54,7 @@ class _FileUploadState extends State<FileUpload> {
             children: [
               Text(
                 "Attach test resutls",
-                style: Styels.textStyle16_400,
+                style: Styels.textStyle16_400(context),
               ),
               const Icon(
                 Icons.add,

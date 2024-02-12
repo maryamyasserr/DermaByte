@@ -19,7 +19,7 @@ class CardText extends StatelessWidget {
             Text(
               cardTitle,
               maxLines: 1,
-              style: Styels.textStyle18_600.copyWith(
+              style: Styels.textStyle18_600(context).copyWith(
                 overflow: TextOverflow.ellipsis,
                 
                 ),
@@ -28,7 +28,7 @@ class CardText extends StatelessWidget {
             Text(
               cardSubTitle,
               maxLines: 4,
-              style:Styels.textStyle14_300.copyWith(
+              style:Styels.textStyle14_300(context).copyWith(
                 overflow: TextOverflow.ellipsis
               )
             ),

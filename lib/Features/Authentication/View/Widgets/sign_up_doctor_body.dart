@@ -141,7 +141,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                 children: [
                   Text(
                     'Scan your work license ',
-                    style: Styels.textStyle20_200,
+                    style: Styels.textStyle20_200(context),
                   ),
                   GestureDetector(
                       onTap: () {},

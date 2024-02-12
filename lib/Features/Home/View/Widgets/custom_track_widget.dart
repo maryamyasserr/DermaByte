@@ -34,13 +34,13 @@ class CustomTrackWidget extends StatelessWidget {
             children: [
             Text(
               'You’re on track!',
-              style: Styels.textStyle18_400
+              style: Styels.textStyle18_400(context)
                   .copyWith(fontSize: 20, color: AppColors.kWhiteColor),
             ),
             SizedBox(width: mediaQuery.width * 0.05),
             Text(
               'Your next scan should be in 10 \n days.',
-              style: Styels.textStyle18_300
+              style: Styels.textStyle18_300(context)
                   .copyWith(fontSize: 16, color: AppColors.kWhiteColor),
             ),
           ])

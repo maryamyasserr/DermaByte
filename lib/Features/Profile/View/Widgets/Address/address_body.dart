@@ -16,7 +16,7 @@ class AddressBody extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text("Address",style: Styels.textStyle24_600),
+          Text("Address",style: Styels.textStyle24_600(context)),
 
         ],
       ),

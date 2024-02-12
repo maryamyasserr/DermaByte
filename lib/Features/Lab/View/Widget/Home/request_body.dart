@@ -49,7 +49,7 @@ class RequestBody extends StatelessWidget {
                               MediaQuery.of(context).size.width * 0.40)),
                   child: Text(
                     "Save",
-                    style: Styels.textStyle18_600.copyWith(
+                    style: Styels.textStyle18_600(context).copyWith(
                         fontWeight: FontWeight.w700, color: Colors.white),
                   ),
                 ),

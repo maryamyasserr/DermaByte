@@ -31,12 +31,12 @@ class UpComingBody extends StatelessWidget {
                 children:[
                   Text(
                     "The doctor has scheduled an online appointment for you on Tuesday 10/24/2023, at 2:30 PM.",
-                    style: Styels.textStyle18_400
+                    style: Styels.textStyle18_400(context)
                     ),
                   SizedBox(height: MediaQuery.of(context).size.height*0.07,),
                   Text(
                     "please click on the call button right 5 minutes before the appointment.",
-                    style: Styels.textStyle14_300
+                    style: Styels.textStyle14_300(context)
                     ),
                 ],
               ),
@@ -49,7 +49,7 @@ class UpComingBody extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 backgroundColor: AppColors.kPrimaryColor
               ),
-              child: Text("Start Call",style: Styels.textStyle20_700.copyWith(color: Colors.white),))
+              child: Text("Start Call",style: Styels.textStyle20_700(context).copyWith(color: Colors.white),))
           ],
         ),
       ),

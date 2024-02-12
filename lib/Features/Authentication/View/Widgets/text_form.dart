@@ -28,7 +28,7 @@ class TextForm extends StatelessWidget {
         fillColor: AppColors.kFilledTextForm,
         filled: true,
         labelText: label,
-        labelStyle: Styels.textStyle20_200
+        labelStyle: Styels.textStyle20_200(context)
             .copyWith(
               color: AppColors.kTextInForm.withOpacity(0.8),
             ),

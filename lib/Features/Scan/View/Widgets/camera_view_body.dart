@@ -55,23 +55,23 @@ class _CameraViewBodyState extends State<CameraViewBody> {
           SizedBox(height: mediaQuery.height * 0.080),
           Text(
             'Let’s take your',
-            style: Styels.textStyle20_700.copyWith(
+            style: Styels.textStyle20_700(context).copyWith(
                 fontSize: 36, color: const Color.fromRGBO(15, 9, 82, 1)),
           ),
           Text(
             'first scan!',
-            style: Styels.textStyle20_700.copyWith(
+            style: Styels.textStyle20_700(context).copyWith(
                 fontSize: 36, color: const Color.fromRGBO(15, 9, 82, 1)),
           ),
           SizedBox(height: mediaQuery.height * 0.08),
           Text(
             ' Please give us access to your',
-            style: Styels.textStyle18_400
+            style: Styels.textStyle18_400(context)
                 .copyWith(color: const Color.fromRGBO(31, 24, 112, 1)),
           ),
           Text(
             'camera',
-            style: Styels.textStyle18_400
+            style: Styels.textStyle18_400(context)
                 .copyWith(color: const Color.fromRGBO(31, 24, 112, 1)),
           ),
           SizedBox(height: mediaQuery.height * 0.05),
@@ -82,7 +82,7 @@ class _CameraViewBodyState extends State<CameraViewBody> {
               children: [
                 Text(
                   'Allow Camera access',
-                  style: Styels.textStyle20_700.copyWith(
+                  style: Styels.textStyle20_700(context).copyWith(
                       fontWeight: FontWeight.w500,
                       color: const Color.fromRGBO(15, 9, 82, 0.8)),
                 ),
@@ -112,7 +112,7 @@ class _CameraViewBodyState extends State<CameraViewBody> {
                     }
                   : null,
               child: Text('Start scanning',
-                  style: Styels.textStyle20_700
+                  style: Styels.textStyle20_700(context)
                       .copyWith(color: AppColors.kWhiteColor)))
         ]),
       ),

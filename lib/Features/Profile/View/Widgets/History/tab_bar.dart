@@ -32,7 +32,7 @@ class _CustomTabBarState extends State<CustomTabBar>
           child: TabBar(
             controller: tabController,
             labelColor: Colors.black,
-            labelStyle: Styels.textStyle20_700,
+            labelStyle: Styels.textStyle20_700(context),
             indicatorColor: AppColors.kPrimaryColor,
             unselectedLabelColor: Colors.grey,
             tabs: const [

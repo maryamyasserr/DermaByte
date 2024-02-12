@@ -39,11 +39,11 @@ class LabServiceItem extends StatelessWidget {
                 SizedBox(height: mediaQuery.height *0.01),
                 Text(
                   labServiceData.title,
-                  style: Styels.textStyle18_400,
+                  style: Styels.textStyle18_400(context),
                 ),
                 SizedBox(height: mediaQuery.height *0.01),
                 Text(labServiceData.subTitle,
-                style: Styels.textStyle14_300,
+                style: Styels.textStyle14_300(context),
                 )
               ],
             ),

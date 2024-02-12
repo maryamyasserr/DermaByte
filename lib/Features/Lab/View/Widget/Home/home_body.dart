@@ -21,7 +21,7 @@ class HomeBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Requests",
-                  style: Styels.textStyle24_600.copyWith(fontSize: 30)),
+                  style: Styels.textStyle24_600(context).copyWith(fontSize: 30)),
               IconButton(
                   onPressed: () {},
                   icon: const Icon(FontAwesomeIcons.magnifyingGlass,size: 30,))

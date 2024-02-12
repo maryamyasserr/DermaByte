@@ -12,7 +12,7 @@ class PersonalInfoSection extends StatelessWidget {
       children: [
         Text(
           "Personal details",
-          style: Styels.textStyle24_600,
+          style: Styels.textStyle24_600(context),
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.01),
         const PersonalInfo(data: "Mohamed Ahmed"),

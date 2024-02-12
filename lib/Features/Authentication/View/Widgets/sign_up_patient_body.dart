@@ -146,7 +146,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
             children: [
               Text(
                 'Already have an account?',
-                style: Styels.textStyle18_300
+                style: Styels.textStyle18_300(context)
                     .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
               ),
               SizedBox(width: mediaQuery.width * 0.0002),
@@ -156,7 +156,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                 },
                 child: Text(
                   'sign in',
-                  style: Styels.textStyle15_300
+                  style: Styels.textStyle15_300(context)
                       .copyWith(color: const Color.fromRGBO(150, 1, 1, 0.5)),
                 ),
               )

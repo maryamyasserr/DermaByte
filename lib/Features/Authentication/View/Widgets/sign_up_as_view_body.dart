@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/sign_up_as_button.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';

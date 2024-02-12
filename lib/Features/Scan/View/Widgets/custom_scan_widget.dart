@@ -32,12 +32,12 @@ class CustomScanWidget extends StatelessWidget {
               SizedBox(height: mediaQuery.height * 0.025),
               Text(
                 title,
-                style: Styels.textStyle20_700,
+                style: Styels.textStyle20_700(context),
               ),
               SizedBox(height: mediaQuery.height * 0.025),
               Text(
                 subTitle,
-                style: Styels.textStyle16_400.copyWith(fontSize: 14),
+                style: Styels.textStyle16_400(context).copyWith(fontSize: 14),
               ),
             ],
           )

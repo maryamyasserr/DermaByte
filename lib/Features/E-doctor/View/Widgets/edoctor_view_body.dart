@@ -66,7 +66,7 @@ class EdoctorViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Widest selection from the best\ncertified doctors.',
-                style: Styels.textStyle15_300,
+                style: Styels.textStyle15_300(context),
               ),
             ),
             Expanded(

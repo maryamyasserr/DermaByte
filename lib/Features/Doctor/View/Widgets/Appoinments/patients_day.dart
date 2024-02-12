@@ -21,7 +21,7 @@ class PatientsDay extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10),
             child: Text(
               "Monday",
-             style: Styels.textStyle24_600.copyWith(
+             style: Styels.textStyle24_600(context).copyWith(
               decoration: TextDecoration.underline
              )),
           ),

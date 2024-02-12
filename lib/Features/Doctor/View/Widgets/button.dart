@@ -19,7 +19,7 @@ class MyButton extends StatelessWidget {
             backgroundColor: AppColors.kPrimaryColor),
         child: Text(
           textButton,
-          style: Styels.textStyle24_600
+          style: Styels.textStyle24_600(context)
               .copyWith(fontSize: 20, color: Colors.white),
         ));
   }

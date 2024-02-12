@@ -70,7 +70,7 @@ class _SignInBodyState extends State<SignInBody> {
             onTap: () {},
             child: Text(
               'forgot password?',
-              style: Styels.textStyle15_400
+              style: Styels.textStyle15_400(context)
                   .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.6)),
               textAlign: TextAlign.center,
             ),

@@ -33,8 +33,8 @@ class _ElabBodyState extends State<ElabBody> {
                 selectedIndex = index;
               });
             },
-            selectedLabelStyle: Styels.textStyle18_400,
-            unselectedLabelStyle: Styels.textStyle14_300.copyWith(fontWeight: FontWeight.w400),
+            selectedLabelStyle: Styels.textStyle18_400(context),
+            unselectedLabelStyle: Styels.textStyle14_300(context).copyWith(fontWeight: FontWeight.w400),
             iconSize: 35,
             selectedItemColor: AppColors.kPrimaryColor,
             unselectedItemColor: Colors.grey,

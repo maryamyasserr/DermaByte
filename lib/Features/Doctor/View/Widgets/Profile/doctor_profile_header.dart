@@ -23,11 +23,11 @@ class DoctorProfileHeader extends StatelessWidget {
               children: [
                 Text(
                   "Ahmed Mohamed",
-                  style: Styels.textStyle20_700,
+                  style: Styels.textStyle20_700(context),
                 ),
                 Text(
                   "Doctor",
-                  style: Styels.textStyle14_300,
+                  style: Styels.textStyle14_300(context),
                 ),
               ],
             ),

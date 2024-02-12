@@ -45,7 +45,7 @@ class SCustomTextField extends StatelessWidget {
               cursorColor: AppColors.kPrimaryColor,
               decoration: InputDecoration(
                   labelText: labelText,
-                  labelStyle: Styels.textStyle18_300
+                  labelStyle: Styels.textStyle18_300(context)
                       .copyWith(color: AppColors.kTextInForm),
                   border:
                       const OutlineInputBorder(borderSide: BorderSide.none)),

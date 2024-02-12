@@ -63,19 +63,19 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                               children: [
                                 Text(
                                   'We think it’s:',
-                                  style: Styels.textStyle18_600
+                                  style: Styels.textStyle18_600(context)
                                       .copyWith(fontSize: 22),
                                 ),
                                 SizedBox(height: mediaQuery.height * 0.020),
                                 Text(
                                   'Melanoma',
-                                  style: Styels.textStyle20_300
+                                  style: Styels.textStyle20_300(context)
                                       .copyWith(fontSize: 24),
                                 ),
                                 SizedBox(height: mediaQuery.height * 0.020),
                                 Text(
                                   'Which is a type of skin cancer. We advise\nyou to see a doctor and discuss\npossible treatments.',
-                                  style: Styels.textStyle20_300
+                                  style: Styels.textStyle20_300(context)
                                       .copyWith(fontSize: 16),
                                 ),
                                 SizedBox(height: mediaQuery.height * 0.020),
@@ -100,7 +100,7 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                                         children: [
                                           Text(
                                             'Reminder!',
-                                            style: Styels.textStyle20_700
+                                            style: Styels.textStyle20_700(context)
                                                 .copyWith(
                                                     fontSize: 20,
                                                     color: AppColors.kWhiteColor),
@@ -109,7 +109,7 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                                           Text(
                                             'our diagnoses should not be treated as a professional examination, it’s always better to consult a doctor and make sure of your condition.',
                                            maxLines: 4,
-                                            style: Styels.textStyle18_300
+                                            style: Styels.textStyle18_300(context)
                                                 .copyWith(
                                                     fontSize: 16,
                                                     color: AppColors.kWhiteColor),
@@ -125,12 +125,12 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                                 SizedBox(height: mediaQuery.height * 0.020),
                                 Text(
                                   'What is Melanoma?',
-                                  style: Styels.textStyle20_300,
+                                  style: Styels.textStyle20_300(context),
                                 ),
                                 SizedBox(height: mediaQuery.height * 0.01),
                                 Text(
                                   'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Sed vehicula porttitor\neros, ut sagittis augue gravida eu\nDonec dictum, elit mollis lobortis elei',
-                                  style: Styels.textStyle20_300
+                                  style: Styels.textStyle20_300(context)
                                       .copyWith(fontSize: 16),
                                 ),
                               ]),
@@ -154,7 +154,7 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
                                   Text(
                                     'Scan in progress',
                                     textAlign: TextAlign.center,
-                                    style: Styels.textStyle18_600
+                                    style: Styels.textStyle18_600(context)
                                         .copyWith(fontSize: 25),
                                   ),
                                   SizedBox(height: mediaQuery.height * 0.020),

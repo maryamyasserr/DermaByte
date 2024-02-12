@@ -19,7 +19,7 @@ class PersonalInfo extends StatelessWidget {
         Text(
           data,
           maxLines: 2,
-          style: Styels.textStyle20_300,
+          style: Styels.textStyle20_300(context),
         )
       ],
     );

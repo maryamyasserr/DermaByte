@@ -59,7 +59,7 @@ class PatientCard extends StatelessWidget {
                 top: 10,
                 child: Text(
                   "10:00 AM",
-                  style: Styels.textStyle14_300,
+                  style: Styels.textStyle14_300(context),
                 )),
             Positioned(
                 right: MediaQuery.of(context).size.width * 0.02,

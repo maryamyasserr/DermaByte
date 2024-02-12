@@ -25,6 +25,6 @@ class SignButton extends StatelessWidget {
         },
         child: Text(buttonName,
             style:
-                Styels.textStyle20_700.copyWith(color: AppColors.kWhiteColor)));
+                Styels.textStyle20_700(context).copyWith(color: AppColors.kWhiteColor)));
   }
 }

@@ -18,7 +18,7 @@ class SplashBody extends StatelessWidget {
           ),
            Text(
             'DermaByte',
-            style: Styels.textStyle40,
+            style: Styels.textStyle40(context),
           )
         ]),
       ),

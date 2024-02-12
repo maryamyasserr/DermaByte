@@ -35,7 +35,7 @@ class ProfileBody extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Doctors you have consulted",
-                  style: Styels.textStyle18_600,
+                  style: Styels.textStyle18_600(context),
                 )),
            
            SizedBox(height: MediaQuery.of(context).size.height*0.04),

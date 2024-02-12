@@ -39,7 +39,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
                           'Book a consultation with your\ndoctor.',
-                          style: Styels.textStyle15_300,
+                          style: Styels.textStyle15_300(context),
                           textAlign: TextAlign.left,
                         ),
                       ),

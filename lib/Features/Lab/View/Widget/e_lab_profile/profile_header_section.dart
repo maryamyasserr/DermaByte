@@ -21,11 +21,11 @@ class ElabProfileHeaderSection extends StatelessWidget {
               children: [
                 Text(
                   "Alpha Scan",
-                  style: Styels.textStyle20_700,
+                  style: Styels.textStyle20_700(context),
                 ),
                 Text(
                   "Laboratory",
-                  style: Styels.textStyle14_300,
+                  style: Styels.textStyle14_300(context),
                 ),
               ],
             ),

@@ -20,13 +20,13 @@ class SettingsBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text("Settings",style: Styels.textStyle40.copyWith(fontSize: 30)),
+          Text("Settings",style: Styels.textStyle40(context).copyWith(fontSize: 30)),
           SizedBox(height: MediaQuery.of(context).size.height*0.05),
           SettingsItem(onTap: (){}, item: "Country"),
           SettingsItem(onTap: (){}, item: "App Language"),
           GestureDetector(
             onTap: (){},
-            child: Text("Delete account",style: Styels.textStyle18_400.copyWith(color: Colors.red),))
+            child: Text("Delete account",style: Styels.textStyle18_400(context).copyWith(color: Colors.red),))
         ]),
       ),
     );

@@ -20,7 +20,7 @@ class AccountBody extends StatelessWidget {
           children: [
             Text(
               "Account",
-              style: Styels.textStyle40.copyWith(fontSize: 30),
+              style: Styels.textStyle40(context).copyWith(fontSize: 30),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,

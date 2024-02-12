@@ -28,8 +28,8 @@ class _EdoctorBodyState extends State<EdoctorBody> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: Styels.textStyle18_400.copyWith(fontSize: 14),
-        unselectedLabelStyle: Styels.textStyle12_200,
+        selectedLabelStyle: Styels.textStyle18_400(context).copyWith(fontSize: 14),
+        unselectedLabelStyle: Styels.textStyle12_200(context),
         iconSize: 35,
         selectedItemColor: AppColors.kPrimaryColor,
         unselectedItemColor: Colors.grey,

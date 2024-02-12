@@ -41,7 +41,7 @@ class _SignUpAsButtonState extends State<SignUpAsButton> {
       },
       child: Text(
         widget.buttonName,
-        style: Styels.textStyle20_700.copyWith(
+        style: Styels.textStyle20_700(context).copyWith(
           color: AppColors.kWhiteColor ,
           // color: isClicked ? AppColors.kWhiteColor : AppColors.kPrimaryColor,
         ),

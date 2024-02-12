@@ -12,7 +12,7 @@ class CustomTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Styels.textStyle40,
+      style: Styels.textStyle40(context),
       textAlign: TextAlign.center,
     );
   }

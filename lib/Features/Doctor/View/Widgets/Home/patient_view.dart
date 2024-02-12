@@ -26,7 +26,7 @@ class PatientView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text("Patient’s diagnoses and treatment",style: Styels.textStyle24_600.copyWith(fontSize: 28)),
+                  Text("Patient’s diagnoses and treatment",style: Styels.textStyle24_600(context).copyWith(fontSize: 28)),
                   SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                   const PatientTextFieldReport(hintText: "Diagnoses",),
                   SizedBox(height: MediaQuery.of(context).size.height*0.02),

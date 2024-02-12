@@ -25,7 +25,7 @@ class ReportView extends StatelessWidget {
               children: [
                 Text(
                   "Mohamed's report",
-                  style: Styels.textStyle24_600.copyWith(fontSize: 28),
+                  style: Styels.textStyle24_600(context).copyWith(fontSize: 28),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 const Divider(

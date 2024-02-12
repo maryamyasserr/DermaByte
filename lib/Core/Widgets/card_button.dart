@@ -26,7 +26,7 @@ class CardButton extends StatelessWidget {
               ),
               child: Text(
                 textButton,
-                style: Styels.textStyle12_700.copyWith(color: Colors.white),
+                style: Styels.textStyle12_700(context).copyWith(color: Colors.white),
               )),
         ),
       ),

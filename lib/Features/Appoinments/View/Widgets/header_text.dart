@@ -14,7 +14,7 @@ class HeaderText extends StatelessWidget {
           width: 210,
           child: Text(
             text,
-            style: Styels.textStyle14_300,
+            style: Styels.textStyle14_300(context),
           ),
         ),
       ),
