@@ -1,12 +1,13 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class CustomScanWidget extends StatelessWidget {
-  String? image;
-  String title, subTitle;
-  CustomScanWidget(
-      {super.key, this.image, required this.title, required this.subTitle});
+class Possibilities extends StatelessWidget {
+  const Possibilities({
+    super.key,
+    required this.mediaQuery,
+  });
+
+  final Size mediaQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +19,6 @@ class CustomScanWidget extends StatelessWidget {
           border: Border.all(color: Colors.black),
         ),
         child: Row(children: [
-          Column(
-            children: [
-              Expanded(
-                child: Image.asset(
-                  image ?? '',
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ],
-          ),
           const Flexible(child: SizedBox(width: 24)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,16 +27,16 @@ class CustomScanWidget extends StatelessWidget {
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  title,
-                  style: Styels.textStyle20_700(context).copyWith(fontSize: 22),
+                  'What are the possibilities?',
+                  style: Styels.textStyle20_700(context),
                 ),
               ),
-              const SizedBox(height: 8),
+              const Flexible(child: SizedBox(height: 12)),
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  subTitle,
-                  style: Styels.textStyle16_400(context),
+                  'learn about all the possible cases of\nskin changes we cover in our app\nand how to avoid them.',
+                  style: Styels.textStyle18_400(context),
                 ),
               ),
             ],

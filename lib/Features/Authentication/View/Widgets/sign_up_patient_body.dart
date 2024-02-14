@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
+
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/View/Widgets/required_text_form.dart';
@@ -123,7 +123,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
             },
           ),
-          const SizedBox(height:6),
+          const SizedBox(height: 6),
           EmailCheck(
               mediaQuery: mediaQuery,
               text: 'Already have an account?',
@@ -131,7 +131,6 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               onPressed: () {
                 GoRouter.of(context).push(AppRoutes.kSignIn);
               }),
-         
         ]),
       ),
     );

@@ -16,30 +16,34 @@ class HomeViewBody extends StatelessWidget {
         image: DecorationImage(
             image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
       ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding:  EdgeInsets.symmetric(vertical: mediaQuery.height*0.05 ,horizontal: mediaQuery.width*0.05),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            const CustomAppBar(title: ''),
-            SizedBox(height: mediaQuery.height * 0.04),
-            Text(
-              'Hi Maryam !',
-              style: Styels.textStyle24_600(context),
-            ),
-            SizedBox(height: mediaQuery.height * 0.025),
-            Text(
-              'It’s nice to have you back.',
-              style: Styels.textStyle18_400(context).copyWith(
-                fontSize: 20
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomAppBar(title: ''),
+                  const Flexible(child: SizedBox(height: 24)),
+                  Text(
+                    'Hi Maryam !',
+                    style: Styels.textStyle24_600(context),
+                  ),
+                  const Flexible(child: SizedBox(height: 12)),
+                  Text(
+                    'It’s nice to have you back.',
+                    style:
+                        Styels.textStyle18_400(context).copyWith(fontSize: 20),
+                  ),
+                  const Flexible(child: SizedBox(height: 48)),
+                  const CustomTrackWidget(),
+                  const Flexible(child: SizedBox(height: 32)),
+                  const CustomArticlesWidget(),
+                ],
               ),
             ),
-           SizedBox(height: mediaQuery.height * 0.05),
-           const CustomTrackWidget(),
-          SizedBox(height: mediaQuery.height * 0.06),
-           const CustomArticlesWidget(),
-          ]),
+          ],
         ),
       ),
     );

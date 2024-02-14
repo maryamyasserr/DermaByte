@@ -104,20 +104,15 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                 ),
               ),
               SizedBox(height: mediaQuery.height * 0.009),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RequiredTextForm(
-                      label: 'First name',
-                      controller: SignUpDoctorBody.firstNameController),
-                  RequiredTextForm(
-                      label: 'Last name',
-                      controller: SignUpDoctorBody.lastNameController),
-                  RequiredTextForm(
-                      label: 'Mobile',
-                      controller: SignUpDoctorBody.mobileController),
-                ],
-              ),
+              RequiredTextForm(
+                  label: 'First name',
+                  controller: SignUpDoctorBody.firstNameController),
+              RequiredTextForm(
+                  label: 'Last name',
+                  controller: SignUpDoctorBody.lastNameController),
+              RequiredTextForm(
+                  label: 'Mobile',
+                  controller: SignUpDoctorBody.mobileController),
               SizedBox(height: mediaQuery.height * 0.014),
               TextFormContainer(
                 mediaQuery: mediaQuery,
