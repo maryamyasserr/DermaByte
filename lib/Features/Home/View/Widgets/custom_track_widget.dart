@@ -9,7 +9,7 @@ class CustomTrackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
+   
     return AspectRatio(
       aspectRatio: 341 / 89,
       child: Container(

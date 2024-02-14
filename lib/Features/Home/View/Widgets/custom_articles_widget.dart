@@ -7,7 +7,7 @@ class CustomArticlesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
+   
     return AspectRatio(
       aspectRatio: 333 / 220,
       child: Container(
