@@ -12,49 +12,51 @@ class CustomCard extends StatelessWidget {
       required this.cardSubTitle,
       required this.textButton,
       this.onPressed,
-      this.width});
+     });
   final String iconCard, cardTitle, cardSubTitle, textButton;
   final void Function()? onPressed;
-  final double? width;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.18,
-      decoration: BoxDecoration(
-          color: AppColors.kCardColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 2.6),
-              blurRadius: 6.0,
-            )
-          ]),
-      child: Stack(
-        children: [
-          Row(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: SvgPicture.asset(
-                iconCard,
-                height: MediaQuery.of(context).size.height * 0.17,
+    return AspectRatio(
+      aspectRatio: 330 / 120,
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.kCardColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 2.6),
+                blurRadius: 6.0,
+              )
+            ]),
+        child: Stack(
+          children: [
+            Row(
+              children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: SvgPicture.asset(
+                  iconCard,
+                  height: MediaQuery.of(context).size.height * 0.17,
+                ),
               ),
-            ),
-            CardText(
-              width: MediaQuery.of(context).size.width*0.5,
-              cardTitle: cardTitle,
-              cardSubTitle: cardSubTitle,
-            ),
-          ]),
-          Positioned(
-          right: 8,
-          bottom: 0,
-          child: CardButton(
-          textButton: textButton,
-          onPressed: onPressed,
-        ))
-        ],
+              CardText(
+                width: MediaQuery.of(context).size.width * 0.5,
+                cardTitle: cardTitle,
+                cardSubTitle: cardSubTitle,
+              ),
+            ]),
+            Positioned(
+                right: 8,
+                bottom: 0,
+                child: CardButton(
+                  textButton: textButton,
+                  onPressed: onPressed,
+                ))
+          ],
+        ),
       ),
     );
   }

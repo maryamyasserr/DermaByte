@@ -14,15 +14,15 @@ class FollowUpBody extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * 0.05,
-            horizontal: MediaQuery.of(context).size.width * 0.02),
+        padding:const  EdgeInsets.symmetric(
+            vertical: 20,
+            horizontal: 8),
         child: Column(
           children: [
             const CustomAppBar(title: "Follow Up!"),
             const HeaderText(
                 text: "Follow up with your ongoing and future appointments."),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            const SizedBox(height:32),
             CustomCard(
               iconCard: Assets.kFollowUpIcon,
               cardTitle: "Dr. Mai",
@@ -30,7 +30,7 @@ class FollowUpBody extends StatelessWidget {
               onPressed: () {},
               textButton: "View",
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            const SizedBox(height: 24),
             CustomCard(
               iconCard: Assets.kWallBlock,
               cardTitle: "Dr. Helal",
