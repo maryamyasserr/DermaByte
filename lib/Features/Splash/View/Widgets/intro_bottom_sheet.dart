@@ -19,7 +19,7 @@ class IntroBottomSheet extends StatelessWidget {
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
       child: Column(children: [
-        const SizedBox(height: 20),
+        const Flexible(child: SizedBox(height: 20)),
         Text(
           'Detect skin cancer \n with 95% accuracy',
           textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class IntroBottomSheet extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         )),
-                    onPressed: () {
+                    onPressed: () { 
                       GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
                     },
                     child: Text('Continue',
@@ -55,7 +55,7 @@ class IntroBottomSheet extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 24,
+          height: 12,
         )
       ]),
     );

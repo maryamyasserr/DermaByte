@@ -11,18 +11,20 @@ class DiseaseBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage(Assets.kBackground),
-        fit: BoxFit.cover
-        )
-      ),
+          image: DecorationImage(
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
+        child: ListView(
           children: [
             const CustomAppBar(title: "History"),
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
             const DiseaseHeaderSection(),
-            SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
             const DiseaseBodySection()
           ],
         ),

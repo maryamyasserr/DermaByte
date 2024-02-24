@@ -1,27 +1,25 @@
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
-import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
-class DoctorItem extends StatelessWidget {
-  const DoctorItem(
+class ScanCard extends StatelessWidget {
+  const ScanCard(
       {super.key,
       required this.iconCard,
-      required this.doctorTitle,
-      required this.doctorSubTitle,
+      required this.cardTitle,
+      required this.cardSubTitle,
       required this.textButton,
       this.onPressed,
       this.width});
-  final String iconCard, doctorTitle, doctorSubTitle, textButton;
+  final String iconCard, cardTitle, cardSubTitle, textButton;
   final void Function()? onPressed;
   final double? width;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 330 / 125,
+      aspectRatio: 330 / 130,
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.kCardColor,
@@ -34,14 +32,11 @@ class DoctorItem extends StatelessWidget {
               )
             ]),
         child: InkWell(
-          onTap: () {
-            GoRouter.of(context).push(AppRoutes.kScanView);
-          },
+          onTap: () {},
           child: Row(
             children: [
               Expanded(
-                child: Row(
-                  children: [
+                child: Row(children: [
                   const SizedBox(width: 16),
                   Expanded(
                     flex: 2,
@@ -51,43 +46,30 @@ class DoctorItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    flex: 4,
+                    flex: 5,
                     child: Column(
                       children: [
                         const SizedBox(height: 8),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: CardText(
-                            cardTitle: doctorTitle,
-                            cardSubTitle: doctorSubTitle,
-                           
+                            cardTitle: cardTitle,
+                            cardSubTitle: cardSubTitle,
                           ),
                         ),
                         Expanded(
-                          child: Row(
-                            children: [
-                              SvgPicture.asset('assets/images/star_icon.svg'),
-                              SvgPicture.asset('assets/images/star_icon.svg'),
-                              SvgPicture.asset('assets/images/star_icon.svg'),
-                              const Expanded(
-                                flex: 3,
-                                child: SizedBox()),
-                              CardButton(
-                                textButton: textButton,
-                                onPressed: () {
-                                  GoRouter.of(context)
-                                      .push(AppRoutes.kLabReservationView);
-                                },
-                              ),
-                              const Flexible(child: SizedBox(width: 8)),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: CardButton(
+                              textButton: textButton,
+                              onPressed: onPressed,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 8),
                       ],
                     ),
                   ),
-                  
                 ]),
               ),
             ],

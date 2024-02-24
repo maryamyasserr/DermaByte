@@ -10,11 +10,9 @@ class LabServiceItem extends StatelessWidget {
   LabServiceData labServiceData;
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
-        height: mediaQuery.height *0.0,
         padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
             color: AppColors.kCardColor,
@@ -27,26 +25,28 @@ class LabServiceItem extends StatelessWidget {
               )
             ]),
         child: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: SizedBox(
-            width: mediaQuery.width*0.01,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SvgPicture.asset(
-                  labServiceData.image,
-                ),
-                SizedBox(height: mediaQuery.height *0.01),
-                Text(
-                  labServiceData.title,
-                  style: Styels.textStyle18_400(context),
-                ),
-                SizedBox(height: mediaQuery.height *0.01),
-                Text(labServiceData.subTitle,
+          padding: const EdgeInsets.only(top: 10,left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SvgPicture.asset(
+                labServiceData.image,
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                labServiceData.title,
+                style: Styels.textStyle18_400(context),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                labServiceData.subTitle,
                 style: Styels.textStyle14_300(context),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

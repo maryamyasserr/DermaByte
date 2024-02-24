@@ -14,11 +14,11 @@ class PersonalInfoSection extends StatelessWidget {
           "Personal details",
           style: Styels.textStyle24_600(context),
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+        const SizedBox(height: 12),
         const PersonalInfo(data: "Mohamed Ahmed"),
         const PersonalInfo(data: "20 Years Old"),
         const PersonalInfo(data: "Noticed skin changes since august"),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        const SizedBox(height: 18),
       ],
     );
   }

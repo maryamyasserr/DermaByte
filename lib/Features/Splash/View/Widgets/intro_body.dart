@@ -16,8 +16,8 @@ class IntroBody extends StatelessWidget {
         ),
         const Column(
           children: [
-            Expanded(child: SizedBox()),
-            Expanded(child: IntroBottomSheet()),
+            Expanded(flex: 3, child: SizedBox()),
+            Expanded(flex: 2, child: IntroBottomSheet()),
           ],
         )
       ],

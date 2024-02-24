@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/doctor_profile_header.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/doctor_profile_item.dart';
+import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/doctor_profile_items_listview.dart';
 import 'package:flutter/material.dart';
 
 class EdoctorProfile extends StatelessWidget {
@@ -24,16 +24,8 @@ class EdoctorProfile extends StatelessWidget {
       child: Column(
         children: [
           const DoctorProfileHeader(),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-            child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return DoctorProfileItem(
-                      onTap: () {}, item: items.keys.elementAt(index));
-                }),
-          )
+          const SizedBox(height: 32,),
+         DoctorProfileItems()
         ],
       ),
     );

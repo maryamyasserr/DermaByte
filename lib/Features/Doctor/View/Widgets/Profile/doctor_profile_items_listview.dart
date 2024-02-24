@@ -1,12 +1,13 @@
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/doctor_profile_item.dart';
 import 'package:dermabyte/Features/Profile/Data/profile_item_model.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_item.dart';
+
 import 'package:flutter/material.dart';
 
-class ItemsListView extends StatelessWidget {
-  const ItemsListView({super.key});
+class DoctorProfileItems extends StatelessWidget {
+  DoctorProfileItems({super.key});
 
-  static List<ProfileItemModel> items = [
+  final List<ProfileItemModel> items = [
     ProfileItemModel(title: 'Address', route: AppRoutes.kAddress),
     ProfileItemModel(title: 'Account', route: AppRoutes.kAccount),
     ProfileItemModel(title: 'Address', route: AppRoutes.kAddress),
@@ -21,8 +22,8 @@ class ItemsListView extends StatelessWidget {
     return Column(
       children: items.map((e) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: ProfileItem(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: DoctorProfileItem(
             profileItemModel: e,
           ),
         );

@@ -13,7 +13,6 @@ class ScanViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -22,13 +21,13 @@ class ScanViewBody extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: mediaQuery.width*0.02
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: mediaQuery.height *0.09),
+            const SizedBox(height: 80),
           Text(
             'Alpha Scan',
             style: Styels.textStyle20_700(context).copyWith(
@@ -36,7 +35,7 @@ class ScanViewBody extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: mediaQuery.height *0.05),
+          const SizedBox(height: 32),
           Text(
             'Services',
             style: Styels.textStyle20_700(context).copyWith(
@@ -48,9 +47,9 @@ class ScanViewBody extends StatelessWidget {
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 50,
-                crossAxisSpacing: 5 ,
-                childAspectRatio: 0.9
+                mainAxisSpacing: 30,
+                crossAxisSpacing: 10 ,
+                childAspectRatio: 0.8
               ),
               itemBuilder: (context, index) {
                 return LabServiceItem(labServiceData: serviceList[index]);

@@ -25,7 +25,8 @@ class ConsultsBody extends StatelessWidget {
               SizedBox(height: MediaQuery.of(context).size.height*0.01,),
               const ConsutlsHeaderSection(),
               SizedBox(height: MediaQuery.of(context).size.height*0.014,),
-              const ConsultsBodySection()
+              const ConsultsBodySection(),
+              const SizedBox(height: 8)
               
             ],
           ),

@@ -6,9 +6,9 @@ import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
-      {super.key, required this.hintext, required this.width, this.padding, required this.isrequired, required this.keyboardType});
+      {super.key, required this.hintext, this.width, this.padding, required this.isrequired, required this.keyboardType});
   final String hintext;
-  final double width;
+  final double? width;
   final EdgeInsetsGeometry? padding;
   final TextInputType keyboardType;
   final bool isrequired;

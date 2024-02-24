@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/E-doctor/View/Widgets/doctor_item.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/Profile/items_list_view.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_header_section.dart';
 import 'package:flutter/material.dart';
@@ -17,35 +17,39 @@ class ProfileBody extends StatelessWidget {
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
+        child: ListView(
           children: [
             const CustomAppBar(title: ""),
             const ProfileHeaderSection(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+            const SizedBox(
+              height: 32,
             ),
-            ItemsListView(),
+            const ItemsListView(),
             const SizedBox(height: 7),
             const Divider(
               thickness: 0.7,
               color: Colors.black,
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            const SizedBox(height: 16),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Doctors you have consulted",
                   style: Styels.textStyle18_600(context),
                 )),
-           
-           SizedBox(height: MediaQuery.of(context).size.height*0.04),
-             FeatureCard(
+            const SizedBox(
+              height: 12,
+            ),
+            DoctorItem(
               iconCard: Assets.kDoctorAvatar,
-              cardTitle: "Dr. Luka Modrich",
-              cardSubTitle:
+              doctorTitle: "Dr. Luka Modrich",
+              doctorSubTitle:
                   "An eye doctor to spread magic, creativity and happiness to us",
               textButton: "View",
               onPressed: () {},
+            ),
+            const SizedBox(
+              height: 8,
             )
           ],
         ),

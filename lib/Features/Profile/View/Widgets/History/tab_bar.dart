@@ -2,7 +2,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/History/scan_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,9 +44,7 @@ class _CustomTabBarState extends State<CustomTabBar>
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
-          child: TabBarView(
-            controller: tabController,
-            children: [
+          child: TabBarView(controller: tabController, children: [
             ListView.builder(
                 itemCount: 6,
                 physics: const BouncingScrollPhysics(),
@@ -55,7 +53,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: FeatureCard(
+                        child: ScanCard(
                           iconCard: Assets.kDoctorAvatar,
                           cardTitle: "Melanoma",
                           cardSubTitle:
@@ -77,7 +75,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 6),
-                        child: FeatureCard(
+                        child: ScanCard(
                           iconCard: Assets.kDoctorAvatar,
                           cardTitle: "Melanoma",
                           cardSubTitle:
@@ -96,8 +94,8 @@ class _CustomTabBarState extends State<CustomTabBar>
                   return Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 6),
-                        child: FeatureCard(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: ScanCard(
                           iconCard: Assets.kDoctorAvatar,
                           cardTitle: "Melanoma",
                           cardSubTitle:

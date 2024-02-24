@@ -12,11 +12,11 @@ class EdoctorHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.08,
           horizontal: MediaQuery.of(context).size.width * 0.03),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 32),
           Text(
             "Today's Schedule",
             style: Styels.textStyle24_600(context),
@@ -33,7 +33,7 @@ class EdoctorHome extends StatelessWidget {
                         iconCard: Assets.kAvatar,
                         cardTitle: "Jude Bellengham",
                         cardSubTitle:
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
                          diagnose: () {
                           GoRouter.of(context).push(AppRoutes.kPatientView);
                         },

@@ -23,58 +23,83 @@ class PatientCard extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(AppRoutes.kReportView);
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.01,
-        height: MediaQuery.of(context).size.height * 0.18,
-        decoration: BoxDecoration(
-            color: AppColors.kCardColor,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0.0, 2.6),
-                blurRadius: 6.0,
-              )
-            ]),
-        child: Stack(
-          children: [
-            Row(children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                child: SvgPicture.asset(
-                  iconCard,
-                  color: Colors.grey[600],
-                  height: MediaQuery.of(context).size.height * 0.1,
-                ),
+      child: AspectRatio(
+        aspectRatio: 342 / 140,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          decoration: BoxDecoration(
+              color: AppColors.kCardColor,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0.0, 2.6),
+                  blurRadius: 6.0,
+                )
+              ]),
+          child: Row(
+            children: [
+              Expanded(
+                child: Row(children: [
+                  Expanded(
+                    child: SvgPicture.asset(
+                      iconCard,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 6,
+                                child: CardText(
+                                  cardTitle: cardTitle,
+                                  cardSubTitle: cardSubTitle,
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "10:00 AM",
+                                      style: Styels.textStyle14_300(context),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              const Expanded(child: SizedBox()),
+                              CardButton(
+                                textButton: "Diagnose",
+                                onPressed: diagnose,
+                              ),
+                              const SizedBox(width: 8),
+                              CardButton(
+                                textButton: "Start",
+                                onPressed: start,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
               ),
-              CardText(
-                width: MediaQuery.of(context).size.width * 0.5,
-                cardTitle: cardTitle,
-                cardSubTitle: cardSubTitle,
-              ),
-            ]),
-            Positioned(
-                right: MediaQuery.of(context).size.width * 0.02,
-                top: 10,
-                child: Text(
-                  "10:00 AM",
-                  style: Styels.textStyle14_300(context),
-                )),
-            Positioned(
-                right: MediaQuery.of(context).size.width * 0.02,
-                bottom: 0,
-                child: CardButton(
-                  textButton: "Diagnose",
-                  onPressed: diagnose,
-                )),
-            Positioned(
-                right: MediaQuery.of(context).size.width * 0.31,
-                bottom: 0,
-                child: CardButton(
-                  textButton: "Start",
-                  onPressed: start,
-                )),
-          ],
+            ],
+          ),
         ),
       ),
     );

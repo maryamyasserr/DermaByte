@@ -3,13 +3,12 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class PatientTextFieldReport extends StatelessWidget {
-  const PatientTextFieldReport({super.key, required this.hintText});
+  const PatientTextFieldReport({super.key, required this.hintText, required this.maxLines});
   final String hintText;
+  final int maxLines;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.25,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: AppColors.kCardColor,
@@ -25,14 +24,18 @@ class PatientTextFieldReport extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(hintText,style: Styels.textStyle18_400(context).copyWith(fontWeight: FontWeight.w600),),
-             const TextField(
-              maxLines: 3,
+            Text(
+              hintText,
+              style: Styels.textStyle18_400(context)
+                  .copyWith(fontWeight: FontWeight.w600),
+            ),
+             TextField(
+              maxLines: maxLines,
               keyboardType: TextInputType.text,
               cursorColor: AppColors.kPrimaryColor,
-              decoration: InputDecoration(
-                  border:  OutlineInputBorder(borderSide: BorderSide.none)),
-                         ),
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(borderSide: BorderSide.none)),
+            ),
           ],
         ),
       ),

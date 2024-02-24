@@ -18,31 +18,31 @@ class ReportView extends StatelessWidget {
                   image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
           child: Padding(
             padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.05,
                 horizontal: MediaQuery.of(context).size.width * 0.03),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Flexible(child: SizedBox(height: 60,)),
                 Text(
                   "Mohamed's report",
                   style: Styels.textStyle24_600(context).copyWith(fontSize: 28),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                const SizedBox(height: 8),
                 const Divider(
                   color: Colors.black,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                const SizedBox(height: 16),
                 const PersonalInfoSection(),
                 const Divider(
                   color: Colors.black,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                const SizedBox(height: 16),
                 const DiseaseReport(),
-                SizedBox(height: MediaQuery.of(context).size.height*0.1),
+                const SizedBox(height: 60),
                 Align(
                   alignment: Alignment.center,
                   child: MyButton(
-                    horizontal: MediaQuery.of(context).size.width*0.3, textButton: "Confirm", onPressed: (){}),
+                    horizontal: MediaQuery.of(context).size.width*0.34, textButton: "Confirm", onPressed: (){}),
                 )
               ],
             ),

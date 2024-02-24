@@ -6,19 +6,14 @@ class CardText extends StatelessWidget {
       {super.key,
       required this.cardTitle,
       required this.cardSubTitle,
-      required this.width});
+     });
   final String cardTitle, cardSubTitle;
-  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Flexible(
-          child: SizedBox(height: 12),
-        ),
         SizedBox(
-          width: width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,10 +25,10 @@ class CardText extends StatelessWidget {
                   fontWeight: FontWeight.w700
                 ),
               ),
-              const SizedBox(height: 7),
+              const SizedBox(height: 4),
               Text(
                 cardSubTitle,
-                  maxLines: 4,
+                  maxLines: 3,
                   style: Styels.textStyle14_300(context)
                       .copyWith(overflow: TextOverflow.ellipsis)),
             ],

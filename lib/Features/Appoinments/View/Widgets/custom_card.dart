@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard(
-      {super.key,
-      required this.iconCard,
-      required this.cardTitle,
-      required this.cardSubTitle,
-      required this.textButton,
-      this.onPressed,
-     });
+  const CustomCard({
+    super.key,
+    required this.iconCard,
+    required this.cardTitle,
+    required this.cardSubTitle,
+    required this.textButton,
+    this.onPressed,
+  });
   final String iconCard, cardTitle, cardSubTitle, textButton;
   final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 330 / 120,
+      aspectRatio: 330 / 130,
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.kCardColor,
@@ -31,30 +31,43 @@ class CustomCard extends StatelessWidget {
                 blurRadius: 6.0,
               )
             ]),
-        child: Stack(
+        child: Row(
           children: [
-            Row(
-              children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: SvgPicture.asset(
-                  iconCard,
-                  height: MediaQuery.of(context).size.height * 0.17,
+            Expanded(
+              child: Row(children: [
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 2,
+                  child: SvgPicture.asset(
+                    iconCard,
+                  ),
                 ),
-              ),
-              CardText(
-                width: MediaQuery.of(context).size.width * 0.5,
-                cardTitle: cardTitle,
-                cardSubTitle: cardSubTitle,
-              ),
-            ]),
-            Positioned(
-                right: 8,
-                bottom: 0,
-                child: CardButton(
-                  textButton: textButton,
-                  onPressed: onPressed,
-                ))
+                const SizedBox(width: 0),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      Expanded(
+                        flex: 3,
+                        child: CardText(
+                          cardTitle: cardTitle,
+                          cardSubTitle: cardSubTitle,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Expanded(
+                          child: CardButton(
+                              textButton: textButton, onPressed: onPressed),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+              ]),
+            ),
           ],
         ),
       ),

@@ -12,32 +12,35 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.08,
-          horizontal: MediaQuery.of(context).size.width * 0.025),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         children: [
+          const SizedBox(height: 32),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Requests",
-                  style: Styels.textStyle24_600(context).copyWith(fontSize: 30)),
+                  style:
+                      Styels.textStyle24_600(context).copyWith(fontSize: 30)),
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.magnifyingGlass,size: 30,))
+                onPressed: () {},
+                icon: const Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  size: 30,
+                ),
+              ),
             ],
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+          const SizedBox(
+            height: 24
           ),
-          SizedBox(
-              height: MediaQuery.of(context).size.height * 0.57,
+          Expanded(
               child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemCount: 20,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 7),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: RequestCard(
                         iconCard: Assets.kAvatar,
                         cardSubTitle:

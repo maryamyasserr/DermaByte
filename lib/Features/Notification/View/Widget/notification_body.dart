@@ -17,7 +17,7 @@ class NotificationsBody extends StatelessWidget {
         child: Column(
           children: [
             const CustomAppBar(title: "Notification"),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+            const SizedBox(height: 24),
             Expanded(
                 child: ListView.builder(
                     physics: const BouncingScrollPhysics(),

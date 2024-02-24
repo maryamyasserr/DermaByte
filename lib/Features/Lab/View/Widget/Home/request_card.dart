@@ -16,45 +16,64 @@ class RequestCard extends StatelessWidget {
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.17,
-      decoration: BoxDecoration(
-          color: AppColors.kCardColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 2.6),
-              blurRadius: 6.0,
-            )
-          ]),
-      child: Stack(
-        children: [
-          Row(children: [
-            Padding(
-                padding: const EdgeInsets.only(left: 10,right: 10,bottom: 20),
-                child: SvgPicture.asset(
-                  iconCard,
-                  color: Colors.grey[600],
-                  height: MediaQuery.of(context).size.height * 0.1,
+    return AspectRatio(
+      aspectRatio: 330 / 130,
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.kCardColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 2.6),
+                blurRadius: 6.0,
+              )
+            ]),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(children: [
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 2,
+                  child: SvgPicture.asset(
+                    iconCard,
+                  ),
                 ),
-              ),
-            CardText(
-              width: MediaQuery.of(context).size.width*0.6,
-              cardTitle: cardTitle,
-              cardSubTitle: cardSubTitle,
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      Expanded(
+                        flex: 3,
+                        child: CardText(
+                          cardTitle: cardTitle,
+                          cardSubTitle: cardSubTitle,
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: CardButton(
+                            textButton: textButton,
+                            onPressed: onPressed,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
+                  ),
+                ),
+              ]),
             ),
-          ]),
-          Positioned(
-              right: 8,
-              bottom: 0,
-              child: CardButton(
-                textButton: textButton,
-                onPressed: onPressed,
-              ))
-        ],
+          ],
+        ),
       ),
     );
+    
   }
 }
+
+
