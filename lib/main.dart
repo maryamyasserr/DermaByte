@@ -34,14 +34,15 @@
 //   }
 // }
 
-
-
+import 'package:dermabyte/Core/utils/bloc_observer.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const DermaByte());
+  Bloc.observer = DermaByteBlocOpserver();
 }
 
 class DermaByte extends StatelessWidget {
@@ -63,4 +64,3 @@ class DermaByte extends StatelessWidget {
     );
   }
 }
-
