@@ -15,7 +15,8 @@ class ApiService {
       {required String endPoint,
       required dynamic data,
       @required String? token}) async {
-    Response response = await _dio.post('$_baseUlr$endPoint', data: data);
+    _dio.options.headers = {'Content-Type': 'application/json'};
+    var response = await _dio.post('$_baseUlr$endPoint', data: data);
     return response.data;
   }
 

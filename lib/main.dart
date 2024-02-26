@@ -37,12 +37,16 @@
 import 'package:dermabyte/Core/utils/bloc_observer.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Core/utils/service_locator.dart';
+import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const DermaByte());
   Bloc.observer = DermaByteBlocOpserver();
+  setupServiceLocator();
 }
 
 class DermaByte extends StatelessWidget {
@@ -50,15 +54,20 @@ class DermaByte extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRoutes.router,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          selectedItemColor: AppColors.kPrimaryColor,
-          unselectedItemColor: Colors.grey,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthCubit(getIt.get<AuthRepoImpl>()))
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRoutes.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            selectedItemColor: AppColors.kPrimaryColor,
+            unselectedItemColor: Colors.grey,
+          ),
         ),
       ),
     );

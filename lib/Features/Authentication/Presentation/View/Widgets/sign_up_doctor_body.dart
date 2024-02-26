@@ -1,7 +1,10 @@
+import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/required_text_form.dart';
@@ -10,6 +13,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -147,9 +151,35 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
               ),
               SizedBox(height: mediaQuery.height * 0.03),
               SignButton(
+                  isLoading: BlocProvider.of<AuthCubit>(context).isLoading??false,
                   buttonName: 'Sign Up',
                   onClicked: () {
-                    GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
+                    try {
+                      BlocProvider.of<AuthCubit>(context).signUp(
+                          data: DoctorModel(
+                            firstName:
+                                SignUpDoctorBody.firstNameController.text,
+                            lastName: SignUpDoctorBody.lastNameController.text,
+                            mobile: SignUpDoctorBody.mobileController.text,
+                            location: SignUpDoctorBody.locationController.text,
+                            city: "Madrid",
+                            country: "Spain",
+                            specialization:
+                                SignUpDoctorBody.specilazationController.text,
+                            license: "doctor",
+                            email: SignUpDoctorBody.emailController.text,
+                            password: SignUpDoctorBody.passwordController.text,
+                            passwordConfirm:
+                                SignUpDoctorBody.rePasswordController.text,
+                            profilePic: "RRRRRRkk",
+                            sessionCost: 100,
+                          ),
+                          role: 'doctor',
+                          token: ''
+                          );
+                    } catch (e) {
+                      showSnackBar(context, e.toString());
+                    }
                   }),
               SizedBox(height: mediaQuery.height * 0.006),
               EmailCheck(

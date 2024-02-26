@@ -47,7 +47,7 @@ class PatientModel {
         'email': email,
         'password': password,
         'passwordConfirm': passwordConfirm,
-        'createdAt':createdAt,
-        'updatedAt':updatedAt
+        'createdAt': createdAt,
+        'updatedAt': updatedAt
       };
 }

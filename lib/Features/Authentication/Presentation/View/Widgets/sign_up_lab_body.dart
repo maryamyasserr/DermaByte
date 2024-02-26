@@ -135,6 +135,7 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
               )),
           SizedBox(height: mediaQuery.height * 0.01),
           SignButton(
+              isLoading: false,
               buttonName: 'Sign Up',
               onClicked: () {
                 GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);

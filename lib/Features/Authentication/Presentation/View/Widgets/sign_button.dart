@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,12 @@ import 'package:flutter/material.dart';
 class SignButton extends StatelessWidget {
   final String buttonName;
   Function onClicked;
-  SignButton({super.key, required this.buttonName, required this.onClicked});
+  final bool isLoading;
+  SignButton(
+      {super.key,
+      required this.buttonName,
+      required this.onClicked,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +29,10 @@ class SignButton extends StatelessWidget {
         onPressed: () {
           onClicked();
         },
-        child: Text(buttonName,
-            style: Styels.textStyle20_700(context)
-                .copyWith(color: AppColors.kWhiteColor)));
+        child: isLoading
+            ? const LoadingIndicator()
+            : Text(buttonName,
+                style: Styels.textStyle20_700(context)
+                    .copyWith(color: AppColors.kWhiteColor)));
   }
 }

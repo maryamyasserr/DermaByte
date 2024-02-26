@@ -51,19 +51,19 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response = await apiService.post(
           endPoint: 'dermatologists', data: data, token: token);
-      DoctorModel doctor = DoctorModel.fromJson(response);
+      debugPrint("$response");
+      DoctorModel doctor = DoctorModel.fromJson(response['data']);
       return right(doctor);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
-      return left(ServerFailure(errMessage: e.toString()));
+      return left(ServerFailure(errMessage: "GGGGGGGGGG"));
     }
   }
 
   @override
   Future<Either<Failures, void>> signin() {
-    // TODO: implement signin
     throw UnimplementedError();
   }
 }

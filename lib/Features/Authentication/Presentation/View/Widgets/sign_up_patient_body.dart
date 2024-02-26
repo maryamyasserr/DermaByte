@@ -118,6 +118,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
 
           SizedBox(height: mediaQuery.height * 0.04),
           SignButton(
+            isLoading: false,
             buttonName: 'Sign Up',
             onClicked: () {
               GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
