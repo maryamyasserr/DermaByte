@@ -13,9 +13,7 @@ class CardButton extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomRight,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxHeight: 30
-        ),
+        constraints: const BoxConstraints(maxHeight: 30),
         child: AspectRatio(
           aspectRatio: 64 / 21,
           child: ElevatedButton(
@@ -29,8 +27,8 @@ class CardButton extends StatelessWidget {
               ),
               child: Text(
                 textButton,
-                style:
-                    Styels.textStyle12_700(context).copyWith(color: Colors.white),
+                style: Styels.textStyle12_700(context)
+                    .copyWith(color: Colors.white),
               )),
         ),
       ),

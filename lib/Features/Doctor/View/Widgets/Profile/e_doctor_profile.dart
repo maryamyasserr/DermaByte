@@ -12,20 +12,21 @@ class EdoctorProfile extends StatelessWidget {
     "Certifications": AppRoutes.kCreditCard,
     "Help": AppRoutes.kHelp,
     "Setting": AppRoutes.kSettings,
-    "Logout":""
+    "Logout": ""
   };
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.height*0.06,
-        horizontal: MediaQuery.of(context).size.width*0.05
-      ),
+          vertical: MediaQuery.of(context).size.height * 0.06,
+          horizontal: MediaQuery.of(context).size.width * 0.05),
       child: Column(
         children: [
           const DoctorProfileHeader(),
-          const SizedBox(height: 32,),
-         DoctorProfileItems()
+          const SizedBox(
+            height: 32,
+          ),
+          DoctorProfileItems()
         ],
       ),
     );

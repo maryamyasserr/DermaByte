@@ -44,7 +44,7 @@ class IntroBottomSheet extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         )),
-                    onPressed: () { 
+                    onPressed: () {
                       GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
                     },
                     child: Text('Continue',

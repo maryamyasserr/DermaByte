@@ -11,8 +11,8 @@ class AccountBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage(Assets.kBackground),fit: BoxFit.cover)
-      ),
+          image: DecorationImage(
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 70),
         child: Column(
@@ -37,7 +37,6 @@ class AccountBody extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 20),
                 labelText: "Hala Madird For Ever",
                 width: MediaQuery.of(context).size.height * 0.9),
-            
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.06,
             ),

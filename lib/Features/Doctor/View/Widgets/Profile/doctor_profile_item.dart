@@ -12,7 +12,7 @@ class DoctorProfileItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           GoRouter.of(context).push(profileItemModel.route);
         },
         child: Row(
@@ -26,11 +26,6 @@ class DoctorProfileItem extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }
-
-
-
-

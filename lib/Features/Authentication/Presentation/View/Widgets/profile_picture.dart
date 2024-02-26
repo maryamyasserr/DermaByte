@@ -67,7 +67,6 @@ class ProfilePicture extends StatelessWidget {
                   AssetImage('assets/images/upload_icon.png'),
                   size: 30,
                 ),
-              
               ),
             )
           ],

@@ -12,22 +12,25 @@ class ConsultsBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Assets.kBackground,),
-          fit:BoxFit.fill
-          )
-        ),
+            image: DecorationImage(
+                image: AssetImage(
+                  Assets.kBackground,
+                ),
+                fit: BoxFit.fill)),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
               const CustomAppBar(title: "History"),
-              SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
               const ConsutlsHeaderSection(),
-              SizedBox(height: MediaQuery.of(context).size.height*0.014,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.014,
+              ),
               const ConsultsBodySection(),
               const SizedBox(height: 8)
-              
             ],
           ),
         ),

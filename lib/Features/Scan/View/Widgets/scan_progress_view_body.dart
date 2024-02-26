@@ -43,26 +43,20 @@ class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
               ),
             ),
           ),
-          
-           Column(
-            children:[
-              Expanded(
-                child: Column(
-                  children: [
-                const Expanded(child: SizedBox()),
-                resultsContainer
-                ? const Expanded(
-                  flex: 3,
-                  child: ResutlContainer())
-                : const ScanProgressContainer()
-                  ],
-                ),
-              )
-            ]
-          )
+          Column(children: [
+            Expanded(
+              child: Column(
+                children: [
+                  const Expanded(child: SizedBox()),
+                  resultsContainer
+                      ? const Expanded(flex: 3, child: ResutlContainer())
+                      : const ScanProgressContainer()
+                ],
+              ),
+            )
+          ])
         ],
       ),
     );
   }
 }
-

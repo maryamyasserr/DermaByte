@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class SignButton extends StatelessWidget {
   final String buttonName;
   Function onClicked;
-  SignButton({super.key, required this.buttonName,required this.onClicked});
+  SignButton({super.key, required this.buttonName, required this.onClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SignButton extends StatelessWidget {
           onClicked();
         },
         child: Text(buttonName,
-            style:
-                Styels.textStyle20_700(context).copyWith(color: AppColors.kWhiteColor)));
+            style: Styels.textStyle20_700(context)
+                .copyWith(color: AppColors.kWhiteColor)));
   }
 }

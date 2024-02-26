@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ApiService {
   ApiService(this._dio);
-  final _baseUlr = '';
+  final _baseUlr = 'https://dermabyte-apis.onrender.com/api/v1/';
   final Dio _dio;
 
   Future<Map<String, dynamic>> get({required String endPoint}) async {

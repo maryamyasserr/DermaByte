@@ -20,45 +20,46 @@ class _EdoctorBodyState extends State<EdoctorBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          _pageController.jumpToPage(index);
-          setState(() {
-            selectedIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: Styels.textStyle18_400(context).copyWith(fontSize: 14),
-        unselectedLabelStyle: Styels.textStyle12_200(context),
-        iconSize: 35,
-        selectedItemColor: AppColors.kPrimaryColor,
-        unselectedItemColor: Colors.grey,
-        currentIndex: selectedIndex,
-        items: const <BottomNavigationBarItem>[
-           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-           BottomNavigationBarItem(
-              icon:  Icon(FontAwesomeIcons.calendarCheck),
-              label: "Appoinments"),
-          // BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
-           BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.userDoctor), label: "Profile"),
-        ],
-      ),
-      body:  Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Assets.kBackground),
-            fit: BoxFit.cover
-            )
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            _pageController.jumpToPage(index);
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          selectedLabelStyle:
+              Styels.textStyle18_400(context).copyWith(fontSize: 14),
+          unselectedLabelStyle: Styels.textStyle12_200(context),
+          iconSize: 35,
+          selectedItemColor: AppColors.kPrimaryColor,
+          unselectedItemColor: Colors.grey,
+          currentIndex: selectedIndex,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.calendarCheck),
+                label: "Appoinments"),
+            // BottomNavigationBarItem(
+            //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.userDoctor), label: "Profile"),
+          ],
         ),
-        child: PageView(
+        body: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
+          child: PageView(
             controller: _pageController,
-            onPageChanged: (page){},
+            onPageChanged: (page) {},
             physics: const NeverScrollableScrollPhysics(),
-            children: [const EdoctorHome(),const EdoctorAppoinments(),EdoctorProfile()],
+            children: [
+              const EdoctorHome(),
+              const EdoctorAppoinments(),
+              EdoctorProfile()
+            ],
           ),
-      )
-    );
+        ));
   }
 }

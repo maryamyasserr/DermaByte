@@ -1,7 +1,6 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
-
 class CustomTitle extends StatelessWidget {
   const CustomTitle({
     super.key,

@@ -6,7 +6,12 @@ import 'package:flutter_svg/svg.dart';
 
 class SCustomTextField extends StatelessWidget {
   const SCustomTextField(
-      {super.key, required this.labelText, required this.width, this.padding, required this.isrequired, required this.keyboardType});
+      {super.key,
+      required this.labelText,
+      required this.width,
+      this.padding,
+      required this.isrequired,
+      required this.keyboardType});
   final String labelText;
   final double width;
   final EdgeInsetsGeometry? padding;
@@ -16,14 +21,18 @@ class SCustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        isrequired?
-        Padding(
-          padding: padding!,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: SvgPicture.asset(Assets.kRequiredIcon),
-          ),
-        ): const SizedBox(width: 0,height: 0,),
+        isrequired
+            ? Padding(
+                padding: padding!,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(Assets.kRequiredIcon),
+                ),
+              )
+            : const SizedBox(
+                width: 0,
+                height: 0,
+              ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Container(

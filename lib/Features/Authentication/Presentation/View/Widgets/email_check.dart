@@ -1,11 +1,14 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/custom_text_button.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 
 class EmailCheck extends StatelessWidget {
   const EmailCheck({
     super.key,
-    required this.mediaQuery, required this.text, required this.textButton, required this.onPressed,
+    required this.mediaQuery,
+    required this.text,
+    required this.textButton,
+    required this.onPressed,
   });
 
   final Size mediaQuery;
@@ -22,12 +25,8 @@ class EmailCheck extends StatelessWidget {
               .copyWith(color: const Color.fromRGBO(0, 0, 0, 0.4)),
         ),
         SizedBox(width: mediaQuery.width * 0.0002),
-        CustomTextButton(
-          text:textButton,
-          onPressed:onPressed
-        )
+        CustomTextButton(text: textButton, onPressed: onPressed)
       ],
     );
   }
 }
-

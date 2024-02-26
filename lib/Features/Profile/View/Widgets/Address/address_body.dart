@@ -10,14 +10,11 @@ class AddressBody extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Assets.kBackground),
-          fit: BoxFit.cover
-        ),
+            image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
       ),
       child: Column(
         children: [
-          Text("Address",style: Styels.textStyle24_600(context)),
-
+          Text("Address", style: Styels.textStyle24_600(context)),
         ],
       ),
     );

@@ -23,6 +23,5 @@ class SettingsItem extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

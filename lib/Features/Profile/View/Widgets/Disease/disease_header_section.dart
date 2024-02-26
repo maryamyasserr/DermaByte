@@ -10,20 +10,24 @@ class DiseaseHeaderSection extends StatelessWidget {
     return Column(
       children: [
         Align(
-          alignment: Alignment.centerRight,
-          child: Text("10/10/2023",style: Styels.textStyle14_300(context),)),
+            alignment: Alignment.centerRight,
+            child: Text(
+              "10/10/2023",
+              style: Styels.textStyle14_300(context),
+            )),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.22,
-              width: MediaQuery.of(context).size.width*0.31,
+              height: MediaQuery.of(context).size.height * 0.22,
+              width: MediaQuery.of(context).size.width * 0.31,
               child: AspectRatio(
                 aspectRatio: 0.7,
                 child: Image.asset(
                   Assets.kDiseasePhoto,
                   fit: BoxFit.fill,
-                  height: 200,),
+                  height: 200,
+                ),
               ),
             ),
             const SizedBox(width: 20),
@@ -31,19 +35,29 @@ class DiseaseHeaderSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Melanoma",style: Styels.textStyle24_600(context),),
-                  SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                  Text("The scans taken on 10/10/2023 show that you have melanoma.",style: Styels.textStyle14_300(context),),
+                  Text(
+                    "Melanoma",
+                    style: Styels.textStyle24_600(context),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  Text(
+                    "The scans taken on 10/10/2023 show that you have melanoma.",
+                    style: Styels.textStyle14_300(context),
+                  ),
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-         const Divider(
-              thickness: 0.7,
-              color: Colors.black,
-            ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        const Divider(
+          thickness: 0.7,
+          color: Colors.black,
+        ),
       ],
     );
   }

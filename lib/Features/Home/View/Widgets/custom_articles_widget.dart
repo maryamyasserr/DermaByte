@@ -7,7 +7,6 @@ class CustomArticlesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return AspectRatio(
       aspectRatio: 333 / 220,
       child: Container(

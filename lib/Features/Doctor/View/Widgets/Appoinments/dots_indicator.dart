@@ -9,9 +9,9 @@ class DotsIndicator extends StatelessWidget {
     return Row(
       children: List.generate(
           7,
-          (index) =>  Padding(
+          (index) => Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: CustomDotIndicator(isActive: index==currentPageIndex),
+                child: CustomDotIndicator(isActive: index == currentPageIndex),
               )),
     );
   }

@@ -40,8 +40,7 @@ class LabItem extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Row(
-                  children: [
+                child: Row(children: [
                   const SizedBox(width: 16),
                   Expanded(
                     flex: 2,
@@ -60,7 +59,6 @@ class LabItem extends StatelessWidget {
                           child: CardText(
                             cardTitle: labTitle,
                             cardSubTitle: labSubTitle,
-                           
                           ),
                         ),
                         Expanded(
@@ -69,9 +67,7 @@ class LabItem extends StatelessWidget {
                               SvgPicture.asset('assets/images/star_icon.svg'),
                               SvgPicture.asset('assets/images/star_icon.svg'),
                               SvgPicture.asset('assets/images/star_icon.svg'),
-                              const Expanded(
-                                flex: 3,
-                                child: SizedBox()),
+                              const Expanded(flex: 3, child: SizedBox()),
                               CardButton(
                                 textButton: textButton,
                                 onPressed: () {

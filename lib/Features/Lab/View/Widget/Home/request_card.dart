@@ -72,8 +72,5 @@ class RequestCard extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }
-
-

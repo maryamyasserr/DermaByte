@@ -9,11 +9,11 @@ class DoctorReservationViewBody extends StatefulWidget {
   const DoctorReservationViewBody({super.key});
 
   @override
-  State<DoctorReservationViewBody> createState() => _DoctorReservationViewBodyState();
+  State<DoctorReservationViewBody> createState() =>
+      _DoctorReservationViewBodyState();
 }
 
 class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
-
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -87,7 +87,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                           isrequired: true,
                           padding: const EdgeInsets.only(right: 15),
                           keyboardType: TextInputType.name),
-                      SizedBox(height: mediaQuery.height * 0.015),    
+                      SizedBox(height: mediaQuery.height * 0.015),
                       Stack(children: [
                         CustomTextField(
                             hintext: 'Add your scans',
@@ -99,11 +99,9 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                             right: 20,
                             bottom: 30,
                             child: InkWell(
-                                onTap: () {
-                                },
+                                onTap: () {},
                                 child: SvgPicture.asset(
                                     'assets/images/add_icon.svg'))),
-                       
                       ]),
                       Stack(children: [
                         CustomTextField(
@@ -116,11 +114,9 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                             right: 20,
                             bottom: 30,
                             child: InkWell(
-                                onTap: () {
-                                },
+                                onTap: () {},
                                 child: SvgPicture.asset(
                                     'assets/images/add_icon.svg'))),
-                       
                       ]),
                     ]),
               ),

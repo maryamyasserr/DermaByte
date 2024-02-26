@@ -1,12 +1,12 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/required_text_form.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/text_form_container.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/required_text_form.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

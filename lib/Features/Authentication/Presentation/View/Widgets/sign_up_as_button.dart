@@ -6,7 +6,8 @@ class SignUpAsButton extends StatefulWidget {
   final String buttonName;
   final Function onClicked;
 
-  const SignUpAsButton({Key? key, required this.buttonName, required this.onClicked})
+  const SignUpAsButton(
+      {Key? key, required this.buttonName, required this.onClicked})
       : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class _SignUpAsButtonState extends State<SignUpAsButton> {
       child: Text(
         widget.buttonName,
         style: Styels.textStyle20_700(context).copyWith(
-          color: AppColors.kWhiteColor ,
+          color: AppColors.kWhiteColor,
           // color: isClicked ? AppColors.kWhiteColor : AppColors.kPrimaryColor,
         ),
       ),

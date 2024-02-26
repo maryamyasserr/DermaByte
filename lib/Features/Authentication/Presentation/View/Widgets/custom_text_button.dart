@@ -1,10 +1,11 @@
-
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
-    super.key, required this.text, required this.onPressed,
+    super.key,
+    required this.text,
+    required this.onPressed,
   });
   final String text;
   final void Function() onPressed;

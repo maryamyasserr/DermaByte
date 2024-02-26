@@ -24,14 +24,14 @@ class RequiredTextForm extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return SizedBox(
-      width: mediaQuery.width*0.3,
+      width: mediaQuery.width * 0.3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SvgPicture.asset(Assets.kRequiredIcon),
           SizedBox(height: mediaQuery.height * 0.005),
           SizedBox(
-            height: mediaQuery.height *0.055,
+            height: mediaQuery.height * 0.055,
             child: TextFormField(
               textAlign: TextAlign.center,
               controller: controller,

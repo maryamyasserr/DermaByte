@@ -9,7 +9,6 @@ class CustomTrackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return AspectRatio(
       aspectRatio: 341 / 89,
       child: Container(

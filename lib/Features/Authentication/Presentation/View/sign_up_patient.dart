@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Authentication/View/Widgets/sign_up_patient_body.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_up_patient_body.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPatient extends StatelessWidget {
@@ -6,7 +6,6 @@ class SignUpPatient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body:  SignUpPatientBody());
+    return const Scaffold(body: SignUpPatientBody());
   }
 }

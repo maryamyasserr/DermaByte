@@ -24,33 +24,27 @@ class ScanViewBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 80),
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          const SizedBox(height: 80),
           Text(
             'Alpha Scan',
-            style: Styels.textStyle20_700(context).copyWith(
-              fontSize: 28
-            ),
+            style: Styels.textStyle20_700(context).copyWith(fontSize: 28),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
           Text(
             'Services',
-            style: Styels.textStyle20_700(context).copyWith(
-              fontSize: 24
-            ),
+            style: Styels.textStyle20_700(context).copyWith(fontSize: 24),
             textAlign: TextAlign.left,
           ),
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 30,
-                crossAxisSpacing: 10 ,
-                childAspectRatio: 0.8
-              ),
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 30,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.8),
               itemBuilder: (context, index) {
                 return LabServiceItem(labServiceData: serviceList[index]);
               },

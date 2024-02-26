@@ -21,17 +21,17 @@ class _CustomScreenState extends State<CustomScreen> {
   int selectedIndex = 0;
 
   List<String> selectedIcons = [
-   Assets.kSelectedHomeIcon,
-   Assets.kSelectedAppoinmentsIcon,
-   Assets.kSelectedLabIcon,
-   Assets.kSelectedDoctorIcon,
+    Assets.kSelectedHomeIcon,
+    Assets.kSelectedAppoinmentsIcon,
+    Assets.kSelectedLabIcon,
+    Assets.kSelectedDoctorIcon,
   ];
 
   List<String> unselectedIcons = [
     Assets.kUnSelectedHomeIcon,
-   Assets.kUnSelectedAppoinmentsIcon,
-   Assets.kUnSelectedLabIcon,
-   Assets.kUnSelectedDoctorIcon,
+    Assets.kUnSelectedAppoinmentsIcon,
+    Assets.kUnSelectedLabIcon,
+    Assets.kUnSelectedDoctorIcon,
   ];
 
   List<Widget> pages = [
@@ -67,48 +67,39 @@ class _CustomScreenState extends State<CustomScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.fixed,
           currentIndex: selectedIndex,
           onTap: (value) {
             setState(() {
               selectedIndex = value;
             });
           },
-        items: [
-        BottomNavigationBarItem(
+          items: [
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 0
-                    ? selectedIcons[0]
-                    : unselectedIcons[0],
+                selectedIndex == 0 ? selectedIcons[0] : unselectedIcons[0],
               ),
               label: 'Home',
             ),
-         BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 1
-                    ? selectedIcons[1]
-                    : unselectedIcons[1],
+                selectedIndex == 1 ? selectedIcons[1] : unselectedIcons[1],
               ),
               label: 'Appointments',
             ),
-         BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 2
-                    ? selectedIcons[2]
-                    : unselectedIcons[2],
+                selectedIndex == 2 ? selectedIcons[2] : unselectedIcons[2],
               ),
               label: 'E-Lab',
             ),
-        
-        BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 3
-                    ? selectedIcons[3]
-                    : unselectedIcons[3],
+                selectedIndex == 3 ? selectedIcons[3] : unselectedIcons[3],
               ),
               label: 'E-Doctor',
             ),
-      ]),
+          ]),
     );
   }
 }

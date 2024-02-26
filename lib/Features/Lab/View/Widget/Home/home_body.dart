@@ -31,9 +31,7 @@ class HomeBody extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 24
-          ),
+          const SizedBox(height: 24),
           Expanded(
               child: ListView.builder(
                   physics: const BouncingScrollPhysics(),

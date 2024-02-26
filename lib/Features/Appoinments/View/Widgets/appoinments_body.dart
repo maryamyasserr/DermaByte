@@ -33,7 +33,7 @@ class AppoinmentsBody extends StatelessWidget {
                 GoRouter.of(context).push(AppRoutes.kFollowUp);
               },
             ),
-           const SizedBox(height: 24),
+            const SizedBox(height: 24),
             CustomCard(
               iconCard: Assets.kWallBlock,
               cardTitle: "Upcoming appoinment!",
@@ -42,7 +42,6 @@ class AppoinmentsBody extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(context).push(AppRoutes.kUpcoming);
               },
-              
             )
           ],
         ),

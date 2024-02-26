@@ -8,16 +8,12 @@ class PatientsDay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.only(left: 10),
-        child: Text(
-          "Monday",
-         style: Styels.textStyle24_600(context).copyWith(
-          decoration: TextDecoration.underline
-         )),
+        child: Text("Monday",
+            style: Styels.textStyle24_600(context)
+                .copyWith(decoration: TextDecoration.underline)),
       ),
       SizedBox(height: MediaQuery.of(context).size.height * 0.01),
       Expanded(
@@ -26,9 +22,8 @@ class PatientsDay extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width*0.01,
-                    vertical: MediaQuery.of(context).size.height*0.01
-                  ),
+                      horizontal: MediaQuery.of(context).size.width * 0.01,
+                      vertical: MediaQuery.of(context).size.height * 0.01),
                   child: PatientCard(
                     cardTitle: "Ahmed Mohamed",
                     cardSubTitle:

@@ -22,9 +22,10 @@ class NotificationsBody extends StatelessWidget {
                 child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: 10,
-                    itemBuilder: (context, index){
+                    itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 7),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 7),
                         child: NotificationCard(
                             cardTitle: "Notification",
                             cardSubTitle:

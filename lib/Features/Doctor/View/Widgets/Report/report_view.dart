@@ -22,7 +22,10 @@ class ReportView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Flexible(child: SizedBox(height: 60,)),
+                const Flexible(
+                    child: SizedBox(
+                  height: 60,
+                )),
                 Text(
                   "Mohamed's report",
                   style: Styels.textStyle24_600(context).copyWith(fontSize: 28),
@@ -42,7 +45,9 @@ class ReportView extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: MyButton(
-                    horizontal: MediaQuery.of(context).size.width*0.34, textButton: "Confirm", onPressed: (){}),
+                      horizontal: MediaQuery.of(context).size.width * 0.34,
+                      textButton: "Confirm",
+                      onPressed: () {}),
                 )
               ],
             ),

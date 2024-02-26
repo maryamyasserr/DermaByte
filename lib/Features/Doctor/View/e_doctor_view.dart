@@ -8,7 +8,6 @@ class DoctorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: EdoctorBody(),
-      
     );
   }
 }

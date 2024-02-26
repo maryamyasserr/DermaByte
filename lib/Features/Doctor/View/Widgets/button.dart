@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton(
-      {super.key, required this.horizontal, required this.textButton,required this.onPressed});
+      {super.key,
+      required this.horizontal,
+      required this.textButton,
+      required this.onPressed});
   final double horizontal;
   final String textButton;
   final void Function()? onPressed;

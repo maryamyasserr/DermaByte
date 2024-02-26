@@ -34,9 +34,7 @@ class ElabProfileHeaderSection extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(0),
           child: IconButton(
-              onPressed: () {
-              
-              },
+              onPressed: () {},
               icon: const Icon(
                 Icons.edit_outlined,
                 size: 30,

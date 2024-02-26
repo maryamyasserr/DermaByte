@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/sign_up_as_button.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_up_as_button.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

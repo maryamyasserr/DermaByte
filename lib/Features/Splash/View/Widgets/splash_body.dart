@@ -16,7 +16,7 @@ class SplashBody extends StatelessWidget {
           SizedBox(
             height: mediaQuery.height * 0.0005,
           ),
-           Text(
+          Text(
             'DermaByte',
             style: Styels.textStyle40(context),
           )

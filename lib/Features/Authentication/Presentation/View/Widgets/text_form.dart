@@ -9,13 +9,14 @@ class TextForm extends StatelessWidget {
   final String label;
   final bool obscureText;
   final Widget? suffixIcon;
-  const TextForm({super.key,
-   required this.label, 
-   required this.controller ,  
-   this.validator , 
-   this.obscureText = false,
-   this.suffixIcon,
-    });
+  const TextForm({
+    super.key,
+    required this.label,
+    required this.controller,
+    this.validator,
+    this.obscureText = false,
+    this.suffixIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,9 @@ class TextForm extends StatelessWidget {
         fillColor: AppColors.kFilledTextForm,
         filled: true,
         labelText: label,
-        labelStyle: Styels.textStyle20_200(context)
-            .copyWith(
-              color: AppColors.kTextInForm.withOpacity(0.8),
-            ),
+        labelStyle: Styels.textStyle20_200(context).copyWith(
+          color: AppColors.kTextInForm.withOpacity(0.8),
+        ),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none),

@@ -6,18 +6,14 @@ class LabServiceData {
   String image;
 
   LabServiceData(
-      {
-      required this.title,
-      required this.image,
-      required this.subTitle});
+      {required this.title, required this.image, required this.subTitle});
 
   static List<LabServiceData> labServices() {
     return [
       LabServiceData(
         title: 'Blood test',
-        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ,
+        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: Assets.kBloodTestIcon,
-
       ),
       LabServiceData(
         title: 'Sugar test',
@@ -26,15 +22,13 @@ class LabServiceData {
       ),
       LabServiceData(
         title: 'Virus test',
-        subTitle:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: Assets.kVirusTestIcon,
-        
       ),
       LabServiceData(
         title: 'X-ray & Scan',
-        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ,
+        subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: Assets.kXrayTestIcon,
-        
       ),
     ];
   }

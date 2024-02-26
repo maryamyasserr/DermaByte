@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Authentication/View/Widgets/sign_in_body.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_in_body.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {

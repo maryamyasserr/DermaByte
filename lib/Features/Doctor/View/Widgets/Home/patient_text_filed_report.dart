@@ -3,7 +3,8 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class PatientTextFieldReport extends StatelessWidget {
-  const PatientTextFieldReport({super.key, required this.hintText, required this.maxLines});
+  const PatientTextFieldReport(
+      {super.key, required this.hintText, required this.maxLines});
   final String hintText;
   final int maxLines;
   @override
@@ -29,7 +30,7 @@ class PatientTextFieldReport extends StatelessWidget {
               style: Styels.textStyle18_400(context)
                   .copyWith(fontWeight: FontWeight.w600),
             ),
-             TextField(
+            TextField(
               maxLines: maxLines,
               keyboardType: TextInputType.text,
               cursorColor: AppColors.kPrimaryColor,

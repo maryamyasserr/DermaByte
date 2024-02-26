@@ -1,10 +1,10 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/email_check.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/sign_button.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/text_form.dart';
-import 'package:dermabyte/Features/Authentication/View/Widgets/title.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,7 +28,7 @@ class _SignInBodyState extends State<SignInBody> {
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           SizedBox(height: mediaQuery.height * 0.11),
-           const CustomTitle(
+          const CustomTitle(
             title: 'Sign In',
           ),
           SizedBox(height: mediaQuery.height * 0.07),
