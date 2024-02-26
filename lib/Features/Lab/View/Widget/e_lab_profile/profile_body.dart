@@ -16,7 +16,7 @@ class ElabProfile extends StatelessWidget {
         children: [
           const ElabProfileHeaderSection(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-          ElabItemsListView(),
+          const ElabItemsListView(),
           const Divider(
             thickness: 0.7,
             color: Colors.black,
