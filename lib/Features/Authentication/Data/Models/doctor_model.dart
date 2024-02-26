@@ -32,8 +32,7 @@ class DoctorModel {
       required this.sessionCost,
       required this.state,
       this.createdAt,
-      this.updatedAt
-      });
+      this.updatedAt});
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
       firstName: json['firstName'] as String,
@@ -68,5 +67,7 @@ class DoctorModel {
         'profilePic': profilePic,
         'sessionCost': sessionCost,
         'state': state,
+        'createdAt': createdAt,
+        'updatedAt': updatedAt
       };
 }

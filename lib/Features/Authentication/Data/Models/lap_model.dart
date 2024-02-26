@@ -1,4 +1,5 @@
 class LapModel {
+  dynamic id;
   String name;
   String mobile;
   String location;
@@ -9,34 +10,41 @@ class LapModel {
   String password;
   String passwordConfirm;
   bool state;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
-  LapModel({
-   required this.name,
-   required this.mobile,
-   required this.location,
-   required this.city,
-   required this.country,
-   required this.license,
-   required this.email,
-   required this.password,
-   required this.passwordConfirm,
-   required this.state,
-  });
+  LapModel(
+      {this.id,
+      required this.name,
+      required this.mobile,
+      required this.location,
+      required this.city,
+      required this.country,
+      required this.license,
+      required this.email,
+      required this.password,
+      required this.passwordConfirm,
+      required this.state,
+      this.createdAt,
+      this.updatedAt});
 
   factory LapModel.fromJson(Map<String, dynamic> json) => LapModel(
-        name: json['name'] as String,
-        mobile: json['mobile'] as String,
-        location: json['location'] as String,
-        city: json['city'] as String,
-        country: json['country'] as String,
-        license: json['license'] as String,
-        email: json['email'] as String,
-        password: json['password'] as String,
-        passwordConfirm: json['passwordConfirm'] as String,
-        state: json['state'] as bool,
-      );
+      id:  json['_id'],
+      name: json['name'] as String,
+      mobile: json['mobile'] as String,
+      location: json['location'] as String,
+      city: json['city'] as String,
+      country: json['country'] as String,
+      license: json['license'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
+      passwordConfirm: json['passwordConfirm'] as String,
+      state: json['state'] as bool,
+      createdAt: json['createdAt'] as DateTime?,
+      updatedAt: json['updatedAt'] as DateTime?);
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'name': name,
         'mobile': mobile,
         'location': location,
@@ -47,5 +55,7 @@ class LapModel {
         'password': password,
         'passwordConfirm': passwordConfirm,
         'state': state,
+        'createdAt': createdAt,
+        'updatedAt': updatedAt
       };
 }
