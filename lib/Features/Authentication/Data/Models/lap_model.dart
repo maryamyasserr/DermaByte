@@ -9,9 +9,9 @@ class LabModel {
   String email;
   String password;
   String passwordConfirm;
-  bool state;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  bool? state;
+  String? createdAt;
+  String? updatedAt;
 
   LabModel(
       {this.id,
@@ -24,7 +24,7 @@ class LabModel {
       required this.email,
       required this.password,
       required this.passwordConfirm,
-      required this.state,
+      this.state,
       this.createdAt,
       this.updatedAt});
 
@@ -39,9 +39,9 @@ class LabModel {
       email: json['email'] as String,
       password: json['password'] as String,
       passwordConfirm: json['passwordConfirm'] as String,
-      state: json['state'] as bool,
-      createdAt: json['createdAt'] as DateTime?,
-      updatedAt: json['updatedAt'] as DateTime?);
+      state: json['state'] as bool?,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?);
 
   Map<String, dynamic> toJson() => {
         'id': id,

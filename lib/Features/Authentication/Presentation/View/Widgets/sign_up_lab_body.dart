@@ -1,12 +1,15 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lap_model.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -137,8 +140,19 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
           SignButton(
               isLoading: false,
               buttonName: 'Sign Up',
-              onClicked: () {
-                GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
+              onClicked: () async{
+                await BlocProvider.of<AuthCubit>(context).signUp(
+                  data: LabModel(
+                    name: SignUpLabBody.labNameController.text,
+                    mobile: '00000000000',
+                    location: SignUpLabBody.locationController.text,
+                    city: 'madrid',
+                    country: 'spain',
+                    license: 'lap',
+                    email: SignUpLabBody.emailController.text,
+                    password: SignUpLabBody.passwordController.text,
+                    passwordConfirm: SignUpLabBody.rePasswordController.text,
+                   ) ,token: '', role: 'lap');
               }),
           SizedBox(height: mediaQuery.height * 0.01),
           EmailCheck(

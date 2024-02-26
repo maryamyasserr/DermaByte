@@ -1,6 +1,8 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/required_text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
@@ -8,6 +10,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpPatientBody extends StatefulWidget {
@@ -120,8 +123,25 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
           SignButton(
             isLoading: false,
             buttonName: 'Sign Up',
-            onClicked: () {
-              GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+            onClicked: () async {
+              await BlocProvider.of<AuthCubit>(context).signUp(
+                  data: PatientModel(
+                      firstName: SignUpPatientBody.firstNameController.text,
+                      lastName: SignUpPatientBody.lastNameController.text,
+                      age: 21,
+                      mobile: SignUpPatientBody.mobileController.text,
+                      city: 'madrid',
+                      country: 'spain',
+                      email: SignUpPatientBody.emailController.text,
+                      password:1234567890,
+                      // int.tryParse(SignUpPatientBody.passwordController.text)!
+                          
+                      passwordConfirm: 1234567890
+                      // int.tryParse(
+                      //     SignUpPatientBody.rePasswordController.text)!
+                      ),
+                  token: '',
+                  role: 'patient');
             },
           ),
           const SizedBox(height: 6),

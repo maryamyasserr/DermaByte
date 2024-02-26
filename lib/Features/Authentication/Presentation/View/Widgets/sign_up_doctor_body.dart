@@ -153,9 +153,9 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
               SignButton(
                   isLoading: BlocProvider.of<AuthCubit>(context).isLoading??false,
                   buttonName: 'Sign Up',
-                  onClicked: () {
-                    try {
-                      BlocProvider.of<AuthCubit>(context).signUp(
+                  onClicked: () async{
+                   
+                     await BlocProvider.of<AuthCubit>(context).signUp(
                           data: DoctorModel(
                             firstName:
                                 SignUpDoctorBody.firstNameController.text,
@@ -177,9 +177,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                           role: 'doctor',
                           token: ''
                           );
-                    } catch (e) {
-                      showSnackBar(context, e.toString());
-                    }
+                    
                   }),
               SizedBox(height: mediaQuery.height * 0.006),
               EmailCheck(

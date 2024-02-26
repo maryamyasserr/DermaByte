@@ -19,7 +19,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response =
           await apiService.post(endPoint: 'labs', data: data, token: token);
-      LabModel lap = LabModel.fromJson(response);
+      LabModel lap = LabModel.fromJson(response['data']);
       return right(lap);
     } catch (e) {
       if (e is DioException) {
@@ -35,7 +35,8 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response =
           await apiService.post(endPoint: 'patients', data: data, token: token);
-      PatientModel patient = PatientModel.fromJson(response);
+      debugPrint('${response['data']}');
+      PatientModel patient = PatientModel.fromJson(response['data']);
       return right(patient);
     } catch (e) {
       if (e is DioException) {
@@ -58,7 +59,7 @@ class AuthRepoImpl implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
-      return left(ServerFailure(errMessage: "GGGGGGGGGG"));
+      return left(ServerFailure(errMessage: e.toString()));
     }
   }
 
