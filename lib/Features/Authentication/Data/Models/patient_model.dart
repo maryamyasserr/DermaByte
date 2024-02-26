@@ -10,15 +10,15 @@ class PatientModel {
   int passwordConfirm;
 
   PatientModel({
-   required this.firstName,
-   required this.lastName,
-   required this.age,
-   required this.mobile,
-   required this.city,
-   required this.country,
-   required this.email,
-   required this.password,
-   required this.passwordConfirm,
+    required this.firstName,
+    required this.lastName,
+    required this.age,
+    required this.mobile,
+    required this.city,
+    required this.country,
+    required this.email,
+    required this.password,
+    required this.passwordConfirm,
   });
 
   factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
