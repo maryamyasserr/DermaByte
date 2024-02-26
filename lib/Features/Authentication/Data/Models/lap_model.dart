@@ -1,4 +1,4 @@
-class LapModel {
+class LabModel {
   dynamic id;
   String name;
   String mobile;
@@ -13,7 +13,7 @@ class LapModel {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  LapModel(
+  LabModel(
       {this.id,
       required this.name,
       required this.mobile,
@@ -28,8 +28,8 @@ class LapModel {
       this.createdAt,
       this.updatedAt});
 
-  factory LapModel.fromJson(Map<String, dynamic> json) => LapModel(
-      id:  json['_id'],
+  factory LabModel.fromJson(Map<String, dynamic> json) => LabModel(
+      id: json['_id'],
       name: json['name'] as String,
       mobile: json['mobile'] as String,
       location: json['location'] as String,

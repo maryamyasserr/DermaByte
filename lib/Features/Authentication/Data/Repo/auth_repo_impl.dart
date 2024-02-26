@@ -12,15 +12,14 @@ import 'package:flutter/widgets.dart';
 class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this.apiService);
   ApiService apiService;
-  
+
   @override
-  Future<Either<Failures, LapModel>> signUpAsLap({
-    required dynamic data,@required String? token
-  }) async {
+  Future<Either<Failures, LabModel>> signUpAsLap(
+      {required dynamic data, @required String? token}) async {
     try {
       var response =
           await apiService.post(endPoint: 'labs', data: data, token: token);
-      LapModel lap=LapModel.fromJson(response);
+      LabModel lap = LabModel.fromJson(response);
       return right(lap);
     } catch (e) {
       if (e is DioException) {
@@ -29,15 +28,14 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failures, PatientModel>> signUpAsPatient(
-    {required dynamic data,@required String?token}
-  )async {
-   try {
+      {required dynamic data, @required String? token}) async {
+    try {
       var response =
           await apiService.post(endPoint: 'patients', data: data, token: token);
-      PatientModel patient=PatientModel.fromJson(response);
+      PatientModel patient = PatientModel.fromJson(response);
       return right(patient);
     } catch (e) {
       if (e is DioException) {
@@ -46,16 +44,14 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failures, DoctorModel>> signUpDAsoctor({
-    required dynamic data,@required String? token
-  })
-  async {
+  Future<Either<Failures, DoctorModel>> signUpAsDsoctor(
+      {required dynamic data, @required String? token}) async {
     try {
-      var response =
-          await apiService.post(endPoint: 'dermatologists', data: data, token: token);
-      DoctorModel doctor=DoctorModel.fromJson(response);
+      var response = await apiService.post(
+          endPoint: 'dermatologists', data: data, token: token);
+      DoctorModel doctor = DoctorModel.fromJson(response);
       return right(doctor);
     } catch (e) {
       if (e is DioException) {
@@ -64,7 +60,7 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failures, void>> signin() {
     // TODO: implement signin
