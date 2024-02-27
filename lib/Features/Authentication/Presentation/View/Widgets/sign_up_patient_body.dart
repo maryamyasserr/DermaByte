@@ -32,6 +32,7 @@ class SignUpPatientBody extends StatefulWidget {
 class _SignUpPatientBodyState extends State<SignUpPatientBody> {
   bool passwordVisible = false;
   bool rePasswordVisible = false;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -121,9 +122,12 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
 
           SizedBox(height: mediaQuery.height * 0.04),
           SignButton(
-            isLoading: false,
+            isLoading: isLoading,
             buttonName: 'Sign Up',
             onClicked: () async {
+              setState(() {
+                isLoading = true;
+              });
               await BlocProvider.of<AuthCubit>(context).signUp(
                   context: context,
                   data: PatientModel(
@@ -139,6 +143,9 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                           SignUpPatientBody.rePasswordController.text),
                   token: '',
                   role: 'patient');
+             setState(() {
+                isLoading = false;
+              });
             },
           ),
           const SizedBox(height: 6),

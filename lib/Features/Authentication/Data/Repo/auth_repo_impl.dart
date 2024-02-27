@@ -39,7 +39,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response =
           await apiService.post(endPoint: 'patients', data: data, token: token);
-      PatientModel patient = PatientModel.fromJson(response);
+      PatientModel patient = PatientModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
       return right(patient);
     } catch (e) {

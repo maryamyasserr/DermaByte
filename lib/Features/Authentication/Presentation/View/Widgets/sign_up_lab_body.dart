@@ -28,6 +28,7 @@ class SignUpLabBody extends StatefulWidget {
 class _SignUpPatientBodyState extends State<SignUpLabBody> {
   bool passwordVisible = false;
   bool rePasswordVisible = false;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -138,11 +139,14 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
               )),
           SizedBox(height: mediaQuery.height * 0.01),
           SignButton(
-              isLoading: false,
+              isLoading: isLoading,
               buttonName: 'Sign Up',
               onClicked: () async {
+                setState(() {
+                  isLoading = true;
+                });
                 await BlocProvider.of<AuthCubit>(context).signUp(
-                  context: context,
+                    context: context,
                     data: LabModel(
                       name: SignUpLabBody.labNameController.text,
                       mobile: '00000000000',
@@ -156,6 +160,9 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
                     ),
                     token: '',
                     role: 'lap');
+                setState(() {
+                  isLoading = false;
+                });
               }),
           SizedBox(height: mediaQuery.height * 0.01),
           EmailCheck(
