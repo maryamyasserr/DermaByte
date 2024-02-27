@@ -1,4 +1,5 @@
 class PatientModel {
+  dynamic id;
   String firstName;
   String lastName;
   int age;
@@ -10,6 +11,7 @@ class PatientModel {
   String passwordConfirm;
 
   PatientModel({
+    this.id,
     required this.firstName,
     required this.lastName,
     required this.age,
@@ -22,6 +24,7 @@ class PatientModel {
   });
 
   factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
+        id: json['_id'] as dynamic,
         firstName: json['firstName'] as String,
         lastName: json['lastName'] as String,
         age: json['age'] as int,
@@ -34,6 +37,7 @@ class PatientModel {
       );
 
   Map<String, dynamic> toJson() => {
+        '_id':id,
         'firstName': firstName,
         'lastName': lastName,
         'age': age,
