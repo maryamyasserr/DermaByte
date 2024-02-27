@@ -72,7 +72,7 @@ class DoctorModel {
         'specialization': specialization,
         'license': license,
         'email': email,
-        'password':password,
+        'password': password,
         'passwordConfirm': passwordConfirm,
         'profilePic': profilePic,
         'sessionCost': sessionCost,

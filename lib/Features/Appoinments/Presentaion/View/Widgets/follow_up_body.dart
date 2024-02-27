@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/custom_card.dart';
-import 'package:dermabyte/Features/Appoinments/View/Widgets/header_text.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:flutter/material.dart';
 
 class FollowUpBody extends StatelessWidget {

@@ -35,6 +35,7 @@ class SignUpDoctorBody extends StatefulWidget {
 class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
   bool passwordVisible = false;
   bool rePasswordVisible = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -150,33 +151,36 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
               ),
               SizedBox(height: mediaQuery.height * 0.03),
               SignButton(
-                  isLoading: BlocProvider.of<AuthCubit>(context).isLoading??false,
+                  isLoading: isLoading,
                   buttonName: 'Sign Up',
-                  onClicked: () async{
-                   
-                     await BlocProvider.of<AuthCubit>(context).signUp(
-                          data: DoctorModel(
-                            firstName:
-                                SignUpDoctorBody.firstNameController.text,
-                            lastName: SignUpDoctorBody.lastNameController.text,
-                            mobile: SignUpDoctorBody.mobileController.text,
-                            location: SignUpDoctorBody.locationController.text,
-                            city: "Madrid",
-                            country: "Spain",
-                            specialization:
-                                SignUpDoctorBody.specilazationController.text,
-                            license: "doctor",
-                            email: SignUpDoctorBody.emailController.text,
-                            password: SignUpDoctorBody.passwordController.text,
-                            passwordConfirm:
-                                SignUpDoctorBody.rePasswordController.text,
-                            profilePic: "RRRRRRkk",
-                            sessionCost: 100,
-                          ),
-                          role: 'doctor',
-                          token: ''
-                          );
-                    
+                  onClicked: () async {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    await BlocProvider.of<AuthCubit>(context).signUp(
+                        data: DoctorModel(
+                          firstName: SignUpDoctorBody.firstNameController.text,
+                          lastName: SignUpDoctorBody.lastNameController.text,
+                          mobile: SignUpDoctorBody.mobileController.text,
+                          location: SignUpDoctorBody.locationController.text,
+                          city: "Madrid",
+                          country: "Spain",
+                          specialization:
+                              SignUpDoctorBody.specilazationController.text,
+                          license: "doctor",
+                          email: SignUpDoctorBody.emailController.text,
+                          password: SignUpDoctorBody.passwordController.text,
+                          passwordConfirm:
+                              SignUpDoctorBody.rePasswordController.text,
+                          profilePic: "RRRRRRkk",
+                          sessionCost: 100,
+                        ),
+                        role: 'doctor',
+                        token: '');
+
+                    setState(() {
+                      isLoading = false;
+                    });
                   }),
               SizedBox(height: mediaQuery.height * 0.006),
               EmailCheck(

@@ -11,13 +11,13 @@ class SignUpLab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<AuthCubit, AuthState>(
-          listener: (context, state) {
-        if (state is AuthFailure) {
-          showSnackBar(context, state.errMessage);
-        } else if (state is AuthSuccess) {
-          showSnackBar(context, 'Success');
-        }
-      },
+        listener: (context, state) {
+          if (state is AuthFailure) {
+            showSnackBar(context, state.errMessage);
+          } else if (state is AuthSuccess) {
+            showSnackBar(context, 'Success');
+          }
+        },
         builder: (context, state) {
           return const SignUpLabBody();
         },

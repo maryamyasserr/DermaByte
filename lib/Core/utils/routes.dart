@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/Widgets/custom_screen.dart';
-import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
-import 'package:dermabyte/Features/Appoinments/View/follow_up_view.dart';
-import 'package:dermabyte/Features/Appoinments/View/upcoming_view.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/appoinments_view.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/follow_up_view.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/upcoming_view.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_as_view.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_doctor.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_in.dart';

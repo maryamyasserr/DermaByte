@@ -140,19 +140,21 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
           SignButton(
               isLoading: false,
               buttonName: 'Sign Up',
-              onClicked: () async{
+              onClicked: () async {
                 await BlocProvider.of<AuthCubit>(context).signUp(
-                  data: LabModel(
-                    name: SignUpLabBody.labNameController.text,
-                    mobile: '00000000000',
-                    location: SignUpLabBody.locationController.text,
-                    city: 'madrid',
-                    country: 'spain',
-                    license: 'lap',
-                    email: SignUpLabBody.emailController.text,
-                    password: SignUpLabBody.passwordController.text,
-                    passwordConfirm: SignUpLabBody.rePasswordController.text,
-                   ) ,token: '', role: 'lap');
+                    data: LabModel(
+                      name: SignUpLabBody.labNameController.text,
+                      mobile: '00000000000',
+                      location: SignUpLabBody.locationController.text,
+                      city: 'madrid',
+                      country: 'spain',
+                      license: 'lap',
+                      email: SignUpLabBody.emailController.text,
+                      password: SignUpLabBody.passwordController.text,
+                      passwordConfirm: SignUpLabBody.rePasswordController.text,
+                    ),
+                    token: '',
+                    role: 'lap');
               }),
           SizedBox(height: mediaQuery.height * 0.01),
           EmailCheck(
