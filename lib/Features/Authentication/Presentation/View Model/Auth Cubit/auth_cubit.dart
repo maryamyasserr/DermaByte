@@ -20,11 +20,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUp(
       {required dynamic data,
       @required String? token,
+      required BuildContext context,
       required String role}) async {
     isLoading = true;
     emit(AuthLoading());
     if (role == 'patient') {
-      var response = await authRepo.signUpAsPatient(data: data, token: token);
+      var response = await authRepo.signUpAsPatient(data: data, token: token,context:context );
       response.fold((failure) {
         emit(AuthFailure(errMessage: failure.errMessage));
         isLoading = false;
