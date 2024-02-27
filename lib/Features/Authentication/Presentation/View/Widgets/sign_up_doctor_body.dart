@@ -158,6 +158,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                       isLoading = true;
                     });
                     await BlocProvider.of<AuthCubit>(context).signUp(
+                      context: context,
                         data: DoctorModel(
                           firstName: SignUpDoctorBody.firstNameController.text,
                           lastName: SignUpDoctorBody.lastNameController.text,

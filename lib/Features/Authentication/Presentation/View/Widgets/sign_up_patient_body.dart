@@ -125,6 +125,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
             buttonName: 'Sign Up',
             onClicked: () async {
               await BlocProvider.of<AuthCubit>(context).signUp(
+                  context: context,
                   data: PatientModel(
                       firstName: SignUpPatientBody.firstNameController.text,
                       lastName: SignUpPatientBody.lastNameController.text,
