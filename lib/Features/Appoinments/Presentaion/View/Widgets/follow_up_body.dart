@@ -3,6 +3,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class FollowUpBody extends StatelessWidget {
   const FollowUpBody({super.key});
@@ -21,22 +22,22 @@ class FollowUpBody extends StatelessWidget {
             const HeaderText(
                 text: "Follow up with your ongoing and future appointments."),
             const SizedBox(height: 32),
-            CustomCard(
-              iconCard: Assets.kFollowUpIcon,
-              cardTitle: "Dr. Mai",
-              cardSubTitle: "Dr. Mai has reviewed your scans and",
-              onPressed: () {},
-              textButton: "View",
-            ),
-            const SizedBox(height: 24),
-            CustomCard(
-              iconCard: Assets.kWallBlock,
-              cardTitle: "Dr. Helal",
-              cardSubTitle:
-                  "Dr. Mai reviewed your scans and it seems like she’ll need more tests",
-              onPressed: () {},
-              textButton: "View",
-            ),
+            Expanded(
+                child: ListView.builder(
+                    itemCount: 10,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: CustomCard(
+                          iconCard: Assets.kFollowUpIcon,
+                          cardTitle: "Dr. Mai",
+                          cardSubTitle: " Dr. Mai has reviewed your scans andDr. Mai has reviewed your scans and",
+                          onPressed: () {},
+                          textButton: "View",
+                        ),
+                      );
+                    }))
           ],
         ),
       ),
