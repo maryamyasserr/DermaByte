@@ -133,13 +133,9 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                       city: 'madrid',
                       country: 'spain',
                       email: SignUpPatientBody.emailController.text,
-                      password:1234567890,
-                      // int.tryParse(SignUpPatientBody.passwordController.text)!
-                          
-                      passwordConfirm: 1234567890
-                      // int.tryParse(
-                      //     SignUpPatientBody.rePasswordController.text)!
-                      ),
+                      password: SignUpPatientBody.passwordController.text,
+                      passwordConfirm:
+                          SignUpPatientBody.rePasswordController.text),
                   token: '',
                   role: 'patient');
             },

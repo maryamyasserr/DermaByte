@@ -9,9 +9,6 @@ class LabModel {
   String email;
   String password;
   String passwordConfirm;
-  bool? state;
-  String? createdAt;
-  String? updatedAt;
 
   LabModel(
       {this.id,
@@ -24,9 +21,7 @@ class LabModel {
       required this.email,
       required this.password,
       required this.passwordConfirm,
-      this.state,
-      this.createdAt,
-      this.updatedAt});
+      });
 
   factory LabModel.fromJson(Map<String, dynamic> json) => LabModel(
       id: json['_id'],
@@ -39,9 +34,7 @@ class LabModel {
       email: json['email'] as String,
       password: json['password'] as String,
       passwordConfirm: json['passwordConfirm'] as String,
-      state: json['state'] as bool?,
-      createdAt: json['createdAt'] as String?,
-      updatedAt: json['updatedAt'] as String?);
+     );
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -54,8 +47,6 @@ class LabModel {
         'email': email,
         'password': password,
         'passwordConfirm': passwordConfirm,
-        'state': state,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt
+        
       };
 }

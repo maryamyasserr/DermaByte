@@ -6,10 +6,8 @@ class PatientModel {
   String city;
   String country;
   String email;
-  int password;
-  int passwordConfirm;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String password;
+  String passwordConfirm;
 
   PatientModel(
       {required this.firstName,
@@ -21,8 +19,7 @@ class PatientModel {
       required this.email,
       required this.password,
       required this.passwordConfirm,
-      this.createdAt,
-      this.updatedAt});
+     });
 
   factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
       firstName: json['firstName'] as String,
@@ -32,10 +29,9 @@ class PatientModel {
       city: json['city'] as String,
       country: json['country'] as String,
       email: json['email'] as String,
-      password: json['password'] as int,
-      passwordConfirm: json['passwordConfirm'] as int,
-      createdAt: json['createdAt'] as DateTime?,
-      updatedAt: json['updatedAt'] as DateTime?);
+      password: json['password'] as String,
+      passwordConfirm: json['passwordConfirm'] as String,
+      );
 
   Map<String, dynamic> toJson() => {
         'firstName': firstName,
@@ -47,7 +43,6 @@ class PatientModel {
         'email': email,
         'password': password,
         'passwordConfirm': passwordConfirm,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt
+        
       };
 }
