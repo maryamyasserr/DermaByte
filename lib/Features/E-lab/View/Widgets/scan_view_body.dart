@@ -49,6 +49,7 @@ class ScanViewBody extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 5 ,
+                childAspectRatio: 1.4
               ),
               itemBuilder: (context, index) {
                 return LabServiceItem(labServiceData: serviceList[index]);
