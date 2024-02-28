@@ -2,11 +2,12 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Appoinments/View/appoinments_view.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/appoinments_view.dart';
 import 'package:dermabyte/Features/E-doctor/View/edoctor_view.dart';
 import 'package:dermabyte/Features/E-lab/View/elab_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,17 +22,17 @@ class _CustomScreenState extends State<CustomScreen> {
   int selectedIndex = 0;
 
   List<String> selectedIcons = [
-   Assets.kSelectedHomeIcon,
-   Assets.kSelectedAppoinmentsIcon,
-   Assets.kSelectedLabIcon,
-   Assets.kSelectedDoctorIcon,
+    Assets.kSelectedHomeIcon,
+    Assets.kSelectedAppoinmentsIcon,
+    Assets.kSelectedLabIcon,
+    Assets.kSelectedDoctorIcon,
   ];
 
   List<String> unselectedIcons = [
     Assets.kUnSelectedHomeIcon,
-   Assets.kUnSelectedAppoinmentsIcon,
-   Assets.kUnSelectedLabIcon,
-   Assets.kUnSelectedDoctorIcon,
+    Assets.kUnSelectedAppoinmentsIcon,
+    Assets.kUnSelectedLabIcon,
+    Assets.kUnSelectedDoctorIcon,
   ];
 
   List<Widget> pages = [
@@ -52,14 +53,14 @@ class _CustomScreenState extends State<CustomScreen> {
             const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
         padding: const EdgeInsets.all(8),
         child: FloatingActionButton(
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           onPressed: () {
             GoRouter.of(context).push(AppRoutes.kScanWaysView);
           },
           // ignore: sort_child_properties_last
           child: Text(
             'Scan',
-            style: Styels.textStylee20_700,
+            style: Styels.textStylee20_700(context),
           ),
           backgroundColor: AppColors.kScanButton,
         ),
@@ -67,48 +68,39 @@ class _CustomScreenState extends State<CustomScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.fixed,
           currentIndex: selectedIndex,
           onTap: (value) {
             setState(() {
               selectedIndex = value;
             });
           },
-        items: [
-        BottomNavigationBarItem(
+          items: [
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 0
-                    ? selectedIcons[0]
-                    : unselectedIcons[0],
+                selectedIndex == 0 ? selectedIcons[0] : unselectedIcons[0],
               ),
               label: 'Home',
             ),
-         BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 1
-                    ? selectedIcons[1]
-                    : unselectedIcons[1],
+                selectedIndex == 1 ? selectedIcons[1] : unselectedIcons[1],
               ),
               label: 'Appointments',
             ),
-         BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 2
-                    ? selectedIcons[2]
-                    : unselectedIcons[2],
+                selectedIndex == 2 ? selectedIcons[2] : unselectedIcons[2],
               ),
               label: 'E-Lab',
             ),
-        
-        BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                selectedIndex == 3
-                    ? selectedIcons[3]
-                    : unselectedIcons[3],
+                selectedIndex == 3 ? selectedIcons[3] : unselectedIcons[3],
               ),
               label: 'E-Doctor',
             ),
-      ]),
+          ]),
     );
   }
 }

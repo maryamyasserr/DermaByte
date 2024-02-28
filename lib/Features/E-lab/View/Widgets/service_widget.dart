@@ -48,7 +48,7 @@ class _ServiceWidgetState extends State<ServiceWidget> {
                 ),
                 Text(
                   widget.serviceName,
-                  style: Styels.textStyle18_300,
+                  style: Styels.textStyle18_300(context),
                   textAlign: TextAlign.center,
                 )
               ],

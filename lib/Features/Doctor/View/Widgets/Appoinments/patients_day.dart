@@ -8,46 +8,32 @@ class PatientsDay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.height*0.01
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text("Monday",
+            style: Styels.textStyle24_600(context)
+                .copyWith(decoration: TextDecoration.underline)),
       ),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.5,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              "Monday",
-             style: Styels.textStyle24_600.copyWith(
-              decoration: TextDecoration.underline
-             )),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-          SizedBox(
-              height: MediaQuery.of(context).size.height*0.4,
-              child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width*0.01,
-                        vertical: MediaQuery.of(context).size.height*0.01
-                      ),
-                      child: PatientCard(
-                        cardTitle: "Ahmed Mohamed",
-                        cardSubTitle:
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        iconCard: Assets.kDoctorAvatar,
-                        start: () {},
-                        diagnose: () {},
-                      ),
-                    );
-                  }))
-        ]),
-      ),
-    );
+      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+      Expanded(
+          child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.01,
+                      vertical: MediaQuery.of(context).size.height * 0.01),
+                  child: PatientCard(
+                    cardTitle: "Ahmed Mohamed",
+                    cardSubTitle:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    iconCard: Assets.kAvatar,
+                    start: () {},
+                    diagnose: () {},
+                  ),
+                );
+              }))
+    ]);
   }
 }

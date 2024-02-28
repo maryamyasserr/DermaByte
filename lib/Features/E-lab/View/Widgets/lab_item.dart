@@ -20,61 +20,73 @@ class LabItem extends StatelessWidget {
   final double? width;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.19,
-      decoration: BoxDecoration(
-          color: AppColors.kCardColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 2.6),
-              blurRadius: 6.0,
-            )
-          ]),
-      child: InkWell(
-        onTap: () {
-          GoRouter.of(context).push(AppRoutes.kScanView);
-        },
-        child: Stack(
-          children: [
-            Row(
-              children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5, left: 10, bottom: 5 ,right: 10),
-                child: SvgPicture.asset(
-                  iconCard,
-                  height: MediaQuery.of(context).size.height * 0.12,
-                ),
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.025),
-              CardText(
-                cardTitle: labTitle,
-                cardSubTitle: labSubTitle, width: MediaQuery.of(context).size.width *0.6,
-                
-              ),
+    return AspectRatio(
+      aspectRatio: 330 / 125,
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.kCardColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 2.6),
+                blurRadius: 6.0,
+              )
             ]),
-            Positioned(
-            right: 8,
-            bottom: 0,
-            child: CardButton(
-            textButton: textButton,
-            onPressed: (){
-              GoRouter.of(context).push(AppRoutes.kLabReservationView);
-            },
-          )),
-          Positioned
-          ( right:MediaQuery.of(context).size.width *0.48,
-            bottom: MediaQuery.of(context).size.height *0.014,
-            child: Row(
+        child: InkWell(
+          onTap: () {
+            GoRouter.of(context).push(AppRoutes.kScanView);
+          },
+          child: Row(
             children: [
-            SvgPicture.asset('assets/images/star_icon.svg'),
-            SvgPicture.asset('assets/images/star_icon.svg'),
-            SvgPicture.asset('assets/images/star_icon.svg'),
+              Expanded(
+                child: Row(children: [
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 2,
+                    child: SvgPicture.asset(
+                      iconCard,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 4,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 8),
+                        Expanded(
+                          flex: 2,
+                          child: CardText(
+                            cardTitle: labTitle,
+                            cardSubTitle: labSubTitle,
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/images/star_icon.svg'),
+                              SvgPicture.asset('assets/images/star_icon.svg'),
+                              SvgPicture.asset('assets/images/star_icon.svg'),
+                              const Expanded(flex: 3, child: SizedBox()),
+                              CardButton(
+                                textButton: textButton,
+                                onPressed: () {
+                                  GoRouter.of(context)
+                                      .push(AppRoutes.kLabReservationView);
+                                },
+                              ),
+                              const Flexible(child: SizedBox(width: 8)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                    ),
+                  ),
+                ]),
+              ),
             ],
-          ))
-          ],
+          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Profile/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/History/scan_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,7 +32,7 @@ class _CustomTabBarState extends State<CustomTabBar>
           child: TabBar(
             controller: tabController,
             labelColor: Colors.black,
-            labelStyle: Styels.textStyle20_700,
+            labelStyle: Styels.textStyle20_700(context),
             indicatorColor: AppColors.kPrimaryColor,
             unselectedLabelColor: Colors.grey,
             tabs: const [
@@ -45,73 +45,70 @@ class _CustomTabBarState extends State<CustomTabBar>
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
           child: TabBarView(controller: tabController, children: [
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 6,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: FeatureCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: "Melanoma",
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
-                              textButton: "View",
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRoutes.kDisease);
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    })),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 4,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: FeatureCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: "Melanoma",
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
-                              textButton: "View",
-                              onPressed: () {},
-                            ),
-                          )
-                        ],
-                      );
-                    })),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 4,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 6),
-                            child: FeatureCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: "Melanoma",
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae rhoncus sapien",
-                              textButton: "View",
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRoutes.kConsults);
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    })),
+            ListView.builder(
+                itemCount: 6,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: ScanCard(
+                          iconCard: Assets.kDoctorAvatar,
+                          cardTitle: "Melanoma",
+                          cardSubTitle:
+                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          textButton: "View",
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRoutes.kDisease);
+                          },
+                        ),
+                      )
+                    ],
+                  );
+                }),
+            ListView.builder(
+                itemCount: 4,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: ScanCard(
+                          iconCard: Assets.kDoctorAvatar,
+                          cardTitle: "Melanoma",
+                          cardSubTitle:
+                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          textButton: "View",
+                          onPressed: () {},
+                        ),
+                      )
+                    ],
+                  );
+                }),
+            ListView.builder(
+                itemCount: 4,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: ScanCard(
+                          iconCard: Assets.kDoctorAvatar,
+                          cardTitle: "Melanoma",
+                          cardSubTitle:
+                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          textButton: "View",
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRoutes.kConsults);
+                          },
+                        ),
+                      )
+                    ],
+                  );
+                }),
           ]),
         )
       ],

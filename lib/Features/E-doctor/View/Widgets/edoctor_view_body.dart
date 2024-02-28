@@ -6,45 +6,41 @@ import 'package:flutter/material.dart';
 
 class EdoctorViewBody extends StatelessWidget {
   EdoctorViewBody({super.key});
-  
- final List<DoctorItem> doctors = [
-      DoctorItem(
-        iconCard: Assets.kManIcon,
-        doctorTitle: 'Dr. Mohamed',
-        doctorSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
 
-        },
-        textButton: 'Reserve',
-      ),
-      DoctorItem(
-        iconCard: Assets.kWomanIcon,
-        doctorTitle: 'Dr. Nadeen',
-        doctorSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
-
-        },
-        textButton: 'Reserve',
-      ),
-      DoctorItem(
-        iconCard: Assets.kWomanIcon,
-        doctorTitle: 'Dr. Mai',
-        doctorSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
-
-        },
-        textButton: 'Reserve',
-      ),
-      DoctorItem(
-        iconCard: Assets.kManIcon,
-        doctorTitle: 'Dr. Ahmed',
-        doctorSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
-          
-        },
-        textButton: 'Reserve',
-      ),
-    ];
+  final List<DoctorItem> doctors = [
+    DoctorItem(
+      iconCard: Assets.kManIcon,
+      doctorTitle: 'Dr. Mohamed',
+      doctorSubTitle:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+    DoctorItem(
+      iconCard: Assets.kWomanIcon,
+      doctorTitle: 'Dr. Nadeen',
+      doctorSubTitle:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+    DoctorItem(
+      iconCard: Assets.kWomanIcon,
+      doctorTitle: 'Dr. Mai',
+      doctorSubTitle:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+    DoctorItem(
+      iconCard: Assets.kManIcon,
+      doctorTitle: 'Dr. Ahmed',
+      doctorSubTitle:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +62,7 @@ class EdoctorViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Widest selection from the best\ncertified doctors.',
-                style: Styels.textStyle15_300,
+                style: Styels.textStyle15_300(context),
               ),
             ),
             Expanded(

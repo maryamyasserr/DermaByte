@@ -10,11 +10,9 @@ class CustomScanWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
+    return AspectRatio(
+      aspectRatio: 339 / 141,
       child: Container(
-        height: mediaQuery.height * 0.2089,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: Colors.black),
@@ -22,22 +20,33 @@ class CustomScanWidget extends StatelessWidget {
         child: Row(children: [
           Column(
             children: [
-              Image.asset(image?? ''),
+              Expanded(
+                child: Image.asset(
+                  image ?? '',
+                  fit: BoxFit.fill,
+                ),
+              ),
             ],
           ),
-          SizedBox(width: mediaQuery.width * 0.07),
+          const Flexible(child: SizedBox(width: 24)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: mediaQuery.height * 0.025),
-              Text(
-                title,
-                style: Styels.textStyle20_700,
+              const Flexible(child: SizedBox(height: 20)),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  title,
+                  style: Styels.textStyle20_700(context).copyWith(fontSize: 22),
+                ),
               ),
-              SizedBox(height: mediaQuery.height * 0.025),
-              Text(
-                subTitle,
-                style: Styels.textStyle16_400.copyWith(fontSize: 14),
+              const SizedBox(height: 8),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  subTitle,
+                  style: Styels.textStyle16_400(context),
+                ),
               ),
             ],
           )

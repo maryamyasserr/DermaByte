@@ -4,10 +4,15 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {super.key, required this.hintext, required this.width, this.padding, required this.isrequired, required this.keyboardType});
-  final String hintext;
+class SCustomTextField extends StatelessWidget {
+  const SCustomTextField(
+      {super.key,
+      required this.labelText,
+      required this.width,
+      this.padding,
+      required this.isrequired,
+      required this.keyboardType});
+  final String labelText;
   final double width;
   final EdgeInsetsGeometry? padding;
   final TextInputType keyboardType;
@@ -16,14 +21,18 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        isrequired?
-        Padding(
-          padding: padding!,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: SvgPicture.asset(Assets.kRequiredIcon),
-          ),
-        ): const SizedBox(width: 0,height: 0,),
+        isrequired
+            ? Padding(
+                padding: padding!,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(Assets.kRequiredIcon),
+                ),
+              )
+            : const SizedBox(
+                width: 0,
+                height: 0,
+              ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Container(
@@ -44,8 +53,8 @@ class CustomTextField extends StatelessWidget {
               textInputAction: TextInputAction.next,
               cursorColor: AppColors.kPrimaryColor,
               decoration: InputDecoration(
-                  hintText: hintext,
-                  hintStyle: Styels.textStyle18_300
+                  labelText: labelText,
+                  labelStyle: Styels.textStyle18_300(context)
                       .copyWith(color: AppColors.kTextInForm),
                   border:
                       const OutlineInputBorder(borderSide: BorderSide.none)),

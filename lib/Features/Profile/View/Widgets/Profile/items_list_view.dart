@@ -1,32 +1,32 @@
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Profile/Data/profile_item_model.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_item.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ItemsListView extends StatelessWidget {
-  ItemsListView({super.key});
+  const ItemsListView({super.key});
 
-  final Map<String,String> items = {
-    "Address": AppRoutes.kAddress,
-    "Account":AppRoutes.kAccount,
-    "Credit Card":AppRoutes.kCreditCard,
-    "History":AppRoutes.kHistory,
-    "Help":AppRoutes.kHelp,
-    "Setting":AppRoutes.kSettings
-  };
+  static List<ProfileItemModel> items = [
+    ProfileItemModel(title: 'Address', route: AppRoutes.kAddress),
+    ProfileItemModel(title: 'Account', route: AppRoutes.kAccount),
+    ProfileItemModel(title: 'Address', route: AppRoutes.kAddress),
+    ProfileItemModel(title: 'Credit Card', route: AppRoutes.kCreditCard),
+    ProfileItemModel(title: 'History', route: AppRoutes.kHistory),
+    ProfileItemModel(title: 'Setting', route: AppRoutes.kSettings),
+    ProfileItemModel(title: 'Log Out', route: "")
+    // "Help":AppRoutes.kHelp,
+  ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.3,
-      child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return ProfileItem(
-                onTap: () {
-                  GoRouter.of(context).push(items.values.elementAt(index));
-                },
-                item: items.keys.elementAt(index));
-          }),
+    return Column(
+      children: items.map((e) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: ProfileItem(
+            profileItemModel: e,
+          ),
+        );
+      }).toList(),
     );
   }
 }

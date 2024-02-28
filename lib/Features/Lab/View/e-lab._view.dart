@@ -6,8 +6,6 @@ class ELabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: ElabBody()
-    );
+    return const SafeArea(child: ElabBody());
   }
 }

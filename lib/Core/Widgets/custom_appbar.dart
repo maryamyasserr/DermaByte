@@ -25,9 +25,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+              icon: const Icon(Icons.arrow_back)),
           Text(
             widget.title,
-            style: Styels.textStyle24_600,
+            style: Styels.textStyle24_600(context),
           ),
           Row(
             children: [

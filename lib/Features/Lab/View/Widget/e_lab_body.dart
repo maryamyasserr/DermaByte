@@ -22,44 +22,47 @@ class _ElabBodyState extends State<ElabBody> {
     return Scaffold(
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
           child: BottomNavigationBar(
             currentIndex: selectedIndex,
             onTap: (index) {
-              _pageController.jumpToPage(index);  
+              _pageController.jumpToPage(index);
               setState(() {
                 selectedIndex = index;
               });
             },
-            selectedLabelStyle: Styels.textStyle18_400,
-            unselectedLabelStyle: Styels.textStyle14_300.copyWith(fontWeight: FontWeight.w400),
+            selectedLabelStyle: Styels.textStyle18_400(context),
+            unselectedLabelStyle: Styels.textStyle14_300(context)
+                .copyWith(fontWeight: FontWeight.w400),
             iconSize: 35,
             selectedItemColor: AppColors.kPrimaryColor,
             unselectedItemColor: Colors.grey,
-            
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home,),
-                label: "Home",
+                icon: Icon(
+                  Icons.home,
                 ),
-              BottomNavigationBarItem(icon: Icon(Icons.person,), label: "Profile"),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person,
+                  ),
+                  label: "Profile"),
             ],
           ),
         ),
         body: Container(
-           decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Assets.kBackground),
-            fit: BoxFit.cover
-            )
-        ),
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
           child: PageView(
             controller: _pageController,
-            onPageChanged: (page){},
+            onPageChanged: (page) {},
             physics: const NeverScrollableScrollPhysics(),
-            children: const [HomeBody(),ElabProfile()],
+            children: const [HomeBody(), ElabProfile()],
           ),
         ));
   }

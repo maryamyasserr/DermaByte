@@ -6,9 +6,14 @@ import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
-      {super.key, required this.hintext, required this.width, this.padding, required this.isrequired, required this.keyboardType});
+      {super.key,
+      required this.hintext,
+      this.width,
+      this.padding,
+      required this.isrequired,
+      required this.keyboardType});
   final String hintext;
-  final double width;
+  final double? width;
   final EdgeInsetsGeometry? padding;
   final TextInputType keyboardType;
   final bool isrequired;
@@ -16,14 +21,18 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        isrequired?
-        Padding(
-          padding: padding!,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: SvgPicture.asset(Assets.kRequiredIcon),
-          ),
-        ): const SizedBox(width: 0,height: 0,),
+        isrequired
+            ? Padding(
+                padding: padding!,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SvgPicture.asset(Assets.kRequiredIcon),
+                ),
+              )
+            : const SizedBox(
+                width: 0,
+                height: 0,
+              ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Container(
@@ -45,7 +54,7 @@ class CustomTextField extends StatelessWidget {
               cursorColor: AppColors.kPrimaryColor,
               decoration: InputDecoration(
                   hintText: hintext,
-                  hintStyle: Styels.textStyle18_300
+                  hintStyle: Styels.textStyle18_300(context)
                       .copyWith(color: AppColors.kTextInForm),
                   border:
                       const OutlineInputBorder(borderSide: BorderSide.none)),

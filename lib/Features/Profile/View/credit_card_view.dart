@@ -6,7 +6,6 @@ class CreditCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(body: CreditCardBody()));
+    return const SafeArea(child: Scaffold(body: CreditCardBody()));
   }
 }

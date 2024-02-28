@@ -10,27 +10,44 @@ class LabServiceItem extends StatelessWidget {
   LabServiceData labServiceData;
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SvgPicture.asset(
-              labServiceData.image,
-            ),
-            SizedBox(height: mediaQuery.height *0.01),
-            Text(
-              labServiceData.title,
-              style: Styels.textStyle16_400,
-            ),
-            SizedBox(height: mediaQuery.height *0.01),
-            Text(labServiceData.subTitle,
-            style: Styels.textStyle12_200,
-            )
-          ],
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: const BoxDecoration(
+            color: AppColors.kCardColor,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 2.6),
+                blurRadius: 6.0,
+              )
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SvgPicture.asset(
+                labServiceData.image,
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                labServiceData.title,
+                style: Styels.textStyle18_400(context),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                labServiceData.subTitle,
+                style: Styels.textStyle14_300(context),
+              )
+            ],
+          ),
         ),
       ),
     );

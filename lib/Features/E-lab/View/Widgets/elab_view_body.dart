@@ -6,45 +6,37 @@ import 'package:flutter/material.dart';
 
 class ElabViewBody extends StatelessWidget {
   ElabViewBody({super.key});
-  
- final List<LabItem> labs = [
-      LabItem(
-        iconCard: Assets.kAlphaScan,
-        labTitle: 'Alpha Scan',
-        labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
 
-        },
-        textButton: 'Reserve',
-      ),
-      LabItem(
-        iconCard: Assets.kMokhtabarIcon,
-        labTitle: 'Al Mokhtabar',
-        labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
-
-        },
-        textButton: 'Reserve',
-      ),
-      LabItem(
-        iconCard: Assets.kSpeedlabIcon,
-        labTitle: 'Speed lab',
-        labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
-
-        },
-        textButton: 'Reserve',
-      ),
-      LabItem(
-        iconCard: Assets.kAlphaScan,
-        labTitle: 'Sedra lab',
-        labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        onPressed: () {
-          
-        },
-        textButton: 'Reserve',
-      ),
-    ];
+  final List<LabItem> labs = [
+    LabItem(
+      iconCard: Assets.kAlphaScan,
+      labTitle: 'Alpha Scan',
+      labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+    LabItem(
+      iconCard: Assets.kMokhtabarIcon,
+      labTitle: 'Al Mokhtabar',
+      labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+    LabItem(
+      iconCard: Assets.kSpeedlabIcon,
+      labTitle: 'Speed lab',
+      labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+    LabItem(
+      iconCard: Assets.kAlphaScan,
+      labTitle: 'Sedra lab',
+      labSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      onPressed: () {},
+      textButton: 'Reserve',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +58,7 @@ class ElabViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'A list of the best laboratories in your era.',
-                style: Styels.textStyle15_300,
+                style: Styels.textStyle15_300(context),
               ),
             ),
             Expanded(

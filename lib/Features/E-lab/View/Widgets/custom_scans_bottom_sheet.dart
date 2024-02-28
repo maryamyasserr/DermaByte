@@ -20,12 +20,12 @@ class _CustomScanBottomSheetState extends State<CustomScanBottomSheet> {
     });
   }
 
-  void cancel (){
+  void cancel() {
     Navigator.pop(context);
   }
 
-  void sumbit (){
-    Navigator.pop(context,selectedTests);
+  void sumbit() {
+    Navigator.pop(context, selectedTests);
   }
 
   @override
@@ -33,13 +33,15 @@ class _CustomScanBottomSheetState extends State<CustomScanBottomSheet> {
     return AlertDialog(
       title: const Text('Choose your required tests.'),
       content: SingleChildScrollView(
-        child: ListBody(children: widget.tests.map((tests) => CheckboxListTile(
-          value: selectedTests.contains(tests),
-          title: Text(tests),
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (isChecked)=>changeSelect(tests, isChecked!),
-        )).toList()
-        ),
+        child: ListBody(
+            children: widget.tests
+                .map((tests) => CheckboxListTile(
+                      value: selectedTests.contains(tests),
+                      title: Text(tests),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      onChanged: (isChecked) => changeSelect(tests, isChecked!),
+                    ))
+                .toList()),
       ),
       actions: [
         TextButton(onPressed: cancel, child: const Text('Cancel')),
