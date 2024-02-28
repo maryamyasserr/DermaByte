@@ -34,12 +34,11 @@
 //   }
 // }
 
+
 import 'package:dermabyte/Core/utils/bloc_observer.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/utils/service_locator.dart';
-import 'package:dermabyte/Features/Appoinments/Data/Repo/preservation_info_repo_impl.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
@@ -59,11 +58,7 @@ class DermaByte extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit(getIt.get<AuthRepoImpl>())),
-        BlocProvider(
-          create: (context) =>
-              PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())
-                ..getPatientReservationInfo(id: BlocProvider.of<AuthCubit>(context).patientModel!.id),
-        )
+        
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

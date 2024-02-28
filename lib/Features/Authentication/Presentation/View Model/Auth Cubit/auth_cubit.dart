@@ -23,15 +23,18 @@ class AuthCubit extends Cubit<AuthState> {
       required String role}) async {
     emit(AuthLoading());
     if (role == 'patient') {
-      var response = await authRepo.signUpAsPatient(data: data, token: token,context:context );
+      var response = await authRepo.signUpAsPatient(
+          data: data, token: token, context: context);
       response.fold((failure) {
         emit(AuthFailure(errMessage: failure.errMessage));
       }, (patient) {
         patientModel = patient;
+        debugPrint("$patientModel");
         emit(AuthSuccess());
       });
     } else if (role == 'doctor') {
-      var response = await authRepo.signUpAsDsoctor(data: data, token: token,context: context);
+      var response = await authRepo.signUpAsDsoctor(
+          data: data, token: token, context: context);
       response.fold((failure) {
         emit(AuthFailure(errMessage: failure.errMessage));
       }, (doctor) {
@@ -39,7 +42,8 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthSuccess());
       });
     } else {
-      var response = await authRepo.signUpAsLap(data: data, token: token,context: context);
+      var response = await authRepo.signUpAsLap(
+          data: data, token: token, context: context);
       response.fold((failure) {
         emit(AuthFailure(errMessage: failure.errMessage));
       }, (lap) {

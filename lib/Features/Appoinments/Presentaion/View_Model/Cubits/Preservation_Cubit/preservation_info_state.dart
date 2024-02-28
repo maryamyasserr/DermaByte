@@ -18,3 +18,6 @@ final class PreservationInfoFailure extends PreservationInfoState {
 
   PreservationInfoFailure({required this.errMessage});
 }
+
+
+final class PreservationInfoEmpty extends PreservationInfoState{}
