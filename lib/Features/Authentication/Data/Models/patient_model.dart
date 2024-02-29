@@ -37,7 +37,7 @@ class PatientModel {
       );
 
   Map<String, dynamic> toJson() => {
-        'id':id,
+        'id': id,
         'firstName': firstName,
         'lastName': lastName,
         'age': age,

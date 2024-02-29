@@ -30,7 +30,7 @@ class SignButton extends StatelessWidget {
           onClicked();
         },
         child: isLoading
-            ? const LoadingIndicator()
+            ? const LoadingIndicator(color: Colors.white,)
             : Text(buttonName,
                 style: Styels.textStyle20_700(context)
                     .copyWith(color: AppColors.kWhiteColor)));

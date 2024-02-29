@@ -21,7 +21,6 @@ class FollowUpBody extends StatelessWidget {
             const HeaderText(
                 text: "Follow up with your ongoing and future appointments."),
             const SizedBox(height: 32),
-           
           ],
         ),
       ),

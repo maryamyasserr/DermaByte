@@ -4,13 +4,12 @@ import 'package:dermabyte/Features/Authentication/Data/Models/lap_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthRepo authRepo;
   AuthCubit(this.authRepo) : super(AuthInitial());
+  AuthRepo authRepo;
 
   PatientModel? patientModel;
   DoctorModel? doctorModel;
@@ -29,7 +28,6 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthFailure(errMessage: failure.errMessage));
       }, (patient) {
         patientModel = patient;
-        debugPrint("$patientModel");
         emit(AuthSuccess());
       });
     } else if (role == 'doctor') {

@@ -12,7 +12,8 @@ class AppoinmentsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>()),
+      create: (context) =>
+          PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>()),
       child: const AppoinmentsBody(),
     );
   }

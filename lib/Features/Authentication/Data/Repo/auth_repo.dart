@@ -9,9 +9,15 @@ import 'package:flutter/widgets.dart';
 abstract class AuthRepo {
   Future<Either<Failures, void>> signin();
   Future<Either<Failures, PatientModel>> signUpAsPatient(
-      {required dynamic data, @required String? token,required BuildContext context});
+      {required PatientModel data,
+      @required String? token,
+      required BuildContext context});
   Future<Either<Failures, DoctorModel>> signUpAsDsoctor(
-      {required dynamic data, @required String? token,required BuildContext context});
+      {required dynamic data,
+      @required String? token,
+      required BuildContext context});
   Future<Either<Failures, LabModel>> signUpAsLap(
-      {required dynamic data, @required String? token,required BuildContext context});
+      {required dynamic data,
+      @required String? token,
+      required BuildContext context});
 }

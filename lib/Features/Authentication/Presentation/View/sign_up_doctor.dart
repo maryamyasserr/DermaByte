@@ -10,7 +10,7 @@ class SignUpDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthFailure) {
             showSnackBar(context, state.errMessage);
@@ -18,9 +18,8 @@ class SignUpDoctor extends StatelessWidget {
             showSnackBar(context, 'Success');
           }
         },
-        builder: (context, state) {
-          return const SignUpDoctorBody();
-        },
+        child: const SignUpDoctorBody()
+        
       ),
     );
   }

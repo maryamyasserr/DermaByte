@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
@@ -43,32 +44,33 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                 if (state is PreservationInfoFailure) {
                   return const ErrWidget();
                 } else if (state is PreservationInfoSuccess) {
-                  if (state.pReservationInfo.isEmpty){
+                  if (state.pReservationInfo.isEmpty) {
                     return const Center(
                       child: Text("There are no Reservations yet"),
                     );
-                  }else{
-                  return Expanded(
-                      child: ListView.builder(
-                          itemCount: state.pReservationInfo.length,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: CustomCard(
-                                iconCard: Assets.kFollowUpIcon,
-                                cardTitle:
-                                    "Dr ${state.pReservationInfo[index].dermatologist.firstName}",
-                                cardSubTitle:
-                                    " Dr. ${state.pReservationInfo[index].dermatologist.firstName} has reviewed your scans",
-                                onPressed: () {},
-                                textButton: "View",
-                              ),
-                            );
-                          }));
+                  } else {
+                    return Expanded(
+                        child: ListView.builder(
+                            itemCount: state.pReservationInfo.length,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                child: CustomCard(
+                                  iconCard: Assets.kFollowUpIcon,
+                                  cardTitle:
+                                      "Dr ${state.pReservationInfo[index].dermatologist.firstName}",
+                                  cardSubTitle:
+                                      " Dr. ${state.pReservationInfo[index].dermatologist.firstName} has reviewed your scans",
+                                  onPressed: () {},
+                                  textButton: "View",
+                                ),
+                              );
+                            }));
                   }
                 } else {
-                  return const LoadingIndicator();
+                  return const LoadingIndicator(color: AppColors.kPrimaryColor,);
                 }
               },
             )
