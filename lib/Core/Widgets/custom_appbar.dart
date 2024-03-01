@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -22,19 +21,24 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 9, right: 32),
+      padding: const EdgeInsets.only(top: 50, left: 9, right: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+              icon: const Icon(Icons.arrow_back)),
           Text(
             widget.title,
-            style: Styels.textStyle24_600,
+            style: Styels.textStyle24_600(context),
           ),
           Row(
             children: [
               GestureDetector(
                   onTap: () {
-                  
+                    GoRouter.of(context).push(AppRoutes.kNotification);
                   },
                   child: SvgPicture.asset(Assets.kBellIcon)),
               const SizedBox(width: 25),
@@ -44,11 +48,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     isPressed = true;
                     setState(() {});
                   },
-                  child: 
-                  isPressed?
-                  SvgPicture.asset(Assets.kProfileIcon)
-                  :const Icon(Icons.person,color: AppColors.kPrimaryColor,size: 40)
-                  )
+                  child: SvgPicture.asset(Assets.kProfileIcon))
             ],
           )
         ],

@@ -14,7 +14,12 @@ class IntroBody extends StatelessWidget {
                   image: AssetImage('assets/images/intro_background.png'),
                   fit: BoxFit.fill)),
         ),
-        Positioned(bottom: 0, child: IntroBottomSheet())
+        const Column(
+          children: [
+            Expanded(flex: 3, child: SizedBox()),
+            Expanded(flex: 2, child: IntroBottomSheet()),
+          ],
+        )
       ],
     );
   }

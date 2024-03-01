@@ -10,35 +10,40 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          const CustomAppBar(title: ''),
-          SizedBox(height: mediaQuery.height * 0.06),
-          Text(
-            'Hi Maryam !',
-            style: Styels.textStyle24_600,
-          ),
-          SizedBox(height: mediaQuery.height * 0.025),
-          Text(
-            'It’s nice to have you back.',
-            style: Styels.textStyle18_400.copyWith(
-              fontSize: 20
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomAppBar(title: ''),
+                  const Flexible(child: SizedBox(height: 24)),
+                  Text(
+                    'Hi Maryam !',
+                    style: Styels.textStyle24_600(context),
+                  ),
+                  const Flexible(child: SizedBox(height: 12)),
+                  Text(
+                    'It’s nice to have you back.',
+                    style:
+                        Styels.textStyle18_400(context).copyWith(fontSize: 20),
+                  ),
+                  const Flexible(child: SizedBox(height: 48)),
+                  const CustomTrackWidget(),
+                  const Flexible(child: SizedBox(height: 32)),
+                  const CustomArticlesWidget(),
+                ],
+              ),
             ),
-          ),
-         SizedBox(height: mediaQuery.height * 0.05),
-         const CustomTrackWidget(),
-        SizedBox(height: mediaQuery.height * 0.06),
-         const CustomArticlesWidget(),
-        ]),
+          ],
+        ),
       ),
     );
   }
