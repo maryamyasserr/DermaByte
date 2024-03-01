@@ -3,27 +3,16 @@ import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
-import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class AppoinmentsBody extends StatefulWidget {
+class AppoinmentsBody extends StatelessWidget {
   const AppoinmentsBody({super.key});
-
-  @override
-  State<AppoinmentsBody> createState() => _AppoinmentsBodyState();
-}
-
-class _AppoinmentsBodyState extends State<AppoinmentsBody> {
-  @override
-  void initState() {
-    BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
-        id: BlocProvider.of<AuthCubit>(context).patientModel!.id);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +48,27 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                     const EdgeInsets.symmetric(vertical: 12),
                                 child: CustomCard(
                                   iconCard: Assets.kFollowUpIcon,
-                                  cardTitle:
-                                      "Dr ${state.pReservationInfo[index].dermatologist.firstName}",
+                                  cardTitle: "Follow Up",
                                   cardSubTitle:
-                                      " Dr. ${state.pReservationInfo[index].dermatologist.firstName} has reviewed your scans",
-                                  onPressed: () {},
+                                      " Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} has reviewed your scans",
+                                  onPressed: () {
+                                    BlocProvider.of<PreservationInfoCubit>(
+                                            context)
+                                         .setId= state.pReservationInfo[index].id??"";
+                                    GoRouter.of(context).push(
+                                        AppRoutes.kFollowUp,
+                                        extra:
+                                            state.pReservationInfo[index].id);
+                                  },
                                   textButton: "View",
                                 ),
                               );
                             }));
                   }
                 } else {
-                  return const LoadingIndicator(color: AppColors.kPrimaryColor,);
+                  return const LoadingIndicator(
+                    color: AppColors.kPrimaryColor,
+                  );
                 }
               },
             )

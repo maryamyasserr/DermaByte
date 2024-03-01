@@ -2,7 +2,7 @@ import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/follow_u
 import 'package:flutter/material.dart';
 
 class FollowUpView extends StatelessWidget {
-  const FollowUpView({super.key});
+  const FollowUpView({super.key, });
 
   @override
   Widget build(BuildContext context) {

@@ -19,12 +19,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, LabModel>> signUpAsLap(
-      {required dynamic data,
+      {required LabModel data,
       @required String? token,
       required BuildContext context}) async {
     try {
       var response =
-          await apiService.post(endPoint: 'labs', data: data, token: token);
+          await apiService.post(endPoint: 'labs', data: data.toJson(), token: token);
       LabModel lap = LabModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
       return right(lap);
@@ -44,7 +44,7 @@ class AuthRepoImpl implements AuthRepo {
       }) async {
     try {
       var response =
-          await apiService.post(endPoint: 'patients', data: data, token: token);
+          await apiService.post(endPoint: 'patients', data: data.toJson(), token: token);
       PatientModel patient = PatientModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
       return right(patient);
@@ -58,12 +58,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, DoctorModel>> signUpAsDsoctor(
-      {required dynamic data,
+      {required DoctorModel data,
       @required String? token,
       required BuildContext context}) async {
     try {
       var response = await apiService.post(
-          endPoint: 'dermatologists', data: data, token: token);
+          endPoint: 'dermatologists', data: data.toJson(), token: token);
       debugPrint("$response");
       DoctorModel doctor = DoctorModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);

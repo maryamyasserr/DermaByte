@@ -1,6 +1,6 @@
 class DoctorModel {
   String? id;
-  String firstName;
+  String firstNa;
   String lastName;
   String mobile;
   String location;
@@ -19,7 +19,7 @@ class DoctorModel {
 
   DoctorModel({
     this.id,
-    required this.firstName,
+    required this.firstNa,
     required this.lastName,
     required this.mobile,
     required this.location,
@@ -39,7 +39,7 @@ class DoctorModel {
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
         id: json['_id'] as String?,
-        firstName: json['firstName'] as String,
+        firstNa: json['firstName'] as String,
         lastName: json['lastName'] as String,
         mobile: json['mobile'] as String,
         location: json['location'] as String,
@@ -63,7 +63,7 @@ class DoctorModel {
 
   Map<String, dynamic> toJson() => {
         // '_id': id,
-        'firstName': firstName,
+        'firstName': firstNa,
         'lastName': lastName,
         'mobile': mobile,
         'location': location,

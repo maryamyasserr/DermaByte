@@ -33,7 +33,6 @@ class RequiredTextForm extends StatelessWidget {
           SizedBox(
             height: mediaQuery.height * 0.055,
             child: TextFormField(
-              textAlign: TextAlign.center,
               controller: controller,
               validator: validator,
               obscureText: obscureText,

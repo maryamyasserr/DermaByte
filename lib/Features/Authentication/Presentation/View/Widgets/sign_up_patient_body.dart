@@ -114,12 +114,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
 
           SizedBox(height: mediaQuery.height * 0.008),
           RequiredTextForm(
-              label: 'Day', controller: SignUpPatientBody.dayController),
-          RequiredTextForm(
-              label: 'Month', controller: SignUpPatientBody.monthController),
-          RequiredTextForm(
-              label: 'Year', controller: SignUpPatientBody.yearController),
-
+              label: 'age', controller: SignUpPatientBody.dayController),
           SizedBox(height: mediaQuery.height * 0.04),
           SignButton(
             isLoading: isLoading,

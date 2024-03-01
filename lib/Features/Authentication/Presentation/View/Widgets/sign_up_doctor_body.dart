@@ -160,7 +160,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                     await BlocProvider.of<AuthCubit>(context).signUp(
                         context: context,
                         data: DoctorModel(
-                          firstName: SignUpDoctorBody.firstNameController.text,
+                          firstNa: SignUpDoctorBody.firstNameController.text,
                           lastName: SignUpDoctorBody.lastNameController.text,
                           mobile: SignUpDoctorBody.mobileController.text,
                           location: SignUpDoctorBody.locationController.text,

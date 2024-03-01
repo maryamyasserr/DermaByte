@@ -9,6 +9,15 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
   PreservationInfoCubit(this.preservationInfoRepo)
       : super(PreservationInfoInitial());
   PreservationInfoRepo preservationInfoRepo;
+  String? _id;
+  PreservationModel get currentReservation => 
+    reservations.firstWhere((element) => element.id == _id);
+
+  List<PreservationModel> reservations = [];
+
+  set setId(String id) {
+    _id = id;
+  }
 
   Future<void> getPatientReservationInfo({required dynamic id}) async {
     emit(PreservationInfoLoading());
@@ -16,6 +25,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
     }, (preservationinfo) {
+      reservations = preservationinfo;
       emit(PreservationInfoSuccess(pReservationInfo: preservationinfo));
     });
   }

@@ -24,7 +24,7 @@ class LabModel {
   });
 
   factory LabModel.fromJson(Map<String, dynamic> json) => LabModel(
-        id: json['_id'],
+        id: json['id'],
         name: json['name'] as String,
         mobile: json['mobile'] as String,
         location: json['location'] as String,
