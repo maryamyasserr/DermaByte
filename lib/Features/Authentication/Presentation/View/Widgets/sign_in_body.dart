@@ -63,7 +63,7 @@ class _SignInBodyState extends State<SignInBody> {
             isLoading: false,
             buttonName: 'Sign in',
             onClicked: () {
-              GoRouter.of(context).push(AppRoutes.kCustomScreen);
+              GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
             },
           ),
           SizedBox(height: mediaQuery.height * 0.05),

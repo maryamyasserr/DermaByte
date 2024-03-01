@@ -12,7 +12,7 @@ import 'package:dermabyte/Features/Doctor/View/Widgets/Report/report_view.dart';
 import 'package:dermabyte/Features/Doctor/View/e_doctor_view.dart';
 import 'package:dermabyte/Features/E-doctor/View/doctor_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/View/lab_reservation_view.dart';
-import 'package:dermabyte/Features/E-lab/View/scan_view.dart';
+import 'package:dermabyte/Features/E-lab/View/lab_details_view.dart';
 import 'package:dermabyte/Features/E-lab/View/service_selection_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Lab/View/Widget/Home/request_body.dart';
@@ -105,7 +105,8 @@ abstract class AppRoutes {
         path: kSignUpDoctor, builder: (context, state) => const SignUpDoctor()),
     GoRoute(path: kSignUpLab, builder: (context, state) => const SignUpLab()),
     GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
-    GoRoute(path: kScanView, builder: (context, state) => const ScanView()),
+    GoRoute(
+        path: kScanView, builder: (context, state) => const LabDetailsView()),
     GoRoute(
         path: kLabReservationView,
         builder: (context, state) => const LabReservationView()),

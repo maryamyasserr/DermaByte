@@ -1,9 +1,13 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
+import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/History/scan_card.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View%20Model/Scan%20Cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -19,6 +23,8 @@ class _CustomTabBarState extends State<CustomTabBar>
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
+    BlocProvider.of<ScanCubit>(context)
+        .getPatientScan(id: "65dc8e92feeacbd13e5da2b6");
     super.initState();
   }
 
@@ -45,28 +51,38 @@ class _CustomTabBarState extends State<CustomTabBar>
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
           child: TabBarView(controller: tabController, children: [
-            ListView.builder(
-                itemCount: 6,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: ScanCard(
-                          iconCard: Assets.kDoctorAvatar,
-                          cardTitle: "Melanoma",
-                          cardSubTitle:
-                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                          textButton: "View",
-                          onPressed: () {
-                            GoRouter.of(context).push(AppRoutes.kDisease);
-                          },
-                        ),
-                      )
-                    ],
-                  );
-                }),
+            BlocBuilder<ScanCubit, ScanState>(builder: (context, state) {
+              if (state is ScanSuccess) {
+                return ListView.builder(
+                    itemCount: state.scans.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: ScanCard(
+                              iconCard: Assets.kDoctorAvatar,
+                              cardTitle: state.scans[index].diseaseName,
+                              cardSubTitle:
+                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                              textButton: "View",
+                              onPressed: () {
+                                GoRouter.of(context).push(AppRoutes.kDisease);
+                              },
+                            ),
+                          )
+                        ],
+                      );
+                    });
+              } else if (state is ScanFailure) {
+                return ErrWidget(
+                  errMessage: state.errMessage,
+                );
+              } else {
+                return const LoadingIndicator(color: AppColors.kPrimaryColor);
+              }
+            }),
             ListView.builder(
                 itemCount: 4,
                 physics: const BouncingScrollPhysics(),

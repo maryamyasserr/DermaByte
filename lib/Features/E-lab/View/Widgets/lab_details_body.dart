@@ -5,9 +5,9 @@ import 'package:dermabyte/Features/E-lab/View/Widgets/lab_service_item.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ScanViewBody extends StatelessWidget {
+class LabDetailsBody extends StatelessWidget {
   var serviceList = LabServiceData.labServices();
-  ScanViewBody({
+  LabDetailsBody({
     super.key,
   });
 

@@ -63,7 +63,6 @@ class DermaByte extends StatelessWidget {
               PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())
                 ..getPatientReservationInfo(id: '65dca0237ace4b87e907882b'
                     // id: BlocProvider.of<AuthCubit>(context).patientModel!.id
-
                     ),
         )
       ],
