@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/E-lab/View/Widgets/service_selection_view_body.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/service_selection_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ServiceSelectionView extends StatelessWidget {

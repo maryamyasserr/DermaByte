@@ -156,6 +156,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                   onClicked: () async {
                     setState(() {
                       isLoading = true;
+                      GoRouter.of(context).push(AppRoutes.kDoctorScheduleView);
                     });
                     await BlocProvider.of<AuthCubit>(context).signUp(
                       context: context,

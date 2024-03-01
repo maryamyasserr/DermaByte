@@ -13,14 +13,14 @@ class FollowUpBody extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
+      child: const Padding(
+        padding:  EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: Column(
           children: [
-            const CustomAppBar(title: "Follow Up!"),
-            const HeaderText(
+             CustomAppBar(title: "Follow Up!"),
+             HeaderText(
                 text: "Follow up with your ongoing and future appointments."),
-            const SizedBox(height: 32),
+             SizedBox(height: 32),
            
           ],
         ),

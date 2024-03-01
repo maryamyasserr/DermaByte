@@ -2,8 +2,8 @@ import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/button.dart';
-import 'package:dermabyte/Features/E-lab/View/Widgets/custom_scans_bottom_sheet.dart';
-import 'package:dermabyte/Features/E-lab/View/Widgets/custom_text_field.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_scans_bottom_sheet.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

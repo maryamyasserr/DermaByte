@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
@@ -20,7 +21,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
     BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
-        id: BlocProvider.of<AuthCubit>(context).patientModel!.id);
+        id: '65dc8e92feeacbd13e5da2b6');
     super.initState();
   }
 
@@ -68,7 +69,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                           }));
                   }
                 } else {
-                  return const LoadingIndicator();
+                  return const LoadingIndicator(color: AppColors.kPrimaryColor);
                 }
               },
             )

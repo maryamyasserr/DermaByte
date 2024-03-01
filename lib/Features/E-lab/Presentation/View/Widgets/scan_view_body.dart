@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/E-lab/Data/lab_service_data.dart';
-import 'package:dermabyte/Features/E-lab/View/Widgets/lab_service_item.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_service_item.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

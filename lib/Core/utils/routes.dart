@@ -11,9 +11,10 @@ import 'package:dermabyte/Features/Doctor/View/Widgets/Home/patient_view.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Report/report_view.dart';
 import 'package:dermabyte/Features/Doctor/View/e_doctor_view.dart';
 import 'package:dermabyte/Features/E-doctor/View/doctor_reservation_view.dart';
-import 'package:dermabyte/Features/E-lab/View/lab_reservation_view.dart';
-import 'package:dermabyte/Features/E-lab/View/scan_view.dart';
-import 'package:dermabyte/Features/E-lab/View/service_selection_view.dart';
+import 'package:dermabyte/Features/E-doctor/View/doctor_schedule_view.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/lab_reservation_view.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/scan_view.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/service_selection_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Lab/View/Widget/Home/request_body.dart';
 import 'package:dermabyte/Features/Lab/View/e-lab._view.dart';
@@ -69,6 +70,7 @@ abstract class AppRoutes {
   static String kEdoctor = '/e-doctor';
   static String kPatientView = '/patientView';
   static String kReportView = '/ReportView';
+  static String kDoctorScheduleView = '/DoctorScheduleView';
   static final router = GoRouter(routes: [
     // GoRoute(path: '/', builder: (context, state) => const SignUpLab()),
     // GoRoute(path: '/', builder: (context, state) => const ProfileView()),
@@ -160,5 +162,6 @@ abstract class AppRoutes {
     GoRoute(
         path: kPatientView, builder: (context, state) => const PatientView()),
     GoRoute(path: kReportView, builder: (context, state) => const ReportView()),
+    GoRoute(path: kDoctorScheduleView, builder: (context, state) => const DoctorScheduleView()),
   ]);
 }

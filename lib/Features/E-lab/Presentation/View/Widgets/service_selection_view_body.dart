@@ -2,7 +2,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/E-lab/View/Widgets/service_widget.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/service_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

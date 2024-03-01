@@ -4,7 +4,6 @@ import 'package:dermabyte/Features/Authentication/Data/Models/lap_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
 

@@ -7,7 +7,7 @@ class LabModel {
   String country;
   String license;
   String email;
-  String password;
+  String? password;
   String passwordConfirm;
 
   LabModel({
@@ -19,12 +19,12 @@ class LabModel {
     required this.country,
     required this.license,
     required this.email,
-    required this.password,
+    this.password,
     required this.passwordConfirm,
   });
 
   factory LabModel.fromJson(Map<String, dynamic> json) => LabModel(
-        id: json['_id'],
+        id: json['id'],
         name: json['name'] as String,
         mobile: json['mobile'] as String,
         location: json['location'] as String,
@@ -32,7 +32,7 @@ class LabModel {
         country: json['country'] as String,
         license: json['license'] as String,
         email: json['email'] as String,
-        password: json['password'] as String,
+        password: json['password'] as String?,
         passwordConfirm: json['passwordConfirm'] as String,
       );
 

@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-lab/View/Widgets/custom_text_field.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/Profile/View/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
