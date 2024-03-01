@@ -1,11 +1,11 @@
-class Scan {
+class ScanModel {
   String? id;
   DateTime scanDate;
   String diseasePhoto;
   String diseaseName;
   String patient;
 
-  Scan({
+  ScanModel({
     this.id,
     required this.scanDate,
     required this.diseasePhoto,
@@ -13,7 +13,7 @@ class Scan {
     required this.patient,
   });
 
-  factory Scan.fromJson(Map<String, dynamic> json) => Scan(
+  factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
         id: json['id'] as String?,
         scanDate: DateTime.parse(json['scanDate'] as String),
         diseasePhoto: json['diseasePhoto'] as String,
