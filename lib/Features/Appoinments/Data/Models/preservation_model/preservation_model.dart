@@ -44,7 +44,7 @@ class PreservationModel {
         'tests': tests
       };
 
-        Map<String, dynamic> toJson2() => {
+  Map<String, dynamic> toJson2() => {
         'date': date.toIso8601String(),
         'uploadedTest': uploadedTest,
         'patient': patient.toJson(),

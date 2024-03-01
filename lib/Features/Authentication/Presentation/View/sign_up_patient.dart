@@ -11,15 +11,13 @@ class SignUpPatient extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthFailure) {
-          showSnackBar(context, state.errMessage);
-        } else if (state is AuthSuccess) {
-          showSnackBar(context, 'Success');
-        }
-      },
-      child:  const SignUpPatientBody()
-      
-    ));
+            listener: (context, state) {
+              if (state is AuthFailure) {
+                showSnackBar(context, state.errMessage);
+              } else if (state is AuthSuccess) {
+                showSnackBar(context, 'Success');
+              }
+            },
+            child: const SignUpPatientBody()));
   }
 }

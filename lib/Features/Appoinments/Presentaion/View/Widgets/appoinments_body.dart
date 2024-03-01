@@ -53,8 +53,9 @@ class AppoinmentsBody extends StatelessWidget {
                                       " Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} has reviewed your scans",
                                   onPressed: () {
                                     BlocProvider.of<PreservationInfoCubit>(
-                                            context)
-                                         .setId= state.pReservationInfo[index].id??"";
+                                                context)
+                                            .setId =
+                                        state.pReservationInfo[index].id ?? "";
                                     GoRouter.of(context).push(
                                         AppRoutes.kFollowUp,
                                         extra:

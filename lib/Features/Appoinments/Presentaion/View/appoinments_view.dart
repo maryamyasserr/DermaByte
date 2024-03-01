@@ -2,7 +2,6 @@ import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/appoinme
 
 import 'package:flutter/material.dart';
 
-
 class AppoinmentsView extends StatelessWidget {
   const AppoinmentsView({super.key});
 

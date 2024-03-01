@@ -9,10 +9,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FollowUpBody extends StatelessWidget {
-  const FollowUpBody({super.key,});
+  const FollowUpBody({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
-late PreservationModel patientReservation=BlocProvider.of<PreservationInfoCubit>(context).currentReservation;
+    late PreservationModel patientReservation =
+        BlocProvider.of<PreservationInfoCubit>(context).currentReservation;
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(

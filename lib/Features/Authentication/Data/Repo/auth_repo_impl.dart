@@ -16,15 +16,14 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this.apiService);
   ApiService apiService;
 
-
   @override
   Future<Either<Failures, LabModel>> signUpAsLap(
       {required LabModel data,
       @required String? token,
       required BuildContext context}) async {
     try {
-      var response =
-          await apiService.post(endPoint: 'labs', data: data.toJson(), token: token);
+      var response = await apiService.post(
+          endPoint: 'labs', data: data.toJson(), token: token);
       LabModel lap = LabModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
       return right(lap);
@@ -40,11 +39,10 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failures, PatientModel>> signUpAsPatient(
       {required PatientModel data,
       @required String? token,
-      required BuildContext context
-      }) async {
+      required BuildContext context}) async {
     try {
-      var response =
-          await apiService.post(endPoint: 'patients', data: data.toJson(), token: token);
+      var response = await apiService.post(
+          endPoint: 'patients', data: data.toJson(), token: token);
       PatientModel patient = PatientModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
       return right(patient);

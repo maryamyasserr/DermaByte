@@ -10,8 +10,8 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       : super(PreservationInfoInitial());
   PreservationInfoRepo preservationInfoRepo;
   String? _id;
-  PreservationModel get currentReservation => 
-    reservations.firstWhere((element) => element.id == _id);
+  PreservationModel get currentReservation =>
+      reservations.firstWhere((element) => element.id == _id);
 
   List<PreservationModel> reservations = [];
 

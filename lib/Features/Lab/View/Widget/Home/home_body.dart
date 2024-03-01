@@ -23,12 +23,12 @@ class HomeBody extends StatelessWidget {
                   style:
                       Styels.textStyle24_600(context).copyWith(fontSize: 30)),
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    FontAwesomeIcons.magnifyingGlass,
-                    size: 30,
-                  ),
-                  ),
+                onPressed: () {},
+                icon: const Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  size: 30,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 24),
