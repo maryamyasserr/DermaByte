@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Profile/View/Widgets/Profile_Section/profile_body.dart';
+import 'package:dermabyte/Features/Profile/View/Widgets/Profile/profile_body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -6,7 +6,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: ProfileBody(),
       ),

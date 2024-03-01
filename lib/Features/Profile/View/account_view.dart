@@ -1,3 +1,4 @@
+import 'package:dermabyte/Features/Profile/View/Widgets/Account/account_body.dart';
 import 'package:flutter/material.dart';
 
 class AccountView extends StatelessWidget {
@@ -5,6 +6,10 @@ class AccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const SafeArea(
+      child: Scaffold(
+        body: AccountBody(),
+      ),
+    );
   }
 }
