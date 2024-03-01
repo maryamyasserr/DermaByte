@@ -1,5 +1,8 @@
-import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/scan_view_body.dart';
+
+import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_details_body.dart';
 import 'package:flutter/material.dart';
+
+
 
 class ScanView extends StatelessWidget {
   const ScanView({super.key});

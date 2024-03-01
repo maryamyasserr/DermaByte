@@ -8,7 +8,7 @@ final class LabInitial extends LabState {}
 final class LabLoading extends LabState {}
 
 final class LabSuccess extends LabState {
-  final List<LabModel> labs ;
+  final List<LabModel> labs;
   LabSuccess({required this.labs});
 }
 

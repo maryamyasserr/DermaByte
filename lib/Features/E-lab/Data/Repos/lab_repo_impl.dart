@@ -26,4 +26,18 @@ class LabRepoImpl implements LabRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failures, LabModel>> getLabDetails({required id}) async{
+    try {
+      var response = await apiService.get(endPoint: 'labs/$id');
+      return right(response['data']);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+    
+  }
 }

@@ -3,10 +3,13 @@ import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_item.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Details%20Cubit/lab_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ElabViewBody extends StatefulWidget {
   const ElabViewBody({super.key});
@@ -55,13 +58,17 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                     itemCount: state.labs.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom:12.0),
+                        padding: const EdgeInsets.only(bottom: 12.0),
                         child: LabItem(
                           iconCard: Assets.kAlphaScan,
                           labTitle: state.labs[index].name,
                           labSubTitle:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<LabDetailsCubit>(context)
+                                .getLabDetails(id: state.labs[index].id);
+                            GoRouter.of(context).push(AppRoutes.kScanView);
+                          },
                           textButton: 'Reserve',
                         ),
                       );

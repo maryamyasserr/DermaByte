@@ -41,6 +41,8 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/utils/service_locator.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+import 'package:dermabyte/Features/E-lab/Data/Repos/lab_repo_impl.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Details%20Cubit/lab_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,7 +60,8 @@ class DermaByte extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit(getIt.get<AuthRepoImpl>())),
-        
+        BlocProvider(
+        create: (context) => LabDetailsCubit(getIt.get<LabRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,
