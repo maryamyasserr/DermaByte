@@ -1,9 +1,9 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Scan/View/Widgets/custom_scan_widget.dart';
-import 'package:dermabyte/Features/Scan/View/Widgets/possibilities.dart';
-import 'package:dermabyte/Features/Scan/View/Widgets/scan_progress_view_body.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/custom_scan_widget.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/possibilities.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_progress_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';

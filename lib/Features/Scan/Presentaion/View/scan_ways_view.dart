@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Scan/View/Widgets/scan_ways_view_body.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_ways_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ScanWaysView extends StatelessWidget {

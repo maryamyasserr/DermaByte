@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Scan/View/Widgets/scan_progress_view_body.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_progress_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ScanProgressView extends StatelessWidget {
