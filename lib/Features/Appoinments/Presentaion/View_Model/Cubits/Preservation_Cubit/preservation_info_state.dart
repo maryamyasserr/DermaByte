@@ -15,7 +15,6 @@ final class PreservationInfoSuccess extends PreservationInfoState {
 
 final class PreservationInfoFailure extends PreservationInfoState {
   final String errMessage;
-
   PreservationInfoFailure({required this.errMessage});
 }
 
