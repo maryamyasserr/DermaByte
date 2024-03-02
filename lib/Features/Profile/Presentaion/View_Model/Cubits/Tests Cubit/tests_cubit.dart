@@ -15,7 +15,7 @@ class TestsCubit extends Cubit<TestsState> {
     tests.fold((failure) {
       emit(TestsFailure(errMessage: failure.errMessage));
     }, (patientTests) {
-      emit(TestsSuccess(test: patientTests));
+      emit(TestsSuccess(tests: patientTests));
     });
   }
 }

@@ -1,11 +1,12 @@
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
-import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/scan_card.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_scans.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_tests.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +26,9 @@ class _CustomTabBarState extends State<CustomTabBar>
     tabController = TabController(length: 3, vsync: this);
     BlocProvider.of<ScanCubit>(context)
         .getPatientScan(id: "65dc8e92feeacbd13e5da2b6");
+     BlocProvider.of<TestsCubit>(context)
+        .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
+    
     super.initState();
   }
 
@@ -51,58 +55,8 @@ class _CustomTabBarState extends State<CustomTabBar>
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
           child: TabBarView(controller: tabController, children: [
-            BlocBuilder<ScanCubit, ScanState>(builder: (context, state) {
-              if (state is ScanSuccess) {
-                return ListView.builder(
-                    itemCount: state.scans.length,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: ScanCard(
-                              iconCard: Assets.kDoctorAvatar,
-                              cardTitle: state.scans[index].diseaseName,
-                              cardSubTitle:
-                                  "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                              textButton: "View",
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRoutes.kDisease);
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    });
-              } else if (state is ScanFailure) {
-                return ErrWidget(
-                  errMessage: state.errMessage,
-                );
-              } else {
-                return const LoadingIndicator(color: AppColors.kPrimaryColor);
-              }
-            }),
-            ListView.builder(
-                itemCount: 4,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 6),
-                        child: ScanCard(
-                          iconCard: Assets.kDoctorAvatar,
-                          cardTitle: "Melanoma",
-                          cardSubTitle:
-                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                          textButton: "View",
-                          onPressed: () {},
-                        ),
-                      )
-                    ],
-                  );
-                }),
+            const PatientScans(),
+            const PatientTests(),
             ListView.builder(
                 itemCount: 4,
                 physics: const BouncingScrollPhysics(),
@@ -111,7 +65,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
-                        child: ScanCard(
+                        child: HistoryCard(
                           iconCard: Assets.kDoctorAvatar,
                           cardTitle: "Melanoma",
                           cardSubTitle:
@@ -131,3 +85,4 @@ class _CustomTabBarState extends State<CustomTabBar>
     );
   }
 }
+

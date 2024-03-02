@@ -8,9 +8,9 @@ final class TestsInitial extends TestsState {}
 final class TestsLoading extends TestsState {}
 
 final class TestsSuccess extends TestsState {
-  final List<TestModel> test;
+  final List<TestModel> tests;
 
-  TestsSuccess({required this.test});
+  TestsSuccess({required this.tests});
 }
 
 final class TestsFailure extends TestsState {

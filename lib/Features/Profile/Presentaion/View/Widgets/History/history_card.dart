@@ -4,8 +4,8 @@ import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ScanCard extends StatelessWidget {
-  const ScanCard(
+class HistoryCard extends StatelessWidget {
+  const HistoryCard(
       {super.key,
       required this.iconCard,
       required this.cardTitle,
