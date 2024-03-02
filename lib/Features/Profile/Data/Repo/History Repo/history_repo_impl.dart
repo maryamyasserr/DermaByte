@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/patient_consults/patient_consults.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/test_model/test_model.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/scan.dart';
@@ -37,6 +38,24 @@ class HistoryRepoImpl implements HistoryRepo {
         patientTests.add(TestModel.fromJson(test));
       }
       return right(patientTests);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, List<PatientConsults>>> getPatientConsults(
+      {required String id}) async {
+    try {
+      var response = await apiService.get(endPoint: "patients/$id/reports");
+      List<PatientConsults> consults = [];
+      for (var consultaion in response['data']) {
+        consults.add(PatientConsults.fromJson(consultaion));
+      }
+      return right(consults);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
