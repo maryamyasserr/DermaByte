@@ -10,11 +10,11 @@ class TestModel {
 
   TestModel({
     this.id,
-   required this.testName,
-   required this.testResult,
-   required this.testDate,
-   required this.patient,
-   required this.lab,
+    required this.testName,
+    required this.testResult,
+    required this.testDate,
+    required this.patient,
+    required this.lab,
   });
 
   factory TestModel.fromJson(Map<String, dynamic> json) => TestModel(
@@ -33,6 +33,5 @@ class TestModel {
         'testDate': testDate.toIso8601String(),
         'patient': patient,
         'lab': lab.toJson(),
-       
       };
 }

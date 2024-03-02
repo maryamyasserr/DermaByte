@@ -26,9 +26,9 @@ class _CustomTabBarState extends State<CustomTabBar>
     tabController = TabController(length: 3, vsync: this);
     BlocProvider.of<ScanCubit>(context)
         .getPatientScan(id: "65dc8e92feeacbd13e5da2b6");
-     BlocProvider.of<TestsCubit>(context)
+    BlocProvider.of<TestsCubit>(context)
         .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
-    
+
     super.initState();
   }
 
@@ -85,4 +85,3 @@ class _CustomTabBarState extends State<CustomTabBar>
     );
   }
 }
-
