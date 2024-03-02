@@ -31,7 +31,7 @@ class AppoinmentsBody extends StatelessWidget {
             BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
               builder: (context, state) {
                 if (state is PreservationInfoFailure) {
-                  return  ErrWidget(errMessage: state.errMessage);
+                  return ErrWidget(errMessage: state.errMessage);
                 } else if (state is PreservationInfoSuccess) {
                   if (state.pReservationInfo.isEmpty) {
                     return const Center(
