@@ -19,7 +19,7 @@ class ConsutlsHeaderSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.22,
+              height: MediaQuery.of(context).size.height * 0.17,
               width: MediaQuery.of(context).size.width * 0.31,
               child: AspectRatio(
                 aspectRatio: 0.7,

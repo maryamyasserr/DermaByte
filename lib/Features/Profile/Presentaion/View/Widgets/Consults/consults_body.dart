@@ -9,30 +9,28 @@ class ConsultsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  Assets.kBackground,
-                ),
-                fit: BoxFit.fill)),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              const CustomAppBar(title: "History"),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                Assets.kBackground,
               ),
-              const ConsutlsHeaderSection(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.014,
-              ),
-              const ConsultsBodySection(),
-              const SizedBox(height: 8)
-            ],
-          ),
+              fit: BoxFit.fill)),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            const CustomAppBar(title: "History"),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
+            const ConsutlsHeaderSection(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.014,
+            ),
+            const ConsultsBodySection(),
+            const SizedBox(height: 8),
+          ],
         ),
       ),
     );

@@ -1,5 +1,8 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/medication.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_requsted.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ConsultsBodySection extends StatelessWidget {
   const ConsultsBodySection({super.key});
@@ -11,86 +14,11 @@ class ConsultsBodySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "What is Melanoma?",
-            style: Styels.textStyle24_600(context),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum sem sapien, vitae luctus sapien semper sed. Curabitur vitae ligula at purus semper consectetur sollicitud...",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
-          Text(
-            "Test requested.",
-            style: Styels.textStyle24_600(context),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              " - Test one for Melanoma..",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              " - Test one for Melanoma..",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              " - Test one for Melanoma..",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-          Text(
-            "Medications",
-            style: Styels.textStyle24_600(context),
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              " - Test one for Melanoma..",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              " - Test one for Melanoma..",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: Text(
-              " - Test one for Melanoma..",
-              style: Styels.textStyle15_300(context),
-            ),
-          ),
+          const TestRequested(),
+          const SizedBox(height: 8),
+          const Medications(),
+          const SizedBox(height: 8),
+          Text("Treatment plan", style: Styels.textStyle24_600(context))
         ],
       ),
     );
