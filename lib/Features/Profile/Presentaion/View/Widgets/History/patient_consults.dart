@@ -20,7 +20,7 @@ class PatientConsults extends StatelessWidget {
       builder: (context, state) {
         if (state is ConsultsSuccess) {
           return ListView.builder(
-              itemCount: 4,
+              itemCount: state.consults.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Column(

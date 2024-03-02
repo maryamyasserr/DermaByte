@@ -2,8 +2,8 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class DiseaseBodySection extends StatelessWidget {
-  const DiseaseBodySection({super.key});
-
+  const DiseaseBodySection({super.key, required this.diseaseName});
+  final String diseaseName;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -12,7 +12,7 @@ class DiseaseBodySection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "What is Melanoma?",
+            "What is $diseaseName?",
             style: Styels.textStyle24_600(context),
           ),
           const SizedBox(height: 8),

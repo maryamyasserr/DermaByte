@@ -3,8 +3,10 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class DiseaseHeaderSection extends StatelessWidget {
-  const DiseaseHeaderSection({super.key});
-
+  const DiseaseHeaderSection(
+      {super.key, required this.scanDate, required this.diseaseName});
+  final DateTime scanDate;
+  final String diseaseName;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,7 +14,7 @@ class DiseaseHeaderSection extends StatelessWidget {
         Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "10/10/2023",
+             "${scanDate.year}-${scanDate.month}-${scanDate.day} :${scanDate.hour}:${scanDate.minute}",
               style: Styels.textStyle14_300(context),
             )),
         Row(
@@ -30,20 +32,20 @@ class DiseaseHeaderSection extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Melanoma",
+                    diseaseName,
                     style: Styels.textStyle24_600(context),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                  const SizedBox(
+                    height:10
                   ),
                   Text(
-                    "The scans taken on 10/10/2023 show that you have melanoma.",
+                    "The scans taken on ${scanDate.year}-${scanDate.month}-${scanDate.day} :${scanDate.hour}:${scanDate.minute} show that you have $diseaseName.",
                     style: Styels.textStyle14_300(context),
                   ),
                 ],
