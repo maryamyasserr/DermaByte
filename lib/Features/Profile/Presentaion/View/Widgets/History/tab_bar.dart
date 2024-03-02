@@ -1,15 +1,14 @@
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_consults.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_scans.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_tests.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Consults%20Cubit/consults_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});
@@ -28,6 +27,8 @@ class _CustomTabBarState extends State<CustomTabBar>
         .getPatientScan(id: "65dc8e92feeacbd13e5da2b6");
     BlocProvider.of<TestsCubit>(context)
         .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
+     BlocProvider.of<ConsultsCubit>(context)
+        .getPatientConults(id: "65dc8e92feeacbd13e5da2b6");
 
     super.initState();
   }
@@ -54,34 +55,14 @@ class _CustomTabBarState extends State<CustomTabBar>
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
-          child: TabBarView(controller: tabController, children: [
-            const PatientScans(),
-            const PatientTests(),
-            ListView.builder(
-                itemCount: 4,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: HistoryCard(
-                          iconCard: Assets.kDoctorAvatar,
-                          cardTitle: "Melanoma",
-                          cardSubTitle:
-                              "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
-                          textButton: "View",
-                          onPressed: () {
-                            GoRouter.of(context).push(AppRoutes.kConsults);
-                          },
-                        ),
-                      )
-                    ],
-                  );
-                }),
+          child: TabBarView(controller: tabController, children:const [
+             PatientScans(),
+             PatientTests(),
+             PatientConsults(),
           ]),
         )
       ],
     );
   }
 }
+

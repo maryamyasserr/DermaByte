@@ -9,6 +9,6 @@ abstract class HistoryRepo {
       {required String id});
   Future<Either<Failures, List<TestModel>>> getPatientTests(
       {required String id});
-  Future<Either<Failures, List<PatientConsults>>> getPatientConsults(
+  Future<Either<Failures, List<PatientConsultsModel>>> getPatientConsults(
       {required String id});
 }

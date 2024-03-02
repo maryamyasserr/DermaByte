@@ -2,7 +2,7 @@ import 'dermatologist.dart';
 import 'patient.dart';
 import 'test.dart';
 
-class PatientConsults {
+class PatientConsultsModel {
   String? id;
   String scan;
   dynamic medicine;
@@ -12,9 +12,9 @@ class PatientConsults {
   Dermatologist dermatologist;
   List<Test>? tests;
 
-  PatientConsults({
+  PatientConsultsModel({
     this.id,
-   required this.scan,
+    required this.scan,
     this.medicine,
     this.treatmentPlan,
     this.diagnoses,
@@ -23,16 +23,16 @@ class PatientConsults {
     this.tests,
   });
 
-  factory PatientConsults.fromJson(Map<String, dynamic> json) {
-    return PatientConsults(
+  factory PatientConsultsModel.fromJson(Map<String, dynamic> json) {
+    return PatientConsultsModel(
       id: json['id'] as String?,
       scan: json['scan'] as String,
       medicine: json['medicine'] as dynamic,
       treatmentPlan: json['treatmentPlan'] as dynamic,
       diagnoses: json['diagnoses'] as dynamic,
-      patient:  Patient.fromJson(json['patient'] as Map<String, dynamic>),
-      dermatologist:  Dermatologist.fromJson(
-              json['dermatologist'] as Map<String, dynamic>),
+      patient: Patient.fromJson(json['patient'] as Map<String, dynamic>),
+      dermatologist:
+          Dermatologist.fromJson(json['dermatologist'] as Map<String, dynamic>),
       tests: (json['tests'] as List<dynamic>?)
           ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
           .toList(),
