@@ -29,11 +29,14 @@ class PatientConsults extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: HistoryCard(
                         iconCard: Assets.kDoctorAvatar,
-                        cardTitle: state.consults[index].dermatologist.firstName??"",
+                        cardTitle:
+                            state.consults[index].dermatologist.firstName ?? "",
                         cardSubTitle:
                             "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                         textButton: "View",
                         onPressed: () {
+                          BlocProvider.of<ConsultsCubit>(context).setId =
+                              state.consults[index].patient.id!;
                           GoRouter.of(context).push(AppRoutes.kConsults);
                         },
                       ),

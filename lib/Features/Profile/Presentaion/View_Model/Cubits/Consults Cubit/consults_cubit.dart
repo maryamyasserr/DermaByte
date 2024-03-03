@@ -8,6 +8,13 @@ part 'consults_state.dart';
 class ConsultsCubit extends Cubit<ConsultsState> {
   ConsultsCubit(this.historyRepo) : super(ConsultsInitial());
   HistoryRepo historyRepo;
+  List<PatientConsultsModel> patientConsults = [];
+  String? _id;
+  set setId(String id) {
+    _id = id;
+  }
+  PatientConsultsModel get currentConsultation =>
+      patientConsults.firstWhere((element) => element.patient.id == _id);
   Future<void> getPatientConults({required String id}) async {
     emit(ConsultsLoading());
     var consults = await historyRepo.getPatientConsults(id: id);
@@ -15,6 +22,7 @@ class ConsultsCubit extends Cubit<ConsultsState> {
       emit(ConsultsFailure(errMessage: failure.errMessage));
     }, (consults) {
       emit(ConsultsSuccess(consults: consults));
+      patientConsults = consults;
     });
   }
 }
