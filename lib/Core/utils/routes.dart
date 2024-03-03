@@ -17,6 +17,7 @@ import 'package:dermabyte/Features/E-lab/View/service_selection_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Lab/View/Widget/Home/request_body.dart';
 import 'package:dermabyte/Features/Lab/View/e-lab._view.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/test_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/profile_view.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/camera_view.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/scan_ways_view.dart';
@@ -69,97 +70,62 @@ abstract class AppRoutes {
   static String kEdoctor = '/e-doctor';
   static String kPatientView = '/patientView';
   static String kReportView = '/ReportView';
+  static String kTestView = '/testView';
   static final router = GoRouter(routes: [
-    // GoRoute(path: '/', builder: (context, state) => const SignUpLab()),
-    // GoRoute(path: '/', builder: (context, state) => const ProfileView()),
-    //GoRoute(path: '/', builder: (context, state) => const ProfileView()),
     GoRoute(path: '/', builder: (context, state) => const SplashView()),
-    //GoRoute(path: '/', builder: (context, state) => const EdoctorView()),
-    // GoRoute(path: '/', builder: (context, state) => const ELabView()),
-    // GoRoute(path: '/', builder: (context, state) => const ProfileView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
     GoRoute(path: kSplash, builder: (context, state) => const SplashView()),
-    GoRoute(
-        path: kAppoinments,
-        builder: (context, state) => const AppoinmentsView()),
+    GoRoute(path: kAppoinments,builder: (context, state) => const AppoinmentsView()),
     GoRoute(path: kAppIntro, builder: (context, state) => const AppIntro()),
     GoRoute(path: kSignIn, builder: (context, state) => const SignIn()),
     GoRoute(path: kHistory, builder: (context, state) => const HistoryView()),
-    GoRoute(
-        path: kSignUpPatient,
-        builder: (context, state) => const SignUpPatient()),
-    GoRoute(
-        path: kSignUpDoctor, builder: (context, state) => const SignUpDoctor()),
+    GoRoute(path: kSignUpPatient,builder: (context, state) => const SignUpPatient()),
+    GoRoute(path: kSignUpDoctor, builder: (context, state) => const SignUpDoctor()),
     GoRoute(path: kSignUpLab, builder: (context, state) => const SignUpLab()),
-    GoRoute(
-        path: kAppoinments,
-        builder: (context, state) => const AppoinmentsView()),
+    GoRoute(path: kAppoinments,builder: (context, state) => const AppoinmentsView()),
     GoRoute(path: kAppIntro, builder: (context, state) => const AppIntro()),
     GoRoute(path: kSignIn, builder: (context, state) => const SignIn()),
-    GoRoute(
-        path: kSignUpPatient,
-        builder: (context, state) => const SignUpPatient()),
-    GoRoute(
-        path: kSignUpDoctor, builder: (context, state) => const SignUpDoctor()),
+    GoRoute(path: kSignUpPatient,builder: (context, state) => const SignUpPatient()),
+    GoRoute(path: kSignUpDoctor, builder: (context, state) => const SignUpDoctor()),
     GoRoute(path: kSignUpLab, builder: (context, state) => const SignUpLab()),
     GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
-    GoRoute(
-        path: kScanView, builder: (context, state) => const LabDetailsView()),
-    GoRoute(
-        path: kLabReservationView,
-        builder: (context, state) => const LabReservationView()),
-    GoRoute(
-        path: kDoctorReservationView,
-        builder: (context, state) => const DoctorReservationView()),
-    GoRoute(
-        path: kScanWaysView, builder: (context, state) => const ScanWaysView()),
+    GoRoute(path: kScanView, builder: (context, state) => const LabDetailsView()),
+    GoRoute(path: kLabReservationView,builder: (context, state) => const LabReservationView()),
+    GoRoute(path: kDoctorReservationView,builder: (context, state) => const DoctorReservationView()),
+    GoRoute(path: kScanWaysView, builder: (context, state) => const ScanWaysView()),
     GoRoute(path: kCameraView, builder: (context, state) => const CameraView()),
-    GoRoute(
-        path: kCustomScreen, builder: (context, state) => const CustomScreen()),
-    GoRoute(
-        path: kServiceSelectionView,
-        builder: (context, state) => const ServiceSelectionView()),
+    GoRoute(path: kCustomScreen, builder: (context, state) => const CustomScreen()),
+    GoRoute(path: kServiceSelectionView,builder: (context, state) => const ServiceSelectionView()),
     GoRoute(path: kSignUpAs, builder: (context, state) => const SignUpAsView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
-    GoRoute(
-        path: kCreditCard, builder: (context, state) => const CreditCardView()),
+    GoRoute(path: kCreditCard, builder: (context, state) => const CreditCardView()),
     GoRoute(path: kSettings, builder: (context, state) => const SettingsView()),
     GoRoute(path: kAccount, builder: (context, state) => const AccountView()),
     GoRoute(path: kAddress, builder: (context, state) => const AddressView()),
     GoRoute(path: kHelp, builder: (context, state) => const HelpView()),
-    GoRoute(
-        path: kEditProfile, builder: (context, state) => const EditProfile()),
-    GoRoute(
-        path: kAppoinments,
-        builder: (context, state) => const AppoinmentsView()),
-    GoRoute(
-        path: kAppoinments,
-        builder: (context, state) => const AppoinmentsView()),
+    GoRoute(path: kEditProfile, builder: (context, state) => const EditProfile()),
+    GoRoute(path: kAppoinments,builder: (context, state) => const AppoinmentsView()),
+    GoRoute(path: kAppoinments,builder: (context, state) => const AppoinmentsView()),
     GoRoute(path: kAppIntro, builder: (context, state) => const AppIntro()),
     GoRoute(path: kSignIn, builder: (context, state) => const SignIn()),
     GoRoute(path: kHistory, builder: (context, state) => const HistoryView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
-    GoRoute(
-        path: kCreditCard, builder: (context, state) => const CreditCardView()),
+    GoRoute(path: kCreditCard, builder: (context, state) => const CreditCardView()),
     GoRoute(path: kSettings, builder: (context, state) => const SettingsView()),
     GoRoute(path: kAccount, builder: (context, state) => const AccountView()),
     GoRoute(path: kAddress, builder: (context, state) => const AddressView()),
     GoRoute(path: kHelp, builder: (context, state) => const HelpView()),
-    GoRoute(
-        path: kEditProfile, builder: (context, state) => const EditProfile()),
-    GoRoute(
-        path: kNotification,
-        builder: (context, state) => const NotificationsView()),
+    GoRoute(path: kEditProfile, builder: (context, state) => const EditProfile()),
+    GoRoute(path: kNotification,builder: (context, state) => const NotificationsView()),
     GoRoute(path: kElabHome, builder: (context, state) => const ELabView()),
-    GoRoute(
-        path: kRequestBody, builder: (context, state) => const RequestBody()),
+    GoRoute(path: kRequestBody, builder: (context, state) => const RequestBody()),
     GoRoute(path: kEdoctor, builder: (context, state) => const DoctorView()),
-    GoRoute(
-        path: kPatientView, builder: (context, state) => const PatientView()),
+    GoRoute(path: kPatientView, builder: (context, state) => const PatientView()),
     GoRoute(path: kReportView, builder: (context, state) => const ReportView()),
+    GoRoute(path: kTestView,builder: (context,state)=>const TestView() )
   ]);
 }

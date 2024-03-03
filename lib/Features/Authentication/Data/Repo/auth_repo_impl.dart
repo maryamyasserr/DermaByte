@@ -24,6 +24,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response = await apiService.post(
           endPoint: 'labs', data: data.toJson(), token: token);
+      debugPrint("${response['data']}");
       LabModel lap = LabModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
       return right(lap);

@@ -42,4 +42,5 @@ class Assets {
   static const kHome = 'assets/images/Home.svg';
   static const kRequests = 'assets/images/Requests.svg';
   static const kAppoinments = 'assets/images/Appoinments.svg';
+  static const test = 'assets/images/ismail_Aljazari.png';
 }

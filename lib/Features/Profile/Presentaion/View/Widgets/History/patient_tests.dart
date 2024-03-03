@@ -2,10 +2,12 @@ import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class PatientTests extends StatelessWidget {
   const PatientTests({
@@ -31,7 +33,12 @@ class PatientTests extends StatelessWidget {
                         cardSubTitle:
                             "Scans taken on ${state.tests[index].testDate}",
                         textButton: "View",
-                        onPressed: () {},
+                        onPressed: () {
+                          print(state.tests[index].patient);
+                          BlocProvider.of<TestsCubit>(context).setId =
+                              state.tests[index].testName;
+                          GoRouter.of(context).push(AppRoutes.kTestView);
+                        },
                       ),
                     )
                   ],
