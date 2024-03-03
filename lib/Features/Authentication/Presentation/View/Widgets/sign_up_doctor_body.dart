@@ -159,7 +159,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                       GoRouter.of(context).push(AppRoutes.kDoctorScheduleView);
                     });
                     await BlocProvider.of<AuthCubit>(context).signUp(
-                      context: context,
+                        context: context,
                         data: DoctorModel(
                           firstName: SignUpDoctorBody.firstNameController.text,
                           lastName: SignUpDoctorBody.lastNameController.text,

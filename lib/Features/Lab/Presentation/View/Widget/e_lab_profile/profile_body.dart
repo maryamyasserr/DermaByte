@@ -1,5 +1,5 @@
-import 'package:dermabyte/Features/Lab/View/Widget/e_lab_profile/e_lab_listview_items.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/e_lab_profile/profile_header_section.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/e_lab_profile/e_lab_listview_items.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/e_lab_profile/profile_header_section.dart';
 import 'package:flutter/material.dart';
 
 class ElabProfile extends StatelessWidget {

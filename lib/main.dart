@@ -34,7 +34,6 @@
 //   }
 // }
 
-
 import 'package:dermabyte/Core/utils/bloc_observer.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -61,7 +60,7 @@ class DermaByte extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit(getIt.get<AuthRepoImpl>())),
         BlocProvider(
-        create: (context) => LabDetailsCubit(getIt.get<LabRepoImpl>()))
+            create: (context) => LabDetailsCubit(getIt.get<LabRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

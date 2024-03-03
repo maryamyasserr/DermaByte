@@ -15,4 +15,4 @@ final class LabDetailsFailure extends LabDetailsState {
 final class LabDetailsSuccess extends LabDetailsState {
   final LabModel labDetails;
   LabDetailsSuccess({required this.labDetails});
-  }
+}

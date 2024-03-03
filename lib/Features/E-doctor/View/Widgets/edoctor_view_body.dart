@@ -21,6 +21,7 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
     super.initState();
     BlocProvider.of<EdoctorCubit>(context).getAllDoctors();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(

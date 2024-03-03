@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/e_lab_profile/e_lab_photo.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/e_lab_profile/e_lab_photo.dart';
 import 'package:flutter/material.dart';
 
 class ElabProfileHeaderSection extends StatelessWidget {

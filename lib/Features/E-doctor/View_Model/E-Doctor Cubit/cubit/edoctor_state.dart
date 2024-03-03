@@ -15,5 +15,4 @@ final class EdoctorFailure extends EdoctorState {
 final class EdoctorSuccess extends EdoctorState {
   final List<DoctorModel> doctors;
   EdoctorSuccess({required this.doctors});
-  
 }

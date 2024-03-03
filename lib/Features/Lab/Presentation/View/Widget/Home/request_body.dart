@@ -1,9 +1,9 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/Home/file_upload.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/Home/patient_info.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/patient_photo.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/file_upload.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/patient_info.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/patient_photo.dart';
 import 'package:flutter/material.dart';
 
 class RequestBody extends StatelessWidget {

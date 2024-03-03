@@ -18,12 +18,14 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, LabModel>> signUpAsLap(
-      {required dynamic data, @required String? token,required BuildContext context}) async {
+      {required dynamic data,
+      @required String? token,
+      required BuildContext context}) async {
     try {
       var response =
           await apiService.post(endPoint: 'labs', data: data, token: token);
       LabModel lap = LabModel.fromJson(response['data']);
-       GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
+      GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
       return right(lap);
     } catch (e) {
       if (e is DioException) {
@@ -35,7 +37,9 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, PatientModel>> signUpAsPatient(
-      {required dynamic data, @required String? token,required BuildContext context}) async {
+      {required dynamic data,
+      @required String? token,
+      required BuildContext context}) async {
     try {
       var response =
           await apiService.post(endPoint: 'patients', data: data, token: token);
@@ -52,13 +56,15 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, DoctorModel>> signUpAsDsoctor(
-      {required dynamic data, @required String? token,required BuildContext context}) async {
+      {required dynamic data,
+      @required String? token,
+      required BuildContext context}) async {
     try {
       var response = await apiService.post(
           endPoint: 'dermatologists', data: data, token: token);
       debugPrint("$response");
       DoctorModel doctor = DoctorModel.fromJson(response['data']);
-       GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
+      GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
       return right(doctor);
     } catch (e) {
       if (e is DioException) {

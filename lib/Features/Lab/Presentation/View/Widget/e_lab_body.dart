@@ -1,8 +1,8 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/Home/home_body.dart';
-import 'package:dermabyte/Features/Lab/View/Widget/e_lab_profile/profile_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/home_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/e_lab_profile/profile_body.dart';
 
 import 'package:flutter/material.dart';
 

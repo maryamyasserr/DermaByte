@@ -26,9 +26,9 @@ class LabRepoImpl implements LabRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failures, LabModel>> getLabDetails({required id}) async{
+  Future<Either<Failures, LabModel>> getLabDetails({required id}) async {
     try {
       var response = await apiService.get(endPoint: 'labs/$id');
       return right(response['data']);
@@ -38,6 +38,5 @@ class LabRepoImpl implements LabRepo {
       }
       return left(ServerFailure(errMessage: e.toString()));
     }
-    
   }
 }

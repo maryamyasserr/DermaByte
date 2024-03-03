@@ -12,7 +12,7 @@ class ElabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LabCubit(getIt.get<LabRepoImpl>()),
-      child: ElabViewBody(),
+      child:  const ElabViewBody(),
     );
   }
 }

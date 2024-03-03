@@ -20,8 +20,8 @@ class AppoinmentsBody extends StatefulWidget {
 class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
-    BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
-        id: '65dc8e92feeacbd13e5da2b6');
+    BlocProvider.of<PreservationInfoCubit>(context)
+        .getPatientReservationInfo(id: '65dc8e92feeacbd13e5da2b6');
     super.initState();
   }
 
@@ -44,29 +44,30 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                 if (state is PreservationInfoFailure) {
                   return const ErrWidget();
                 } else if (state is PreservationInfoSuccess) {
-                  if (state.pReservationInfo.isEmpty){
+                  if (state.pReservationInfo.isEmpty) {
                     return const Center(
                       child: Text("There are no Reservations yet"),
                     );
-                  }else{
-                  return Expanded(
-                      child: ListView.builder(
-                          itemCount: state.pReservationInfo.length,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: CustomCard(
-                                iconCard: Assets.kFollowUpIcon,
-                                cardTitle:
-                                    "Dr ${state.pReservationInfo[index].dermatologist.firstName}",
-                                cardSubTitle:
-                                    " Dr. ${state.pReservationInfo[index].dermatologist.firstName} has reviewed your scans",
-                                onPressed: () {},
-                                textButton: "View",
-                              ),
-                            );
-                          }));
+                  } else {
+                    return Expanded(
+                        child: ListView.builder(
+                            itemCount: state.pReservationInfo.length,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                child: CustomCard(
+                                  iconCard: Assets.kFollowUpIcon,
+                                  cardTitle:
+                                      "Dr ${state.pReservationInfo[index].dermatologist.firstName}",
+                                  cardSubTitle:
+                                      " Dr. ${state.pReservationInfo[index].dermatologist.firstName} has reviewed your scans",
+                                  onPressed: () {},
+                                  textButton: "View",
+                                ),
+                              );
+                            }));
                   }
                 } else {
                   return const LoadingIndicator(color: AppColors.kPrimaryColor);

@@ -24,7 +24,8 @@ class ScanViewBody extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: BlocBuilder<LabDetailsCubit,LabDetailsState>(builder: (context, state) {
+      child: BlocBuilder<LabDetailsCubit, LabDetailsState>(
+          builder: (context, state) {
         if (state is LabDetailsFailure) {
           return Center(
             child: Text(state.errMessage),

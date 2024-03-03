@@ -15,7 +15,7 @@ class LabDetailsCubit extends Cubit<LabDetailsState> {
     response.fold((failure) {
       emit(LabDetailsFailure(errMessage: failure.errMessage));
     }, (labDetails) {
-      emit(LabDetailsSuccess(labDetails: labDetails ));
+      emit(LabDetailsSuccess(labDetails: labDetails));
     });
   }
 }

@@ -38,6 +38,7 @@ class _DoctorScheduleBodyState extends State<DoctorScheduleBody> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -59,38 +60,35 @@ class _DoctorScheduleBodyState extends State<DoctorScheduleBody> {
                 style: Styels.textStyle18_600(context).copyWith(fontSize: 24),
               ),
               SizedBox(height: mediaQuery.height * 0.05),
-            Stack(children: [
-                          CustomTextField(
-                              hintext: 'Choose your Days.',
-                              width: mediaQuery.height * 0.5,
-                              isrequired: true,
-                              padding: const EdgeInsets.only(right: 15),
-                              keyboardType: TextInputType.none),
-                          Positioned(
-                              right: 20,
-                              bottom: 18,
-                              child: InkWell(
-                                  onTap: () {
-                                    showDays();
-                                  },
-                                  child: SvgPicture.asset(
-                                      'assets/images/bottom_sheet_icon.svg'))),
-                        ]),
-                        SizedBox(
-                          height: mediaQuery.height * 0.002,
-                        ),
-                        Wrap(
-                          children: selectedDays
-                              .map((e) => Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: mediaQuery.width * 0.01),
-                                  child: Chip(label: Text(e))))
-                              .toList(),
-                        ),
-                        const SizedBox(height: 20),
-            ]
-            )
-            )
-            );
+              Stack(children: [
+                CustomTextField(
+                    hintext: 'Choose your Days.',
+                    width: mediaQuery.height * 0.5,
+                    isrequired: true,
+                    padding: const EdgeInsets.only(right: 15),
+                    keyboardType: TextInputType.none),
+                Positioned(
+                    right: 20,
+                    bottom: 18,
+                    child: InkWell(
+                        onTap: () {
+                          showDays();
+                        },
+                        child: SvgPicture.asset(
+                            'assets/images/bottom_sheet_icon.svg'))),
+              ]),
+              SizedBox(
+                height: mediaQuery.height * 0.002,
+              ),
+              Wrap(
+                children: selectedDays
+                    .map((e) => Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: mediaQuery.width * 0.01),
+                        child: Chip(label: Text(e))))
+                    .toList(),
+              ),
+              const SizedBox(height: 20),
+            ])));
   }
 }
