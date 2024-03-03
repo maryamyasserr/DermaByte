@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/patient_consults/patient_consults.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Consults%20Cubit/consults_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +17,7 @@ class ConsutlsHeaderSection extends StatelessWidget {
         Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "10/10/2023",
+              "${consultaion.scan.scanDate!.year}/${consultaion.scan.scanDate!.month}/${consultaion.scan.scanDate!.day}",
               style: Styels.textStyle14_300(context),
             )),
         Row(
@@ -41,12 +41,12 @@ class ConsutlsHeaderSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Melanoma",
+                    consultaion.scan.diseaseName!,
                     style: Styels.textStyle24_600(context),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "The scans taken on 10/10/2023 show that you have melanoma.",
+                    "The scans taken on ${consultaion.scan.scanDate!.year}/${consultaion.scan.scanDate!.month}/${consultaion.scan.scanDate!.day} show that you have ${consultaion.scan.diseaseName!}.",
                     style: Styels.textStyle14_300(context),
                   ),
                 ],

@@ -7,7 +7,8 @@ class ErrWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: [const Icon(Icons.error), Text(errMessage)],
+       mainAxisAlignment: MainAxisAlignment.center,
+        children: [const Icon(Icons.error), const SizedBox(height: 9), Text(errMessage,textAlign: TextAlign.center,)],
       ),
     );
   }

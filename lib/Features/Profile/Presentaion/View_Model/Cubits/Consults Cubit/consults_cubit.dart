@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/patient_consults/patient_consults.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -13,6 +13,7 @@ class ConsultsCubit extends Cubit<ConsultsState> {
   set setId(String id) {
     _id = id;
   }
+
   PatientConsultsModel get currentConsultation =>
       patientConsults.firstWhere((element) => element.patient.id == _id);
   Future<void> getPatientConults({required String id}) async {

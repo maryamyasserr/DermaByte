@@ -9,7 +9,6 @@ import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%2
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});
 
@@ -27,7 +26,7 @@ class _CustomTabBarState extends State<CustomTabBar>
         .getPatientScan(id: "65dc8e92feeacbd13e5da2b6");
     BlocProvider.of<TestsCubit>(context)
         .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
-     BlocProvider.of<ConsultsCubit>(context)
+    BlocProvider.of<ConsultsCubit>(context)
         .getPatientConults(id: "65dc8e92feeacbd13e5da2b6");
 
     super.initState();
@@ -55,14 +54,13 @@ class _CustomTabBarState extends State<CustomTabBar>
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
-          child: TabBarView(controller: tabController, children:const [
-             PatientScans(),
-             PatientTests(),
-             PatientConsults(),
+          child: TabBarView(controller: tabController, children: const [
+            PatientScans(),
+            PatientTests(),
+            PatientConsults(),
           ]),
         )
       ],
     );
   }
 }
-

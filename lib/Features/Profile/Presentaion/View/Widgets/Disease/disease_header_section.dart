@@ -14,7 +14,7 @@ class DiseaseHeaderSection extends StatelessWidget {
         Align(
             alignment: Alignment.centerRight,
             child: Text(
-             "${scanDate.year}-${scanDate.month}-${scanDate.day} :${scanDate.hour}:${scanDate.minute}",
+              "${scanDate.year}-${scanDate.month}-${scanDate.day} :${scanDate.hour}:${scanDate.minute}",
               style: Styels.textStyle14_300(context),
             )),
         Row(
@@ -41,9 +41,7 @@ class DiseaseHeaderSection extends StatelessWidget {
                     diseaseName,
                     style: Styels.textStyle24_600(context),
                   ),
-                  const SizedBox(
-                    height:10
-                  ),
+                  const SizedBox(height: 10),
                   Text(
                     "The scans taken on ${scanDate.year}-${scanDate.month}-${scanDate.day} :${scanDate.hour}:${scanDate.minute} show that you have $diseaseName.",
                     style: Styels.textStyle14_300(context),

@@ -62,20 +62,22 @@ class DermaByte extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit(getIt.get<AuthRepoImpl>())),
-        BlocProvider(create: (context) =>PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())
+        BlocProvider(
+          create: (context) =>
+              PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())
                 ..getPatientReservationInfo(id: '65dca0237ace4b87e907882b'
                     // id: BlocProvider.of<AuthCubit>(context).patientModel!.id
                     ),
         ),
-         BlocProvider(
-              create: (context) => ScanCubit(getIt.get<HistoryRepoImpl>()),
-            ),
-            BlocProvider(
-              create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>()),
-            ),
-              BlocProvider(
-              create: (context) => ConsultsCubit(getIt.get<HistoryRepoImpl>()),
-            ),
+        BlocProvider(
+          create: (context) => ScanCubit(getIt.get<HistoryRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => ConsultsCubit(getIt.get<HistoryRepoImpl>()),
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,
