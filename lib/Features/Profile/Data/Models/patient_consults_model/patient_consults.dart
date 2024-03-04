@@ -13,7 +13,6 @@ class PatientConsultsModel {
   Dermatologist dermatologist;
   List<Test>? tests;
 
-
   PatientConsultsModel({
     this.id,
     required this.scan,
@@ -23,18 +22,18 @@ class PatientConsultsModel {
     required this.patient,
     required this.dermatologist,
     this.tests,
-
   });
 
-  factory PatientConsultsModel.fromJson(Map<String, dynamic> json) => PatientConsultsModel(
+  factory PatientConsultsModel.fromJson(Map<String, dynamic> json) =>
+      PatientConsultsModel(
         id: json['id'] as String?,
-        scan:  Scan.fromJson(json['scan'] as Map<String, dynamic>),
+        scan: Scan.fromJson(json['scan'] as Map<String, dynamic>),
         medicine: json['medicine'] as List<dynamic>?,
         treatmentPlan: json['treatmentPlan'] as dynamic,
         diagnoses: json['diagnoses'] as dynamic,
-        patient:  Patient.fromJson(json['patient'] as Map<String, dynamic>),
-        dermatologist:  Dermatologist.fromJson(
-                json['dermatologist'] as Map<String, dynamic>),
+        patient: Patient.fromJson(json['patient'] as Map<String, dynamic>),
+        dermatologist: Dermatologist.fromJson(
+            json['dermatologist'] as Map<String, dynamic>),
         tests: (json['tests'] as List<dynamic>?)
             ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -49,6 +48,5 @@ class PatientConsultsModel {
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
         'tests': tests?.map((e) => e.toJson()).toList(),
-       
       };
 }

@@ -1,70 +1,80 @@
 class DoctorModel {
-  String? id;
-  String firstNa;
-  String lastName;
-  String mobile;
-  String location;
-  String city;
-  String country;
-  String specialization;
-  String license;
-  String email;
-  String password;
-  String passwordConfirm;
-  String profilePic;
-  int sessionCost;
+  String? firstName;
+  String? lastName;
+  String? gender;
+  String? mobile;
+  String? location;
+  String? city;
+  String? country;
+  String? specialization;
+  String? license;
+  String? email;
+  String? password;
+  String? passwordConfirm;
+  String? profilePic;
+  int? sessionCost;
   bool? state;
+  String? slug;
+  String? id;
   DateTime? createdAt;
   DateTime? updatedAt;
+  int? v;
 
   DoctorModel({
-    this.id,
-    required this.firstNa,
-    required this.lastName,
-    required this.mobile,
-    required this.location,
-    required this.city,
-    required this.country,
-    required this.specialization,
-    required this.license,
-    required this.email,
-    required this.password,
-    required this.passwordConfirm,
-    required this.profilePic,
-    required this.sessionCost,
+    this.firstName,
+    this.lastName,
+    this.gender,
+    this.mobile,
+    this.location,
+    this.city,
+    this.country,
+    this.specialization,
+    this.license,
+    this.email,
+    this.password,
+    this.passwordConfirm,
+    this.profilePic,
+    this.sessionCost,
     this.state,
+    this.slug,
+    this.id,
     this.createdAt,
     this.updatedAt,
+    this.v,
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
-        id: json['_id'] as String?,
-        firstNa: json['firstName'] as String,
-        lastName: json['lastName'] as String,
-        mobile: json['mobile'] as String,
-        location: json['location'] as String,
-        city: json['city'] as String,
-        country: json['country'] as String,
-        specialization: json['specialization'] as String,
-        license: json['license'] as String,
-        email: json['email'] as String,
-        password: json['password'] as String,
-        passwordConfirm: json['passwordConfirm'] as String,
-        profilePic: json['profilePic'] as String,
-        sessionCost: json['sessionCost'] as int,
+        firstName: json['firstName'] as String?,
+        lastName: json['lastName'] as String?,
+        gender: json['gender'] as String?,
+        mobile: json['mobile'] as String?,
+        location: json['location'] as String?,
+        city: json['city'] as String?,
+        country: json['country'] as String?,
+        specialization: json['specialization'] as String?,
+        license: json['license'] as String?,
+        email: json['email'] as String?,
+        password: json['password'] as String?,
+        passwordConfirm: json['passwordConfirm'] as String?,
+        profilePic: json['profilePic'] as String?,
+        sessionCost: json['sessionCost'] as int?,
         state: json['state'] as bool?,
+        slug: json['slug'] as String?,
+        id: json['id'] as String?,
         createdAt: json['createdAt'] == null
             ? null
             : DateTime.parse(json['createdAt'] as String),
         updatedAt: json['updatedAt'] == null
             ? null
             : DateTime.parse(json['updatedAt'] as String),
+        v: json['__v'] as int?,
+        
       );
 
   Map<String, dynamic> toJson() => {
-        // '_id': id,
-        'firstName': firstNa,
+        'firstName': firstName,
         'lastName': lastName,
+        'gender': gender,
         'mobile': mobile,
         'location': location,
         'city': city,
@@ -73,11 +83,15 @@ class DoctorModel {
         'license': license,
         'email': email,
         'password': password,
-        'passwordConfirm': passwordConfirm,
+        'passwordConfirm':passwordConfirm,
         'profilePic': profilePic,
         'sessionCost': sessionCost,
-        // 'state': state,
-        // 'createdAt': createdAt?.toIso8601String(),
-        // 'updatedAt': updatedAt?.toIso8601String(),
+        'state': state,
+        'slug': slug,
+        '_d': id,
+        'createdAt': createdAt?.toIso8601String(),
+        'updatedAt': updatedAt?.toIso8601String(),
+        '__v': v,
+
       };
 }

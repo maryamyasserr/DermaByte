@@ -4,7 +4,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/appoinments_view.dart';
 import 'package:dermabyte/Features/E-doctor/View/edoctor_view.dart';
-import 'package:dermabyte/Features/E-lab/View/elab_view.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View/elab_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:flutter/material.dart';
 

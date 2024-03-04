@@ -12,7 +12,7 @@ class DiseaseBodySection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "What is $diseaseName?",
+            "What is$diseaseName?",
             style: Styels.textStyle24_600(context),
           ),
           const SizedBox(height: 8),

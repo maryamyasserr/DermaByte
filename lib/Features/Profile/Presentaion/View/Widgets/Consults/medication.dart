@@ -24,7 +24,9 @@ class Medications extends StatelessWidget {
         ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: consultaion.medicine!.isEmpty?0 :consultaion.medicine!.length,
+            itemCount: consultaion.medicine!.isEmpty
+                ? 0
+                : consultaion.medicine!.length,
             itemBuilder: ((context, index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),

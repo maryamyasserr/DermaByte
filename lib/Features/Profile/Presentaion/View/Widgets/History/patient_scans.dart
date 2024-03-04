@@ -34,8 +34,10 @@ class PatientScans extends StatelessWidget {
                       textButton: "View",
                       onPressed: () {
                         BlocProvider.of<ScanCubit>(context).setId =
-                            state.scans[index].patient;
+                            state.scans[index].id!;
                         GoRouter.of(context).push(AppRoutes.kDisease);
+
+                        
                       },
                     ),
                   )

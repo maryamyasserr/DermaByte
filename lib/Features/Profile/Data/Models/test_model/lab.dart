@@ -13,7 +13,7 @@ class Lab {
 
   Map<String, dynamic> toJson() => {
         'name': name,
-        'location':location,
+        'location': location,
         'id': id,
       };
 }

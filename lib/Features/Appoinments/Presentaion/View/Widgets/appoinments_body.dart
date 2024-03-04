@@ -73,26 +73,6 @@ class AppoinmentsBody extends StatelessWidget {
                 }
               },
             )
-            // CustomCard(
-            //   iconCard: Assets.kFollowUpIcon,
-            //   cardTitle: "Follow Up!",
-            //   cardSubTitle:
-            //       "Follow up with your last appointments, doctor has requested.",
-            //   textButton: "View",
-            //   onPressed: () {
-            //     GoRouter.of(context).push(AppRoutes.kFollowUp);
-            //   },
-            // ),
-            // const SizedBox(height: 24),
-            // CustomCard(
-            //   iconCard: Assets.kWallBlock,
-            //   cardTitle: "Upcoming appoinment!",
-            //   cardSubTitle: "Doctor Mohamed has scheduled an appointment on..",
-            //   textButton: "View",
-            //   onPressed: () {
-            //     GoRouter.of(context).push(AppRoutes.kUpcoming);
-            //   },
-            // )
           ],
         ),
       ),

@@ -25,7 +25,10 @@ class TestViewBody extends StatelessWidget {
             LabInfo(info: "Test Name : ", data: test.testName),
             LabInfo(info: 'Lab Name : ', data: test.lab.name),
             LabInfo(info: 'Lab Loacation : ', data: test.lab.location),
-            LabInfo(info: 'Date : ', data: "${test.testDate.year}/${test.testDate.month}/${test.testDate.day}"),
+            LabInfo(
+                info: 'Date : ',
+                data:
+                    "${test.testDate.year}/${test.testDate.month}/${test.testDate.day}"),
             const Divider(
               thickness: 0.3,
               color: Colors.black,

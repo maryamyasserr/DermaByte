@@ -34,9 +34,8 @@ class PatientTests extends StatelessWidget {
                             "Scans taken on ${state.tests[index].testDate}",
                         textButton: "View",
                         onPressed: () {
-                          print(state.tests[index].patient);
                           BlocProvider.of<TestsCubit>(context).setId =
-                              state.tests[index].testName;
+                              state.tests[index].id!;
                           GoRouter.of(context).push(AppRoutes.kTestView);
                         },
                       ),

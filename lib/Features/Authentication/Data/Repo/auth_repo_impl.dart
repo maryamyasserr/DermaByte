@@ -66,6 +66,7 @@ class AuthRepoImpl implements AuthRepo {
       debugPrint("$response");
       DoctorModel doctor = DoctorModel.fromJson(response['data']);
       GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
+      GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
       return right(doctor);
     } catch (e) {
       if (e is DioException) {

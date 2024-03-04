@@ -27,6 +27,5 @@ class Patient {
         'lastName': lastName,
         'age': age,
         'photo': photo,
-      
       };
 }

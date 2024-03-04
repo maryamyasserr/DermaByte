@@ -24,6 +24,7 @@ class SignUpDoctorBody extends StatefulWidget {
   static TextEditingController lastNameController = TextEditingController();
   static TextEditingController mobileController = TextEditingController();
   static TextEditingController locationController = TextEditingController();
+  static TextEditingController genderController = TextEditingController();
   static TextEditingController specilazationController =
       TextEditingController();
   const SignUpDoctorBody({super.key});
@@ -115,6 +116,9 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                   label: 'Last name',
                   controller: SignUpDoctorBody.lastNameController),
               RequiredTextForm(
+                  label: "Gender",
+                  controller: SignUpDoctorBody.genderController),
+              RequiredTextForm(
                   label: 'Mobile',
                   controller: SignUpDoctorBody.mobileController),
               SizedBox(height: mediaQuery.height * 0.014),
@@ -160,8 +164,9 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                     await BlocProvider.of<AuthCubit>(context).signUp(
                         context: context,
                         data: DoctorModel(
-                          firstNa: SignUpDoctorBody.firstNameController.text,
+                          firstName: SignUpDoctorBody.firstNameController.text,
                           lastName: SignUpDoctorBody.lastNameController.text,
+                          gender: SignUpDoctorBody.genderController.text,
                           mobile: SignUpDoctorBody.mobileController.text,
                           location: SignUpDoctorBody.locationController.text,
                           city: "Madrid",
@@ -178,7 +183,6 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                         ),
                         role: 'doctor',
                         token: '');
-
                     setState(() {
                       isLoading = false;
                     });
