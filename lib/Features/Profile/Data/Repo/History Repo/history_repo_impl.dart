@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults_model.dart';
+
 import 'package:dermabyte/Features/Profile/Data/Models/test_model/test_model.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/scan.dart';

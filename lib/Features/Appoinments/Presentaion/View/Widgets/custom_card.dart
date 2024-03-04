@@ -40,7 +40,7 @@ class CustomCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 6,
             child: Column(
               children: [
                 const SizedBox(height: 16),

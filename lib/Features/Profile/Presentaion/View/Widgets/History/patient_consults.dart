@@ -30,7 +30,7 @@ class PatientConsults extends StatelessWidget {
                       child: HistoryCard(
                         iconCard: Assets.kDoctorAvatar,
                         cardTitle:
-                            state.consults[index].dermatologist.firstName ?? "",
+                            state.consults[index].dermatologist?.firstName ?? "",
                         cardSubTitle:
                             "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                         textButton: "View",

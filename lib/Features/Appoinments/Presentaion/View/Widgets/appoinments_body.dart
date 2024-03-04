@@ -11,8 +11,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class AppoinmentsBody extends StatelessWidget {
+class AppoinmentsBody extends StatefulWidget {
   const AppoinmentsBody({super.key});
+
+  @override
+  State<AppoinmentsBody> createState() => _AppoinmentsBodyState();
+}
+
+class _AppoinmentsBodyState extends State<AppoinmentsBody> {
+  @override
+  void initState() {
+    BlocProvider.of<PreservationInfoCubit>(context)
+        .getPatientReservationInfo(id: "65dc8e92feeacbd13e5da2b6");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +37,9 @@ class AppoinmentsBody extends StatelessWidget {
         child: Column(
           children: [
             const CustomAppBar(title: 'Appoinments'),
+            const SizedBox(height: 12),
             const HeaderText(
                 text: "Follow up with your ongoing and future appointments."),
-            const SizedBox(height: 32),
             BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
               builder: (context, state) {
                 if (state is PreservationInfoFailure) {

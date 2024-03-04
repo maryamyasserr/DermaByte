@@ -10,12 +10,12 @@ class Test {
         requestedAt: json['requestedAt'] == null
             ? null
             : DateTime.parse(json['requestedAt'] as String),
-        id: json['_id'] as String?,
+        id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
         'testName': testName,
         'requestedAt': requestedAt?.toIso8601String(),
-        '_id': id,
+        'id': id,
       };
 }

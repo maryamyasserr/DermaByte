@@ -4,10 +4,15 @@ class Scan {
   String? diseasePhoto;
   String? diseaseName;
 
-  Scan({this.id, this.scanDate, this.diseasePhoto, this.diseaseName});
+  Scan({
+    this.id,
+    this.scanDate,
+    this.diseasePhoto,
+    this.diseaseName,
+  });
 
   factory Scan.fromJson(Map<String, dynamic> json) => Scan(
-        id: json['_id'] as String?,
+        id: json['id'] as String?,
         scanDate: json['scanDate'] == null
             ? null
             : DateTime.parse(json['scanDate'] as String),
@@ -16,9 +21,9 @@ class Scan {
       );
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
         'scanDate': scanDate?.toIso8601String(),
         'diseasePhoto': diseasePhoto,
         'diseaseName': diseaseName,
+        'id': id,
       };
 }

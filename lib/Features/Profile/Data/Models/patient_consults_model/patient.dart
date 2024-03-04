@@ -5,12 +5,14 @@ class Patient {
   int? age;
   String? photo;
 
+
   Patient({
     this.id,
     this.firstName,
     this.lastName,
     this.age,
     this.photo,
+
   });
 
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(
@@ -19,6 +21,7 @@ class Patient {
         lastName: json['lastName'] as String?,
         age: json['age'] as int?,
         photo: json['photo'] as String?,
+   
       );
 
   Map<String, dynamic> toJson() => {
@@ -27,5 +30,6 @@ class Patient {
         'lastName': lastName,
         'age': age,
         'photo': photo,
+        
       };
 }
