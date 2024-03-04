@@ -35,7 +35,7 @@ class DoctorItem extends StatelessWidget {
             ]),
         child: InkWell(
           onTap: () {
-            GoRouter.of(context).push(AppRoutes.kScanView);
+            GoRouter.of(context).push(AppRoutes.kLabDetails);
           },
           child: Row(
             children: [

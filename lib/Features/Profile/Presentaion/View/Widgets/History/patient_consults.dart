@@ -36,7 +36,7 @@ class PatientConsults extends StatelessWidget {
                         textButton: "View",
                         onPressed: () {
                           BlocProvider.of<ConsultsCubit>(context).setId =
-                              state.consults[index].patient.id!;
+                              state.consults[index].id!;
                           GoRouter.of(context).push(AppRoutes.kConsults);
                         },
                       ),

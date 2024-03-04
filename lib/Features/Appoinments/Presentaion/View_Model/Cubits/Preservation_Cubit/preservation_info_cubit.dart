@@ -11,7 +11,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
   PreservationInfoRepo preservationInfoRepo;
   String? _id;
   PreservationModel get currentReservation =>
-      reservations.firstWhere((element) => element.id == _id);
+      reservations.firstWhere((reservation) => reservation.id == _id);
 
   List<PreservationModel> reservations = [];
 

@@ -49,7 +49,7 @@ abstract class AppRoutes {
   static String kSignUpDoctor = '/SignUpDoctor';
   static String kSignUpLab = '/SignUpLab';
   static String kHomeView = '/HomeView';
-  static String kScanView = '/ScanView';
+  static String kLabDetails = '/ScanView';
   static String kLabReservationView = '/LabReservationView';
   static String kDoctorReservationView = '/DoctorReservationView';
   static String kScanWaysView = '/ScanWaysView';
@@ -104,7 +104,7 @@ abstract class AppRoutes {
     GoRoute(path: kSignUpLab, builder: (context, state) => const SignUpLab()),
     GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
     GoRoute(
-        path: kScanView, builder: (context, state) => const LabDetailsView()),
+        path: kLabDetails, builder: (context, state) => const LabDetailsView()),
     GoRoute(
         path: kLabReservationView,
         builder: (context, state) => const LabReservationView()),

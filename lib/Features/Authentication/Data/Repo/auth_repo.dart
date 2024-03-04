@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lap_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

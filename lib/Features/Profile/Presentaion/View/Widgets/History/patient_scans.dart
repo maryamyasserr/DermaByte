@@ -36,8 +36,6 @@ class PatientScans extends StatelessWidget {
                         BlocProvider.of<ScanCubit>(context).setId =
                             state.scans[index].id!;
                         GoRouter.of(context).push(AppRoutes.kDisease);
-
-                        
                       },
                     ),
                   )

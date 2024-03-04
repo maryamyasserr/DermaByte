@@ -13,7 +13,7 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
       {required id}) async {
     try {
       var response = await apiService.get(
-          endPoint: 'patients/$id/Dermatologist-reservation');
+          endPoint: 'patients/$id/Patient-reservation');
       List<PreservationModel> preservation = [];
       for (var item in response['data']) {
         preservation.add(PreservationModel.fromJson(item));

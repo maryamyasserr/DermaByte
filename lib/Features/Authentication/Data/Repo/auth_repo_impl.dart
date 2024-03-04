@@ -3,7 +3,8 @@ import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lap_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:dio/dio.dart';

@@ -15,7 +15,7 @@ class ConsultsCubit extends Cubit<ConsultsState> {
   }
 
   PatientConsultsModel get currentConsultation =>
-      patientConsults.firstWhere((element) => element.patient.id == _id);
+      patientConsults.firstWhere((consulation) => consulation.id == _id);
   Future<void> getPatientConults({required String id}) async {
     emit(ConsultsLoading());
     var consults = await historyRepo.getPatientConsults(id: id);

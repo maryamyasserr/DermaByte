@@ -12,7 +12,7 @@ class EdoctorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>()),
-      child: EdoctorViewBody(),
+      child: const EdoctorViewBody(),
     );
   }
 }

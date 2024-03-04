@@ -18,6 +18,7 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  @override
   void initState() {
     super.initState();
     BlocProvider.of<LabRequestCubit>(context)

@@ -6,7 +6,6 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_item.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Details%20Cubit/lab_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +21,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<LabCubit>(context).getAllLabs();
+    BlocProvider.of<ELabCubit>(context).getAllLabs();
   }
 
   @override
@@ -47,7 +46,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                 style: Styels.textStyle15_300(context),
               ),
             ),
-            BlocBuilder<LabCubit, LabState>(builder: (context, state) {
+            BlocBuilder<ELabCubit, LabState>(builder: (context, state) {
               if (state is LabFailure) {
                 return Center(
                   child: Text(state.errMessage),
@@ -58,16 +57,16 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                     itemCount: state.labs.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 12.0),
+                        padding: const EdgeInsets.only(bottom: 24.0),
                         child: LabItem(
                           iconCard: Assets.kAlphaScan,
                           labTitle: state.labs[index].name!,
                           labSubTitle:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                          onPressed: () {
-                            BlocProvider.of<LabDetailsCubit>(context)
-                                .getLabDetails(id: state.labs[index].id);
-                            GoRouter.of(context).push(AppRoutes.kScanView);
+                          onTap: () {
+                            BlocProvider.of<ELabCubit>(context).setId =
+                                state.labs[index].id!;
+                            GoRouter.of(context).push(AppRoutes.kLabDetails);
                           },
                           textButton: 'Reserve',
                         ),

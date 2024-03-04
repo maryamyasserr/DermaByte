@@ -1,95 +1,75 @@
-class DoctorModel {
-  String? firstName;
-  String? lastName;
-  String? gender;
+class LabModel {
+  String? name;
   String? mobile;
   String? location;
   String? city;
   String? country;
-  String? specialization;
   String? license;
   String? email;
   String? password;
   String? passwordConfirm;
-  String? profilePic;
-  int? sessionCost;
   bool? state;
   String? slug;
-  String? id;
   DateTime? createdAt;
   DateTime? updatedAt;
-  int? v;
+  List<dynamic>? services;
+  String? id;
 
-  DoctorModel({
-    this.firstName,
-    this.lastName,
-    this.gender,
+  LabModel({
+    this.name,
     this.mobile,
     this.location,
     this.city,
     this.country,
-    this.specialization,
     this.license,
     this.email,
     this.password,
     this.passwordConfirm,
-    this.profilePic,
-    this.sessionCost,
     this.state,
     this.slug,
-    this.id,
     this.createdAt,
     this.updatedAt,
-    this.v,
+    this.services,
+    this.id,
   });
 
-  factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
-        firstName: json['firstName'] as String?,
-        lastName: json['lastName'] as String?,
-        gender: json['gender'] as String?,
+  factory LabModel.fromJson(Map<String, dynamic> json) => LabModel(
+        name: json['name'] as String?,
         mobile: json['mobile'] as String?,
         location: json['location'] as String?,
         city: json['city'] as String?,
         country: json['country'] as String?,
-        specialization: json['specialization'] as String?,
         license: json['license'] as String?,
         email: json['email'] as String?,
         password: json['password'] as String?,
         passwordConfirm: json['passwordConfirm'] as String?,
-        profilePic: json['profilePic'] as String?,
-        sessionCost: json['sessionCost'] as int?,
         state: json['state'] as bool?,
         slug: json['slug'] as String?,
-        id: json['id'] as String?,
         createdAt: json['createdAt'] == null
             ? null
             : DateTime.parse(json['createdAt'] as String),
         updatedAt: json['updatedAt'] == null
             ? null
             : DateTime.parse(json['updatedAt'] as String),
-        v: json['__v'] as int?,
+        services: json['Services'] as List<dynamic>?,
+        id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
-        'firstName': firstName,
-        'lastName': lastName,
-        'gender': gender,
+        'name': name,
         'mobile': mobile,
         'location': location,
         'city': city,
         'country': country,
-        'specialization': specialization,
         'license': license,
         'email': email,
-        'password': password,
-        'passwordConfirm': passwordConfirm,
-        'profilePic': profilePic,
-        'sessionCost': sessionCost,
+        'password':password,
+        'passwordConfirm':passwordConfirm,
         'state': state,
         'slug': slug,
-        '_d': id,
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),
-        '__v': v,
+        'Services': services,
+        'id': id,
       };
 }

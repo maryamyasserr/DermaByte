@@ -13,30 +13,28 @@ class LabItem extends StatelessWidget {
       required this.labTitle,
       required this.labSubTitle,
       required this.textButton,
-      this.onPressed,
+      this.onTap,
       this.width});
   final String iconCard, labTitle, labSubTitle, textButton;
-  final void Function()? onPressed;
+  final void Function()? onTap;
   final double? width;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 330 / 125,
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.kCardColor,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0.0, 2.6),
-                blurRadius: 6.0,
-              )
-            ]),
-        child: InkWell(
-          onTap: () {
-            GoRouter.of(context).push(AppRoutes.kScanView);
-          },
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+              color: AppColors.kCardColor,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0.0, 2.6),
+                  blurRadius: 6.0,
+                )
+              ]),
           child: Row(
             children: [
               Expanded(
