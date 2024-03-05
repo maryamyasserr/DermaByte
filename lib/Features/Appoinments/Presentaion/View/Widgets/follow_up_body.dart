@@ -73,11 +73,11 @@ class FollowUpBody extends StatelessWidget {
                             "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
                         textButton: "View",
                         onPressed: () {
-                          
                           GoRouter.of(context).push(AppRoutes.kRequestedTest,
-                          extra: TestData(test: report.tests![index].testName ,
-                          testCount: report.tests![index].testName!.length)
-                          );
+                              extra: TestData(
+                                  test: report.tests![index].testName,
+                                  testCount:
+                                      report.tests![index].testName!.length));
                         }),
                   );
                 }),

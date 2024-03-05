@@ -166,12 +166,10 @@ abstract class AppRoutes {
         builder: (context, state) => const DoctorScheduleView()),
     GoRoute(path: kTestView, builder: (context, state) => const TestView()),
     GoRoute(
-        path: kRequestedTest,
-        builder: (context, state) =>  RequestedTestsView(
-         testData: state.extra as TestData,
-        ),
-        
-
-        )
+      path: kRequestedTest,
+      builder: (context, state) => RequestedTestsView(
+        testData: state.extra as TestData,
+      ),
+    )
   ]);
 }

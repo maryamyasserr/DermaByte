@@ -6,7 +6,7 @@ import 'package:dermabyte/Features/Appoinments/Data/Repo/preservation_info_repo_
 import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/E-lab/Data/Repos/lab_repo_impl.dart';
+import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo_impl.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
@@ -35,8 +35,7 @@ class DermaByte extends StatelessWidget {
             create: (context) => ScanCubit(getIt.get<HistoryRepoImpl>())),
         BlocProvider(
             create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>())
-            // ..getPatientTests(id: "65dc8e92feeacbd13e5da2b6")),
-            ),
+              ..getPatientTests(id: "65dc8e92feeacbd13e5da2b6")),
         BlocProvider(
             create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
               ..getPatientConults(id: "65dc8e92feeacbd13e5da2b6")),

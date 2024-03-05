@@ -51,7 +51,7 @@ class HistoryCard extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: Align(
-                           alignment: Alignment.centerLeft,
+                          alignment: Alignment.centerLeft,
                           child: CardText(
                             cardTitle: cardTitle,
                             cardSubTitle: cardSubTitle,

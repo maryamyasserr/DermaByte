@@ -1,8 +1,8 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/all_patient_tests.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/attack_field.dart';
-
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
@@ -40,47 +40,45 @@ class RequestedTestsBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          AttachedField(
-            title: "Add Your Lab Tests",
-            onTap: () {
-              // showModalBottomSheet(
-              //     context: context,
-              //     builder: (context) {
-              //       if (tests.isNotEmpty) {
-              //         return SizedBox(
-              //             height: MediaQuery.sizeOf(context).height * 0.7,
-              //             width: MediaQuery.sizeOf(context).width,
-              //             child: ListView.builder(
-              //                 physics: const BouncingScrollPhysics(),
-              //                 itemCount: tests.length,
-              //                 itemBuilder: (context, index) {
-              //                   return CustomCard(
-              //                       iconCard: Assets.kAlphaScan,
-              //                       cardTitle: tests[index].testName ?? "",
-              //                       cardSubTitle:
-              //                           "the test did on ${tests[index].testDate.day}/ ${tests[index].testDate.month}/ ${tests[index].testDate.year}",
-              //                       textButton: "");
-              //                 }));
-              //       } else {
-              //         return const Center(
-              //             child: Text("You have never done tests before"));
-              //       }
-              //     });
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'or',
-                  style: Styels.textStyle18_400(context).copyWith(fontSize: 24),
-                )),
-          ),
-          AttachedField(
-            title: "Upload External Tests",
-            onTap: () {},
-          ),
+          Expanded(
+              child: ListView.builder(
+                  itemCount: testsCounts,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(testName![index],
+                              style: Styels.textStyle20_300(context)
+                                  .copyWith(fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 16),
+                          AttachedField(
+                            title: "Add Your Lab Tests",
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return const AllPatientTest();
+                                  });
+                            },
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'or',
+                            style: Styels.textStyle18_400(context)
+                                .copyWith(fontSize: 24),
+                          ),
+                          const SizedBox(height: 16),
+                          AttachedField(
+                            title: "Upload External Tests",
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                    );
+                  }))
         ],
       ),
     );

@@ -7,7 +7,7 @@ class DoctorModel {
   String? city;
   String? country;
   String? specialization;
-  String? license;
+  List<dynamic>? license;
   String? email;
   String? password;
   String? passwordConfirm;
@@ -52,7 +52,7 @@ class DoctorModel {
         city: json['city'] as String?,
         country: json['country'] as String?,
         specialization: json['specialization'] as String?,
-        license: json['license'] as String?,
+        license: json['license'] as List<dynamic>?,
         email: json['email'] as String?,
         password: json['password'] as String?,
         passwordConfirm: json['passwordConfirm'] as String?,
@@ -87,7 +87,7 @@ class DoctorModel {
         'sessionCost': sessionCost,
         'state': state,
         'slug': slug,
-        '_d': id,
+        'id': id,
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),
         '__v': v,

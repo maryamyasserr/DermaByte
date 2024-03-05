@@ -3,7 +3,7 @@ import 'lab.dart';
 class TestModel {
   String? id;
   String? testName;
-List<dynamic>? testResult;
+  List<dynamic>? testResult;
   DateTime? testDate;
   String patient;
   Lab lab;

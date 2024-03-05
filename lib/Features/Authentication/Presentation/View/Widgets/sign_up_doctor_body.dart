@@ -173,7 +173,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                           country: "Spain",
                           specialization:
                               SignUpDoctorBody.specilazationController.text,
-                          license: "doctor",
+                          license: ["doctor"],
                           email: SignUpDoctorBody.emailController.text,
                           password: SignUpDoctorBody.passwordController.text,
                           passwordConfirm:

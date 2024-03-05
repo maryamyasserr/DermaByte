@@ -7,6 +7,8 @@ class ApiService {
   final Dio _dio;
 
   Future<Map<String, dynamic>> get({required String endPoint}) async {
+    _dio.options.connectTimeout = const Duration(milliseconds: 10000);
+    _dio.options.receiveTimeout = const Duration(milliseconds: 10000);
     Response response = await _dio.get('$_baseUlr$endPoint');
     return response.data;
   }

@@ -4,7 +4,7 @@ class LabModel {
   String? location;
   String? city;
   String? country;
-  String? license;
+  List<dynamic>? license;
   String? email;
   String? password;
   String? passwordConfirm;
@@ -39,7 +39,7 @@ class LabModel {
         location: json['location'] as String?,
         city: json['city'] as String?,
         country: json['country'] as String?,
-        license: json['license'] as String?,
+        license: json['license'] as List<dynamic>?,
         email: json['email'] as String?,
         password: json['password'] as String?,
         passwordConfirm: json['passwordConfirm'] as String?,

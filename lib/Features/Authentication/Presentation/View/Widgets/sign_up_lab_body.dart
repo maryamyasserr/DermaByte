@@ -153,7 +153,7 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
                       location: SignUpLabBody.locationController.text,
                       city: 'madrid',
                       country: 'spain',
-                      license: 'lap',
+                      license: ['lab', 'lab'],
                       email: SignUpLabBody.emailController.text,
                       password: SignUpLabBody.passwordController.text,
                       passwordConfirm: SignUpLabBody.rePasswordController.text,

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
-import 'package:dermabyte/Features/E-lab/Data/Repos/lab_repo.dart';
+import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'lab_state.dart';
