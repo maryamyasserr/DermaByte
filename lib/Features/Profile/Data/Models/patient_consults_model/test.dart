@@ -1,12 +1,12 @@
 class Test {
-  String? testName;
+  List<dynamic>? testName;
   DateTime? requestedAt;
   String? id;
 
   Test({this.testName, this.requestedAt, this.id});
 
   factory Test.fromJson(Map<String, dynamic> json) => Test(
-        testName: json['testName'] as String?,
+        testName: json['testName'] as List<dynamic>?,
         requestedAt: json['requestedAt'] == null
             ? null
             : DateTime.parse(json['requestedAt'] as String),

@@ -26,10 +26,10 @@ class PatientTests extends StatelessWidget {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
+                      padding: const EdgeInsets.only(bottom: 16),
                       child: HistoryCard(
                         iconCard: Assets.kDoctorAvatar,
-                        cardTitle: state.tests[index].testResult,
+                        cardTitle: state.tests[index].testName!,
                         cardSubTitle:
                             "Scans taken on ${state.tests[index].testDate}",
                         textButton: "View",

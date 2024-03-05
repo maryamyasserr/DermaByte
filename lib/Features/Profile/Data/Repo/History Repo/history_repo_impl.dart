@@ -48,13 +48,13 @@ class HistoryRepoImpl implements HistoryRepo {
   }
 
   @override
-  Future<Either<Failures, List<PatientConsultsModel>>> getPatientConsults(
+  Future<Either<Failures, List<ReportModel>>> getPatientConsults(
       {required String id}) async {
     try {
       var response = await apiService.get(endPoint: "patients/$id/reports");
-      List<PatientConsultsModel> consults = [];
+      List<ReportModel> consults = [];
       for (var consultaion in response['data']) {
-        consults.add(PatientConsultsModel.fromJson(consultaion));
+        consults.add(ReportModel.fromJson(consultaion));
       }
       return right(consults);
     } catch (e) {

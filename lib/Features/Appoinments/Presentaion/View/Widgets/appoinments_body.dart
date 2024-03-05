@@ -7,6 +7,7 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,8 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   void initState() {
     BlocProvider.of<PreservationInfoCubit>(context)
         .getPatientReservationInfo(id: "65dc8e92feeacbd13e5da2b6");
+    BlocProvider.of<ReportCubit>(context)
+        .getPatientConults(id: "65dc8e92feeacbd13e5da2b6");
     super.initState();
   }
 
@@ -68,6 +71,10 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                                 context)
                                             .setId =
                                         state.pReservationInfo[index].id ?? "";
+                                    BlocProvider.of<ReportCubit>(context)
+                                            .setId =
+                                        state.pReservationInfo[index]
+                                            .dermatologist.id!;
                                     GoRouter.of(context).push(
                                         AppRoutes.kFollowUp,
                                         extra:

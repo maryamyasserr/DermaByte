@@ -12,12 +12,12 @@ class Scan {
   });
 
   factory Scan.fromJson(Map<String, dynamic> json) => Scan(
-        id: json['id'] as String?,
         scanDate: json['scanDate'] == null
             ? null
             : DateTime.parse(json['scanDate'] as String),
         diseasePhoto: json['diseasePhoto'] as String?,
         diseaseName: json['diseaseName'] as String?,
+        id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {

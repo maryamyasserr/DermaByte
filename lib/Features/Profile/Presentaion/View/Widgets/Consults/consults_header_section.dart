@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults_model.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Consults%20Cubit/consults_cubit.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,8 +10,8 @@ class ConsutlsHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PatientConsultsModel consultaion =
-        BlocProvider.of<ConsultsCubit>(context).currentConsultation;
+    ReportModel consultaion =
+        BlocProvider.of<ReportCubit>(context).currentConsultation;
     return Column(
       children: [
         Align(

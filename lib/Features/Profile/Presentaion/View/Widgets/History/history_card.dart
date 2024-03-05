@@ -31,49 +31,49 @@ class HistoryCard extends StatelessWidget {
                 blurRadius: 6.0,
               )
             ]),
-        child: InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Expanded(
-                child: Row(children: [
-                  const SizedBox(width: 16),
-                  Expanded(
-                    flex: 2,
-                    child: SvgPicture.asset(
-                      iconCard,
-                    ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(children: [
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 2,
+                  child: SvgPicture.asset(
+                    iconCard,
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    flex: 5,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 8),
-                        Expanded(
-                          flex: 3,
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      Expanded(
+                        flex: 3,
+                        child: Align(
+                           alignment: Alignment.centerLeft,
                           child: CardText(
                             cardTitle: cardTitle,
                             cardSubTitle: cardSubTitle,
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: CardButton(
-                              textButton: textButton,
-                              onPressed: onPressed,
-                            ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: CardButton(
+                            textButton: textButton,
+                            onPressed: onPressed,
                           ),
                         ),
-                        const SizedBox(height: 8),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
                   ),
-                ]),
-              ),
-            ],
-          ),
+                ),
+              ]),
+            ),
+          ],
         ),
       ),
     );

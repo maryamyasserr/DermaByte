@@ -22,13 +22,13 @@ class TestViewBody extends StatelessWidget {
           children: [
             const TestLabPhoto(),
             const SizedBox(height: 30),
-            LabInfo(info: "Test Name : ", data: test.testName),
+            LabInfo(info: "Test Name : ", data: test.testName ?? ""),
             LabInfo(info: 'Lab Name : ', data: test.lab.name),
             LabInfo(info: 'Lab Loacation : ', data: test.lab.location),
             LabInfo(
                 info: 'Date : ',
                 data:
-                    "${test.testDate.year}/${test.testDate.month}/${test.testDate.day}"),
+                    "${test.testDate?.year ?? "2024"}/${test.testDate?.month ?? "3"}/${test.testDate?.day ?? "27"}"),
             const Divider(
               thickness: 0.3,
               color: Colors.black,

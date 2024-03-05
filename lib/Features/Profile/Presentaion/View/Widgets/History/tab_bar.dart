@@ -3,9 +3,10 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_consults.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_scans.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_tests.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Consults%20Cubit/consults_cubit.dart';
+
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,8 +27,6 @@ class _CustomTabBarState extends State<CustomTabBar>
         .getPatientScan(id: "65dc8e92feeacbd13e5da2b6");
     BlocProvider.of<TestsCubit>(context)
         .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
-    BlocProvider.of<ConsultsCubit>(context)
-        .getPatientConults(id: "65dc8e92feeacbd13e5da2b6");
 
     super.initState();
   }

@@ -3,19 +3,17 @@ import 'patient.dart';
 import 'scan.dart';
 import 'test.dart';
 
-class PatientConsultsModel {
+class ReportModel {
   String? id;
   Scan? scan;
-  List<String>? medicine;
+  List<dynamic>? medicine;
   dynamic treatmentPlan;
   dynamic diagnoses;
   Patient? patient;
   Dermatologist? dermatologist;
   List<Test>? tests;
-  DateTime? createdAt;
-  DateTime? updatedAt;
 
-  PatientConsultsModel({
+  ReportModel({
     this.id,
     this.scan,
     this.medicine,
@@ -24,17 +22,14 @@ class PatientConsultsModel {
     this.patient,
     this.dermatologist,
     this.tests,
-    this.createdAt,
-    this.updatedAt,
   });
 
-  factory PatientConsultsModel.fromJson(Map<String, dynamic> json) {
-    return PatientConsultsModel(
-      id: json['id'] as String?,
+  factory ReportModel.fromJson(Map<String, dynamic> json) {
+    return ReportModel(
       scan: json['scan'] == null
           ? null
           : Scan.fromJson(json['scan'] as Map<String, dynamic>),
-      medicine: json['medicine'] as List<String>?,
+      medicine: json['medicine'] as List<dynamic>?,
       treatmentPlan: json['treatmentPlan'] as dynamic,
       diagnoses: json['diagnoses'] as dynamic,
       patient: json['patient'] == null
@@ -47,18 +42,11 @@ class PatientConsultsModel {
       tests: (json['tests'] as List<dynamic>?)
           ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
           .toList(),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
-   
+      id: json['id'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
         'scan': scan?.toJson(),
         'medicine': medicine,
         'treatmentPlan': treatmentPlan,
@@ -66,7 +54,6 @@ class PatientConsultsModel {
         'patient': patient?.toJson(),
         'dermatologist': dermatologist?.toJson(),
         'tests': tests?.map((e) => e.toJson()).toList(),
-        'createdAt': createdAt?.toIso8601String(),
-        'updatedAt': updatedAt?.toIso8601String(),
+        'id': id,
       };
 }
