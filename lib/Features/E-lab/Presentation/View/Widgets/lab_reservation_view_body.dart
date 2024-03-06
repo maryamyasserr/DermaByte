@@ -3,6 +3,7 @@ import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Doctor/View/Widgets/button.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_scans_bottom_sheet.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_reservation_form.dart';
@@ -12,26 +13,24 @@ import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Reservati
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 class LabReservationViewBody extends StatefulWidget {
   const LabReservationViewBody(
       {super.key, this.dayController, this.monthController, this.preferdTime});
+  final TextEditingController? dayController, monthController, preferdTime;
 
   @override
   State<LabReservationViewBody> createState() => _LabReservationViewBodyState();
-  final TextEditingController? dayController, monthController, preferdTime;
 }
 
 class _LabReservationViewBodyState extends State<LabReservationViewBody> {
   List<String> selectedTests = [];
-  bool isLoading = false;
 
-  void showTests({required List<String>?tests}) async {
+  void showTests({required List<String> tests}) async {
     final List<String>? results = await showDialog(
         context: context,
         builder: (BuildContext contex) {
-          return CustomScanBottomSheet(tests: tests??[]);
+          return CustomScanBottomSheet(tests: tests);
         });
 
     if (results != null) {
@@ -45,28 +44,27 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     LabModel lab = BlocProvider.of<ELabCubit>(context).currentLab;
-    
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Assets.kBackground),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: BlocConsumer<LabReservaionCubit, LabReservaionState>(
-        listener: (context, state) {
-          if (state is LabReservaionLoading) {
-            isLoading = true;
-          } else if (state is LabReservaionFailuer) {
-            showSnackBar(context, state.errMessage);
-            isLoading = false;
-          } else {
-            showSnackBar(context, "Success");
-            isLoading = false;
-          }
-        },
-        builder: (context, state) {
-          return Column(
+    List<String> labTests = [];
+    for (var e in lab.services!) {
+      labTests.add(e['name']);
+    }
+    return BlocConsumer<LabReservaionCubit, LabReservaionState>(
+      listener: (context, state) {
+        if (state is LabReservaionFailuer) {
+          showSnackBar(context, state.errMessage);
+        } else {
+          showSnackBar(context, "Done");
+        }
+      },
+      builder: (context, state) {
+        return Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.kBackground),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
@@ -101,7 +99,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                 style: Styels.textStyle15_300(context),
                               ),
                             ),
-                            // SizedBox(height: mediaQuery.height * 0.02),
+                            SizedBox(height: mediaQuery.height * 0.02),
                             LabReservationForm(
                                 widget: widget, mediaQuery: mediaQuery),
                             Stack(children: [
@@ -116,9 +114,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                   bottom: 18,
                                   child: InkWell(
                                       onTap: () {
-                                        showTests(
-                                          tests: lab.services?.whereType<String>().toList()??[]
-                                        );
+                                        showTests(tests: labTests);
                                       },
                                       child: SvgPicture.asset(
                                           'assets/images/bottom_sheet_icon.svg'))),
@@ -141,25 +137,27 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 15),
                       child: SubmitButton(
-                          isLoading: isLoading,
+                          isLoading:
+                              BlocProvider.of<LabReservaionCubit>(context)
+                                  .isLoading,
                           horizontal: 0,
                           textButton: "Submit",
                           onPressed: () async {
                             await BlocProvider.of<LabReservaionCubit>(context)
                                 .createReservation(body: {
-                              "patient": "65dc8e92feeacbd13e5da2b6",
-                              "lab": lab.id,
+                              "patient": "65dc8e49feeacbd13e5da2b2",
                               "test": ["65dc99c8e4d08f0267dddae6"],
+                              "lab": lab.id
                             }, token: "");
                           }),
-                    ),
+                    )
                   ],
                 ),
               ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
