@@ -11,8 +11,8 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_pati
 import 'package:dermabyte/Features/Doctor/View/Widgets/Home/patient_view.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Report/report_view.dart';
 import 'package:dermabyte/Features/Doctor/View/e_doctor_view.dart';
-import 'package:dermabyte/Features/E-doctor/View/doctor_reservation_view.dart';
-import 'package:dermabyte/Features/E-doctor/View/doctor_schedule_view.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/doctor_reservation_view.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/doctor_schedule_view.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/lab_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/lab_details_view.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/service_selection_view.dart';

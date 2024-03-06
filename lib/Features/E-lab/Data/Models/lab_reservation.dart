@@ -1,4 +1,4 @@
-class LabReservation {
+class LabReservationModel {
   DateTime? date;
   String? patient;
   String? lab;
@@ -8,8 +8,7 @@ class LabReservation {
   DateTime? updatedAt;
   int? v;
 
-
-  LabReservation({
+  LabReservationModel({
     this.date,
     this.patient,
     this.lab,
@@ -20,8 +19,8 @@ class LabReservation {
     this.v,
   });
 
-  factory LabReservation.fromJson(Map<String, dynamic> json) {
-    return LabReservation(
+  factory LabReservationModel.fromJson(Map<String, dynamic> json) {
+    return LabReservationModel(
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       patient: json['patient'] as String?,

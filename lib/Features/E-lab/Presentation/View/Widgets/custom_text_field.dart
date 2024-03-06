@@ -11,12 +11,13 @@ class CustomTextField extends StatelessWidget {
       this.width,
       this.padding,
       required this.isrequired,
-      required this.keyboardType});
+      required this.keyboardType, this.controller});
   final String hintext;
   final double? width;
   final EdgeInsetsGeometry? padding;
   final TextInputType keyboardType;
   final bool isrequired;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,6 +50,7 @@ class CustomTextField extends StatelessWidget {
                   )
                 ]),
             child: TextFormField(
+              controller: controller,
               keyboardType: keyboardType,
               textInputAction: TextInputAction.next,
               cursorColor: AppColors.kPrimaryColor,

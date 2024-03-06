@@ -1,10 +1,9 @@
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+
 
 class LabItem extends StatelessWidget {
   const LabItem(
@@ -14,9 +13,10 @@ class LabItem extends StatelessWidget {
       required this.labSubTitle,
       required this.textButton,
       this.onTap,
+      this.onButtonPressed,
       this.width});
   final String iconCard, labTitle, labSubTitle, textButton;
-  final void Function()? onTap;
+  final void Function()? onTap,onButtonPressed;
   final double? width;
   @override
   Widget build(BuildContext context) {
@@ -68,10 +68,7 @@ class LabItem extends StatelessWidget {
                               const Expanded(flex: 3, child: SizedBox()),
                               CardButton(
                                 textButton: textButton,
-                                onPressed: () {
-                                  GoRouter.of(context)
-                                      .push(AppRoutes.kLabReservationView);
-                                },
+                                onPressed: onButtonPressed
                               ),
                               const Flexible(child: SizedBox(width: 8)),
                             ],

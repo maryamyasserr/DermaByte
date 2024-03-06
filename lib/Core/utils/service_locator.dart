@@ -27,6 +27,7 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<HistoryRepoImpl>(
       HistoryRepoImpl(getIt.get<ApiService>()));
+      
   getIt.registerSingleton<LabRepoImpl>(
     LabRepoImpl(
       getIt.get<ApiService>(),

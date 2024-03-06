@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-doctor/View/Widgets/doctor_item.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_item.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Profile/items_list_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Profile/profile_header_section.dart';
 import 'package:flutter/material.dart';

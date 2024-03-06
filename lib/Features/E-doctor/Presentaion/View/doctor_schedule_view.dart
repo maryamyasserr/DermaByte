@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/E-doctor/View/Widgets/doctor_schedule_body.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_schedule_body.dart';
 import 'package:flutter/material.dart';
 
 class DoctorScheduleView extends StatelessWidget {

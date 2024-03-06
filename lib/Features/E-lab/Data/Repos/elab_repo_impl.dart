@@ -29,13 +29,13 @@ class LabRepoImpl implements LabRepo {
   }
 
   @override
-  Future<Either<Failures, LabReservation>> createReservation(
+  Future<Either<Failures, LabReservationModel>> createReservation(
       {required body, @required String? token}) async {
     try {
       var reservation = await apiService.post(
           endPoint: "laboratories-reservations", data: body, token: token);
-      LabReservation labReservation =
-          LabReservation.fromJson(reservation['data']);
+      LabReservationModel labReservation =
+          LabReservationModel.fromJson(reservation);
       return right(labReservation);
     } catch (e) {
       if (e is DioException) {

@@ -3,8 +3,8 @@ import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-doctor/View/Widgets/doctor_item.dart';
-import 'package:dermabyte/Features/E-doctor/View_Model/E-Doctor%20Cubit/cubit/edoctor_cubit.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_item.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/E-Doctor%20Cubit/cubit/edoctor_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
