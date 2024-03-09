@@ -1,4 +1,5 @@
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/follow_up_body.dart';
+
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/follow_up_body.dart';
 import 'package:flutter/material.dart';
 
 class FollowUpView extends StatelessWidget {

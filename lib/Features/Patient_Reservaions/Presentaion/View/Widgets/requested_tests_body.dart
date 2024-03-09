@@ -1,9 +1,10 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/all_patient_tests.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/attack_field.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
+
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/all_patient_tests.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/attack_field.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';

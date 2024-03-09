@@ -4,10 +4,10 @@ import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +23,12 @@ class AppoinmentsBody extends StatefulWidget {
 class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
-    BlocProvider.of<PreservationInfoCubit>(context)
-        .getPatientReservationInfo(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id,
+    BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
+        id: BlocProvider.of<AuthCubit>(context).patient!.patient.id,
         token: BlocProvider.of<AuthCubit>(context).patient!.token);
-    BlocProvider.of<ReportCubit>(context)
-        .getPatientConults(id: "65dc8e92feeacbd13e5da2b6",token: BlocProvider.of<AuthCubit>(context).patient!.token);
+    BlocProvider.of<ReportCubit>(context).getPatientConults(
+        id: "65dc8e92feeacbd13e5da2b6",
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
   }
 
@@ -51,8 +52,8 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                   return ErrWidget(errMessage: state.errMessage);
                 } else if (state is PreservationInfoSuccess) {
                   if (state.pReservationInfo.isEmpty) {
-                    return const Center(
-                      child: Text("There are no Reservations yet"),
+                    return const Expanded(
+                      child: Center(child: Text("There are no Reservations yet")),
                     );
                   } else {
                     return Expanded(
@@ -72,7 +73,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                     BlocProvider.of<PreservationInfoCubit>(
                                                 context)
                                             .setId =
-                                        state.pReservationInfo[index].id ?? "";
+                                        state.pReservationInfo[index].id!; 
                                     BlocProvider.of<ReportCubit>(context)
                                             .setId =
                                         state.pReservationInfo[index]

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Appoinments/Data/Models/preservation_model/preservation_model.dart';
-import 'package:dermabyte/Features/Appoinments/Data/Repo/preservation_info_repo.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'preservation_info_state.dart';

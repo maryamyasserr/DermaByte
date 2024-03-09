@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
-import 'package:dermabyte/Features/Appoinments/Data/Models/preservation_model/preservation_model.dart';
-import 'package:dermabyte/Features/Appoinments/Data/Repo/preservation_info_repo.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo.dart';
 import 'package:dio/dio.dart';
 
 class PreservationInfoRepoImpl implements PreservationInfoRepo {

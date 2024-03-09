@@ -1,11 +1,10 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Appoinments/Data/Models/preservation_model/preservation_model.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/requested_tests_view.dart';
-import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
+
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/requested_tests_view.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/cupertino.dart';

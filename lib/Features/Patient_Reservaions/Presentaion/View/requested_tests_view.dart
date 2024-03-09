@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/requested_tests_body.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/requested_tests_body.dart';
 import 'package:flutter/material.dart';
 
 class RequestedTestsView extends StatelessWidget {
