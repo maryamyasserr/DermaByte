@@ -19,8 +19,32 @@ class ApiService {
       {required String endPoint,
       required Map data,
       @required String? token}) async {
-    _dio.options.headers = {'Content-Type': 'application/json'};
-    var response = await _dio.post('$_baseUlr$endPoint', data: data);
+    if (token != null) {
+      _dio.options.headers['Authorization'] = "Bearer $token";
+    } else {
+      _dio.options.headers.remove('Authorization');
+    }
+    _dio.options.headers = {
+      'Content-Type': "application/json",
+    };
+    var response = await _dio.post(
+      '$_baseUlr$endPoint',
+      data: data,
+    );
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> postWithMultiForm(
+      {required String endPoint,
+      required FormData data,
+      @required String? token}) async {
+        if (token != null) {
+      _dio.options.headers['Authorization'] = "Bearer $token";
+    } else {
+      _dio.options.headers.remove('Authorization');
+    }
+    var response = await _dio.post('$_baseUlr$endPoint',
+        data: data, options: Options(contentType: Headers.multipartFormDataContentType));
     return response.data;
   }
 

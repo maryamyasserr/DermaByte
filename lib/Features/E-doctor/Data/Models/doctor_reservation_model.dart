@@ -1,6 +1,6 @@
 class DoctorReservationModel {
   DateTime? date;
-  List<String>? uploadedTest;
+  List<dynamic>? uploadedTest;
   bool? reviewed;
   String? patient;
   String? dermatologist;
@@ -27,7 +27,7 @@ class DoctorReservationModel {
     return DoctorReservationModel(
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      uploadedTest: json['uploadedTest'] as List<String>?,
+      uploadedTest: json['uploadedTest'] as List<dynamic>?,
       reviewed: json['reviewed'] as bool?,
       patient: json['patient'] as String?,
       dermatologist: json['dermatologist'] as String?,

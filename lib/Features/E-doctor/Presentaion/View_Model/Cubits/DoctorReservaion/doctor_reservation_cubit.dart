@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/E-doctor/Data/Repos/edoctor_repo.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 part 'doctor_reservation_state.dart';
@@ -13,7 +14,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
   String? scanId, doctorId;
 
   Future<void> createReservation(
-      {required dynamic body, @required String? token}) async {
+      {required FormData body, @required String? token}) async {
     emit(DoctorReservationLoading());
     isLoading = true;
     var reservation =

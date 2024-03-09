@@ -28,11 +28,11 @@ class EdoctorRepoImpl implements EdoctorRepo {
 
   @override
   Future<Either<Failures, DoctorReservationModel>> createReservaion(
-      {required body, String? token}) async {
+      {required FormData body, String? token}) async {
     try {
-      var response = await apiService.post(
+      var response = await apiService.postWithMultiForm(
           endPoint: "Dermatologist-reservation", data: body, token: token);
-      DoctorReservationModel doctorReservation = response["data"];
+      DoctorReservationModel doctorReservation = DoctorReservationModel.fromJson(response["data"]);
       return right(doctorReservation);
     } catch (e) {
       if (e is DioException) {

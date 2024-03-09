@@ -46,9 +46,12 @@ class CustomCard extends StatelessWidget {
                 const SizedBox(height: 16),
                 Expanded(
                   flex: 3,
-                  child: CardText(
-                    cardTitle: cardTitle,
-                    cardSubTitle: cardSubTitle,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 3),
+                    child: CardText(
+                      cardTitle: cardTitle,
+                      cardSubTitle: cardSubTitle,
+                    ),
                   ),
                 ),
                 Expanded(

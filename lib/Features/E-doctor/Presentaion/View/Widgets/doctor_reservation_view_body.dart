@@ -2,11 +2,13 @@ import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/all_patient_scans.dart';
 import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/attach_doctor_reservation.dart';
 import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_reservaion_button.dart';
 import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -59,23 +61,6 @@ class DoctorReservationViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: mediaQuery.height * 0.035),
-              // CustomTextField(
-              //     hintext: 'First Name',
-              //     width: mediaQuery.height * 0.5,
-              //     isrequired: true,
-              //     padding: const EdgeInsets.only(right: 15),
-              //     keyboardType: TextInputType.name),
-              // const SizedBox(height: 8),
-              // CustomTextField(
-              //     hintext: 'Last Name',
-              //     width: mediaQuery.height * 0.5,
-              //     isrequired: true,
-              //     padding: const EdgeInsets.only(right: 15),
-              //     keyboardType: TextInputType.name),
-              // const SizedBox(height: 8),
-
-              // AdditionalInfo(mediaQuery: mediaQuery),
-
               CustomTextField(
                   hintext: 'When did you start noticing skin changes?',
                   width: mediaQuery.height * 0.5,
@@ -83,7 +68,6 @@ class DoctorReservationViewBody extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 15),
                   keyboardType: TextInputType.name),
               const SizedBox(height: 8),
-
               Stack(children: [
                 AttachDocotorReservaionField(
                     title: 'Add your scans',
@@ -110,16 +94,28 @@ class DoctorReservationViewBody extends StatelessWidget {
                   textButton: "Confirm",
                   onPressed: () async {
                     await BlocProvider.of<DoctorReservationCubit>(context)
-                        .createReservation(body: {
-                      "patient": "65dc8e92feeacbd13e5da2b6",
-                      "dermatologist":
-                          BlocProvider.of<DoctorReservationCubit>(context)
-                              .doctorId,
-                      "scan": BlocProvider.of<DoctorReservationCubit>(context)
-                          .scanId,
-                      "date": DateTime.now(),
-                      "uploadedTest": [imgPath],
-                    }, token: "");
+                        .createReservation(
+                            body: FormData.fromMap({
+                              "patient": BlocProvider.of<AuthCubit>(context)
+                                  .patient!
+                                  .patient
+                                  .id,
+                              "dermatologist":
+                                  BlocProvider.of<DoctorReservationCubit>(
+                                          context)
+                                      .doctorId,
+                              "scan": BlocProvider.of<DoctorReservationCubit>(
+                                      context)
+                                  .scanId,
+                              "date": DateTime.now().toIso8601String(),
+                              // "uploadedTest":
+                              //     await MultipartFile.fromFile(imgPath?.path??"")
+                              // Ensure the date is in a proper string format
+                              // Convert the image file path to a MultipartFile
+                            }),
+                            token: BlocProvider.of<AuthCubit>(context)
+                                .patient!
+                                .token);
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)
                       .isLoading)
@@ -127,42 +123,6 @@ class DoctorReservationViewBody extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class AdditionalInfo extends StatelessWidget {
-  const AdditionalInfo({
-    super.key,
-    required this.mediaQuery,
-  });
-
-  final Size mediaQuery;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CustomTextField(
-            hintext: 'Age',
-            width: mediaQuery.height * 0.14,
-            isrequired: true,
-            padding: const EdgeInsets.only(left: 80),
-            keyboardType: TextInputType.number),
-        CustomTextField(
-            hintext: 'City',
-            width: mediaQuery.height * 0.14,
-            isrequired: true,
-            padding: const EdgeInsets.only(left: 80),
-            keyboardType: TextInputType.name),
-        CustomTextField(
-            hintext: 'Country',
-            width: mediaQuery.height * 0.14,
-            isrequired: true,
-            padding: const EdgeInsets.only(left: 80),
-            keyboardType: TextInputType.name),
-      ],
     );
   }
 }
