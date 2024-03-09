@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/patient.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/required_text_form.dart';
@@ -132,14 +132,15 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                       firstName: SignUpPatientBody.firstNameController.text,
                       lastName: SignUpPatientBody.lastNameController.text,
                       age: 21,
-                      gender:SignUpPatientBody.genderController.text ,
-                      mobile: SignUpPatientBody.mobileController.text,
+                      gender: SignUpPatientBody.genderController.text,
+                      // mobile: SignUpPatientBody.mobileController.text,
                       city: 'madrid',
                       country: 'spain',
                       email: SignUpPatientBody.emailController.text,
                       password: SignUpPatientBody.passwordController.text,
-                      passwordConfirm:
-                          SignUpPatientBody.rePasswordController.text),
+                      // passwordConfirm:
+                      //     SignUpPatientBody.rePasswordController.text
+                          ),
                   token: '',
                   role: 'patient');
               setState(() {

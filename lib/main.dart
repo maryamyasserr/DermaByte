@@ -42,11 +42,10 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
               ..getPatientConults(id: "65dc8e92feeacbd13e5da2b6")),
+        BlocProvider(create: (context) => ELabCubit(getIt.get<LabRepoImpl>())),
         BlocProvider(
-          create: (context) => ELabCubit(getIt.get<LabRepoImpl>())
-        ),
-        BlocProvider(
-          create: (context) => DoctorReservationCubit(getIt.get<EdoctorRepoImpl>()),
+          create: (context) =>
+              DoctorReservationCubit(getIt.get<EdoctorRepoImpl>()),
         )
       ],
       child: MaterialApp.router(

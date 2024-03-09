@@ -1,9 +1,7 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/service_widget.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/show_dialog_body.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,16 +26,16 @@ class ServiceSelectionViewBody extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 50),
-              Text(
-                  'Add Your Tests Service.',
-                  style: Styels.textStyle18_600(context).copyWith(fontSize: 24),
-                ),
+            Text(
+              'Add Your Tests Service.',
+              style: Styels.textStyle18_600(context).copyWith(fontSize: 24),
+            ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 const Expanded(child: SizedBox()),
+                  const Expanded(child: SizedBox()),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //   children: [
@@ -97,4 +95,3 @@ class ServiceSelectionViewBody extends StatelessWidget {
     );
   }
 }
-

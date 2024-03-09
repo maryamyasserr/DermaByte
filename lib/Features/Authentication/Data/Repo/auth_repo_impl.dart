@@ -4,8 +4,8 @@ import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
-
-import 'package:dermabyte/Features/Authentication/Data/Models/patient_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/patient.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,5 +80,20 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failures, void>> signin() {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failures, PatientTokenModel>> signInAsPatient(
+      {required dynamic body}) async {
+    try {
+      var response = await apiService.post(endPoint: "auth/login", data: body,token: '');
+      PatientTokenModel patient = PatientTokenModel.fromJson(response);
+      return right(patient);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
   }
 }

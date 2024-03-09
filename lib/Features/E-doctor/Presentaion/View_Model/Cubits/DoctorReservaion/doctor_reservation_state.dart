@@ -17,5 +17,4 @@ final class DoctorReservationFailure extends DoctorReservationState {
   final String errMessage;
 
   DoctorReservationFailure({required this.errMessage});
-
 }

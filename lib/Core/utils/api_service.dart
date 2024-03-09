@@ -22,11 +22,14 @@ class ApiService {
     return response.data;
   }
 
-    Future<Map<String, dynamic>> postttt(
+  Future<Map<String, dynamic>> postttt(
       {required String endPoint,
       required Map data,
       @required String? token}) async {
-    _dio.options.headers = {'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'};
+    _dio.options.headers = {
+      'Content-Type':
+          'multipart/form-data; boundary=<calculated when request is sent>'
+    };
     var response = await _dio.post('$_baseUlr$endPoint', data: data);
     return response.data;
   }

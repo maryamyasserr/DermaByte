@@ -162,7 +162,7 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
             textButton: 'sign in',
             onPressed: () {
               // GoRouter.of(context).push(AppRoutes.kSignIn);
-               GoRouter.of(context).push(AppRoutes.kServiceSelectionView);
+              GoRouter.of(context).push(AppRoutes.kServiceSelectionView);
             },
           ),
         ]),

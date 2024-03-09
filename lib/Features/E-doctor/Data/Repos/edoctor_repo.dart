@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 abstract class EdoctorRepo {
   Future<Either<Failures, List<DoctorModel>>> getAllDoctors();
-  Future<Either<Failures, DoctorReservationModel>> createReservaion({
-    required dynamic body,@required String?token
-  });
+  Future<Either<Failures, DoctorReservationModel>> createReservaion(
+      {required dynamic body, @required String? token});
 }
