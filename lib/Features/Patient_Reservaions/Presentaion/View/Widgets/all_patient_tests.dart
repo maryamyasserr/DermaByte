@@ -66,8 +66,13 @@ class AllPatientTest extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<TestsCubit>(context)
-                        .getPatientTests(id:BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token);
+                    BlocProvider.of<TestsCubit>(context).getPatientTests(
+                        id: BlocProvider.of<AuthCubit>(context)
+                            .patient!
+                            .patient
+                            .id!,
+                        token:
+                            BlocProvider.of<AuthCubit>(context).patient!.token);
                   },
                   child: Text(
                     "Refresh",

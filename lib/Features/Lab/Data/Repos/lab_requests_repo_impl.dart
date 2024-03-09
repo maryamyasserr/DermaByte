@@ -12,8 +12,8 @@ class LabRequestsRepoImpl implements LabRequestsRepo {
   Future<Either<Failures, List<LabRequest>>> getLabRequests(
       {required id}) async {
     try {
-      var response =
-          await apiService.get(endPoint: 'labs/$id/laboratory-reservation',token: '');
+      var response = await apiService.get(
+          endPoint: 'labs/$id/laboratory-reservation', token: '');
       List<LabRequest> labs = [];
       for (var lab in response['data']) {
         labs.add(LabRequest.fromJson(lab));

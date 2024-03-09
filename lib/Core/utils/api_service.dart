@@ -38,13 +38,14 @@ class ApiService {
       {required String endPoint,
       required FormData data,
       @required String? token}) async {
-        if (token != null) {
+    if (token != null) {
       _dio.options.headers['Authorization'] = "Bearer $token";
     } else {
       _dio.options.headers.remove('Authorization');
     }
     var response = await _dio.post('$_baseUlr$endPoint',
-        data: data, options: Options(contentType: Headers.multipartFormDataContentType));
+        data: data,
+        options: Options(contentType: Headers.multipartFormDataContentType));
     return response.data;
   }
 

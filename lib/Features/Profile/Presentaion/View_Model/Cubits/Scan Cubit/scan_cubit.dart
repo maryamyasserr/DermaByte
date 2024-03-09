@@ -19,9 +19,10 @@ class ScanCubit extends Cubit<ScanState> {
   ScanModel get currentScan =>
       patientScans.firstWhere((scan) => (scan.id == _id));
 
-  Future<void> getPatientScan({required String id,required String token}) async {
+  Future<void> getPatientScan(
+      {required String id, required String token}) async {
     emit(ScanLoading());
-    var response = await scanRepo.getPatientScans(id: id,token: token);
+    var response = await scanRepo.getPatientScans(id: id, token: token);
     response
         .fold((failure) => emit(ScanFailure(errMessage: failure.errMessage)),
             (scans) {

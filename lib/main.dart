@@ -4,8 +4,8 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/utils/service_locator.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/E-doctor/Data/Repos/edoctor_repo_impl.dart';
-import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
@@ -35,13 +35,19 @@ class DermaByte extends StatelessWidget {
                 PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())),
         BlocProvider(
             create: (context) => ScanCubit(getIt.get<HistoryRepoImpl>())
-              ..getPatientScan(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token)),
+              ..getPatientScan(
+                  id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,
+                  token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(
             create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>())
-              ..getPatientTests(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token)),
+              ..getPatientTests(
+                  id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,
+                  token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(
             create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
-              ..getPatientConults(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token)),
+              ..getPatientConults(
+                  id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,
+                  token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(create: (context) => ELabCubit(getIt.get<LabRepoImpl>())),
         BlocProvider(
           create: (context) =>

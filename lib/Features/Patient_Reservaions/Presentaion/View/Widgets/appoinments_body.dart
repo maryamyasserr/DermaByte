@@ -53,7 +53,8 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                 } else if (state is PreservationInfoSuccess) {
                   if (state.pReservationInfo.isEmpty) {
                     return const Expanded(
-                      child: Center(child: Text("There are no Reservations yet")),
+                      child:
+                          Center(child: Text("There are no Reservations yet")),
                     );
                   } else {
                     return Expanded(
@@ -73,7 +74,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                     BlocProvider.of<PreservationInfoCubit>(
                                                 context)
                                             .setId =
-                                        state.pReservationInfo[index].id!; 
+                                        state.pReservationInfo[index].id!;
                                     BlocProvider.of<ReportCubit>(context)
                                             .setId =
                                         state.pReservationInfo[index]

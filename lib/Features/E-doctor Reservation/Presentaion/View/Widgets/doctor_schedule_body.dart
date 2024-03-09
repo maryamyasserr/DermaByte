@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/custom_days_bottom_sheet.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/custom_days_bottom_sheet.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

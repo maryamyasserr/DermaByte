@@ -4,8 +4,8 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_item.dart';
-import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/doctor_item.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +23,12 @@ class AllPatientScans extends StatefulWidget {
 class _AllPatientScansState extends State<AllPatientScans> {
   @override
   void initState() {
-    BlocProvider.of<ScanCubit>(context).getPatientScan(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token);
+    BlocProvider.of<ScanCubit>(context).getPatientScan(
+        id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScanCubit, ScanState>(builder: (context, state) {
@@ -83,8 +86,13 @@ class _AllPatientScansState extends State<AllPatientScans> {
               const SizedBox(height: 16),
               ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<ScanCubit>(context)
-                        .getPatientScan(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token);
+                    BlocProvider.of<ScanCubit>(context).getPatientScan(
+                        id: BlocProvider.of<AuthCubit>(context)
+                            .patient!
+                            .patient
+                            .id!,
+                        token:
+                            BlocProvider.of<AuthCubit>(context).patient!.token);
                   },
                   child: Text(
                     "Refresh",

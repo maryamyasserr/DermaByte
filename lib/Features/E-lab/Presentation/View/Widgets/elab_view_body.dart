@@ -22,7 +22,8 @@ class _ElabViewBodyState extends State<ElabViewBody> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ELabCubit>(context).getAllLabs(token: BlocProvider.of<AuthCubit>(context).patient!.token);
+    BlocProvider.of<ELabCubit>(context)
+        .getAllLabs(token: BlocProvider.of<AuthCubit>(context).patient!.token);
   }
 
   @override

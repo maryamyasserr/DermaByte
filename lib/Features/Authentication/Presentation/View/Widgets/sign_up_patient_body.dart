@@ -129,18 +129,18 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
               await BlocProvider.of<AuthCubit>(context).signUp(
                   context: context,
                   data: PatientModel(
-                      firstName: SignUpPatientBody.firstNameController.text,
-                      lastName: SignUpPatientBody.lastNameController.text,
-                      age: 21,
-                      gender: SignUpPatientBody.genderController.text,
-                      // mobile: SignUpPatientBody.mobileController.text,
-                      city: 'madrid',
-                      country: 'spain',
-                      email: SignUpPatientBody.emailController.text,
-                      password: SignUpPatientBody.passwordController.text,
-                      // passwordConfirm:
-                      //     SignUpPatientBody.rePasswordController.text
-                          ),
+                    firstName: SignUpPatientBody.firstNameController.text,
+                    lastName: SignUpPatientBody.lastNameController.text,
+                    age: 21,
+                    gender: SignUpPatientBody.genderController.text,
+                    // mobile: SignUpPatientBody.mobileController.text,
+                    city: 'madrid',
+                    country: 'spain',
+                    email: SignUpPatientBody.emailController.text,
+                    password: SignUpPatientBody.passwordController.text,
+                    // passwordConfirm:
+                    //     SignUpPatientBody.rePasswordController.text
+                  ),
                   token: '',
                   role: 'patient');
               setState(() {

@@ -22,8 +22,6 @@ abstract class AuthRepo {
       {required LabModel data,
       @required String? token,
       required BuildContext context});
-  Future<Either<Failures, PatientTokenModel>> signInAsPatient({
-    required dynamic body,
-    required BuildContext context
-  });
+  Future<Either<Failures, PatientTokenModel>> signInAsPatient(
+      {required dynamic body, required BuildContext context});
 }

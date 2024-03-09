@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/patient_consults_model/patient_consults_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -10,9 +10,10 @@ class ReportCubit extends Cubit<ReportState> {
   HistoryRepo historyRepo;
   List<ReportModel> patientConsults = [];
   String? _id;
-  Future<void> getPatientConults({required String id,required String token}) async {
+  Future<void> getPatientConults(
+      {required String id, required String token}) async {
     emit(ReportLoading());
-    var consults = await historyRepo.getPatientConsults(id: id,token: token);
+    var consults = await historyRepo.getPatientConsults(id: id, token: token);
     consults.fold((failure) {
       emit(ReportFailure(errMessage: failure.errMessage));
     }, (consults) {

@@ -21,8 +21,9 @@ class _CustomTabBarState extends State<CustomTabBar>
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
-    BlocProvider.of<TestsCubit>(context)
-        .getPatientTests(id: "65dc8e92feeacbd13e5da2b6",token: BlocProvider.of<AuthCubit>(context).patient!.token);
+    BlocProvider.of<TestsCubit>(context).getPatientTests(
+        id: "65dc8e92feeacbd13e5da2b6",
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
 
     super.initState();
   }

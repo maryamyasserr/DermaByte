@@ -1,17 +1,11 @@
 class Patient {
-  String? id;
   String? firstName;
   String? lastName;
   int? age;
   String? photo;
+  String? id;
 
-  Patient({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.age,
-    this.photo,
-  });
+  Patient({this.firstName, this.lastName, this.age, this.photo, this.id});
 
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(
         firstName: json['firstName'] as String?,
