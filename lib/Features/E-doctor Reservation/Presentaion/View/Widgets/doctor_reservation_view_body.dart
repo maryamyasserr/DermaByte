@@ -11,23 +11,28 @@ import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_f
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mime/mime.dart';
 
 class DoctorReservationViewBody extends StatelessWidget {
   const DoctorReservationViewBody({
     super.key,
   });
 
-  static XFile? imgPath;
-
+  static String? imgPath;
   Future<void> uploadPicture(BuildContext context) async {
     final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      imgPath = pickedFile;
+      imgPath = pickedFile.path;
+      print('Selected image path: ${imgPath!}');
     }
   }
+
+  static String mimeType = lookupMimeType(imgPath!)!;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,7 @@ class DoctorReservationViewBody extends StatelessWidget {
       listener: (context, state) {
         if (state is DoctorReservationFailure) {
           showSnackBar(context, state.errMessage);
+          print(state.errMessage);
         } else if (state is DoctorReservationSuccess) {
           showSnackBar(context, "done");
         }
@@ -95,7 +101,7 @@ class DoctorReservationViewBody extends StatelessWidget {
                   onPressed: () async {
                     await BlocProvider.of<DoctorReservationCubit>(context)
                         .createReservation(
-                            body: FormData.fromMap({
+                          body: FormData.fromMap({
                               "patient": BlocProvider.of<AuthCubit>(context)
                                   .patient!
                                   .patient
@@ -108,11 +114,15 @@ class DoctorReservationViewBody extends StatelessWidget {
                                       context)
                                   .scanId,
                               "date": DateTime.now().toIso8601String(),
-                              // "uploadedTest":
-                              //     await MultipartFile.fromFile(imgPath?.path??"")
-                              // Ensure the date is in a proper string format
-                              // Convert the image file path to a MultipartFile
-                            }),
+                              // "uploadedTest": await MultipartFile.fromFile(
+                              //     imgPath!,
+                              //     filename: imgPath!
+                              //         .split('/')
+                              //         .last, // Extracts the filename from the path
+                              //     contentType: MediaType.parse(mimeType))
+                            }) ,
+                            
+                            
                             token: BlocProvider.of<AuthCubit>(context)
                                 .patient!
                                 .token);

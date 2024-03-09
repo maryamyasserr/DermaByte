@@ -4,7 +4,6 @@ import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Models/doctor_reservation_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dio/dio.dart';
 
 class EdoctorRepoImpl implements EdoctorRepo {
@@ -46,19 +45,4 @@ class EdoctorRepoImpl implements EdoctorRepo {
     }
   }
 
-  @override
-  Future<Either<Failures, ReportModel>> createrPatientReport(
-      {required dynamic body, required String token}) async {
-    try {
-      var response =
-          await apiService.post(endPoint: "reports", data: body, token: token);
-      ReportModel report = ReportModel.fromJson(response['data']);
-      return right(report);
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
-      }
-      return left(ServerFailure(errMessage: e.toString()));
-    }
-  }
 }

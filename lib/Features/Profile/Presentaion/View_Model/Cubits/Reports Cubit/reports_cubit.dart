@@ -24,7 +24,7 @@ class ReportCubit extends Cubit<ReportState> {
 
   set setId(String id) {
     _id = id;
-  }
+  } 
 
   ReportModel get patientReport =>
       patientConsults.firstWhere((report) => report.dermatologist!.id == _id);
