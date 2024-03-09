@@ -6,9 +6,11 @@ class ApiService {
   final _baseUlr = 'https://dermabyte-apis.onrender.com/api/v1/';
   final Dio _dio;
 
-  Future<Map<String, dynamic>> get({required String endPoint}) async {
+  Future<Map<String, dynamic>> get(
+      {required String endPoint, required String token}) async {
     _dio.options.connectTimeout = const Duration(milliseconds: 15000);
     _dio.options.receiveTimeout = const Duration(milliseconds: 15000);
+    _dio.options.headers = {"Authorization": "Bearer $token"};
     Response response = await _dio.get('$_baseUlr$endPoint');
     return response.data;
   }

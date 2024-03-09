@@ -38,14 +38,14 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failures, PatientModel>> signUpAsPatient(
+  Future<Either<Failures, PatientTokenModel>> signUpAsPatient(
       {required PatientModel data,
       @required String? token,
       required BuildContext context}) async {
     try {
       var response = await apiService.post(
           endPoint: 'patients', data: data.toJson(), token: token);
-      PatientModel patient = PatientModel.fromJson(response['data']);
+      PatientTokenModel patient = PatientTokenModel.fromJson(response);
       GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
       return right(patient);
     } catch (e) {
@@ -84,10 +84,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, PatientTokenModel>> signInAsPatient(
-      {required dynamic body}) async {
+      {required dynamic body, required BuildContext context}) async {
     try {
-      var response = await apiService.post(endPoint: "auth/login", data: body,token: '');
+      var response =
+          await apiService.post(endPoint: "auth/login", data: body, token: '');
       PatientTokenModel patient = PatientTokenModel.fromJson(response);
+      GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
       return right(patient);
     } catch (e) {
       if (e is DioException) {

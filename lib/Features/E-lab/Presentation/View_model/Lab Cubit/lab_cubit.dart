@@ -12,9 +12,9 @@ class ELabCubit extends Cubit<LabState> {
   List<LabModel> allLabs = [];
   String? _id;
 
-  Future<void> getAllLabs() async {
+  Future<void> getAllLabs({required String token}) async {
     emit(LabLoading());
-    var response = await labRepo.getAllLabs();
+    var response = await labRepo.getAllLabs(token: token);
     response.fold((failure) {
       emit(LabFailure(errMessage: failure.errMessage));
     }, (labs) {

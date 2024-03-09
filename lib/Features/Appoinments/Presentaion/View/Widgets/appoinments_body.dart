@@ -7,6 +7,7 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +24,10 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
     BlocProvider.of<PreservationInfoCubit>(context)
-        .getPatientReservationInfo(id: "65dc8e92feeacbd13e5da2b6");
+        .getPatientReservationInfo(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id,
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
     BlocProvider.of<ReportCubit>(context)
-        .getPatientConults(id: "65dc8e92feeacbd13e5da2b6");
+        .getPatientConults(id: "65dc8e92feeacbd13e5da2b6",token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
   }
 

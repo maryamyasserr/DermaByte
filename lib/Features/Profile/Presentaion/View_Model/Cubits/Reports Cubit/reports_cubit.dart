@@ -10,9 +10,9 @@ class ReportCubit extends Cubit<ReportState> {
   HistoryRepo historyRepo;
   List<ReportModel> patientConsults = [];
   String? _id;
-  Future<void> getPatientConults({required String id}) async {
+  Future<void> getPatientConults({required String id,required String token}) async {
     emit(ReportLoading());
-    var consults = await historyRepo.getPatientConsults(id: id);
+    var consults = await historyRepo.getPatientConsults(id: id,token: token);
     consults.fold((failure) {
       emit(ReportFailure(errMessage: failure.errMessage));
     }, (consults) {

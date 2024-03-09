@@ -13,9 +13,9 @@ class HistoryRepoImpl implements HistoryRepo {
   HistoryRepoImpl(this.apiService);
   @override
   Future<Either<Failures, List<ScanModel>>> getPatientScans(
-      {required String id}) async {
+      {required String id,required String token}) async {
     try {
-      var response = await apiService.get(endPoint: 'patients/$id/scans');
+      var response = await apiService.get(endPoint: 'patients/$id/scans',token: token);
       List<ScanModel> scans = [];
       for (var scan in response['data']) {
         scans.add(ScanModel.fromJson(scan));
@@ -31,9 +31,9 @@ class HistoryRepoImpl implements HistoryRepo {
 
   @override
   Future<Either<Failures, List<TestModel>>> getPatientTests(
-      {required String id}) async {
+      {required String id,required String token}) async {
     try {
-      var response = await apiService.get(endPoint: "patients/$id/results");
+      var response = await apiService.get(endPoint: "patients/$id/results",token: token);
       List<TestModel> patientTests = [];
       for (var test in response['data']) {
         patientTests.add(TestModel.fromJson(test));
@@ -49,9 +49,9 @@ class HistoryRepoImpl implements HistoryRepo {
 
   @override
   Future<Either<Failures, List<ReportModel>>> getPatientConsults(
-      {required String id}) async {
+      {required String id,required String token }) async {
     try {
-      var response = await apiService.get(endPoint: "patients/$id/reports");
+      var response = await apiService.get(endPoint: "patients/$id/reports",token: token);
       List<ReportModel> consults = [];
       for (var consultaion in response['data']) {
         consults.add(ReportModel.fromJson(consultaion));

@@ -5,7 +5,7 @@ import 'package:dermabyte/Features/E-doctor/Data/Models/doctor_reservation_model
 import 'package:flutter/material.dart';
 
 abstract class EdoctorRepo {
-  Future<Either<Failures, List<DoctorModel>>> getAllDoctors();
+  Future<Either<Failures, List<DoctorModel>>> getAllDoctors({required String token});
   Future<Either<Failures, DoctorReservationModel>> createReservaion(
       {required dynamic body, @required String? token});
 }

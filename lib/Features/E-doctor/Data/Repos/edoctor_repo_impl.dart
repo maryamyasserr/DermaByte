@@ -10,9 +10,9 @@ class EdoctorRepoImpl implements EdoctorRepo {
   EdoctorRepoImpl(this.apiService);
   ApiService apiService;
   @override
-  Future<Either<Failures, List<DoctorModel>>> getAllDoctors() async {
+  Future<Either<Failures, List<DoctorModel>>> getAllDoctors({required String token}) async {
     try {
-      var response = await apiService.get(endPoint: 'dermatologists');
+      var response = await apiService.get(endPoint: 'dermatologists',token:token);
       List<DoctorModel> doctors = [];
       for (var doctor in response['data']) {
         doctors.add(DoctorModel.fromJson(doctor));

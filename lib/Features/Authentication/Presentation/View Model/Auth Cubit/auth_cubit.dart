@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/patient.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 part 'auth_state.dart';
 
@@ -11,11 +12,11 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.authRepo) : super(AuthInitial());
   AuthRepo authRepo;
 
-  PatientModel? patientModel;
+  PatientTokenModel? patient;
   DoctorModel? doctorModel;
   LabModel? labModel;
 
-  String? patientToken;
+  bool isLoding = false;
 
   Future<void> signUp(
       {required dynamic data,
@@ -28,8 +29,8 @@ class AuthCubit extends Cubit<AuthState> {
           data: data, token: token, context: context);
       response.fold((failure) {
         emit(AuthFailure(errMessage: failure.errMessage));
-      }, (patient) {
-        patientModel = patient;
+      }, (patientData) {
+        patient = patientData;
         emit(AuthSuccess());
       });
     } else if (role == 'doctor') {
@@ -51,5 +52,20 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthSuccess());
       });
     }
+  }
+
+  Future<void> signIn(
+      {required dynamic body, required BuildContext context}) async {
+    emit(AuthLoading());
+    isLoding = true;
+    var response = await authRepo.signInAsPatient(body: body, context: context);
+    response.fold((failure) {
+      emit(AuthFailure(errMessage: failure.errMessage));
+      isLoding = false;
+    }, (patientData) {
+      emit(AuthSuccess());
+      patient = patientData;
+      isLoding = false;
+    });
   }
 }

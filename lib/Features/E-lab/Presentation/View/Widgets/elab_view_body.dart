@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_item.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ELabCubit>(context).getAllLabs();
+    BlocProvider.of<ELabCubit>(context).getAllLabs(token: BlocProvider.of<AuthCubit>(context).patient!.token);
   }
 
   @override

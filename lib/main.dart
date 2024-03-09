@@ -35,13 +35,13 @@ class DermaByte extends StatelessWidget {
                 PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())),
         BlocProvider(
             create: (context) => ScanCubit(getIt.get<HistoryRepoImpl>())
-              ..getPatientScan(id: "65dc8e92feeacbd13e5da2b6")),
+              ..getPatientScan(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(
             create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>())
-              ..getPatientTests(id: "65dc8e92feeacbd13e5da2b6")),
+              ..getPatientTests(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(
             create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
-              ..getPatientConults(id: "65dc8e92feeacbd13e5da2b6")),
+              ..getPatientConults(id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(create: (context) => ELabCubit(getIt.get<LabRepoImpl>())),
         BlocProvider(
           create: (context) =>

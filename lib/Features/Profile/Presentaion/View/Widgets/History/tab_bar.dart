@@ -1,5 +1,6 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_consults.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_scans.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/patient_tests.dart';
@@ -21,7 +22,7 @@ class _CustomTabBarState extends State<CustomTabBar>
   void initState() {
     tabController = TabController(length: 3, vsync: this);
     BlocProvider.of<TestsCubit>(context)
-        .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
+        .getPatientTests(id: "65dc8e92feeacbd13e5da2b6",token: BlocProvider.of<AuthCubit>(context).patient!.token);
 
     super.initState();
   }

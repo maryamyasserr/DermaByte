@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Appoinments/Presentaion/View/Widgets/custom_card.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +67,7 @@ class AllPatientTest extends StatelessWidget {
               ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<TestsCubit>(context)
-                        .getPatientTests(id: "65dc8e92feeacbd13e5da2b6");
+                        .getPatientTests(id:BlocProvider.of<AuthCubit>(context).patient!.patient.id!,token: BlocProvider.of<AuthCubit>(context).patient!.token);
                   },
                   child: Text(
                     "Refresh",

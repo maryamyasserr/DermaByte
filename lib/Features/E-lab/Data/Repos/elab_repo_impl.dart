@@ -11,9 +11,9 @@ class LabRepoImpl implements LabRepo {
   ApiService apiService;
   LabRepoImpl(this.apiService);
   @override
-  Future<Either<Failures, List<LabModel>>> getAllLabs() async {
+  Future<Either<Failures, List<LabModel>>> getAllLabs({required String token}) async {
     try {
-      var response = await apiService.get(endPoint: 'labs');
+      var response = await apiService.get(endPoint: 'labs',token: token);
       List<LabModel> labs = [];
       for (var lab in response['data']) {
         labs.add(LabModel.fromJson(lab));

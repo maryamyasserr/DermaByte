@@ -5,7 +5,7 @@ import 'package:dermabyte/Features/E-lab/Data/Models/lab_reservation.dart';
 import 'package:flutter/material.dart';
 
 abstract class LabRepo {
-  Future<Either<Failures, List<LabModel>>> getAllLabs();
+  Future<Either<Failures, List<LabModel>>> getAllLabs({required String token});
   Future<Either<Failures, LabReservationModel>> createReservation(
       {required dynamic body, @required String? token});
 }

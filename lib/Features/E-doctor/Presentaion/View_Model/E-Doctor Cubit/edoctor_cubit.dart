@@ -8,9 +8,9 @@ part 'edoctor_state.dart';
 class EdoctorCubit extends Cubit<EdoctorState> {
   EdoctorRepo edoctorRepo;
   EdoctorCubit(this.edoctorRepo) : super(EdoctorInitial());
-  Future<void> getAllDoctors() async {
+  Future<void> getAllDoctors({required String token}) async {
     emit(EdoctorLoading());
-    var response = await edoctorRepo.getAllDoctors();
+    var response = await edoctorRepo.getAllDoctors(token: token);
     response.fold((failure) {
       emit(EdoctorFailure(errMessage: failure.errMessage));
     }, (doctors) {
