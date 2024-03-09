@@ -129,15 +129,6 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
             controller: SignUpLabBody.locationController,
           ),
           SizedBox(height: mediaQuery.height * 0.04),
-          ElevatedButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRoutes.kServiceSelectionView);
-              },
-              child: const Text(
-                "Choose Your Services",
-                style: TextStyle(fontSize: 20),
-              )),
-          SizedBox(height: mediaQuery.height * 0.01),
           SignButton(
               isLoading: isLoading,
               buttonName: 'Sign Up',
@@ -170,7 +161,8 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
             text: 'Already have an account?',
             textButton: 'sign in',
             onPressed: () {
-              GoRouter.of(context).push(AppRoutes.kSignIn);
+              // GoRouter.of(context).push(AppRoutes.kSignIn);
+               GoRouter.of(context).push(AppRoutes.kServiceSelectionView);
             },
           ),
         ]),

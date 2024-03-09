@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
@@ -105,7 +103,6 @@ class DoctorReservationViewBody extends StatelessWidget {
                   title: "Add your lab tests",
                   onTap: () {
                     uploadPicture(context);
-                    print(imgPath);
                   }),
               const SizedBox(height: 32),
               DoctorButton(
