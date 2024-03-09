@@ -3,7 +3,6 @@ import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/button.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_scans_bottom_sheet.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_reservation_form.dart';
@@ -26,11 +25,12 @@ class LabReservationViewBody extends StatefulWidget {
 class _LabReservationViewBodyState extends State<LabReservationViewBody> {
   List<String> selectedTests = [];
 
-  void showTests({required List<String> tests}) async {
+  void showTests(
+      {required List<String> tests, required void Function() onTap}) async {
     final List<String>? results = await showDialog(
         context: context,
         builder: (BuildContext contex) {
-          return CustomScanBottomSheet(tests: tests);
+          return CustomScanBottomSheet(onTap: onTap, tests: tests);
         });
 
     if (results != null) {
@@ -114,7 +114,8 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                   bottom: 18,
                                   child: InkWell(
                                       onTap: () {
-                                        showTests(tests: labTests);
+                                        showTests(
+                                            tests: labTests, onTap: () {});
                                       },
                                       child: SvgPicture.asset(
                                           'assets/images/bottom_sheet_icon.svg'))),

@@ -11,7 +11,8 @@ class CustomTextField extends StatelessWidget {
       this.width,
       this.padding,
       required this.isrequired,
-      required this.keyboardType, this.controller});
+      required this.keyboardType,
+      this.controller});
   final String hintext;
   final double? width;
   final EdgeInsetsGeometry? padding;

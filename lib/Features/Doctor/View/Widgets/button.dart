@@ -3,11 +3,12 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-  const MyButton(
-      {super.key,
-      required this.horizontal,
-      required this.textButton,
-      required this.onPressed, });
+  const MyButton({
+    super.key,
+    required this.horizontal,
+    required this.textButton,
+    required this.onPressed,
+  });
   final double horizontal;
   final String textButton;
   final void Function()? onPressed;
@@ -20,8 +21,7 @@ class MyButton extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             backgroundColor: AppColors.kPrimaryColor),
-        child: 
-         Text(
+        child: Text(
           textButton,
           style: Styels.textStyle24_600(context)
               .copyWith(fontSize: 20, color: Colors.white),

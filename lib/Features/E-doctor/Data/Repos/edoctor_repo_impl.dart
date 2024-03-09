@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
+import 'package:dermabyte/Features/E-doctor/Data/Models/doctor_reservation_model.dart';
 import 'package:dermabyte/Features/E-doctor/Data/Repos/edoctor_repo.dart';
 import 'package:dio/dio.dart';
 
@@ -17,6 +18,22 @@ class EdoctorRepoImpl implements EdoctorRepo {
         doctors.add(DoctorModel.fromJson(doctor));
       }
       return (right(doctors));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, DoctorReservationModel>> createReservaion(
+      {required body, String? token}) async {
+    try {
+      var response = await apiService.post(
+          endPoint: "Dermatologist-reservation", data: body, token: token);
+      DoctorReservationModel doctorReservation = response["data"];
+      return right(doctorReservation);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

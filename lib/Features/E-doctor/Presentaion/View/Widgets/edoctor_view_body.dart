@@ -5,7 +5,8 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_item.dart';
-import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/E-Doctor%20Cubit/cubit/edoctor_cubit.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/E-Doctor%20Cubit/edoctor_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -61,10 +62,12 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                         padding: const EdgeInsets.only(bottom: 24),
                         child: DoctorItem(
                           iconCard: Assets.kWomanIcon,
-                          doctorTitle: state.doctors[index].firstName!,
-                          doctorSubTitle:
+                          title: state.doctors[index].firstName!,
+                          subTitle:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                           onPressed: () {
+                            BlocProvider.of<DoctorReservationCubit>(context)
+                                .doctorId = state.doctors[index].id;
                             GoRouter.of(context)
                                 .push(AppRoutes.kDoctorReservationView);
                           },

@@ -7,8 +7,8 @@ class ApiService {
   final Dio _dio;
 
   Future<Map<String, dynamic>> get({required String endPoint}) async {
-    _dio.options.connectTimeout = const Duration(milliseconds: 10000);
-    _dio.options.receiveTimeout = const Duration(milliseconds: 10000);
+    _dio.options.connectTimeout = const Duration(milliseconds: 15000);
+    _dio.options.receiveTimeout = const Duration(milliseconds: 15000);
     Response response = await _dio.get('$_baseUlr$endPoint');
     return response.data;
   }
@@ -18,6 +18,15 @@ class ApiService {
       required Map data,
       @required String? token}) async {
     _dio.options.headers = {'Content-Type': 'application/json'};
+    var response = await _dio.post('$_baseUlr$endPoint', data: data);
+    return response.data;
+  }
+
+    Future<Map<String, dynamic>> postttt(
+      {required String endPoint,
+      required Map data,
+      @required String? token}) async {
+    _dio.options.headers = {'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'};
     var response = await _dio.post('$_baseUlr$endPoint', data: data);
     return response.data;
   }

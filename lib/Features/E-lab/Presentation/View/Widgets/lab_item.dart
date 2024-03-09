@@ -4,7 +4,6 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class LabItem extends StatelessWidget {
   const LabItem(
       {super.key,
@@ -16,7 +15,7 @@ class LabItem extends StatelessWidget {
       this.onButtonPressed,
       this.width});
   final String iconCard, labTitle, labSubTitle, textButton;
-  final void Function()? onTap,onButtonPressed;
+  final void Function()? onTap, onButtonPressed;
   final double? width;
   @override
   Widget build(BuildContext context) {
@@ -67,9 +66,8 @@ class LabItem extends StatelessWidget {
                               SvgPicture.asset('assets/images/star_icon.svg'),
                               const Expanded(flex: 3, child: SizedBox()),
                               CardButton(
-                                textButton: textButton,
-                                onPressed: onButtonPressed
-                              ),
+                                  textButton: textButton,
+                                  onPressed: onButtonPressed),
                               const Flexible(child: SizedBox(width: 8)),
                             ],
                           ),

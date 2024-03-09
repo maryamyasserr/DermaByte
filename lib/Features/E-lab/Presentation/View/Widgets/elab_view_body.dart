@@ -68,11 +68,11 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                                 state.labs[index].id!;
                             GoRouter.of(context).push(AppRoutes.kLabDetails);
                           },
-                          onButtonPressed: (){
+                          onButtonPressed: () {
                             BlocProvider.of<ELabCubit>(context).setId =
                                 state.labs[index].id!;
-                              GoRouter.of(context)
-                                      .push(AppRoutes.kLabReservationView);
+                            GoRouter.of(context)
+                                .push(AppRoutes.kLabReservationView);
                           },
                           textButton: 'Reserve',
                         ),

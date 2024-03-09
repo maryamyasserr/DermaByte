@@ -20,9 +20,8 @@ class SignUpPatientBody extends StatefulWidget {
   static TextEditingController firstNameController = TextEditingController();
   static TextEditingController lastNameController = TextEditingController();
   static TextEditingController mobileController = TextEditingController();
-  static TextEditingController dayController = TextEditingController();
-  static TextEditingController monthController = TextEditingController();
-  static TextEditingController yearController = TextEditingController();
+  static TextEditingController ageController = TextEditingController();
+  static TextEditingController genderController = TextEditingController();
   const SignUpPatientBody({super.key});
 
   @override
@@ -114,8 +113,12 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
 
           SizedBox(height: mediaQuery.height * 0.008),
           RequiredTextForm(
-              label: 'age', controller: SignUpPatientBody.dayController),
+              label: 'age', controller: SignUpPatientBody.ageController),
+          SizedBox(height: mediaQuery.height * 0.008),
+          RequiredTextForm(
+              label: 'gender', controller: SignUpPatientBody.genderController),
           SizedBox(height: mediaQuery.height * 0.04),
+
           SignButton(
             isLoading: isLoading,
             buttonName: 'Sign Up',
@@ -129,6 +132,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                       firstName: SignUpPatientBody.firstNameController.text,
                       lastName: SignUpPatientBody.lastNameController.text,
                       age: 21,
+                      gender:SignUpPatientBody.genderController.text ,
                       mobile: SignUpPatientBody.mobileController.text,
                       city: 'madrid',
                       country: 'spain',

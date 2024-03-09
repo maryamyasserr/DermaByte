@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomScanBottomSheet extends StatefulWidget {
+  const CustomScanBottomSheet(
+      {super.key, required this.tests, required this.onTap});
   final List<String> tests;
-  const CustomScanBottomSheet({super.key, required this.tests});
+  final void Function() onTap;
 
   @override
   State<CustomScanBottomSheet> createState() => _CustomScanBottomSheetState();
@@ -35,11 +37,15 @@ class _CustomScanBottomSheetState extends State<CustomScanBottomSheet> {
       content: SingleChildScrollView(
         child: ListBody(
             children: widget.tests
-                .map((tests) => CheckboxListTile(
-                      value: selectedTests.contains(tests),
-                      title: Text(tests),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      onChanged: (isChecked) => changeSelect(tests, isChecked!),
+                .map((tests) => GestureDetector(
+                      onTap: widget.onTap,
+                      child: CheckboxListTile(
+                        value: selectedTests.contains(tests),
+                        title: Text(tests),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        onChanged: (isChecked) =>
+                            changeSelect(tests, isChecked!),
+                      ),
                     ))
                 .toList()),
       ),

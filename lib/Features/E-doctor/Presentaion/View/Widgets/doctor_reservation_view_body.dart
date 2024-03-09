@@ -1,129 +1,171 @@
+import 'dart:io';
+
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
+import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/all_patient_scans.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/attach_doctor_reservation.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View/Widgets/doctor_reservaion_button.dart';
+import 'package:dermabyte/Features/E-doctor/Presentaion/View_Model/Cubits/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
-class DoctorReservationViewBody extends StatefulWidget {
-  const DoctorReservationViewBody({super.key});
+class DoctorReservationViewBody extends StatelessWidget {
+  const DoctorReservationViewBody({
+    super.key,
+  });
 
-  @override
-  State<DoctorReservationViewBody> createState() =>
-      _DoctorReservationViewBodyState();
-}
+  static XFile? imgPath;
 
-class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
+  Future<void> uploadPicture(BuildContext context) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      imgPath = pickedFile;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Assets.kBackground),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
+    return BlocConsumer<DoctorReservationCubit, DoctorReservationState>(
+      listener: (context, state) {
+        if (state is DoctorReservationFailure) {
+          showSnackBar(context, state.errMessage);
+        } else if (state is DoctorReservationSuccess) {
+          showSnackBar(context, "done");
+        }
+      },
+      builder: (context, state) {
+        return Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.kBackground),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
             child: ListView(children: [
+              const CustomAppBar(title: 'Reservation'),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const CustomAppBar(title: 'Reservation'),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Text(
-                          'Book a consultation with your\ndoctor.',
-                          style: Styels.textStyle15_300(context),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                      SizedBox(height: mediaQuery.height * 0.035),
-                      CustomTextField(
-                          hintext: 'First Name',
-                          width: mediaQuery.height * 0.5,
-                          isrequired: true,
-                          padding: const EdgeInsets.only(right: 15),
-                          keyboardType: TextInputType.name),
-                      CustomTextField(
-                          hintext: 'Last Name',
-                          width: mediaQuery.height * 0.5,
-                          isrequired: true,
-                          padding: const EdgeInsets.only(right: 15),
-                          keyboardType: TextInputType.name),
-                      SizedBox(height: mediaQuery.height * 0.015),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomTextField(
-                              hintext: 'Age',
-                              width: mediaQuery.height * 0.14,
-                              isrequired: true,
-                              padding: const EdgeInsets.only(left: 80),
-                              keyboardType: TextInputType.number),
-                          CustomTextField(
-                              hintext: 'City',
-                              width: mediaQuery.height * 0.14,
-                              isrequired: true,
-                              padding: const EdgeInsets.only(left: 80),
-                              keyboardType: TextInputType.name),
-                          CustomTextField(
-                              hintext: 'Country',
-                              width: mediaQuery.height * 0.14,
-                              isrequired: true,
-                              padding: const EdgeInsets.only(left: 80),
-                              keyboardType: TextInputType.name),
-                        ],
-                      ),
-                      SizedBox(height: mediaQuery.height * 0.015),
-                      CustomTextField(
-                          hintext: 'When did you start noticing skin changes?',
-                          width: mediaQuery.height * 0.5,
-                          isrequired: true,
-                          padding: const EdgeInsets.only(right: 15),
-                          keyboardType: TextInputType.name),
-                      SizedBox(height: mediaQuery.height * 0.015),
-                      Stack(children: [
-                        CustomTextField(
-                            hintext: 'Add your scans',
-                            width: mediaQuery.height * 0.5,
-                            isrequired: true,
-                            padding: const EdgeInsets.only(right: 15),
-                            keyboardType: TextInputType.none),
-                        Positioned(
-                            right: 20,
-                            bottom: 30,
-                            child: InkWell(
-                                onTap: () {},
-                                child: SvgPicture.asset(
-                                    'assets/images/add_icon.svg'))),
-                      ]),
-                      Stack(children: [
-                        CustomTextField(
-                            hintext: 'Add your lab tests',
-                            width: mediaQuery.height * 0.5,
-                            isrequired: false,
-                            padding: const EdgeInsets.only(right: 15),
-                            keyboardType: TextInputType.none),
-                        Positioned(
-                            right: 20,
-                            bottom: 30,
-                            child: InkWell(
-                                onTap: () {},
-                                child: SvgPicture.asset(
-                                    'assets/images/add_icon.svg'))),
-                      ]),
-                    ]),
+                padding: const EdgeInsets.only(left: 8),
+                child: Text(
+                  'Book a consultation with your\ndoctor.',
+                  style: Styels.textStyle15_300(context),
+                  textAlign: TextAlign.left,
+                ),
               ),
+              SizedBox(height: mediaQuery.height * 0.035),
+              // CustomTextField(
+              //     hintext: 'First Name',
+              //     width: mediaQuery.height * 0.5,
+              //     isrequired: true,
+              //     padding: const EdgeInsets.only(right: 15),
+              //     keyboardType: TextInputType.name),
+              // const SizedBox(height: 8),
+              // CustomTextField(
+              //     hintext: 'Last Name',
+              //     width: mediaQuery.height * 0.5,
+              //     isrequired: true,
+              //     padding: const EdgeInsets.only(right: 15),
+              //     keyboardType: TextInputType.name),
+              // const SizedBox(height: 8),
+
+              // AdditionalInfo(mediaQuery: mediaQuery),
+
+              CustomTextField(
+                  hintext: 'When did you start noticing skin changes?',
+                  width: mediaQuery.height * 0.5,
+                  isrequired: true,
+                  padding: const EdgeInsets.only(right: 15),
+                  keyboardType: TextInputType.name),
+              const SizedBox(height: 8),
+
+              Stack(children: [
+                AttachDocotorReservaionField(
+                    title: 'Add your scans',
+                    isrequired: true,
+                    padding: const EdgeInsets.only(right: 15, bottom: 10),
+                    onTap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return const AllPatientScans();
+                          });
+                    }),
+              ]),
+              const SizedBox(height: 36),
+              AttachDocotorReservaionField(
+                  isrequired: false,
+                  title: "Add your lab tests",
+                  onTap: () {
+                    uploadPicture(context);
+                    print(imgPath);
+                  }),
+              const SizedBox(height: 32),
+              DoctorButton(
+                  horizontal: 0,
+                  textButton: "Confirm",
+                  onPressed: () async {
+                    await BlocProvider.of<DoctorReservationCubit>(context)
+                        .createReservation(body: {
+                      "patient": "65dc8e92feeacbd13e5da2b6",
+                      "dermatologist":
+                          BlocProvider.of<DoctorReservationCubit>(context)
+                              .doctorId,
+                      "scan": BlocProvider.of<DoctorReservationCubit>(context)
+                          .scanId,
+                      "date": DateTime.now(),
+                      "uploadedTest": [imgPath],
+                    }, token: "");
+                  },
+                  isLoading: BlocProvider.of<DoctorReservationCubit>(context)
+                      .isLoading)
             ]),
           ),
-        ],
-      ),
+        );
+      },
+    );
+  }
+}
+
+class AdditionalInfo extends StatelessWidget {
+  const AdditionalInfo({
+    super.key,
+    required this.mediaQuery,
+  });
+
+  final Size mediaQuery;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CustomTextField(
+            hintext: 'Age',
+            width: mediaQuery.height * 0.14,
+            isrequired: true,
+            padding: const EdgeInsets.only(left: 80),
+            keyboardType: TextInputType.number),
+        CustomTextField(
+            hintext: 'City',
+            width: mediaQuery.height * 0.14,
+            isrequired: true,
+            padding: const EdgeInsets.only(left: 80),
+            keyboardType: TextInputType.name),
+        CustomTextField(
+            hintext: 'Country',
+            width: mediaQuery.height * 0.14,
+            isrequired: true,
+            padding: const EdgeInsets.only(left: 80),
+            keyboardType: TextInputType.name),
+      ],
     );
   }
 }

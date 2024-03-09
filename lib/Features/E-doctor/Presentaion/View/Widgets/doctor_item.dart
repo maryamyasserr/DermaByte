@@ -8,12 +8,12 @@ class DoctorItem extends StatelessWidget {
   const DoctorItem(
       {super.key,
       required this.iconCard,
-      required this.doctorTitle,
-      required this.doctorSubTitle,
+      required this.title,
+      required this.subTitle,
       required this.textButton,
       this.onPressed,
       this.width});
-  final String iconCard, doctorTitle, doctorSubTitle, textButton;
+  final String iconCard, title, subTitle, textButton;
   final void Function()? onPressed;
   final double? width;
   @override
@@ -51,8 +51,8 @@ class DoctorItem extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: CardText(
-                          cardTitle: doctorTitle,
-                          cardSubTitle: doctorSubTitle,
+                          cardTitle: title,
+                          cardSubTitle: subTitle,
                         ),
                       ),
                       Expanded(
@@ -63,9 +63,7 @@ class DoctorItem extends StatelessWidget {
                             SvgPicture.asset('assets/images/star_icon.svg'),
                             const Expanded(flex: 3, child: SizedBox()),
                             CardButton(
-                              textButton: textButton,
-                              onPressed:onPressed
-                            ),
+                                textButton: textButton, onPressed: onPressed),
                             const Flexible(child: SizedBox(width: 8)),
                           ],
                         ),

@@ -41,6 +41,9 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
+    final Map<String, dynamic>? args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    String? imagePath = args?['imagePath'];
     return Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
@@ -178,7 +181,7 @@ class _SignUpPatientBodyState extends State<SignUpDoctorBody> {
                           password: SignUpDoctorBody.passwordController.text,
                           passwordConfirm:
                               SignUpDoctorBody.rePasswordController.text,
-                          profilePic: "RRRRRRkk",
+                          profilePic: imagePath,
                           sessionCost: 100,
                         ),
                         role: 'doctor',

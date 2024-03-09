@@ -3,8 +3,8 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
-class SubmitButton extends StatelessWidget {
-  const SubmitButton({
+class DoctorButton extends StatelessWidget {
+  const DoctorButton({
     super.key,
     required this.horizontal,
     required this.textButton,
