@@ -69,15 +69,15 @@ abstract class AppRoutes {
   static String kNotification = '/notification';
   static String kElabHome = '/e-lab_home';
   static String kRequestBody = '/requestBody';
-  static String kEdoctor = '/e-doctor';
+  static String kDoctorView = '/e-doctor';
   static String kPatientView = '/patientView';
   static String kReportView = '/ReportView';
   static String kDoctorScheduleView = '/DoctorScheduleView';
   static String kTestView = '/testView';
   static String kRequestedTest = '/requestedTests';
   static final router = GoRouter(routes: [
-    // GoRoute(path: '/', builder: (context, state) => const SplashView()),
-    GoRoute(path: '/', builder: (context, state) => const DoctorView()),
+    GoRoute(path: '/', builder: (context, state) => const SplashView()),
+    // GoRoute(path: '/', builder: (context, state) => const DoctorView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
@@ -158,7 +158,7 @@ abstract class AppRoutes {
     GoRoute(path: kElabHome, builder: (context, state) => const ELabView()),
     GoRoute(
         path: kRequestBody, builder: (context, state) => const RequestBody()),
-    GoRoute(path: kEdoctor, builder: (context, state) => const DoctorView()),
+    GoRoute(path: kDoctorView, builder: (context, state) => const DoctorView()),
     GoRoute(
         path: kPatientView, builder: (context, state) => const PatientView()),
     GoRoute(path: kReportView, builder: (context, state) => const ReportView()),

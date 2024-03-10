@@ -14,11 +14,13 @@ class DoctorModel {
   String? profilePic;
   int? sessionCost;
   bool? state;
+  bool? active;
   String? slug;
-  String? id;
+  String? role;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
+  String? id;
 
   DoctorModel({
     this.firstName,
@@ -36,11 +38,13 @@ class DoctorModel {
     this.profilePic,
     this.sessionCost,
     this.state,
+    this.active,
     this.slug,
-    this.id,
+    this.role,
     this.createdAt,
     this.updatedAt,
     this.v,
+    this.id,
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
@@ -59,8 +63,9 @@ class DoctorModel {
         profilePic: json['profilePic'] as String?,
         sessionCost: json['sessionCost'] as int?,
         state: json['state'] as bool?,
+        active: json['active'] as bool?,
         slug: json['slug'] as String?,
-        id: json['id'] as String?,
+        role: json['role'] as String?,
         createdAt: json['createdAt'] == null
             ? null
             : DateTime.parse(json['createdAt'] as String),
@@ -68,6 +73,7 @@ class DoctorModel {
             ? null
             : DateTime.parse(json['updatedAt'] as String),
         v: json['__v'] as int?,
+        id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -82,14 +88,16 @@ class DoctorModel {
         'license': license,
         'email': email,
         'password': password,
-        'passwordConfirm': passwordConfirm,
+        'passwordConfirm':passwordConfirm,
         'profilePic': profilePic,
         'sessionCost': sessionCost,
         'state': state,
+        'active': active,
         'slug': slug,
-        'id': id,
+        'role': role,
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),
         '__v': v,
+        'id': id,
       };
 }

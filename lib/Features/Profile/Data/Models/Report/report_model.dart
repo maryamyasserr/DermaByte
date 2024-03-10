@@ -14,7 +14,6 @@ class ReportModel {
   DateTime? createdAt;
   DateTime? updatedAt;
   String? id;
-      
 
   ReportModel({
     this.scan,

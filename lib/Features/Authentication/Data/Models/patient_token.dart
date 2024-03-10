@@ -1,6 +1,7 @@
 import 'package:dermabyte/Features/Authentication/Data/Models/patient.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 
-class PatientTokenModel {
+class PatientTokenModel extends UserModel {
   final PatientModel patient;
   final String token;
 

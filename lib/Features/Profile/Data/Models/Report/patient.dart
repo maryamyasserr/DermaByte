@@ -5,8 +5,6 @@ class Patient {
   String? photo;
   String? id;
 
-  
-
   Patient({this.firstName, this.lastName, this.age, this.photo, this.id});
 
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(

@@ -27,7 +27,6 @@ class MyReservaionModel {
 
   factory MyReservaionModel.fromJson(Map<String, dynamic> json) {
     return MyReservaionModel(
-     
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       uploadedTest: json['uploadedTest'] as List<dynamic>?,

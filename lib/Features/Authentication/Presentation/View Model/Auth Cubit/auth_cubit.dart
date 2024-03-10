@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,8 +14,10 @@ class AuthCubit extends Cubit<AuthState> {
   AuthRepo authRepo;
 
   PatientTokenModel? patient;
-  DoctorModel? doctorModel;
+  DoctorToken? doctorModel;
   LabModel? labModel;
+
+  UserModel? userModel;
 
   bool isLoding = false;
 
@@ -54,18 +57,49 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> signIn(
-      {required dynamic body, required BuildContext context}) async {
+  // Future<void> signIn(
+  //     {required dynamic body, required BuildContext context}) async {
+  //   emit(AuthLoading());
+  //   isLoding = true;
+  //   var response = await authRepo.signInAsPatient(body: body, context: context);
+  //   response.fold((failure) {
+  //     emit(AuthFailure(errMessage: failure.errMessage));
+  //     isLoding = false;
+  //   }, (patientData) {
+  //     emit(AuthSuccess());
+  //     patient = patientData;
+  //     isLoding = false;
+  //   });
+  // }
+
+  Future<void> signIn<T>({
+    required dynamic body,
+    required BuildContext context,
+    String? navigateTo,
+  }) async {
     emit(AuthLoading());
     isLoding = true;
-    var response = await authRepo.signInAsPatient(body: body, context: context);
+
+    var response = await authRepo.signIn(
+      body: body,
+      context: context,
+    );
+
     response.fold((failure) {
       emit(AuthFailure(errMessage: failure.errMessage));
       isLoding = false;
-    }, (patientData) {
-      emit(AuthSuccess());
-      patient = patientData;
-      isLoding = false;
+    }, (tokenData) {
+      if (tokenData is PatientTokenModel) {
+        emit(AuthSuccess());
+        patient = tokenData;
+        isLoding = false;
+      } else if (tokenData is DoctorToken) {
+        emit(AuthSuccess());
+        doctorModel = tokenData;
+      } else {
+        emit(AuthFailure(errMessage: "Unknown user type"));
+        isLoding = false;
+      }
     });
   }
 }

@@ -15,10 +15,12 @@ class DoctorView extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => MyPatientReportCubit(getIt.get<DoctorRepoImpl>()),
+            create: (context) =>
+                MyPatientReportCubit(getIt.get<DoctorRepoImpl>()),
           ),
           BlocProvider(
-            create: (context) => MyReservationCubit(getIt.get<DoctorRepoImpl>()),
+            create: (context) =>
+                MyReservationCubit(getIt.get<DoctorRepoImpl>()),
           ),
         ],
         child: const DoctorBody(),

@@ -4,8 +4,6 @@ class Scan {
   String? diseaseName;
   String? id;
 
-  
-
   Scan({this.scanDate, this.diseasePhoto, this.diseaseName, this.id});
 
   factory Scan.fromJson(Map<String, dynamic> json) => Scan(

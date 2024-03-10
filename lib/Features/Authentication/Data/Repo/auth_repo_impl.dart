@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/patient.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,7 +39,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, PatientTokenModel>> signUpAsPatient(
-      {required PatientModel data,
+      {required dynamic data,
       @required String? token,
       required BuildContext context}) async {
     try {
@@ -57,17 +57,16 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failures, DoctorModel>> signUpAsDsoctor(
-      {required DoctorModel data,
+  Future<Either<Failures, DoctorToken>> signUpAsDsoctor(
+      {required dynamic data,
       @required String? token,
       required BuildContext context}) async {
     try {
       var response = await apiService.post(
           endPoint: 'dermatologists', data: data.toJson(), token: token);
       debugPrint("$response");
-      DoctorModel doctor = DoctorModel.fromJson(response['data']);
-      GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
-      GoRouter.of(context).pushReplacement(AppRoutes.kEdoctor);
+      DoctorToken doctor = DoctorToken.fromJson(response['data']);
+      GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
       return right(doctor);
     } catch (e) {
       if (e is DioException) {
@@ -78,19 +77,24 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failures, void>> signin() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failures, PatientTokenModel>> signInAsPatient(
-      {required dynamic body, required BuildContext context}) async {
+  Future<Either<Failures, UserModel>> signIn({
+    required dynamic body,
+    required BuildContext context,
+  }) async {
     try {
       var response =
-          await apiService.post(endPoint: "auth/login", data: body, token: '');
-      PatientTokenModel patient = PatientTokenModel.fromJson(response);
-      GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
-      return right(patient);
+          await apiService.post(endPoint: 'auth/login', data: body, token: '');
+      if (response['data']['role'] == 'patient') {
+        PatientTokenModel result = PatientTokenModel.fromJson(response);
+        GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+        return right(result);
+      } else if (response['data']['role'] == 'dermatologist') {
+        DoctorToken result = DoctorToken.fromJson(response);
+        GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
+        return right(result);
+      } else {
+        throw Exception("Unsupported type");
+      }
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
@@ -99,3 +103,39 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 }
+
+
+
+
+ // @override
+  // Future<Either<Failures, PatientTokenModel>> signInAsPatient(
+  //     {required dynamic body, required BuildContext context}) async {
+  //   try {
+  //     var response =
+  //         await apiService.post(endPoint: "auth/login", data: body, token: '');
+  //     PatientTokenModel patient = PatientTokenModel.fromJson(response);
+  //     GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+  //     return right(patient);
+  //   } catch (e) {
+  //     if (e is DioException) {
+  //       return left(ServerFailure.fromDioException(e));
+  //     }
+  //     return left(ServerFailure(errMessage: e.toString()));
+  //   }
+  // }
+
+  // @override
+  // Future<Either<Failures, DoctorToken>> signInAsDoctor(
+  //     {required body, required BuildContext context}) async {
+  //   try {
+  //     var response =
+  //         await apiService.post(endPoint: 'auth/login', data: body, token: '');
+  //     DoctorToken doctor = DoctorToken.fromJson(response);
+  //     return right(doctor);
+  //   } catch (e) {
+  //     if (e is DioException) {
+  //       return left(ServerFailure.fromDioException(e));
+  //     }
+  //     return left(ServerFailure(errMessage: e.toString()));
+  //   }
+  // }
