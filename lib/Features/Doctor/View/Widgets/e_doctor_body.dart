@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Appoinments/e_doctor_appoinments.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Home/e_doctor_home.dart';
 import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/e_doctor_profile.dart';
+import 'package:dermabyte/Features/Doctor/View/Widgets/Requests/e_doctor_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -43,6 +44,8 @@ class _EdoctorBodyState extends State<EdoctorBody> {
             // BottomNavigationBarItem(
             //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
             BottomNavigationBarItem(
+                icon: Icon(Icons.call_received), label: "Requetsts"),
+            BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.userDoctor), label: "Profile"),
           ],
         ),
@@ -57,6 +60,7 @@ class _EdoctorBodyState extends State<EdoctorBody> {
             children: [
               const EdoctorHome(),
               const EdoctorAppoinments(),
+              const EdoctorRequests(),
               EdoctorProfile()
             ],
           ),

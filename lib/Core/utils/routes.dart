@@ -76,7 +76,8 @@ abstract class AppRoutes {
   static String kTestView = '/testView';
   static String kRequestedTest = '/requestedTests';
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const SplashView()),
+    // GoRoute(path: '/', builder: (context, state) => const SplashView()),
+    GoRoute(path: '/', builder: (context, state) => const DoctorView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
