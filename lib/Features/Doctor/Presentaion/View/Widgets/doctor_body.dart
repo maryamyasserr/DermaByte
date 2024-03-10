@@ -2,20 +2,20 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Appoinments/e_doctor_appoinments.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/e_doctor_home.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/doctor_home.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/e_doctor_profile.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Requests/e_doctor_requests.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Requests/doctor_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class EdoctorBody extends StatefulWidget {
-  const EdoctorBody({super.key});
+class DoctorBody extends StatefulWidget {
+  const DoctorBody({super.key});
 
   @override
-  State<EdoctorBody> createState() => _EdoctorBodyState();
+  State<DoctorBody> createState() => _DoctorBodyState();
 }
 
-class _EdoctorBodyState extends State<EdoctorBody> {
+class _DoctorBodyState extends State<DoctorBody> {
   int selectedIndex = 0;
   final PageController _pageController = PageController();
   @override
@@ -58,9 +58,9 @@ class _EdoctorBodyState extends State<EdoctorBody> {
             onPageChanged: (page) {},
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              const EdoctorHome(),
+              const DoctorHome(),
               const EdoctorAppoinments(),
-              const EdoctorRequests(),
+              const DoctorRequests(),
               EdoctorProfile()
             ],
           ),

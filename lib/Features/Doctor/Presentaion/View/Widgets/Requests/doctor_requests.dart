@@ -5,23 +5,22 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class EdoctorHome extends StatelessWidget {
-  const EdoctorHome({super.key});
+class DoctorRequests extends StatelessWidget {
+  const DoctorRequests({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.03),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 32),
+          const SizedBox(height: 64),
           Text(
-            "Today's Schedule",
-            style: Styels.textStyle24_600(context),
+            "Patients Requests",
+            style: Styels.textStyle24_600(context).copyWith(fontSize: 32),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          const SizedBox(height: 32),
           Expanded(
               child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -33,7 +32,7 @@ class EdoctorHome extends StatelessWidget {
                         iconCard: Assets.kAvatar,
                         cardTitle: "Jude Bellengham",
                         cardSubTitle:
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                         diagnose: () {
                           GoRouter.of(context).push(AppRoutes.kPatientView);
                         },
