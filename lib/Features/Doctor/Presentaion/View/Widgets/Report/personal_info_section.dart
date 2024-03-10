@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Report/personal_info.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/personal_info.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfoSection extends StatelessWidget {

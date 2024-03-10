@@ -1,8 +1,8 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Report/disease_report.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Report/personal_info_section.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/button.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/disease_report.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/personal_info_section.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class ReportView extends StatelessWidget {

@@ -40,9 +40,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
           data: reservationData,
           token: token);
       var reportResponse = await apiService.post(
-          endPoint: "reports",
-          data: reportData,
-          token: token);
+          endPoint: "reports", data: reportData, token: token);
 
       if (reservationResponse.containsKey('data') &&
           reportResponse.containsKey('data')) {
@@ -59,7 +57,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
     }
   }
 
-@override
+  @override
   Future<Either<Failures, ReportModel>> createReport(
       {required String token, required dynamic body}) async {
     try {

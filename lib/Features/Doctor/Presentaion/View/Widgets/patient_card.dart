@@ -26,7 +26,7 @@ class PatientCard extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 342 / 140,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           decoration: BoxDecoration(
               color: AppColors.kCardColor,
               borderRadius: BorderRadius.circular(20),

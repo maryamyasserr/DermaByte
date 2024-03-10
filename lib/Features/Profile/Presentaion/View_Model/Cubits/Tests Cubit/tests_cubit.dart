@@ -16,8 +16,7 @@ class TestsCubit extends Cubit<TestsState> {
 
   TestModel get currentTest => pTests.firstWhere((test) => (test.id == _id));
 
-  Future<void> getPatientTests(
-      {required String token}) async {
+  Future<void> getPatientTests({required String token}) async {
     emit(TestsLoading());
     var tests = await historyRepo.getPatientTests(token: token);
     tests.fold((failure) {

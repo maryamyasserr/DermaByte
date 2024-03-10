@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Home/patient_text_filed_report.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/button.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/patient_text_filed_report.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class PatientView extends StatelessWidget {

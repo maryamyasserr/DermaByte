@@ -10,8 +10,7 @@ class ReportCubit extends Cubit<ReportState> {
   HistoryRepo historyRepo;
   List<ReportModel> patientConsults = [];
   String? _id;
-  Future<void> getPatientConults(
-      { required String token}) async {
+  Future<void> getPatientConults({required String token}) async {
     emit(ReportLoading());
     var consults = await historyRepo.getPatientConsults(token: token);
     consults.fold((failure) {
@@ -24,7 +23,7 @@ class ReportCubit extends Cubit<ReportState> {
 
   set setId(String id) {
     _id = id;
-  } 
+  }
 
   ReportModel get patientReport =>
       patientConsults.firstWhere((report) => report.dermatologist!.id == _id);

@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Doctor/View/Widgets/e_doctor_body.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/e_doctor_body.dart';
 import 'package:flutter/material.dart';
 
 class DoctorView extends StatelessWidget {

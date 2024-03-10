@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/patient_card.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
 import 'package:flutter/material.dart';
 
 class PatientsDay extends StatelessWidget {

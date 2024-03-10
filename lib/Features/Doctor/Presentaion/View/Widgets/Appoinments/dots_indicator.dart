@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Doctor/View/Widgets/Appoinments/custom_dot_indicator.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Appoinments/custom_dot_indicator.dart';
 import 'package:flutter/material.dart';
 
 class DotsIndicator extends StatelessWidget {

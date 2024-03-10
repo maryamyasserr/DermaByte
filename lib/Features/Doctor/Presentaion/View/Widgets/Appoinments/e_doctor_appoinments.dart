@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
 
-import 'package:dermabyte/Features/Doctor/View/Widgets/Appoinments/dots_indicator.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Appoinments/patients_day.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Appoinments/dots_indicator.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Appoinments/patients_day.dart';
 import 'package:flutter/material.dart';
 
 class EdoctorAppoinments extends StatefulWidget {

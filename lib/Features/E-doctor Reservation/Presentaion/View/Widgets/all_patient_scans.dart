@@ -24,7 +24,6 @@ class _AllPatientScansState extends State<AllPatientScans> {
   @override
   void initState() {
     BlocProvider.of<ScanCubit>(context).getPatientScan(
-       
         token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
   }

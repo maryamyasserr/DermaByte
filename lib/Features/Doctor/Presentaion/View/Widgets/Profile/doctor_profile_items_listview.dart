@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Profile/doctor_profile_item.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/doctor_profile_item.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/profile_item_model.dart';
 
 import 'package:flutter/material.dart';

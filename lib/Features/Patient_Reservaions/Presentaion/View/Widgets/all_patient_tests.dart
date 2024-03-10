@@ -67,7 +67,6 @@ class AllPatientTest extends StatelessWidget {
               ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<TestsCubit>(context).getPatientTests(
-                       
                         token:
                             BlocProvider.of<AuthCubit>(context).patient!.token);
                   },

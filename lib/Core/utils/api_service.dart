@@ -21,7 +21,7 @@ class ApiService {
       @required String? token}) async {
     if (token != null) {
       _dio.options.headers['Authorization'] = "Bearer $token";
-      _dio.options.headers['Content-Type'] ="application/json";
+      _dio.options.headers['Content-Type'] = "application/json";
     } else {
       _dio.options.headers.remove('Authorization');
     }

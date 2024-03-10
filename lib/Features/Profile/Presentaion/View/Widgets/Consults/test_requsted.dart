@@ -28,7 +28,7 @@ class TestRequested extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
-                "- ${consultaion.tests?[index].testName??""}",
+                "- ${consultaion.tests?[index].testName ?? ""}",
                 style: Styels.textStyle15_300(context),
               ),
             );

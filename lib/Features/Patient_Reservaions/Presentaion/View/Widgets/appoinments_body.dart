@@ -24,7 +24,6 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
     BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
-      
         token: BlocProvider.of<AuthCubit>(context).patient!.token);
     BlocProvider.of<ReportCubit>(context).getPatientConults(
         token: BlocProvider.of<AuthCubit>(context).patient!.token);

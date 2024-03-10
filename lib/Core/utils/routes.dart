@@ -4,9 +4,9 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_doct
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_in.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_lab.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_patient.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Home/patient_view.dart';
-import 'package:dermabyte/Features/Doctor/View/Widgets/Report/report_view.dart';
-import 'package:dermabyte/Features/Doctor/View/e_doctor_view.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/patient_view.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/report_view.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/e_doctor_view.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/doctor_reservation_view.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/doctor_schedule_view.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/lab_reservation_view.dart';

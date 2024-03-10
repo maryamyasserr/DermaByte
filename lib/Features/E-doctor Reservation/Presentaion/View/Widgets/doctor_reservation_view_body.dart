@@ -92,8 +92,7 @@ class DoctorReservationViewBody extends StatelessWidget {
                   title: "Add your lab tests",
                   onTap: () {
                     // uploadPicture(context);
-                    print(
-                        BlocProvider.of<AuthCubit>(context).patient?.token);
+                    print(BlocProvider.of<AuthCubit>(context).patient?.token);
                   }),
               const SizedBox(height: 32),
               DoctorButton(
@@ -134,7 +133,6 @@ class DoctorReservationViewBody extends StatelessWidget {
                               "scan": BlocProvider.of<DoctorReservationCubit>(
                                       context)
                                   .scanId,
-                                
                             },
                             token: BlocProvider.of<AuthCubit>(context)
                                 .patient!
