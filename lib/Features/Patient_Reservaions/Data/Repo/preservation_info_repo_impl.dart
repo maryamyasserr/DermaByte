@@ -10,10 +10,10 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
   ApiService apiService;
   @override
   Future<Either<Failures, List<PreservationModel>>> getPatientReservation(
-      {required id, required String token}) async {
+      {required String token}) async {
     try {
       var response = await apiService.get(
-          endPoint: 'patients/$id/Patient-reservation', token: token);
+          endPoint: 'patients/Patient-reservation', token: token);
       List<PreservationModel> preservation = [];
       for (var item in response['data']) {
         preservation.add(PreservationModel.fromJson(item));

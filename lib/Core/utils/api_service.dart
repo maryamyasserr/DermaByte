@@ -21,12 +21,11 @@ class ApiService {
       @required String? token}) async {
     if (token != null) {
       _dio.options.headers['Authorization'] = "Bearer $token";
+      _dio.options.headers['Content-Type'] ="application/json";
     } else {
       _dio.options.headers.remove('Authorization');
     }
-    _dio.options.headers = {
-      'Content-Type': "application/json",
-    };
+
     var response = await _dio.post(
       '$_baseUlr$endPoint',
       data: data,

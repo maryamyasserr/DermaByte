@@ -6,9 +6,9 @@ import 'package:dermabyte/Features/Profile/Data/Models/test_model/test_model.dar
 
 abstract class HistoryRepo {
   Future<Either<Failures, List<ScanModel>>> getPatientScans(
-      {required String id, required String token});
+      {required String token});
   Future<Either<Failures, List<TestModel>>> getPatientTests(
-      {required String id, required String token});
+      {required String token});
   Future<Either<Failures, List<ReportModel>>> getPatientConsults(
-      {required String id, required String token});
+      {required String token});
 }

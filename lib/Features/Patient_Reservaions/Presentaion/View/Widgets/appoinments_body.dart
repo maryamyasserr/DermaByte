@@ -24,10 +24,9 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
     BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
-        id: BlocProvider.of<AuthCubit>(context).patient!.patient.id,
+      
         token: BlocProvider.of<AuthCubit>(context).patient!.token);
     BlocProvider.of<ReportCubit>(context).getPatientConults(
-        id: "65dc8e92feeacbd13e5da2b6",
         token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
   }
@@ -42,7 +41,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: Column(
           children: [
-            const CustomAppBar(title: 'Appoinments'),
+            const CustomAppBar(title: 'Reservations'),
             const SizedBox(height: 12),
             const HeaderText(
                 text: "Follow up with your ongoing and future appointments."),

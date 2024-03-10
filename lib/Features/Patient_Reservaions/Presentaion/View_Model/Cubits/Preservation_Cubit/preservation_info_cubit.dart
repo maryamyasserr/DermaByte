@@ -20,10 +20,10 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
   }
 
   Future<void> getPatientReservationInfo(
-      {required dynamic id, required String token}) async {
+      {required String token}) async {
     emit(PreservationInfoLoading());
     var result =
-        await preservationInfoRepo.getPatientReservation(id: id, token: token);
+        await preservationInfoRepo.getPatientReservation(token: token);
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
     }, (preservationinfo) {

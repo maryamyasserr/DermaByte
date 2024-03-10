@@ -11,7 +11,6 @@ import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_f
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 
@@ -92,7 +91,9 @@ class DoctorReservationViewBody extends StatelessWidget {
                   isrequired: false,
                   title: "Add your lab tests",
                   onTap: () {
-                    uploadPicture(context);
+                    // uploadPicture(context);
+                    print(
+                        BlocProvider.of<AuthCubit>(context).patient?.token);
                   }),
               const SizedBox(height: 32),
               DoctorButton(
@@ -100,8 +101,8 @@ class DoctorReservationViewBody extends StatelessWidget {
                   textButton: "Confirm",
                   onPressed: () async {
                     await BlocProvider.of<DoctorReservationCubit>(context)
-                        .createReservation(
-                          body: FormData.fromMap({
+                        .createReservationAndPatientReport(
+                            reservationData: FormData.fromMap({
                               "patient": BlocProvider.of<AuthCubit>(context)
                                   .patient!
                                   .patient
@@ -120,9 +121,21 @@ class DoctorReservationViewBody extends StatelessWidget {
                               //         .split('/')
                               //         .last, // Extracts the filename from the path
                               //     contentType: MediaType.parse(mimeType))
-                            }) ,
-                            
-                            
+                            }),
+                            reportData: {
+                              "patient": BlocProvider.of<AuthCubit>(context)
+                                  .patient!
+                                  .patient
+                                  .id,
+                              "dermatologist":
+                                  BlocProvider.of<DoctorReservationCubit>(
+                                          context)
+                                      .doctorId,
+                              "scan": BlocProvider.of<DoctorReservationCubit>(
+                                      context)
+                                  .scanId,
+                                
+                            },
                             token: BlocProvider.of<AuthCubit>(context)
                                 .patient!
                                 .token);

@@ -4,5 +4,5 @@ import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_
 
 abstract class PreservationInfoRepo {
   Future<Either<Failures, List<PreservationModel>>> getPatientReservation(
-      {required dynamic id, required String token});
+      {required String token});
 }

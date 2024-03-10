@@ -13,12 +13,14 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
 
   String? scanId, doctorId;
 
-  Future<void> createReservation(
-      {required FormData body, required String token}) async {
+  Future<void> createReservationAndPatientReport(
+      {required FormData reservationData,
+      required dynamic reportData,
+      required String token}) async {
     emit(DoctorReservationLoading());
     isLoading = true;
-    var reservation =
-        await edoctorRepo.createReservaion(body: body, token: token);
+    var reservation = await edoctorRepo.createReservaionAndPatientReport(
+        reportData: reportData, reservationData: reservationData, token: token);
     reservation.fold((failure) {
       emit(DoctorReservationFailure(errMessage: failure.errMessage));
       isLoading = false;

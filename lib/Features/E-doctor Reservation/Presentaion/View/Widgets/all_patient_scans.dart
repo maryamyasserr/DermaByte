@@ -24,7 +24,7 @@ class _AllPatientScansState extends State<AllPatientScans> {
   @override
   void initState() {
     BlocProvider.of<ScanCubit>(context).getPatientScan(
-        id: BlocProvider.of<AuthCubit>(context).patient!.patient.id!,
+       
         token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
   }
@@ -87,10 +87,6 @@ class _AllPatientScansState extends State<AllPatientScans> {
               ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<ScanCubit>(context).getPatientScan(
-                        id: BlocProvider.of<AuthCubit>(context)
-                            .patient!
-                            .patient
-                            .id!,
                         token:
                             BlocProvider.of<AuthCubit>(context).patient!.token);
                   },
