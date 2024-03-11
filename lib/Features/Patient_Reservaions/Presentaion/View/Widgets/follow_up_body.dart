@@ -7,7 +7,7 @@ import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/requested_tests_view.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,6 @@ class FollowUpBody extends StatelessWidget {
     PreservationModel patientReservation =
         BlocProvider.of<PreservationInfoCubit>(context).currentReservation;
     ReportModel report = BlocProvider.of<ReportCubit>(context).patientReport;
-
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(

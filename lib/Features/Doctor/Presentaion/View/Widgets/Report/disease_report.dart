@@ -29,7 +29,7 @@ class DiseaseReport extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-               diseaseName ,
+              diseaseName,
               style: Styels.textStyle24_600(context),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.007),

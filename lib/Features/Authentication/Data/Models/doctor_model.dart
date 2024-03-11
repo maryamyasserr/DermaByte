@@ -88,7 +88,7 @@ class DoctorModel {
         'license': license,
         'email': email,
         'password': password,
-        'passwordConfirm':passwordConfirm,
+        'passwordConfirm': passwordConfirm,
         'profilePic': profilePic,
         'sessionCost': sessionCost,
         'state': state,

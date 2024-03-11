@@ -104,38 +104,35 @@ class AuthRepoImpl implements AuthRepo {
   }
 }
 
+// @override
+// Future<Either<Failures, PatientTokenModel>> signInAsPatient(
+//     {required dynamic body, required BuildContext context}) async {
+//   try {
+//     var response =
+//         await apiService.post(endPoint: "auth/login", data: body, token: '');
+//     PatientTokenModel patient = PatientTokenModel.fromJson(response);
+//     GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+//     return right(patient);
+//   } catch (e) {
+//     if (e is DioException) {
+//       return left(ServerFailure.fromDioException(e));
+//     }
+//     return left(ServerFailure(errMessage: e.toString()));
+//   }
+// }
 
-
-
- // @override
-  // Future<Either<Failures, PatientTokenModel>> signInAsPatient(
-  //     {required dynamic body, required BuildContext context}) async {
-  //   try {
-  //     var response =
-  //         await apiService.post(endPoint: "auth/login", data: body, token: '');
-  //     PatientTokenModel patient = PatientTokenModel.fromJson(response);
-  //     GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
-  //     return right(patient);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       return left(ServerFailure.fromDioException(e));
-  //     }
-  //     return left(ServerFailure(errMessage: e.toString()));
-  //   }
-  // }
-
-  // @override
-  // Future<Either<Failures, DoctorToken>> signInAsDoctor(
-  //     {required body, required BuildContext context}) async {
-  //   try {
-  //     var response =
-  //         await apiService.post(endPoint: 'auth/login', data: body, token: '');
-  //     DoctorToken doctor = DoctorToken.fromJson(response);
-  //     return right(doctor);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       return left(ServerFailure.fromDioException(e));
-  //     }
-  //     return left(ServerFailure(errMessage: e.toString()));
-  //   }
-  // }
+// @override
+// Future<Either<Failures, DoctorToken>> signInAsDoctor(
+//     {required body, required BuildContext context}) async {
+//   try {
+//     var response =
+//         await apiService.post(endPoint: 'auth/login', data: body, token: '');
+//     DoctorToken doctor = DoctorToken.fromJson(response);
+//     return right(doctor);
+//   } catch (e) {
+//     if (e is DioException) {
+//       return left(ServerFailure.fromDioException(e));
+//     }
+//     return left(ServerFailure(errMessage: e.toString()));
+//   }
+// }

@@ -13,10 +13,9 @@ class PatientCard extends StatelessWidget {
       required this.cardSubTitle,
       required this.diagnose,
       required this.start,
-      required this.onTap
-      });
+      required this.onTap});
   final String iconCard, cardTitle, cardSubTitle;
-  final void Function() diagnose, start,onTap;
+  final void Function() diagnose, start, onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

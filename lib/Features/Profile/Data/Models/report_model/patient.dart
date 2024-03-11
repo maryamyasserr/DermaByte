@@ -1,25 +1,23 @@
 class Patient {
+  String? id;
   String? firstName;
   String? lastName;
   int? age;
-  String? photo;
-  String? id;
 
-  Patient({this.firstName, this.lastName, this.age, this.photo, this.id});
+
+  Patient({this.id, this.firstName, this.lastName, this.age,});
 
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(
+        id: json['id'] as String?,
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
         age: json['age'] as int?,
-        photo: json['photo'] as String?,
-        id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'firstName': firstName,
         'lastName': lastName,
         'age': age,
-        'photo': photo,
-        'id': id,
       };
 }

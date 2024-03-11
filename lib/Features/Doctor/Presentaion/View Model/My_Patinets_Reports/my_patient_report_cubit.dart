@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:meta/meta.dart';
 
 part 'my_patient_report_state.dart';

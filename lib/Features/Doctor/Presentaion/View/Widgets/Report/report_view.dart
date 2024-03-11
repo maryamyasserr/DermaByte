@@ -8,7 +8,7 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/add_te
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/disease_report.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/personal_info_section.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,7 +65,8 @@ class ReportView extends StatelessWidget {
                             context: context,
                             builder: (context) {
                               return BlocProvider(
-                                create: (context) => RequestTestsCubit(getIt.get<DoctorRepoImpl>()),
+                                create: (context) => RequestTestsCubit(
+                                    getIt.get<DoctorRepoImpl>()),
                                 child: const AddTestBody(),
                               );
                             });

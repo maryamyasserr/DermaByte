@@ -3,7 +3,7 @@ import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Doctor/Data/Models/my_reservaion_model/my_reservaion_model.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -48,11 +48,14 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failures, ReportModel>> requestTests({
-    required String id, token, required body, required BuildContext context}) async {
-   try {
+  Future<Either<Failures, ReportModel>> requestTests(
+      {required String id,
+      token,
+      required body,
+      required BuildContext context}) async {
+    try {
       var response = await apiService.update(
           endPoint: "reports/$id", data: body, id: id, token: token);
       ReportModel report = ReportModel.fromJson(response['data']);
@@ -65,6 +68,4 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-
-
 }

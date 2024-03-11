@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class AddTestButton extends StatelessWidget {
   const AddTestButton({
     super.key,
-    required this.onPressed, required this.isLoading,
+    required this.onPressed,
+    required this.isLoading,
   });
   final void Function() onPressed;
   final bool isLoading;
@@ -20,11 +21,11 @@ class AddTestButton extends StatelessWidget {
         backgroundColor: AppColors.kPrimaryColor,
       ),
       onPressed: onPressed,
-      child: isLoading?
-      const LoadingIndicator(color: Colors.white)
-      :
-       Text("Confirm",
-          style: Styels.textStyle20_700(context).copyWith(color: Colors.white)),
+      child: isLoading
+          ? const LoadingIndicator(color: Colors.white)
+          : Text("Confirm",
+              style: Styels.textStyle20_700(context)
+                  .copyWith(color: Colors.white)),
     );
   }
 }

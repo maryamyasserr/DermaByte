@@ -65,11 +65,13 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                     .push(AppRoutes.kPatientView);
                               },
                               start: () {},
-                              onTap: (){  
-                                  BlocProvider.of<MyPatientReportCubit>(context)
+                              onTap: () {
+                                BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
                                     state.reservations[index].scan!.id!;
-                                GoRouter.of(context).push(AppRoutes.kReportView);},
+                                GoRouter.of(context)
+                                    .push(AppRoutes.kReportView);
+                              },
                             ),
                           );
                         }));

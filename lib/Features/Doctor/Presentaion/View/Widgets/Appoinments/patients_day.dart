@@ -31,7 +31,7 @@ class PatientsDay extends StatelessWidget {
                     iconCard: Assets.kAvatar,
                     start: () {},
                     diagnose: () {},
-                    onTap: (){},
+                    onTap: () {},
                   ),
                 );
               }))

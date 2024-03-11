@@ -2,9 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
-
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
 
 class EdoctorRepoImpl implements EdoctorRepo {

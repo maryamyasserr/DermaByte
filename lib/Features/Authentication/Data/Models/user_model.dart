@@ -1,1 +1,1 @@
-abstract class UserModel{}
+abstract class UserModel {}
