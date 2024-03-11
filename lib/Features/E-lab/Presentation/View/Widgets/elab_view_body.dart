@@ -62,7 +62,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                         padding: const EdgeInsets.only(bottom: 24.0),
                         child: LabItem(
                           iconCard: Assets.kAlphaScan,
-                          labTitle: state.labs[index].name!,
+                          labTitle: state.labs[index].name??"",
                           labSubTitle:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                           onTap: () {

@@ -8,7 +8,7 @@ part 'my_patient_report_state.dart';
 class MyPatientReportCubit extends Cubit<MyPatientReportState> {
   MyPatientReportCubit(this.doctortRepo) : super(MyPatientReportInitial());
   DoctorRepo doctortRepo;
-  List<ReportModel> myPatientsReport = [];
+  List<ReportModel> _myPatientsReport = [];
   String? _id;
 
   Future<void> getMyPatientsReport({required String token}) async {
@@ -21,7 +21,7 @@ class MyPatientReportCubit extends Cubit<MyPatientReportState> {
             emit(MyPatientReportFailure(errMessage: failure.errMessage)),
         (reports) {
       emit(MyPatientReportSuccess());
-      myPatientsReport = reports;
+      _myPatientsReport = reports;
     });
   }
 
@@ -30,5 +30,5 @@ class MyPatientReportCubit extends Cubit<MyPatientReportState> {
   }
 
   ReportModel get getPatientReport =>
-      myPatientsReport.firstWhere((element) => element.scan!.id == _id);
+      _myPatientsReport.firstWhere((element) => element.scan!.id == _id);
 }

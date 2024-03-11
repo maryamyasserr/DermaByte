@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ServiceSelectionViewBody extends StatelessWidget {
-  ServiceSelectionViewBody({super.key});
-  final TextEditingController testName = TextEditingController();
-  final TextEditingController cost = TextEditingController();
+  const ServiceSelectionViewBody({super.key});
+  static TextEditingController testName = TextEditingController();
+  static TextEditingController cost = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

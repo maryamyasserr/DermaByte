@@ -38,6 +38,7 @@ class DoctorHome extends StatelessWidget {
                           GoRouter.of(context).push(AppRoutes.kPatientView);
                         },
                         start: () {},
+                        onTap: (){},
                       ),
                     );
                   }))

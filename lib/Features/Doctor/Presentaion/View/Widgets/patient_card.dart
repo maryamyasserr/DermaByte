@@ -2,10 +2,8 @@ import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 class PatientCard extends StatelessWidget {
   const PatientCard(
@@ -14,15 +12,15 @@ class PatientCard extends StatelessWidget {
       required this.cardTitle,
       required this.cardSubTitle,
       required this.diagnose,
-      required this.start});
+      required this.start,
+      required this.onTap
+      });
   final String iconCard, cardTitle, cardSubTitle;
-  final void Function() diagnose, start;
+  final void Function() diagnose, start,onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(AppRoutes.kReportView);
-      },
+      onTap: onTap,
       child: AspectRatio(
         aspectRatio: 342 / 140,
         child: Container(
