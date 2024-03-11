@@ -5,6 +5,8 @@ import 'package:dermabyte/Features/Doctor/Data/Models/my_reservaion_model/my_res
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DoctorRepoImpl implements DoctorRepo {
   DoctorRepoImpl(this.apiService);
@@ -46,14 +48,15 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-
+  
   @override
-  Future<Either<Failures, ReportModel>> requestTests(
-      {required String id, token, required body}) async{
-         try {
+  Future<Either<Failures, ReportModel>> requestTests({
+    required String id, token, required body, required BuildContext context}) async {
+   try {
       var response = await apiService.update(
           endPoint: "reports/$id", data: body, id: id, token: token);
       ReportModel report = ReportModel.fromJson(response['data']);
+      GoRouter.of(context).pop();
       return right(report);
     } catch (e) {
       if (e is DioException) {
@@ -61,5 +64,7 @@ class DoctorRepoImpl implements DoctorRepo {
       }
       return left(ServerFailure(errMessage: e.toString()));
     }
-      }
+  }
+
+
 }

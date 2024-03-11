@@ -65,8 +65,13 @@ class ApiService {
       required dynamic data,
       required String id,
       @required String? token}) async {
-     _dio.options.headers['Content-Type'] = "application/json";
-    Response response = await _dio.put('$_baseUlr$endPoint$id', data: data);
+       if (token != null) {
+      _dio.options.headers['Authorization'] = "Bearer $token";
+      _dio.options.headers['Content-Type'] = "application/json";
+    } else {
+      _dio.options.headers.remove('Authorization');
+    }
+    Response response = await _dio.put('$_baseUlr$endPoint', data: data);
     return response.data;
   }
 
