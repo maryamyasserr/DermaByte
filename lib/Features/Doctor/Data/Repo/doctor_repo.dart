@@ -9,4 +9,9 @@ abstract class DoctorRepo {
 
   Future<Either<Failures, List<ReportModel>>> getMyPatientsReports(
       {required String token});
+
+  Future<Either<Failures, ReportModel>> requestTests({
+    required String id,token,
+    required dynamic body
+  });
 }

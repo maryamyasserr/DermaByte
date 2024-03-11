@@ -101,8 +101,8 @@ class _AddTestBodyState extends State<AddTestBody> {
                     backgroundColor: AppColors.kPrimaryColor,
                   ),
                   onPressed: () {
-                    List<Map<String, String>> testsJson = generateTestsJson();
-                    print(testsJson);
+                    List<Map<String, String>> tests = generateTestsJson();
+                    // print(testsJson);
                     // GoRouter.of(context).pop();
                   },
                   child: Text("Confirm",

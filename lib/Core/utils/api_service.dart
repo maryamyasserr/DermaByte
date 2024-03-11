@@ -63,8 +63,9 @@ class ApiService {
   Future<Map<String, dynamic>> update(
       {required String endPoint,
       required dynamic data,
-      required int id,
+      required String id,
       @required String? token}) async {
+     _dio.options.headers['Content-Type'] = "application/json";
     Response response = await _dio.put('$_baseUlr$endPoint$id', data: data);
     return response.data;
   }

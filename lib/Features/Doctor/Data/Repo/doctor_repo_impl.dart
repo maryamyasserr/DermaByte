@@ -46,4 +46,20 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, ReportModel>> requestTests(
+      {required String id, token, required body}) async{
+         try {
+      var response = await apiService.update(
+          endPoint: "reports/$id", data: body, id: id, token: token);
+      ReportModel report = ReportModel.fromJson(response['data']);
+      return right(report);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+      }
 }

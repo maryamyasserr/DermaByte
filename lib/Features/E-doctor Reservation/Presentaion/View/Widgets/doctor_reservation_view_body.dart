@@ -27,7 +27,7 @@ class DoctorReservationViewBody extends StatelessWidget {
 
     if (pickedFile != null) {
       imgPath = pickedFile.path;
-      print('Selected image path: ${imgPath!}');
+      // print('Selected image path: ${imgPath!}');
     }
   }
 
