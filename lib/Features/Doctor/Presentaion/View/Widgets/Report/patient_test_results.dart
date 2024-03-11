@@ -1,0 +1,52 @@
+import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class PatientTestResult extends StatelessWidget {
+  const PatientTestResult({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    ReportModel consultaion =
+        BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        "Test Results.",
+        style: Styels.textStyle24_600(context),
+      ),
+      const SizedBox(height: 10),
+      ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: consultaion.testResult!.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "- ${consultaion.testResult?[index].testName ?? ""}",
+                      style: Styels.textStyle15_300(context),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // CachedNetworkImage(
+                  //   imageUrl: consultaion.testResult?[index].testResult?[0],
+                  //   errorWidget: (context, url, error) {
+                  //     return const Icon(Icons.error);
+                  //   },
+                  // )
+                ],
+              ),
+            );
+          }),
+    ]);
+  }
+}

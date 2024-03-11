@@ -6,6 +6,8 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_R
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Request_Test/request_tests_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/add_test_body.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/disease_report.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_test_requestd.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_test_results.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/personal_info_section.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
@@ -30,13 +32,11 @@ class ReportView extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.03),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: [
-                const Flexible(
-                    child: SizedBox(
+                const SizedBox(
                   height: 60,
-                )),
+                ),
                 Text(
                   "${report.patient?.firstName ?? ""}'s report",
                   style: Styels.textStyle24_600(context).copyWith(fontSize: 28),
@@ -54,7 +54,13 @@ class ReportView extends StatelessWidget {
                 DiseaseReport(
                   diseaseName: report.scan?.diseaseName ?? "",
                 ),
-                const Expanded(flex: 2, child: SizedBox()),
+                const SizedBox(height: 24),
+                report.tests!.isEmpty
+                    ? const SizedBox()
+                    : const PatientTestRequested(),
+                const SizedBox(height: 32),
+                report.testResult!.isEmpty? const SizedBox():const PatientTestResult(),
+                const SizedBox(height: 128),
                 Align(
                   alignment: Alignment.center,
                   child: MyButton(
@@ -72,6 +78,7 @@ class ReportView extends StatelessWidget {
                             });
                       }),
                 ),
+                const SizedBox(height: 16)
               ],
             ),
           ),
