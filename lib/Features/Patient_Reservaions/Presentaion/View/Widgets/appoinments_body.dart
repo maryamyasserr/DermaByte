@@ -7,7 +7,7 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +44,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
             const SizedBox(height: 12),
             const HeaderText(
                 text: "Follow up with your ongoing and future appointments."),
+            const SizedBox(height: 16),
             BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
               builder: (context, state) {
                 if (state is PreservationInfoFailure) {
@@ -74,7 +75,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                             .setId =
                                         state.pReservationInfo[index].id!;
                                     BlocProvider.of<ReportCubit>(context)
-                                            .setId =
+                                            .setReporId =
                                         state.pReservationInfo[index]
                                             .dermatologist.id!;
                                     GoRouter.of(context).push(

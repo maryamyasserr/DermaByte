@@ -63,7 +63,6 @@ class ApiService {
   Future<Map<String, dynamic>> update(
       {required String endPoint,
       required dynamic data,
-      required String id,
       @required String? token}) async {
     if (token != null) {
       _dio.options.headers['Authorization'] = "Bearer $token";

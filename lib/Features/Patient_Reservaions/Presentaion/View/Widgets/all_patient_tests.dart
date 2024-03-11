@@ -8,6 +8,7 @@ import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AllPatientTest extends StatelessWidget {
   const AllPatientTest({
@@ -45,7 +46,11 @@ class AllPatientTest extends StatelessWidget {
                                 cardSubTitle:
                                     "Scans taken on ${state.tests[index].testDate?.day ?? "29"}/${state.tests[index].testDate?.month ?? "5"}/${state.tests[index].testDate?.year ?? "2022"}",
                                 textButton: "Select",
-                                onPressed: () {},
+                                onPressed: () {
+                                  BlocProvider.of<TestsCubit>(context).testId =
+                                      state.tests[index].id!;
+                                  GoRouter.of(context).pop();
+                                },
                               ),
                               const SizedBox(
                                 height: 12,

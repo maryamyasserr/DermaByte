@@ -2,6 +2,7 @@ import 'dermatologist.dart';
 import 'patient.dart';
 import 'scan.dart';
 import 'test.dart';
+import 'test_result.dart';
 
 class ReportModel {
   Scan? scan;
@@ -10,7 +11,7 @@ class ReportModel {
   dynamic diagnoses;
   Patient? patient;
   Dermatologist? dermatologist;
-  List<dynamic>? testResult;
+  List<TestResult>? testResult;
   List<Test>? tests;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -44,7 +45,9 @@ class ReportModel {
             ? null
             : Dermatologist.fromJson(
                 json['dermatologist'] as Map<String, dynamic>),
-        testResult: json['testResult'] as List<dynamic>?,
+        testResult: (json['testResult'] as List<dynamic>?)
+            ?.map((e) => TestResult.fromJson(e as Map<String, dynamic>))
+            .toList(),
         tests: (json['tests'] as List<dynamic>?)
             ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -64,7 +67,7 @@ class ReportModel {
         'diagnoses': diagnoses,
         'patient': patient?.toJson(),
         'dermatologist': dermatologist?.toJson(),
-        'testResult': testResult,
+        'testResult': testResult?.map((e) => e.toJson()).toList(),
         'tests': tests?.map((e) => e.toJson()).toList(),
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),

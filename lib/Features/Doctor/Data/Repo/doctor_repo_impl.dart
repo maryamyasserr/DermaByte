@@ -57,7 +57,7 @@ class DoctorRepoImpl implements DoctorRepo {
       required BuildContext context}) async {
     try {
       var response = await apiService.update(
-          endPoint: "reports/$id", data: body, id: id, token: token);
+          endPoint: "reports/$id", data: body, token: token);
       ReportModel report = ReportModel.fromJson(response['data']);
       GoRouter.of(context).pop();
       return right(report);

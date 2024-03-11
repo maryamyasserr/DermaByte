@@ -9,7 +9,8 @@ class ReportCubit extends Cubit<ReportState> {
   ReportCubit(this.historyRepo) : super(ReportInitial());
   HistoryRepo historyRepo;
   List<ReportModel> patientConsults = [];
-  String? _id;
+  String? _reportId;
+  String? _consulationId;
   Future<void> getPatientConults({required String token}) async {
     emit(ReportLoading());
     var consults = await historyRepo.getPatientConsults(token: token);
@@ -21,13 +22,17 @@ class ReportCubit extends Cubit<ReportState> {
     });
   }
 
-  set setId(String id) {
-    _id = id;
+  set setReporId(String id) {
+    _reportId = id;
+  }
+
+  set setConsulationId(String id) {
+    _consulationId = id;
   }
 
   ReportModel get patientReport =>
-      patientConsults.firstWhere((report) => report.dermatologist!.id == _id);
+      patientConsults.firstWhere((report) => report.dermatologist?.id == _reportId);
 
   ReportModel get currentConsultation =>
-      patientConsults.firstWhere((consulation) => consulation.id == _id);
+      patientConsults.firstWhere((consulation) => consulation.id == _consulationId);
 }

@@ -3,7 +3,7 @@ class Dermatologist {
   String? lastName;
   String? id;
 
-  Dermatologist({this.id, this.firstName, this.lastName,});
+  Dermatologist({this.id, this.firstName, this.lastName, });
 
   factory Dermatologist.fromJson(Map<String, dynamic> json) => Dermatologist(
         firstName: json['firstName'] as String?,

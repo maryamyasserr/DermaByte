@@ -1,6 +1,7 @@
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/medication.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_requsted.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_result.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/treatment_plan.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,12 @@ class ConsultsBodySection extends StatelessWidget {
         children: [
           consultaion.tests!.isEmpty ? const SizedBox() : const TestRequested(),
           const SizedBox(height: 8),
-          consultaion.medicine == null ? const SizedBox() : const Medications(),
+          consultaion.medicine!.isEmpty? const SizedBox() : const Medications(),
           const SizedBox(height: 8),
           consultaion.treatmentPlan == null
               ? const SizedBox()
               : const TreatmentPlan(),
+          consultaion.testResult!.isEmpty?const SizedBox():const TestResult()
         ],
       ),
     );

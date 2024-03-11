@@ -11,7 +11,7 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Cubits/Preservation_Cubit/preservation_info_cubit.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo_impl.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
