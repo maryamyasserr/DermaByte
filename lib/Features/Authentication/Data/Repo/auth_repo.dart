@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +19,7 @@ abstract class AuthRepo {
       {required dynamic data,
       @required String? token,
       required BuildContext context});
-  Future<Either<Failures, LabModel>> signUpAsLap(
+  Future<Either<Failures, LabToken>> signUpAsLap(
       {required LabModel data,
       @required String? token,
       required BuildContext context});

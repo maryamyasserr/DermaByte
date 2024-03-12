@@ -9,9 +9,9 @@ class LabRequestCubit extends Cubit<LabRequestState> {
   LabRequestsRepo labRequestsRepo;
   LabRequestCubit(this.labRequestsRepo) : super(LabRequestInitial());
 
-  Future<void> getLabRequests({required id}) async {
+  Future<void> getLabRequests({required String token}) async {
     emit(LabRequestLoading());
-    var response = await labRequestsRepo.getLabRequests(id: id);
+    var response = await labRequestsRepo.getLabRequests(token: token);
     response.fold((failure) {
       emit(LabRequestFailure(errMessage: failure.errMessage));
     }, (labRequests) {

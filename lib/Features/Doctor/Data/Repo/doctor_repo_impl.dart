@@ -50,7 +50,7 @@ class DoctorRepoImpl implements DoctorRepo {
   }
 
   @override
-  Future<Either<Failures, ReportModel>> requestTests(
+  Future<Either<Failures, ReportModel>> updatePatientReport(
       {required String id,
       token,
       required body,

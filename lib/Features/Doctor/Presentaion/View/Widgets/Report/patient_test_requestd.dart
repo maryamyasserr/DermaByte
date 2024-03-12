@@ -29,7 +29,7 @@ class PatientTestRequested extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
                 "- ${report.tests?[index].testName ?? ""}",
-                style: Styels.textStyle15_300(context),
+                style: Styels.textStyle18_400(context),
               ),
             );
           }),

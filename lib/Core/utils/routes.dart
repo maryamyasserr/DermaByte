@@ -67,7 +67,7 @@ abstract class AppRoutes {
   static String kAccount = '/account';
   static String kEditProfile = '/editProfile';
   static String kNotification = '/notification';
-  static String kElabHome = '/e-lab_home';
+  static String kLabHome = '/e-lab_home';
   static String kRequestBody = '/requestBody';
   static String kDoctorView = '/e-doctor';
   static String kPatientView = '/patientView';
@@ -155,7 +155,7 @@ abstract class AppRoutes {
     GoRoute(
         path: kNotification,
         builder: (context, state) => const NotificationsView()),
-    GoRoute(path: kElabHome, builder: (context, state) => const ELabView()),
+    GoRoute(path: kLabHome, builder: (context, state) => const LabView()),
     GoRoute(
         path: kRequestBody, builder: (context, state) => const RequestBody()),
     GoRoute(path: kDoctorView, builder: (context, state) => const DoctorView()),

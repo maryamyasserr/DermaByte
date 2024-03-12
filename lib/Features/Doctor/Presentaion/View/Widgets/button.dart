@@ -7,11 +7,12 @@ class MyButton extends StatelessWidget {
     super.key,
     required this.horizontal,
     required this.textButton,
-    required this.onPressed,
+    required this.onPressed, required this.isLoading,
   });
   final double horizontal;
   final String textButton;
   final void Function()? onPressed;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

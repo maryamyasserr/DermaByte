@@ -1,13 +1,12 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Core/utils/service_locator.dart';
-import 'package:dermabyte/Features/Doctor/Data/Repo/doctor_repo_impl.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Request_Test/request_tests_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/add_test_body.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/disease_report.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_medication.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_test_requestd.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_test_results.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_treatment_plane.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/personal_info_section.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
@@ -54,27 +53,30 @@ class ReportView extends StatelessWidget {
                 DiseaseReport(
                   diseaseName: report.scan?.diseaseName ?? "",
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
                 report.tests!.isEmpty
                     ? const SizedBox()
                     : const PatientTestRequested(),
-                const SizedBox(height: 32),
-                report.testResult!.isEmpty? const SizedBox():const PatientTestResult(),
-                const SizedBox(height: 128),
+                const SizedBox(height: 24),
+                report.testResult!.isEmpty
+                    ? const SizedBox()
+                    : const PatientTestResult(),
+                const SizedBox(height: 24),
+                report.medicine!.isEmpty?const SizedBox():const PatientMedications(),
+                const SizedBox(height: 24),
+                report.treatmentPlan==null?const SizedBox():const PatientTreatmentPlan(),
+                const SizedBox(height: 64),
                 Align(
                   alignment: Alignment.center,
                   child: MyButton(
+                    isLoading: false,
                       horizontal: MediaQuery.of(context).size.width * 0.25,
                       textButton: "Request a test",
                       onPressed: () {
                         showDialog(
                             context: context,
                             builder: (context) {
-                              return BlocProvider(
-                                create: (context) => RequestTestsCubit(
-                                    getIt.get<DoctorRepoImpl>()),
-                                child: const AddTestBody(),
-                              );
+                              return const AddTestBody();
                             });
                       }),
                 ),

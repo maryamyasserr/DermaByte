@@ -5,8 +5,8 @@ import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Request%20C
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ELabView extends StatelessWidget {
-  const ELabView({super.key});
+class LabView extends StatelessWidget {
+  const LabView({super.key});
 
   @override
   Widget build(BuildContext context) {

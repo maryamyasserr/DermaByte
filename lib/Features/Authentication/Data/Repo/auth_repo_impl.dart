@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
@@ -18,7 +19,7 @@ class AuthRepoImpl implements AuthRepo {
   ApiService apiService;
 
   @override
-  Future<Either<Failures, LabModel>> signUpAsLap(
+  Future<Either<Failures, LabToken>> signUpAsLap(
       {required LabModel data,
       @required String? token,
       required BuildContext context}) async {
@@ -26,9 +27,9 @@ class AuthRepoImpl implements AuthRepo {
       var response = await apiService.post(
           endPoint: 'labs', data: data.toJson(), token: token);
       debugPrint("${response['data']}");
-      LabModel lap = LabModel.fromJson(response['data']);
-      GoRouter.of(context).pushReplacement(AppRoutes.kElabHome);
-      return right(lap);
+      LabToken lab = LabToken.fromJson(response);
+      GoRouter.of(context).pushReplacement(AppRoutes.kLabHome);
+      return right(lab);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
@@ -85,13 +86,17 @@ class AuthRepoImpl implements AuthRepo {
       var response =
           await apiService.post(endPoint: 'auth/login', data: body, token: '');
       if (response['data']['role'] == 'patient') {
-        PatientTokenModel result = PatientTokenModel.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
-        return right(result);
+        PatientTokenModel patient = PatientTokenModel.fromJson(response);
+        GoRouter.of(context).push(AppRoutes.kCustomScreen);
+        return right(patient);
       } else if (response['data']['role'] == 'dermatologist') {
-        DoctorToken result = DoctorToken.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
-        return right(result);
+        DoctorToken doctor = DoctorToken.fromJson(response);
+        GoRouter.of(context).push(AppRoutes.kDoctorView);
+        return right(doctor);
+      } else if (response['data']['role'] == 'lab') {
+        LabToken lab = LabToken.fromJson(response);
+        GoRouter.of(context).push(AppRoutes.kLabHome);
+        return right(lab);
       } else {
         throw Exception("Unsupported type");
       }

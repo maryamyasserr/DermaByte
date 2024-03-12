@@ -33,7 +33,7 @@ class PatientTestResult extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "- ${consultaion.testResult?[index].testName ?? ""}",
-                      style: Styels.textStyle15_300(context),
+                      style: Styels.textStyle18_400(context),
                     ),
                   ),
                   const SizedBox(height: 16),

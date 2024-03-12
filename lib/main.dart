@@ -6,6 +6,7 @@ import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart'
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/doctor_repo_impl.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
@@ -56,6 +57,9 @@ class DermaByte extends StatelessWidget {
           create: (context) =>
               MyPatientReportCubit(getIt.get<DoctorRepoImpl>()),
         ),
+        BlocProvider(
+          create: (context) => UpdateReportCubit(getIt.get<DoctorRepoImpl>()),
+        )
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

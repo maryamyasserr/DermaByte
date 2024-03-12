@@ -61,11 +61,22 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                   state.reservations[index].scan?.diseaseName ??
                                       "",
                               diagnose: () {
+                                BlocProvider.of<MyPatientReportCubit>(context)
+                                        .setId =
+                                    state.reservations[index].scan!.id!;
+
                                 GoRouter.of(context)
                                     .push(AppRoutes.kPatientView);
                               },
                               start: () {},
-                              onTap: () {
+                              onTap: () async {
+                                await BlocProvider.of<MyPatientReportCubit>(
+                                        context)
+                                    .getMyPatientsReport(
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .doctorModel!
+                                                .token);
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
                                     state.reservations[index].scan!.id!;

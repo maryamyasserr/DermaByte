@@ -4,29 +4,30 @@ import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-part 'request_tests_state.dart';
+part 'update_report_state.dart';
 
-class RequestTestsCubit extends Cubit<RequestTestsState> {
-  RequestTestsCubit(this.doctorRepo) : super(RequestTestsInitial());
+class UpdateReportCubit extends Cubit<UpdateReportState> {
+  UpdateReportCubit(this.doctorRepo) : super(UpdatePatientReportInitial());
+
   DoctorRepo doctorRepo;
   ReportModel? report;
 
   bool isLoading = false;
 
-  Future<void> requestTests(
+  Future<void> updateReport(
       {required String id,
       token,
       required dynamic body,
       required BuildContext context}) async {
-    emit(RequestTestsLoading());
+    emit(UpdatePatientReportStateLoading());
     isLoading = true;
-    var response = await doctorRepo.requestTests(
+    var response = await doctorRepo.updatePatientReport(
         id: id, body: body, token: token, context: context);
     response.fold((failure) {
-      emit(RequestTestsFailure(errMessage: failure.errMessage));
+      emit(UpdatePatientReportStateFailure(errMessage: failure.errMessage));
       isLoading = false;
     }, (reportData) {
-      emit(RequestTestsSuccess());
+      emit(UpdatePatientReportStateSuccess());
       report = reportData;
       isLoading = false;
     });

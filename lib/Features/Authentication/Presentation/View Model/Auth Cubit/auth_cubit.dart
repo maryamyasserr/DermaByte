@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo.dart';
@@ -15,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   PatientTokenModel? patient;
   DoctorToken? doctorModel;
-  LabModel? labModel;
+  LabToken? labModel;
 
   UserModel? userModel;
 
@@ -88,14 +89,17 @@ class AuthCubit extends Cubit<AuthState> {
     response.fold((failure) {
       emit(AuthFailure(errMessage: failure.errMessage));
       isLoding = false;
-    }, (tokenData) {
-      if (tokenData is PatientTokenModel) {
+    }, (data) {
+      if (data is PatientTokenModel) {
         emit(AuthSuccess());
-        patient = tokenData;
+        patient = data;
         isLoding = false;
-      } else if (tokenData is DoctorToken) {
+      } else if (data is DoctorToken) {
         emit(AuthSuccess());
-        doctorModel = tokenData;
+        doctorModel = data;
+      } else if (data is LabToken) {
+        emit(AuthSuccess());
+        labModel = data;
       } else {
         emit(AuthFailure(errMessage: "Unknown user type"));
         isLoding = false;

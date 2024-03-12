@@ -21,12 +21,13 @@ class ConsultsBodySection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           consultaion.tests!.isEmpty ? const SizedBox() : const TestRequested(),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           consultaion.medicine!.isEmpty? const SizedBox() : const Medications(),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           consultaion.treatmentPlan == null
               ? const SizedBox()
               : const TreatmentPlan(),
+          const SizedBox(height: 16),
           consultaion.testResult!.isEmpty?const SizedBox():const TestResult()
         ],
       ),

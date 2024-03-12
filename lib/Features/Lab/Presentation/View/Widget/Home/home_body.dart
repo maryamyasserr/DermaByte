@@ -3,6 +3,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/request_card.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Request%20Cubit/lab_request_cubit.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _HomeBodyState extends State<HomeBody> {
   void initState() {
     super.initState();
     BlocProvider.of<LabRequestCubit>(context)
-        .getLabRequests(id: '65dc8fabb271f785c0e3c139');
+        .getLabRequests(token: BlocProvider.of<AuthCubit>(context).labModel!.token);
   }
 
   @override

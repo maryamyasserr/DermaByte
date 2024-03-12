@@ -3,7 +3,7 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Request_Test/request_tests_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/button.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:flutter/material.dart';
@@ -52,11 +52,11 @@ class _AddTestBodyState extends State<AddTestBody> {
   Widget build(BuildContext context) {
     ReportModel report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
-    return BlocConsumer<RequestTestsCubit, RequestTestsState>(
+    return BlocConsumer<UpdateReportCubit, UpdateReportState>(
       listener: (context, state) {
-        if (state is RequestTestsSuccess) {
+        if (state is UpdatePatientReportStateSuccess) {
           showSnackBar(context, "Done");
-        } else if (state is RequestTestsFailure) {
+        } else if (state is UpdatePatientReportStateFailure) {
           // showSnackBar(context, state.errMessage);
           print(state.errMessage);
         }
@@ -114,11 +114,11 @@ class _AddTestBodyState extends State<AddTestBody> {
                     ),
                     AddTestButton(
                       isLoading:
-                          BlocProvider.of<RequestTestsCubit>(context).isLoading,
+                          BlocProvider.of<UpdateReportCubit>(context).isLoading,
                       onPressed: () async {
                         List<Map<String, String>> tests = generateTestsJson();
-                        await BlocProvider.of<RequestTestsCubit>(context)
-                            .requestTests(
+                        await BlocProvider.of<UpdateReportCubit>(context)
+                            .updateReport(
                                 context: context,
                                 id: report.id!,
                                 body: {"tests": tests},

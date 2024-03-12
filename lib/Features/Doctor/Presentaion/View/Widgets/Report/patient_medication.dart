@@ -1,18 +1,18 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Medications extends StatelessWidget {
-  const Medications({
+class PatientMedications extends StatelessWidget {
+  const PatientMedications({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    ReportModel consultaion =
-        BlocProvider.of<ReportCubit>(context).currentConsultation;
+    ReportModel report =
+        BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,14 +24,12 @@ class Medications extends StatelessWidget {
         ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: consultaion.medicine!.isEmpty
-                ? 0
-                : consultaion.medicine!.length,
+            itemCount: report.medicine!.length,
             itemBuilder: ((context, index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  "- ${consultaion.medicine?[index] ?? ""}",
+                  "- ${report.medicine?[index] ?? ""}",
                   style: Styels.textStyle18_400(context),
                 ),
               );

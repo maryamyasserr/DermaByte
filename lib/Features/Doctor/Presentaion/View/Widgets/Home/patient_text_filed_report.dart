@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 class PatientTextFieldReport extends StatelessWidget {
   const PatientTextFieldReport(
-      {super.key, required this.hintText, required this.maxLines});
+      {super.key, required this.hintText, required this.maxLines, required this.controller});
   final String hintText;
   final int maxLines;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,6 +32,7 @@ class PatientTextFieldReport extends StatelessWidget {
                   .copyWith(fontWeight: FontWeight.w600),
             ),
             TextField(
+              controller: controller,
               maxLines: maxLines,
               keyboardType: TextInputType.text,
               cursorColor: AppColors.kPrimaryColor,

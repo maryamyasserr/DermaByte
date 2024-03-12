@@ -29,7 +29,7 @@ class TestRequested extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
                 "- ${consultaion.tests?[index].testName ?? ""}",
-                style: Styels.textStyle15_300(context),
+                style: Styels.textStyle18_400(context),
               ),
             );
           }),
