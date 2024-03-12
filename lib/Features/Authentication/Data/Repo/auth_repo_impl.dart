@@ -3,7 +3,6 @@ import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
@@ -20,16 +19,15 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failures, UserModel>> signUp(
-      {required data,
-      required String token,
+      {required dynamic data,
       required String role,
       required BuildContext context}) async {
     String endPoint = 'auth/signup';
 
     if (role == 'patinet') {
       try {
-        var response = await apiService.post(
-            endPoint: endPoint, data: data.toJson(), token: token);
+        var response = await apiService.postWithMultiForm(
+            endPoint: endPoint, data: data, token: null);
         PatientTokenModel patient = PatientTokenModel.fromJson(response);
         GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
         return right(patient);
@@ -41,8 +39,8 @@ class AuthRepoImpl implements AuthRepo {
       }
     } else if (role == 'doctor') {
       try {
-        var response = await apiService.post(
-            endPoint: endPoint, data: data.toJson(), token: token);
+        var response = await apiService.postWithMultiForm(
+            endPoint: endPoint, data: data, token: null);
         DoctorToken doctor = DoctorToken.fromJson(response);
         GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
         return right(doctor);
@@ -54,8 +52,8 @@ class AuthRepoImpl implements AuthRepo {
       }
     }else if(role=='lab'){
         try {
-      var response = await apiService.post(
-          endPoint: endPoint, data: data.toJson(), token: token);
+      var response = await apiService.postWithMultiForm(
+          endPoint: endPoint, data: data, token: null);
       LabToken lab = LabToken.fromJson(response);
       GoRouter.of(context).pushReplacement(AppRoutes.kLabHome);
       return right(lab);

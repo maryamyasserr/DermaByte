@@ -9,7 +9,6 @@ abstract class AuthRepo {
 
     Future<Either<Failures, UserModel>> signUp(
       {required dynamic data,
-      required String token,
       required String role,
       required BuildContext context});
       

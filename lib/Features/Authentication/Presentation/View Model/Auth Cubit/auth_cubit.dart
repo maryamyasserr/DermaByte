@@ -21,32 +21,33 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signUp(
       {required dynamic data,
-      required String token,
       required BuildContext context,
       required String role}) async {
     emit(AuthLoading());
-    isLoding=true;
-      var response = await authRepo.signUp(
-          data: data, token: token, context: context,
-          role: role
-          );
-      response.fold((failure) {
-        emit(AuthFailure(errMessage: failure.errMessage));
-      }, (data) {
-        if(data is PatientTokenModel){
+    isLoding = true;
+    var response =
+        await authRepo.signUp(data: data, context: context, role: role);
+    response.fold((failure) {
+      emit(AuthFailure(errMessage: failure.errMessage));
+      isLoding = false;
+    }, (data) {
+      if (data is PatientTokenModel) {
         emit(AuthSuccess());
+        isLoding = false;
         patient = data;
-        }else if(data is DoctorToken){
+      } else if (data is DoctorToken) {
         emit(AuthSuccess());
         doctorModel = data;
-        }else if(data is LabToken){
+        isLoding = false;
+      } else if (data is LabToken) {
         emit(AuthSuccess());
         labModel = data;
-        }else{
-          emit(AuthFailure(errMessage: 'Uexpected role'));
-          isLoding =false;
-        }
-      });
+        isLoding = false;
+      } else {
+        emit(AuthFailure(errMessage: 'Uexpected role'));
+        isLoding = false;
+      }
+    });
   }
 
   // Future<void> signIn(

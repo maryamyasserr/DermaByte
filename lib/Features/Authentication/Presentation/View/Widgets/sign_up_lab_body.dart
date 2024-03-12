@@ -149,7 +149,6 @@ class _SignUpPatientBodyState extends State<SignUpLabBody> {
                       password: SignUpLabBody.passwordController.text,
                       passwordConfirm: SignUpLabBody.rePasswordController.text,
                     ),
-                    token: '',
                     role: 'lap');
                 setState(() {
                   isLoading = false;

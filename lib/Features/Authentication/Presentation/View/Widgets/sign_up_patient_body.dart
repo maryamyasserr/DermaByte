@@ -141,7 +141,6 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                     // passwordConfirm:
                     //     SignUpPatientBody.rePasswordController.text
                   ),
-                  token: '',
                   role: 'patient');
               setState(() {
                 isLoading = false;
