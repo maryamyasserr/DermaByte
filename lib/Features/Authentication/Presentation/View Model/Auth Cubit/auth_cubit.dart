@@ -16,45 +16,37 @@ class AuthCubit extends Cubit<AuthState> {
   PatientTokenModel? patient;
   DoctorToken? doctorModel;
   LabToken? labModel;
-
   UserModel? userModel;
-
   bool isLoding = false;
 
   Future<void> signUp(
       {required dynamic data,
-      @required String? token,
+      required String token,
       required BuildContext context,
       required String role}) async {
     emit(AuthLoading());
-    if (role == 'patient') {
-      var response = await authRepo.signUpAsPatient(
-          data: data, token: token, context: context);
+    isLoding=true;
+      var response = await authRepo.signUp(
+          data: data, token: token, context: context,
+          role: role
+          );
       response.fold((failure) {
         emit(AuthFailure(errMessage: failure.errMessage));
-      }, (patientData) {
-        patient = patientData;
+      }, (data) {
+        if(data is PatientTokenModel){
         emit(AuthSuccess());
-      });
-    } else if (role == 'doctor') {
-      var response = await authRepo.signUpAsDsoctor(
-          data: data, token: token, context: context);
-      response.fold((failure) {
-        emit(AuthFailure(errMessage: failure.errMessage));
-      }, (doctor) {
-        doctorModel = doctor;
+        patient = data;
+        }else if(data is DoctorToken){
         emit(AuthSuccess());
-      });
-    } else {
-      var response = await authRepo.signUpAsLap(
-          data: data, token: token, context: context);
-      response.fold((failure) {
-        emit(AuthFailure(errMessage: failure.errMessage));
-      }, (lap) {
-        labModel = lap;
+        doctorModel = data;
+        }else if(data is LabToken){
         emit(AuthSuccess());
+        labModel = data;
+        }else{
+          emit(AuthFailure(errMessage: 'Uexpected role'));
+          isLoding =false;
+        }
       });
-    }
   }
 
   // Future<void> signIn(
