@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
@@ -97,9 +96,11 @@ class AuthCubit extends Cubit<AuthState> {
       } else if (data is DoctorToken) {
         emit(AuthSuccess());
         doctorModel = data;
+        isLoding = false;
       } else if (data is LabToken) {
         emit(AuthSuccess());
         labModel = data;
+        isLoding = false;
       } else {
         emit(AuthFailure(errMessage: "Unknown user type"));
         isLoding = false;
