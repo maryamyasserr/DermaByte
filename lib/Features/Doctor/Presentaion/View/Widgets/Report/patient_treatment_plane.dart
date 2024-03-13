@@ -11,14 +11,14 @@ class PatientTreatmentPlan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     ReportModel report =
+    ReportModel report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Treatment plan", style: Styels.textStyle24_600(context)),
         Text(
-         "- ${report.treatmentPlan}",
+          "- ${report.treatmentPlan}",
           style: Styels.textStyle18_400(context),
         ),
       ],

@@ -1,6 +1,5 @@
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_up_doctor_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +18,7 @@ class SignUpDoctor extends StatelessWidget {
               showSnackBar(context, 'Success');
             }
           },
-          child: BlocProvider(
-            create: (context) => AuthHelperCubit(),
-            child:  SignUpDoctorBody(),
-          )),
+          child: SignUpDoctorBody()),
     );
   }
 }

@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PatientView extends StatelessWidget {
-   const PatientView(
-      {super.key,});
+  const PatientView({
+    super.key,
+  });
 
-  static TextEditingController diagnosesController=TextEditingController();
-  static TextEditingController treatmentPlanController=TextEditingController();
+  static TextEditingController diagnosesController = TextEditingController();
+  static TextEditingController treatmentPlanController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +82,13 @@ class PatientView extends StatelessWidget {
                       onPressed: () async {
                         await BlocProvider.of<UpdateReportCubit>(context)
                             .updateReport(
-                              token: BlocProvider.of<AuthCubit>(context).doctorModel!.token,
+                                token: BlocProvider.of<AuthCubit>(context)
+                                    .doctorModel!
+                                    .token,
                                 id: report.id!,
                                 body: {
                                   "medicine": [(diagnosesController.text)],
-                                  "treatmentPlan":
-                                      treatmentPlanController.text,
+                                  "treatmentPlan": treatmentPlanController.text,
                                 },
                                 context: context);
                       },

@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class AuthRepo {
-
-    Future<Either<Failures, UserModel>> signUp(
+  Future<Either<Failures, UserModel>> signUp(
       {required dynamic data,
       required String role,
       required BuildContext context});
-      
+
   // Future<Either<Failures, PatientTokenModel>> signUpAsPatient(
   //     {required dynamic data,
   //     @required String? token,
@@ -24,7 +23,6 @@ abstract class AuthRepo {
   //     {required LabModel data,
   //     @required String? token,
   //     required BuildContext context});
-
 
   Future<Either<Failures, UserModel>> signIn({
     required dynamic body,

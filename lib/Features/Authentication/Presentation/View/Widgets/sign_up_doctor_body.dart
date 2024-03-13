@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:dermabyte/Core/utils/assets.dart';
-
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -129,24 +126,20 @@ class SignUpDoctorBody extends StatelessWidget {
                         await BlocProvider.of<AuthCubit>(context).signUp(
                           context: context,
                           data: FormData.fromMap({
-                            'firstName':
-                                firstNameController.text,
-                            'lastName':
-                                lastNameController.text,
+                            'firstName': firstNameController.text,
+                            'lastName': lastNameController.text,
                             'gender': genderController.text,
                             'mobile': mobileController.text,
-                            'location':
-                                locationController.text,
+                            'location': locationController.text,
                             'city': "Madirid",
                             'country': "Spain",
                             'specialization': aboutController,
                             'license': ['Doctor'],
                             'email': emailController.text,
-                            'password':
-                                passwordController.text,
-                            'passwordConfirm':
-                                rePasswordController.text,
-                            'profilePic': BlocProvider.of<AuthHelperCubit>(context).photo,
+                            'password': passwordController.text,
+                            'passwordConfirm': rePasswordController.text,
+                            'profilePic':
+                                BlocProvider.of<AuthHelperCubit>(context).photo,
                             'sessionCost': 100,
                             'role': 'dermatologist'
                           }),

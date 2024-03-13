@@ -24,7 +24,7 @@ class AuthRepoImpl implements AuthRepo {
       required BuildContext context}) async {
     String endPoint = 'auth/signup';
 
-    if (role == 'patinet') {
+    if (role == 'patient') {
       try {
         var response = await apiService.postWithMultiForm(
             endPoint: endPoint, data: data, token: null);
@@ -50,20 +50,20 @@ class AuthRepoImpl implements AuthRepo {
         }
         return left(ServerFailure(errMessage: e.toString()));
       }
-    }else if(role=='lab'){
-        try {
-      var response = await apiService.postWithMultiForm(
-          endPoint: endPoint, data: data, token: null);
-      LabToken lab = LabToken.fromJson(response);
-      GoRouter.of(context).pushReplacement(AppRoutes.kLabHome);
-      return right(lab);
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+    } else if (role == 'lab') {
+      try {
+        var response = await apiService.postWithMultiForm(
+            endPoint: endPoint, data: data, token: null);
+        LabToken lab = LabToken.fromJson(response);
+        GoRouter.of(context).pushReplacement(AppRoutes.kLabHome);
+        return right(lab);
+      } catch (e) {
+        if (e is DioException) {
+          return left(ServerFailure.fromDioException(e));
+        }
+        return left(ServerFailure(errMessage: e.toString()));
       }
-      return left(ServerFailure(errMessage: e.toString()));
-    }
-    }else{
+    } else {
       throw Exception("Unsupported Role");
     }
   }

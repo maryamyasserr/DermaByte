@@ -30,9 +30,9 @@ class ReportCubit extends Cubit<ReportState> {
     _consulationId = id;
   }
 
-  ReportModel get patientReport =>
-      patientConsults.firstWhere((report) => report.dermatologist?.id == _reportId);
+  ReportModel get patientReport => patientConsults
+      .firstWhere((report) => report.dermatologist?.id == _reportId);
 
-  ReportModel get currentConsultation =>
-      patientConsults.firstWhere((consulation) => consulation.id == _consulationId);
+  ReportModel get currentConsultation => patientConsults
+      .firstWhere((consulation) => consulation.id == _consulationId);
 }

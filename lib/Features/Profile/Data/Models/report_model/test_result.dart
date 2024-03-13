@@ -6,7 +6,12 @@ class TestResult {
   Lab? lab;
   String? id;
 
-  TestResult({this.id, this.testName, this.testResult, this.lab,});
+  TestResult({
+    this.id,
+    this.testName,
+    this.testResult,
+    this.lab,
+  });
 
   factory TestResult.fromJson(Map<String, dynamic> json) => TestResult(
         testName: json['testName'] as String?,

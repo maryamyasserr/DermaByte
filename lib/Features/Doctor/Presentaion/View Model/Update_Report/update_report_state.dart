@@ -3,7 +3,6 @@ part of 'update_report_cubit.dart';
 @immutable
 sealed class UpdateReportState {}
 
-
 final class UpdatePatientReportInitial extends UpdateReportState {}
 
 final class UpdatePatientReportStateLoading extends UpdateReportState {}
@@ -15,4 +14,3 @@ final class UpdatePatientReportStateFailure extends UpdateReportState {
 
   UpdatePatientReportStateFailure({required this.errMessage});
 }
-

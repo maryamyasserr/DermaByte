@@ -2,7 +2,7 @@ import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_scans_bottom_sheet.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_reservation_form.dart';
@@ -46,7 +46,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
     LabModel lab = BlocProvider.of<ELabCubit>(context).currentLab;
     List<String> labTests = [];
     for (var e in lab.services!) {
-      labTests.add(e['name']);
+      labTests.add(e.name!);
     }
     return BlocConsumer<LabReservaionCubit, LabReservaionState>(
       listener: (context, state) {

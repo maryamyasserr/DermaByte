@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 class PatientTextFieldReport extends StatelessWidget {
   const PatientTextFieldReport(
-      {super.key, required this.hintText, required this.maxLines, required this.controller});
+      {super.key,
+      required this.hintText,
+      required this.maxLines,
+      required this.controller});
   final String hintText;
   final int maxLines;
   final TextEditingController controller;

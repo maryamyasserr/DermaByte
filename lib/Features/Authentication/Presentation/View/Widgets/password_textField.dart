@@ -8,7 +8,8 @@ class PasswordTextField extends StatelessWidget {
     required this.mediaQuery,
     required this.rePasswordVisible,
     required this.onTap,
-    required this.text, required this.controller,
+    required this.text,
+    required this.controller,
   });
 
   final Size mediaQuery;
@@ -23,7 +24,7 @@ class PasswordTextField extends StatelessWidget {
       height: mediaQuery.height * 0.05,
       child: TextForm(
         label: text,
-        controller:controller ,
+        controller: controller,
         suffixIcon: GestureDetector(
             onTap: onTap,
             child: rePasswordVisible == true

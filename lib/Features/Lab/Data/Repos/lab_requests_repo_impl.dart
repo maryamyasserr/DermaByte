@@ -13,9 +13,7 @@ class LabRequestsRepoImpl implements LabRequestsRepo {
       {required String token}) async {
     try {
       var response = await apiService.get(
-          endPoint: "labs/laboratory-reservation",
-          token: token
-          );
+          endPoint: "labs/laboratory-reservation", token: token);
       List<LabRequest> labs = [];
       for (var lab in response['data']) {
         labs.add(LabRequest.fromJson(lab));

@@ -35,8 +35,8 @@ class PatientConsults extends StatelessWidget {
                             "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                         textButton: "View",
                         onPressed: () {
-                          BlocProvider.of<ReportCubit>(context).setConsulationId =
-                              state.reports[index].id!;
+                          BlocProvider.of<ReportCubit>(context)
+                              .setConsulationId = state.reports[index].id!;
                           GoRouter.of(context).push(AppRoutes.kConsults);
                         },
                       ),

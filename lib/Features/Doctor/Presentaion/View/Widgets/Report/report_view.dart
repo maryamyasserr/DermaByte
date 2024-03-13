@@ -62,14 +62,18 @@ class ReportView extends StatelessWidget {
                     ? const SizedBox()
                     : const PatientTestResult(),
                 const SizedBox(height: 24),
-                report.medicine!.isEmpty?const SizedBox():const PatientMedications(),
+                report.medicine!.isEmpty
+                    ? const SizedBox()
+                    : const PatientMedications(),
                 const SizedBox(height: 24),
-                report.treatmentPlan==null?const SizedBox():const PatientTreatmentPlan(),
+                report.treatmentPlan == null
+                    ? const SizedBox()
+                    : const PatientTreatmentPlan(),
                 const SizedBox(height: 64),
                 Align(
                   alignment: Alignment.center,
                   child: MyButton(
-                    isLoading: false,
+                      isLoading: false,
                       horizontal: MediaQuery.of(context).size.width * 0.25,
                       textButton: "Request a test",
                       onPressed: () {

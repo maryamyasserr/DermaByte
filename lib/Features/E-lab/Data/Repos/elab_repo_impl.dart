@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
 import 'package:dermabyte/Features/E-lab/Data/Models/lab_reservation.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo.dart';
 import 'package:dio/dio.dart';

@@ -12,6 +12,8 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   bool rePassword = false;
   File? photo;
   XFile? profilePic;
+  XFile? license;
+
   Future<void> uploadPicture() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -21,8 +23,17 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
     }
   }
 
+    Future<void> uploadLicense() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      license = pickedFile;
+      emit(AuthHelperSuccess());
+    }
+  }
+
   void convertoFile() {
-    photo = File(profilePic?.path??"");
+    photo = File(profilePic?.path ?? "");
   }
 
   void passwordVisability() {

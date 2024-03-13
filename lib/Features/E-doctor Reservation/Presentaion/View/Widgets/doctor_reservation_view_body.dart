@@ -55,8 +55,7 @@ class DoctorReservationViewBody extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 15),
-            child: ListView(
-              children: [
+            child: ListView(children: [
               const CustomAppBar(title: 'Reservation'),
               Padding(
                 padding: const EdgeInsets.only(left: 8),

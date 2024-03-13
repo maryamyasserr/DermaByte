@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
 import 'package:dermabyte/Features/E-lab/Data/lab_service_data.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_service_item.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
@@ -34,7 +34,7 @@ class LabDetailsViewBody extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             const SizedBox(height: 80),
             Text(
-              lab.name!,
+              lab.firstName!,
               style: Styels.textStyle20_700(context).copyWith(fontSize: 28),
               textAlign: TextAlign.center,
             ),

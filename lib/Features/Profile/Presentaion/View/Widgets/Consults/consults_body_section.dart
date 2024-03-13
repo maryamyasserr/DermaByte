@@ -22,13 +22,17 @@ class ConsultsBodySection extends StatelessWidget {
         children: [
           consultaion.tests!.isEmpty ? const SizedBox() : const TestRequested(),
           const SizedBox(height: 16),
-          consultaion.medicine!.isEmpty? const SizedBox() : const Medications(),
+          consultaion.medicine!.isEmpty
+              ? const SizedBox()
+              : const Medications(),
           const SizedBox(height: 16),
           consultaion.treatmentPlan == null
               ? const SizedBox()
               : const TreatmentPlan(),
           const SizedBox(height: 16),
-          consultaion.testResult!.isEmpty?const SizedBox():const TestResult()
+          consultaion.testResult!.isEmpty
+              ? const SizedBox()
+              : const TestResult()
         ],
       ),
     );

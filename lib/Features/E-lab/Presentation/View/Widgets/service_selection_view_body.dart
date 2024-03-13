@@ -36,13 +36,6 @@ class ServiceSelectionViewBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Expanded(child: SizedBox()),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text("Test: Eczema"),
-                  //     Text("cost: 200"),
-                  //   ],
-                  // ),
                   Center(
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(

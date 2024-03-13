@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Authentication/Data/Models/lab_model.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/user_model.dart';
 
 class LabToken extends UserModel {
