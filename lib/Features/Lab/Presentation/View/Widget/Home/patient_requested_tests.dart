@@ -2,7 +2,6 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +12,7 @@ class PatientTestRequestedLab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       LabReservations reservatino =
+    LabReservations reservatino =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(

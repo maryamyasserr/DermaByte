@@ -22,33 +22,39 @@ class _FileUploadState extends State<FileUpload> {
           onTap: () async {
             await BlocProvider.of<LabHelperCubit>(context).uploadResult();
           },
-          child: BlocProvider.of<LabHelperCubit>(context).imgPath != null
+          child: BlocProvider.of<LabHelperCubit>(context).files!.isNotEmpty
               ? Column(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          BlocProvider.of<LabHelperCubit>(context)
-                              .removePhoto();
-                        },
-                        icon: const Icon(
-                          Icons.close,
-                          size: 30,
-                        )),
-                    const SizedBox(height: 8),
-                    AspectRatio(
-                      aspectRatio: 346 / 300,
-                      child: Image.file(
-                        File(BlocProvider.of<LabHelperCubit>(context)
-                            .imgPath!
-                            .path!),
-                        fit: BoxFit.cover,
+                  children:
+                      BlocProvider.of<LabHelperCubit>(context).files!.map((e) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: Column(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                BlocProvider.of<LabHelperCubit>(context)
+                                    .removePhoto(e);
+                              },
+                              icon: const Icon(
+                                Icons.close,
+                                size: 30,
+                              )),
+                          const SizedBox(height: 4),
+                          AspectRatio(
+                            aspectRatio: 346 / 350,
+                            child: Image.file(
+                              File(e.path!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    );
+                  }).toList(),
                 )
               : Container(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: 70,
+                  height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: AppColors.kCardColor,

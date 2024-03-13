@@ -85,7 +85,10 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                   ),
                 );
               } else {
-                return const Expanded(child: Center(child: LoadingIndicator(color: AppColors.kPrimaryColor)));
+                return const Expanded(
+                    child: Center(
+                        child:
+                            LoadingIndicator(color: AppColors.kPrimaryColor)));
               }
             })
           ],

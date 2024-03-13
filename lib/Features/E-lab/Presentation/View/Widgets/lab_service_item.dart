@@ -8,7 +8,8 @@ class LabServiceItem extends StatelessWidget {
     super.key,
     required this.testName,
     required this.cost,
-    required this.onTap, required this.selected,
+    required this.onTap,
+    required this.selected,
   });
   final String testName, cost;
   final void Function() onTap;
@@ -31,8 +32,7 @@ class LabServiceItem extends StatelessWidget {
                   blurRadius: 6.0,
                 )
               ]),
-          child:
-            Padding(
+          child: Padding(
             padding: const EdgeInsets.only(top: 10, left: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,9 +55,21 @@ class LabServiceItem extends StatelessWidget {
                   cost,
                   style: Styels.textStyle15_400(context),
                 ),
-                selected?
-                 const Center(child: Icon(Icons.check_box,size: 34,color: AppColors.kPrimaryColor,),):
-                const Center(child: Icon(Icons.check_box_outline_blank,size: 34,color: AppColors.kPrimaryColor,),)
+                selected
+                    ? const Center(
+                        child: Icon(
+                          Icons.check_box,
+                          size: 34,
+                          color: AppColors.kPrimaryColor,
+                        ),
+                      )
+                    : const Center(
+                        child: Icon(
+                          Icons.check_box_outline_blank,
+                          size: 34,
+                          color: AppColors.kPrimaryColor,
+                        ),
+                      )
               ],
             ),
           ),

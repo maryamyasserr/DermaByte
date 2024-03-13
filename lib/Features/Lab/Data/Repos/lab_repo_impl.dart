@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
+import 'package:dermabyte/Features/Lab/Data/Models/result_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/service_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo.dart';
 import 'package:dio/dio.dart';
@@ -59,6 +60,22 @@ class LabRepoImpl implements LabRepo {
         services.add(ServiceModel.fromJson(service));
       }
       return right(services);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, ResultModel>> attachResult(
+      {required String id, token, required body}) async {
+    try {
+      var response = await apiService.postWithMultiForm(
+          endPoint: "results", data: body, token: token);
+      ResultModel result = response['data'];
+      return right(result);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class ServiceItem extends StatelessWidget {
   const ServiceItem({
-    super.key, required this.testName, required this.cost,
+    super.key,
+    required this.testName,
+    required this.cost,
   });
   final String testName, cost;
   @override
@@ -29,7 +31,10 @@ class ServiceItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.medical_information,size: 40,),
+              const Icon(
+                Icons.medical_information,
+                size: 40,
+              ),
               const SizedBox(
                 height: 8,
               ),

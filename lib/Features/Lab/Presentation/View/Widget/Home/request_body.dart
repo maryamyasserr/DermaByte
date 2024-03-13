@@ -31,7 +31,10 @@ class RequestBody extends StatelessWidget {
                 const SizedBox(height: 50),
                 const PatientPhoto(radius: 50),
                 const SizedBox(height: 30),
-                PatientInfo(info: 'Name :', data:"${ reservatino.patient!.firstName!} ${ reservatino.patient!.lastName!}"),
+                PatientInfo(
+                    info: 'Name :',
+                    data:
+                        "${reservatino.patient!.firstName!} ${reservatino.patient!.lastName!}"),
                 const PatientInfo(info: 'Age :', data: "21"),
                 const PatientInfo(info: 'Gender :', data: " Male"),
                 const PatientInfo(info: 'Date :', data: " 29/5/2022"),
@@ -41,12 +44,12 @@ class RequestBody extends StatelessWidget {
                   color: Colors.black,
                 ),
                 const SizedBox(height: 16),
-                reservatino.test!.isEmpty?
-                const SizedBox()
-                :const PatientTestRequestedLab(),
-                const SizedBox(height: 30),
+                reservatino.test!.isEmpty
+                    ? const SizedBox()
+                    : const PatientTestRequestedLab(),
+                const SizedBox(height: 50),
                 const FileUpload(),
-                const SizedBox(height: 70),
+                const SizedBox(height: 80),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(

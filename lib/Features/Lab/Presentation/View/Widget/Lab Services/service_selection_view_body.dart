@@ -56,7 +56,8 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
               builder: (context, state) {
                 if (state is GetLabServicesSuccess) {
                   if (state.services.isEmpty) {
-                    return const Expanded(child: Center(child: Text("No Services Yet")));
+                    return const Expanded(
+                        child: Center(child: Text("No Services Yet")));
                   } else {
                     return Expanded(
                       child: GridView.builder(
@@ -77,13 +78,18 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                     );
                   }
                 } else if (state is GetLabServicesFailure) {
-                  return Expanded(child: Center(child: ErrWidget(errMessage: state.errMessage)));
-                }else{
-                  return const Expanded(child: Center(child: LoadingIndicator(color: AppColors.kPrimaryColor),));
+                  return Expanded(
+                      child: Center(
+                          child: ErrWidget(errMessage: state.errMessage)));
+                } else {
+                  return const Expanded(
+                      child: Center(
+                    child: LoadingIndicator(color: AppColors.kPrimaryColor),
+                  ));
                 }
               },
             ),
-        const SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.kPrimaryColor,

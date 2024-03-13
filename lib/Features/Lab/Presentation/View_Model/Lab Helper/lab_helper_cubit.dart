@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:meta/meta.dart';
@@ -7,19 +6,18 @@ part 'lab_helper_state.dart';
 
 class LabHelperCubit extends Cubit<LabHelperState> {
   LabHelperCubit() : super(LabHelperInitial());
-  PlatformFile? imgPath;
+  List<PlatformFile>? files;
   Future<void> uploadResult() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-        // type: FileType.image,
-        allowMultiple: true);
-    if (result != null && result.files.isNotEmpty) {
-      imgPath = result.files.first;
+    try {
+      files = (await FilePicker.platform.pickFiles(allowMultiple: true))?.files;
       emit(LabHelperSuccess());
-    } else {}
+    } catch (e) {
+      print("Error picking files: $e");
+    }
   }
 
-  void removePhoto() {
-    imgPath = null;
-      emit(LabHelperSuccess());
+  void removePhoto(PlatformFile photo) {
+    files!.remove(photo);
+    emit(LabHelperSuccess());
   }
 }

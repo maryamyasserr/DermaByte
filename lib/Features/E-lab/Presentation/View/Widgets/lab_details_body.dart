@@ -52,7 +52,12 @@ class LabDetailsViewBody extends StatelessWidget {
                     crossAxisSpacing: 10,
                     childAspectRatio: 0.8),
                 itemBuilder: (context, index) {
-                  return LabServiceItem(testName: '',cost: '',onTap: (){},selected: false,);
+                  return LabServiceItem(
+                    testName: '',
+                    cost: '',
+                    onTap: () {},
+                    selected: false,
+                  );
                 },
                 itemCount: serviceList.length,
               ),

@@ -4,4 +4,5 @@ part of 'lab_helper_cubit.dart';
 sealed class LabHelperState {}
 
 final class LabHelperInitial extends LabHelperState {}
+
 final class LabHelperSuccess extends LabHelperState {}

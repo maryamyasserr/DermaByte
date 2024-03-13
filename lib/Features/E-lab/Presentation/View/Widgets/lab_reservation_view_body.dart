@@ -98,12 +98,13 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                     setState(() {
                                       if (isSelected) {
                                         selectedIndices.remove(index);
-                                        labTests.remove(lab.services![index].id!);
+                                        labTests
+                                            .remove(lab.services![index].id!);
                                       } else {
                                         selectedIndices.add(index);
                                         labTests.add(lab.services![index].id!);
                                       }
-                                      
+
                                       print(labTests);
                                     });
                                   },
@@ -125,10 +126,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                         onPressed: () async {
                           await BlocProvider.of<LabReservaionCubit>(context)
                               .createReservation(
-                                  body: {
-                                "test": labTests,
-                                "lab": lab.id
-                              },
+                                  body: {"test": labTests, "lab": lab.id},
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .patient!
                                       .token);
