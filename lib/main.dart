@@ -14,6 +14,7 @@ import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Elab%20Cubit/elab_cubit.dart';
 import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo_impl.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Add%20Lab%20Services/add_lab_services_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Get%20Lab%20Services/get_lab_services_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
@@ -71,7 +72,8 @@ class DermaByte extends StatelessWidget {
             create: (context) => AddServiceCubit(getIt.get<LabRepoImpl>())),
         BlocProvider(
           create: (context) => LabReservationsCubit(getIt.get<LabRepoImpl>()),
-        )
+        ),
+        BlocProvider(  create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>()),)
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

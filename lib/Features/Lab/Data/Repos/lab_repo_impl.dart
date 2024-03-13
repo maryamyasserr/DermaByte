@@ -33,21 +33,24 @@ class LabRepoImpl implements LabRepo {
   }
 
   @override
-  Future<Either<Failures, ServiceModel>> addService(
+  Future<Either<Failures, String>> addService(
       {required String token,
       required body,
       required BuildContext context}) async {
     try {
-      var response = await apiService.post(
+      await apiService.post(
           endPoint: 'labs/tests', data: body, token: token);
-      ServiceModel service = ServiceModel.fromJson(response['data']);
       GoRouter.of(context).pop();
-      return right(service);
+      return right("Done");
     } catch (e) {
       if (e is DioException) {
+      GoRouter.of(context).pop();
         return left(ServerFailure.fromDioException(e));
-      }
+
+      }else{
+      GoRouter.of(context).pop();
       return left(ServerFailure(errMessage: e.toString()));
+      }
     }
   }
 

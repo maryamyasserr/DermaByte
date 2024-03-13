@@ -23,7 +23,6 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       isLoading = false;
     }, (data) {
       emit(AddServiceSuccess());
-      service = data;
       isLoading = false;
     });
   }

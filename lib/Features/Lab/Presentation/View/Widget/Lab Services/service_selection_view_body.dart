@@ -118,8 +118,14 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                                       "${ServiceSelectionViewBody.testName.text} test",
                                   "cost": ServiceSelectionViewBody.cost.text
                                 });
-                            ServiceSelectionViewBody.testName.clear();
+                            await BlocProvider.of<GetLabServicesCubit>(context)
+                                .getMyServices(
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .labModel!
+                                        .token);
+                             ServiceSelectionViewBody.testName.clear();
                             ServiceSelectionViewBody.cost.clear();
+                           
                           },
                         );
                       });

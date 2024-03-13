@@ -10,7 +10,7 @@ abstract class LabRepo {
   Future<Either<Failures, List<LabReservations>>> getLabRequests(
       {required String token});
 
-  Future<Either<Failures, ServiceModel>> addService(
+  Future<Either<Failures, String>> addService(
       {required String token,
       required dynamic body,
       required BuildContext context});

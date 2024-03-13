@@ -13,14 +13,14 @@ class WeekCalender extends StatelessWidget {
     return WeeklyCalendar(
       calendarStyle: const CalendarStyle(
         locale: "en_US",
-        padding: EdgeInsets.symmetric(vertical: 14, horizontal: 15),
-        margin: EdgeInsets.all(14),
+        padding: EdgeInsets.symmetric(vertical:20, horizontal: 15),
+        margin: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
         decoration: BoxDecoration(
             color: AppColors.kPrimaryColor,
             borderRadius: BorderRadius.all(Radius.circular(14))),
         headerDateTextColor: Colors.white,
         headerDateTextAlign: Alignment.center,
-        isShowHeaderDateText: false,
+        isShowHeaderDateText: true,
         footerDateTextColor: Colors.white,
         footerDateTextAlign: Alignment.center,
         isShowFooterDateText: false,

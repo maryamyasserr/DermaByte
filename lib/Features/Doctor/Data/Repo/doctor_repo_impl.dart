@@ -68,4 +68,19 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, String>> setSchedule(
+      {required dynamic body, required String token}) async {
+    try {
+       await apiService.post(
+          endPoint: "schedules", data: body, token: token);
+      return right("Success");
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

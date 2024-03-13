@@ -16,5 +16,7 @@ abstract class DoctorRepo {
       token,
       required dynamic body,
       required BuildContext context});
- 
+
+  Future<Either<Failures, String>> setSchedule(
+      {required dynamic body, required String token});
 }

@@ -1,26 +1,27 @@
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 import 'package:flutter/material.dart';
 
-class ShceduleForm extends StatelessWidget {
-  const ShceduleForm({
+class ScheduleForm extends StatelessWidget {
+  const ScheduleForm({
     super.key,
-    required this.mediaQuery,
     required this.label,
     required this.controller,
   });
 
-  final Size mediaQuery;
   final String label;
   final TextEditingController controller;
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return SizedBox(
-      height: mediaQuery.height * 0.07,
+      height: 60,
       child: Center(
-        child: TextForm(
-          label: label,
-          controller: controller,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: TextForm(
+            label: label,
+            controller: controller,
+          ),
         ),
       ),
     );

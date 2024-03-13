@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,10 @@ class MyButton extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             backgroundColor: AppColors.kPrimaryColor),
-        child: Text(
+        child: isLoading?
+        const LoadingIndicator(color: Colors.white)
+        :
+        Text(
           textButton,
           style: Styels.textStyle24_600(context)
               .copyWith(fontSize: 20, color: Colors.white),
