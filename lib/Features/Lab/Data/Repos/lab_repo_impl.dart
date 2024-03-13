@@ -7,6 +7,7 @@ import 'package:dermabyte/Features/Lab/Data/Models/service_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class LabRepoImpl implements LabRepo {
@@ -70,11 +71,12 @@ class LabRepoImpl implements LabRepo {
 
   @override
   Future<Either<Failures, ResultModel>> attachResult(
-      {required String id, token, required body}) async {
+      {required String token, required body,required BuildContext context}) async {
     try {
       var response = await apiService.postWithMultiForm(
           endPoint: "results", data: body, token: token);
-      ResultModel result = response['data'];
+      ResultModel result = ResultModel.fromJson(response['data']);
+      GoRouter.of(context).pop();
       return right(result);
     } catch (e) {
       if (e is DioException) {

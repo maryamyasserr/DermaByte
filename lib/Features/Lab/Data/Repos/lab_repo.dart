@@ -4,6 +4,7 @@ import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservat
 import 'package:dermabyte/Features/Lab/Data/Models/result_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/service_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class LabRepo {
   Future<Either<Failures, List<LabReservations>>> getLabRequests(
@@ -18,5 +19,5 @@ abstract class LabRepo {
       {required String token});
 
   Future<Either<Failures, ResultModel>> attachResult(
-      {required String id, token, required dynamic body});
+      {required String token, required dynamic body,required BuildContext context});
 }

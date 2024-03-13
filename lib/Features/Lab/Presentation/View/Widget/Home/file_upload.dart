@@ -22,10 +22,10 @@ class _FileUploadState extends State<FileUpload> {
           onTap: () async {
             await BlocProvider.of<LabHelperCubit>(context).uploadResult();
           },
-          child: BlocProvider.of<LabHelperCubit>(context).files!.isNotEmpty
+          child: BlocProvider.of<LabHelperCubit>(context).files.isNotEmpty
               ? Column(
                   children:
-                      BlocProvider.of<LabHelperCubit>(context).files!.map((e) {
+                      BlocProvider.of<LabHelperCubit>(context).files.map((e) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 16),
                       child: Column(

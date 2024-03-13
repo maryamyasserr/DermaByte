@@ -1,6 +1,6 @@
 class ResultModel {
-  String? testName;
-  List<String>? testResult;
+  List<dynamic>? testName;
+  List<dynamic>? testResult;
   DateTime? testDate;
   String? patient;
   String? lab;
@@ -23,8 +23,8 @@ class ResultModel {
   });
 
   factory ResultModel.fromJson(Map<String, dynamic> json) => ResultModel(
-        testName: json['testName'] as String?,
-        testResult: json['testResult'] as List<String>?,
+        testName: json['testName'] as List<dynamic>?,
+        testResult: json['testResult'] as List<dynamic>?,
         testDate: json['testDate'] == null
             ? null
             : DateTime.parse(json['testDate'] as String),
