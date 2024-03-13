@@ -56,34 +56,43 @@ class _HomeBodyState extends State<HomeBody> {
                 child: Text(state.errMessage),
               );
             } else if (state is LabReservaionsSuccess) {
-              if(state.labRequests.isEmpty){
-                  return Expanded(child: Center(child: Text("No Reservaions Yet",style: Styels.textStyle20_300(context),)));
-              }else{
+              if (state.labRequests.isEmpty) {
                 return Expanded(
-                  child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: state.labRequests.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: RequestCard(
-                            iconCard: Assets.kAvatar,
-                            cardSubTitle:
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                            cardTitle:
-                                state.labRequests[index].patient!.firstName ??
-                                    'No Patient Name',
-                            onPressed: () {
-                              GoRouter.of(context).push(AppRoutes.kRequestBody);
-                            },
-                            textButton: "View",
-                          ),
-                        );
-                      }));
+                    child: Center(
+                        child: Text(
+                  "No Reservaions Yet",
+                  style: Styels.textStyle20_300(context),
+                )));
+              } else {
+                return Expanded(
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: state.labRequests.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: RequestCard(
+                              iconCard: Assets.kAvatar,
+                              cardSubTitle:
+                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                              cardTitle:
+                                  state.labRequests[index].patient!.firstName ??
+                                      'No Patient Name',
+                              onPressed: () {
+                                BlocProvider.of<LabReservationsCubit>(context)
+                                    .setId = state.labRequests[index].id!;
+                                GoRouter.of(context)
+                                    .push(AppRoutes.kRequestBody);
+                              },
+                              textButton: "View",
+                            ),
+                          );
+                        }));
               }
-              
             } else {
-              return const Expanded(child: Center(child: LoadingIndicator(color: AppColors.kPrimaryColor)));
+              return const Expanded(
+                  child: Center(
+                      child: LoadingIndicator(color: AppColors.kPrimaryColor)));
             }
           })
         ],

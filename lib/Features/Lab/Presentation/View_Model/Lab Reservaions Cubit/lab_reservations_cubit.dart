@@ -6,8 +6,11 @@ import 'package:meta/meta.dart';
 part 'lab_reservations_state.dart';
 
 class LabReservationsCubit extends Cubit<LabReservationsState> {
-  LabRepo labRequestsRepo;
   LabReservationsCubit(this.labRequestsRepo) : super(LabReservaionsInitial());
+  LabRepo labRequestsRepo;
+
+  String? _id;
+  List<LabReservations> allReservations = [];
 
   Future<void> getLabRequests({required String token}) async {
     emit(LabReservaionsLoading());
@@ -16,6 +19,14 @@ class LabReservationsCubit extends Cubit<LabReservationsState> {
       emit(LabReservaionsFailure(errMessage: failure.errMessage));
     }, (labRequests) {
       emit(LabReservaionsSuccess(labRequests: labRequests));
+      allReservations = labRequests;
     });
   }
+
+  set setId(String id) {
+    _id = id;
+  }
+
+  LabReservations get currentReservation =>
+      allReservations.firstWhere((element) => element.id == _id);
 }
