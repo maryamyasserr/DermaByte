@@ -7,9 +7,9 @@ import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class LabRepoImpl implements LabRepo {
+class ElabRepoImpl implements ElabRepo {
   ApiService apiService;
-  LabRepoImpl(this.apiService);
+  ElabRepoImpl(this.apiService);
   @override
   Future<Either<Failures, List<LabModel>>> getAllLabs(
       {required String token}) async {

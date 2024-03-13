@@ -3,7 +3,7 @@ import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart'
 import 'package:dermabyte/Features/Doctor/Data/Repo/doctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
-import 'package:dermabyte/Features/Lab/Data/Repos/lab_requests_repo_impl.dart';
+import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo_impl.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo_impl.dart';
 import 'package:dio/dio.dart';
@@ -29,8 +29,8 @@ void setupServiceLocator() {
   getIt.registerSingleton<HistoryRepoImpl>(
       HistoryRepoImpl(getIt.get<ApiService>()));
 
-  getIt.registerSingleton<LabRepoImpl>(
-    LabRepoImpl(
+  getIt.registerSingleton<ElabRepoImpl>(
+    ElabRepoImpl(
       getIt.get<ApiService>(),
     ),
   );
@@ -39,8 +39,8 @@ void setupServiceLocator() {
       getIt.get<ApiService>(),
     ),
   );
-  getIt.registerSingleton<LabRequestsRepoImpl>(
-    LabRequestsRepoImpl(
+  getIt.registerSingleton<LabRepoImpl>(
+    LabRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

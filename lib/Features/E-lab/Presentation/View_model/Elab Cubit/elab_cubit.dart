@@ -3,10 +3,10 @@ import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_mode
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo.dart';
 import 'package:meta/meta.dart';
 
-part 'lab_state.dart';
+part 'elab_state.dart';
 
 class ELabCubit extends Cubit<LabState> {
-  LabRepo labRepo;
+  ElabRepo labRepo;
   ELabCubit(this.labRepo) : super(LabInitial());
 
   List<LabModel> allLabs = [];

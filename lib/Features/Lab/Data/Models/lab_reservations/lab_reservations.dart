@@ -1,7 +1,7 @@
 import 'patient.dart';
 import 'test.dart';
 
-class LabRequest {
+class LabReservations {
   String? id;
   DateTime? date;
   Patient? patient;
@@ -10,7 +10,7 @@ class LabRequest {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  LabRequest({
+  LabReservations({
     this.id,
     this.date,
     this.patient,
@@ -20,7 +20,8 @@ class LabRequest {
     this.updatedAt,
   });
 
-  factory LabRequest.fromJson(Map<String, dynamic> json) => LabRequest(
+  factory LabReservations.fromJson(Map<String, dynamic> json) =>
+      LabReservations(
         id: json['_id'] as String?,
         date: json['date'] == null
             ? null

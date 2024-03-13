@@ -7,11 +7,11 @@ part 'lab_reservaion_state.dart';
 
 class LabReservaionCubit extends Cubit<LabReservaionState> {
   LabReservaionCubit(this.labRepo) : super(LabReservaionInitial());
-  LabRepo labRepo;
+  ElabRepo labRepo;
   bool isLoading = false;
   LabReservationModel? labReservationData;
   Future<void> createReservation(
-      {required dynamic body, @required String? token}) async {
+      {required dynamic body, required String token}) async {
     emit(LabReservaionLoading());
     isLoading = true;
     var reservation = await labRepo.createReservation(body: body, token: token);

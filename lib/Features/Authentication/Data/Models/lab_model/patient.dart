@@ -3,7 +3,11 @@ class Patient {
   String? firstName;
   String? lastName;
 
-  Patient({this.id, this.firstName, this.lastName,});
+  Patient({
+    this.id,
+    this.firstName,
+    this.lastName,
+  });
 
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(
         firstName: json['firstName'] as String?,
@@ -12,7 +16,6 @@ class Patient {
       );
 
   Map<String, dynamic> toJson() => {
-   
         'firstName': firstName,
         'lastName': lastName,
         'id': id,

@@ -53,8 +53,9 @@ class ProfilePicture extends StatelessWidget {
               bottom: 0,
               right: 0,
               child: GestureDetector(
-                onTap: ()async {
-                  await BlocProvider.of<AuthHelperCubit>(context).uploadPicture();
+                onTap: () async {
+                  await BlocProvider.of<AuthHelperCubit>(context)
+                      .uploadPicture();
                   BlocProvider.of<AuthHelperCubit>(context).convertoFile();
                 },
                 child: const ImageIcon(

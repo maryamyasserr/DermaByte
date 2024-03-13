@@ -11,7 +11,10 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View_model/Elab%20Cubit/elab_cubit.dart';
+import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo_impl.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Add%20Lab%20Services/add_lab_services_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo_impl.dart';
@@ -49,7 +52,7 @@ class DermaByte extends StatelessWidget {
             create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
               ..getPatientConults(
                   token: BlocProvider.of<AuthCubit>(context).patient!.token)),
-        BlocProvider(create: (context) => ELabCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(create: (context) => ELabCubit(getIt.get<ElabRepoImpl>())),
         BlocProvider(
           create: (context) =>
               DoctorReservationCubit(getIt.get<EdoctorRepoImpl>()),
@@ -61,7 +64,12 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
           create: (context) => UpdateReportCubit(getIt.get<DoctorRepoImpl>()),
         ),
-        BlocProvider(create: (context) => AuthHelperCubit())
+        BlocProvider(create: (context) => AuthHelperCubit()),
+        BlocProvider(create: (context) => LabHelperCubit()),
+
+        BlocProvider(
+            create: (context) => AddServiceCubit(getIt.get<LabRepoImpl>())),
+        
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

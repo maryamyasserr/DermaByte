@@ -69,7 +69,7 @@ class _LabBodyState extends State<LabBody> {
             controller: _pageController,
             onPageChanged: (page) {},
             physics: const NeverScrollableScrollPhysics(),
-            children: const [HomeBody(),ServiceSelectionView(), ElabProfile()],
+            children: const [HomeBody(), ServiceSelectionView(), ElabProfile()],
           ),
         ));
   }

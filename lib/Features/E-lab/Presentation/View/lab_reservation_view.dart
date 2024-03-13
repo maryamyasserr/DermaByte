@@ -12,7 +12,7 @@ class LabReservationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => LabReservaionCubit(getIt.get<LabRepoImpl>()),
+        create: (context) => LabReservaionCubit(getIt.get<ElabRepoImpl>()),
         child: const LabReservationViewBody(),
       ),
     );

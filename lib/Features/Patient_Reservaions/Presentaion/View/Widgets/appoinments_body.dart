@@ -89,8 +89,12 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                             }));
                   }
                 } else {
-                  return const LoadingIndicator(
-                    color: AppColors.kPrimaryColor,
+                  return const Expanded(
+                    child: Center(
+                      child: LoadingIndicator(
+                        color: AppColors.kPrimaryColor,
+                      ),
+                    ),
                   );
                 }
               },

@@ -4,7 +4,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
 import 'package:dermabyte/Features/E-lab/Data/lab_service_data.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_service_item.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View_model/Elab%20Cubit/elab_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +52,7 @@ class LabDetailsViewBody extends StatelessWidget {
                     crossAxisSpacing: 10,
                     childAspectRatio: 0.8),
                 itemBuilder: (context, index) {
-                  return LabServiceItem(labServiceData: serviceList[index]);
+                  return LabServiceItem(testName: '',cost: '',onTap: (){},selected: false,);
                 },
                 itemCount: serviceList.length,
               ),

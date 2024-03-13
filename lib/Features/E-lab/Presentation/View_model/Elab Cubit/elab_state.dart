@@ -1,4 +1,4 @@
-part of 'lab_cubit.dart';
+part of 'elab_cubit.dart';
 
 @immutable
 sealed class LabState {}

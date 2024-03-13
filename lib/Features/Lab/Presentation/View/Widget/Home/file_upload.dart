@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FileUpload extends StatefulWidget {
   const FileUpload({super.key});
@@ -12,60 +13,71 @@ class FileUpload extends StatefulWidget {
 }
 
 class _FileUploadState extends State<FileUpload> {
-  String? imgPath;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        FilePickerResult? result = await FilePicker.platform.pickFiles(
-            // type: FileType.image,
-            allowMultiple: false);
-        if (result != null && result.files.isNotEmpty) {
-          setState(() {
-            imgPath = result.files.first.path;
-          });
-        } else {}
-      },
-      child: imgPath != null
-          ? AspectRatio(
-              aspectRatio: 346 / 250,
-              child: Image.file(
-                File(imgPath!),
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width * 0.9,
-                fit: BoxFit.cover,
-              ),
-            )
-          : Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.07,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: AppColors.kCardColor,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0.0, 2.6),
-                      blurRadius: 6.0,
-                    )
-                  ]),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BlocConsumer<LabHelperCubit, LabHelperState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () async {
+            await BlocProvider.of<LabHelperCubit>(context).uploadResult();
+          },
+          child: BlocProvider.of<LabHelperCubit>(context).imgPath != null
+              ? Column(
                   children: [
-                    Text(
-                      "Attach test resutls",
-                      style: Styels.textStyle16_400(context),
+                    IconButton(
+                        onPressed: () {
+                          BlocProvider.of<LabHelperCubit>(context)
+                              .removePhoto();
+                        },
+                        icon: const Icon(
+                          Icons.close,
+                          size: 30,
+                        )),
+                    const SizedBox(height: 8),
+                    AspectRatio(
+                      aspectRatio: 346 / 300,
+                      child: Image.file(
+                        File(BlocProvider.of<LabHelperCubit>(context)
+                            .imgPath!
+                            .path!),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    const Icon(
-                      Icons.add,
-                      size: 35,
-                    )
                   ],
+                )
+              : Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 70,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: AppColors.kCardColor,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 2.6),
+                          blurRadius: 6.0,
+                        )
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Attach test resutls",
+                          style: Styels.textStyle16_400(context),
+                        ),
+                        const Icon(
+                          Icons.add,
+                          size: 35,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
+        );
+      },
     );
   }
 }

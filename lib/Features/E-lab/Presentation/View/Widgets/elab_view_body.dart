@@ -6,7 +6,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_item.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Cubit/lab_cubit.dart';
+import 'package:dermabyte/Features/E-lab/Presentation/View_model/Elab%20Cubit/elab_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -50,8 +50,10 @@ class _ElabViewBodyState extends State<ElabViewBody> {
             ),
             BlocBuilder<ELabCubit, LabState>(builder: (context, state) {
               if (state is LabFailure) {
-                return Center(
-                  child: Text(state.errMessage),
+                return Expanded(
+                  child: Center(
+                    child: Text(state.errMessage),
+                  ),
                 );
               } else if (state is LabSuccess) {
                 return Expanded(
@@ -83,7 +85,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                   ),
                 );
               } else {
-                return const LoadingIndicator(color: AppColors.kPrimaryColor);
+                return const Expanded(child: Center(child: LoadingIndicator(color: AppColors.kPrimaryColor)));
               }
             })
           ],

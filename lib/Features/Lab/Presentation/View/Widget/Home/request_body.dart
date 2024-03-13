@@ -19,40 +19,40 @@ class RequestBody extends StatelessWidget {
                   image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
           child: Padding(
             padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.07,
                 horizontal: MediaQuery.of(context).size.width * 0.03),
-            child: Column(
+            child: ListView(
               children: [
+                const SizedBox(height: 50),
                 const PatientPhoto(radius: 50),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                const SizedBox(height: 30),
                 const PatientInfo(info: 'Name :', data: " Seif Tariq"),
                 const PatientInfo(info: 'Age :', data: " 21"),
                 const PatientInfo(info: 'Gender :', data: " Male"),
                 const PatientInfo(info: 'Date :', data: " 29/5/2022"),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                const SizedBox(height: 10),
                 const Divider(
                   thickness: 0.3,
                   color: Colors.black,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                const SizedBox(height: 30),
                 const FileUpload(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+                const SizedBox(height: 70),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                       backgroundColor: AppColors.kPrimaryColor,
-                      padding: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height * 0.014,
-                          horizontal:
-                              MediaQuery.of(context).size.width * 0.40)),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15,
+                          )),
                   child: Text(
                     "Save",
                     style: Styels.textStyle18_600(context).copyWith(
                         fontWeight: FontWeight.w700, color: Colors.white),
                   ),
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ),

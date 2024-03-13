@@ -5,7 +5,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/request_card.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Request%20Cubit/lab_request_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,7 +22,7 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<LabRequestCubit>(context).getLabRequests(
+    BlocProvider.of<LabReservationsCubit>(context).getLabRequests(
         token: BlocProvider.of<AuthCubit>(context).labModel!.token);
   }
 
@@ -49,14 +49,17 @@ class _HomeBodyState extends State<HomeBody> {
             ],
           ),
           const SizedBox(height: 24),
-          BlocBuilder<LabRequestCubit, LabRequestState>(
+          BlocBuilder<LabReservationsCubit, LabReservationsState>(
               builder: (context, state) {
-            if (state is LabRequestFailure) {
+            if (state is LabReservaionsFailure) {
               return Center(
                 child: Text(state.errMessage),
               );
-            } else if (state is LabRequestSuccess) {
-              return Expanded(
+            } else if (state is LabReservaionsSuccess) {
+              if(state.labRequests.isEmpty){
+                  return Expanded(child: Center(child: Text("No Reservaions Yet",style: Styels.textStyle20_300(context),)));
+              }else{
+                return Expanded(
                   child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       itemCount: state.labRequests.length,
@@ -77,8 +80,10 @@ class _HomeBodyState extends State<HomeBody> {
                           ),
                         );
                       }));
+              }
+              
             } else {
-              return const LoadingIndicator(color: AppColors.kPrimaryColor);
+              return const Expanded(child: Center(child: LoadingIndicator(color: AppColors.kPrimaryColor)));
             }
           })
         ],

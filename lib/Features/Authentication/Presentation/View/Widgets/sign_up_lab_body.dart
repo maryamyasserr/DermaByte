@@ -28,8 +28,7 @@ class SignUpLabBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return BlocConsumer<AuthHelperCubit, AuthHeplerState>(
-      listener: (context, state) {
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: mediaQuery.width * 0.03),
@@ -120,11 +119,12 @@ class SignUpLabBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        BlocProvider.of<AuthHelperCubit>(context)
-                                      .license==null?
-                                      'Scan your work license'
-                                      : BlocProvider.of<AuthHelperCubit>(context)
-                                      .license!.name,
+                        BlocProvider.of<AuthHelperCubit>(context).license ==
+                                null
+                            ? 'Scan your work license'
+                            : BlocProvider.of<AuthHelperCubit>(context)
+                                .license!
+                                .name,
                         style: Styels.textStyle20_200(context),
                       ),
                       GestureDetector(
@@ -154,11 +154,13 @@ class SignUpLabBody extends StatelessWidget {
                               'location': locationController.text,
                               'city': "city",
                               'country': "country",
-                              'license': BlocProvider.of<AuthHelperCubit>(context).license,
+                              'license':
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .license,
                               'email': emailController.text,
                               'password': passwordController.text,
                               'passwordConfirm': rePasswordController.text,
-                              'role':'lab',
+                              'role': 'lab',
                             }),
                             role: 'lab');
                       }),

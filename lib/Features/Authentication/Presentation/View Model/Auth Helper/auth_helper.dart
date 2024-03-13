@@ -23,7 +23,7 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
     }
   }
 
-    Future<void> uploadLicense() async {
+  Future<void> uploadLicense() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
