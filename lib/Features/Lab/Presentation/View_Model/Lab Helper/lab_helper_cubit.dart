@@ -11,7 +11,7 @@ class LabHelperCubit extends Cubit<LabHelperState> {
   Future<void> uploadResult() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
         // type: FileType.image,
-        allowMultiple: false);
+        allowMultiple: true);
     if (result != null && result.files.isNotEmpty) {
       imgPath = result.files.first;
       emit(LabHelperSuccess());
