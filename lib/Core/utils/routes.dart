@@ -11,10 +11,10 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/docto
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/doctor_schedule_view.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/lab_reservation_view.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/lab_details_view.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View/service_selection_view.dart';
 import 'package:dermabyte/Features/Home/View/home_view.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/request_body.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View/e-lab._view.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/lab._view.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/service_selection_view.dart';
 import 'package:dermabyte/Features/Notification/View/notification_view.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/appoinments_view.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/follow_up_view.dart';

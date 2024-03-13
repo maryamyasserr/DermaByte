@@ -2,18 +2,19 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/home_body.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View/Widget/e_lab_profile/profile_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/lab_profile/profile_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/service_selection_view.dart';
 
 import 'package:flutter/material.dart';
 
-class ElabBody extends StatefulWidget {
-  const ElabBody({super.key});
+class LabBody extends StatefulWidget {
+  const LabBody({super.key});
 
   @override
-  State<ElabBody> createState() => _ElabBodyState();
+  State<LabBody> createState() => _LabBodyState();
 }
 
-class _ElabBodyState extends State<ElabBody> {
+class _LabBodyState extends State<LabBody> {
   int selectedIndex = 0;
   final PageController _pageController = PageController();
 
@@ -47,6 +48,12 @@ class _ElabBodyState extends State<ElabBody> {
                 label: "Home",
               ),
               BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.medical_services_outlined,
+                ),
+                label: "Services",
+              ),
+              BottomNavigationBarItem(
                   icon: Icon(
                     Icons.person,
                   ),
@@ -62,7 +69,7 @@ class _ElabBodyState extends State<ElabBody> {
             controller: _pageController,
             onPageChanged: (page) {},
             physics: const NeverScrollableScrollPhysics(),
-            children: const [HomeBody(), ElabProfile()],
+            children: const [HomeBody(),ServiceSelectionView(), ElabProfile()],
           ),
         ));
   }

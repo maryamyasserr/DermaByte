@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/service_selection_view_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/service_selection_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ServiceSelectionView extends StatelessWidget {
@@ -6,7 +6,7 @@ class ServiceSelectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: ServiceSelectionViewBody(),
     );
   }

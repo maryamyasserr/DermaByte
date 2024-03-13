@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/show_dialog_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/sheet_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,15 +39,16 @@ class ServiceSelectionViewBody extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.kPrimaryColor,
                           padding: EdgeInsets.symmetric(
                               horizontal: mediaQuery.width * 0.19,
                               vertical: mediaQuery.height * 0.015),
                         ),
                         onPressed: () {
-                          showDialog(
+                          showModalBottomSheet(
                               context: context,
                               builder: (context) {
-                                return ShowDialogBody(
+                                return SheetBody(
                                   testName: testName,
                                   cost: cost,
                                   onPressed: () {
@@ -56,29 +57,12 @@ class ServiceSelectionViewBody extends StatelessWidget {
                                 );
                               });
                         },
-                        child: const Text(
+                        child: Text(
                           "Add Your Services",
-                          style: TextStyle(fontSize: 20),
+                          style: Styels.textStyle20_700(context).copyWith(color: Colors.white),
                         )),
                   ),
                   const SizedBox(height: 16),
-                  Center(
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: mediaQuery.width * 0.30,
-                                vertical: mediaQuery.height * 0.016),
-                            backgroundColor: AppColors.kPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25.0),
-                            )),
-                        onPressed: () {
-                          // GoRouter.of(context).pushReplacement(AppRoutes.kSignUpLab);
-                        },
-                        child: Text('Confirm',
-                            style: Styels.textStyle20_700(context)
-                                .copyWith(color: AppColors.kWhiteColor))),
-                  )
                 ],
               ),
             ),

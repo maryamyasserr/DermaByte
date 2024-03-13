@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/utils/routes.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View/Widget/e_lab_profile/e_lab_profile_item.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/lab_profile/e_lab_profile_item.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/profile_item_model.dart';
 import 'package:flutter/material.dart';
 
