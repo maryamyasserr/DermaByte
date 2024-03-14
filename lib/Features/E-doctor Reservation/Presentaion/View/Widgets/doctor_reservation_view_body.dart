@@ -148,9 +148,11 @@ class DoctorReservationViewBody extends StatelessWidget {
                                 .token);
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)
-                      .isLoading)
+                      .isLoading),
+                const SizedBox(height: 16)
             ]),
           ),
+          
         );
       },
     );
