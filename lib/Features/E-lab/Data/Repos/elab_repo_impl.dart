@@ -31,7 +31,7 @@ class ElabRepoImpl implements ElabRepo {
 
   @override
   Future<Either<Failures, LabReservationModel>> createReservation(
-      {required body, @required String? token}) async {
+      {required body, required String token}) async {
     try {
       var reservation = await apiService.post(
           endPoint: "laboratories-reservations", data: body, token: token);
