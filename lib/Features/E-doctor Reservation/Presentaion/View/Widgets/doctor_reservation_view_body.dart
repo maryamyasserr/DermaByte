@@ -1,11 +1,14 @@
+import 'package:dermabyte/Core/Widgets/calender.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_free_time.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_patient_scans.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/attach_doctor_reservation.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/doctor_reservaion_button.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/time_widget.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dio/dio.dart';
@@ -54,7 +57,7 @@ class DoctorReservationViewBody extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: ListView(children: [
               const CustomAppBar(title: 'Reservation'),
               Padding(
@@ -66,6 +69,13 @@ class DoctorReservationViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: mediaQuery.height * 0.035),
+              SizedBox(
+                height: 140,
+                child: WeekCalender(onChangedSelectedDate: (data) {}),
+              ),
+              const SizedBox(height: 30),
+              AllFreeTime(),
+              const SizedBox(height: 12),
               CustomTextField(
                   hintext: 'When did you start noticing skin changes?',
                   width: mediaQuery.height * 0.5,

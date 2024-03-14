@@ -3,7 +3,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Set%20Schedule/set_schedule_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Schedule/calender.dart';
+import 'package:dermabyte/Core/Widgets/calender.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Schedule/schedule_field.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:flutter/material.dart';
