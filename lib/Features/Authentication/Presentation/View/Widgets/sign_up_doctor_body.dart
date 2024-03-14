@@ -5,7 +5,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/password_textField.dart';
-import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture_patient.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/required_text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 
@@ -17,18 +17,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpDoctorBody extends StatelessWidget {
+class SignUpDoctorBody extends StatefulWidget {
   SignUpDoctorBody({super.key});
+
+  @override
+  State<SignUpDoctorBody> createState() => _SignUpDoctorBodyState();
+}
+
+class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final TextEditingController rePasswordController = TextEditingController();
+
   final TextEditingController firstNameController = TextEditingController();
+
   final TextEditingController lastNameController = TextEditingController();
+
   final TextEditingController mobileController = TextEditingController();
+
   final TextEditingController locationController = TextEditingController();
+
   final TextEditingController genderController = TextEditingController();
+
   final TextEditingController aboutController = TextEditingController();
 
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -44,7 +59,7 @@ class SignUpDoctorBody extends StatelessWidget {
                   SizedBox(height: mediaQuery.height * 0.06),
                   const CustomTitle(title: "Sign Up"),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.012),
-                  const ProfilePicture(),
+                  const ProfilePicturePatinet(),
                   SizedBox(height: mediaQuery.height * 0.02),
                   TextFormContainer(
                     mediaQuery: mediaQuery,
@@ -104,25 +119,36 @@ class SignUpDoctorBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Scan your work license ',
+                        BlocProvider.of<AuthHelperCubit>(context).labLicense ==
+                                null
+                            ? 'Scan your work license'
+                            : BlocProvider.of<AuthHelperCubit>(context)
+                                .docotrLicense!
+                                .name,
                         style: Styels.textStyle20_200(context),
                       ),
                       GestureDetector(
-                          onTap: () {},
-                          child: Image.asset(
-                            'assets/images/upload_icon.png',
-                          ))
+                          onTap: () async {
+                            await BlocProvider.of<AuthHelperCubit>(context)
+                                .uploadLicense(role: 'd');
+                          },
+                          child: BlocProvider.of<AuthHelperCubit>(context)
+                                      .docotrLicense ==
+                                  null
+                              ? Image.asset(
+                                  'assets/images/upload_icon.png',
+                                )
+                              : const Icon(Icons.done))
                     ],
                   ),
                   SizedBox(height: mediaQuery.height * 0.03),
                   SignButton(
-                      isLoading: BlocProvider.of<AuthCubit>(context).isLoding,
+                      isLoading: isLoading,
                       buttonName: 'Sign Up',
                       onClicked: () async {
-                        // print(
-                        //   File( BlocProvider.of<AuthHelperCubit>(context)
-                        //     .profilePic!.path)
-                        //  );
+                        setState(() {
+                          isLoading = true;
+                        });
                         await BlocProvider.of<AuthCubit>(context).signUp(
                           context: context,
                           data: FormData.fromMap({
@@ -139,12 +165,17 @@ class SignUpDoctorBody extends StatelessWidget {
                             'password': passwordController.text,
                             'passwordConfirm': rePasswordController.text,
                             'profilePic':
-                                BlocProvider.of<AuthHelperCubit>(context).photo,
+                                BlocProvider.of<AuthHelperCubit>(context).profileDoctor,
                             'sessionCost': 100,
                             'role': 'dermatologist'
                           }),
                           role: 'doctor',
                         );
+                    
+                        
+                        setState(() {
+                          isLoading = false;
+                        });
                       }),
                   SizedBox(height: mediaQuery.height * 0.006),
                   EmailCheck(

@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -10,31 +9,53 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   AuthHelperCubit() : super(AuthHelperInitial());
   bool password = false;
   bool rePassword = false;
-  File? photo;
-  XFile? profilePic;
-  XFile? license;
+  // File? patinetphoto;
+  // File? labphoto;
+  // File? doctorphoto;
+  XFile? profilePatient;
+  XFile? profileDoctor;
+  XFile? profileLab;
+  XFile? labLicense;
+  XFile? docotrLicense;
 
-  Future<void> uploadPicture() async {
+  Future<void> uploadPicture(
+    {required String role}
+  ) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      profilePic = pickedFile;
+      if(role=='p'){
+      profilePatient = pickedFile;
       emit(AuthHelperSuccess());
+      }else if(role=='d'){
+         profileDoctor = pickedFile;
+      emit(AuthHelperSuccess());
+      }else{
+         profileLab = pickedFile;
+      emit(AuthHelperSuccess());
+      }
     }
   }
 
-  Future<void> uploadLicense() async {
+  Future<void> uploadLicense({
+    required String role
+  }) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      license = pickedFile;
+      if(role=='d'){
+      docotrLicense = pickedFile;
       emit(AuthHelperSuccess());
+      }else{
+        docotrLicense = pickedFile;
+        emit(AuthHelperSuccess());
+      }
     }
   }
 
-  void convertoFile() {
-    photo = File(profilePic?.path ?? "");
-  }
+  // void convertoFile() {
+  //   photo = File(profilePic?.path ?? "");
+  // }
 
   void passwordVisability() {
     password = !password;

@@ -5,7 +5,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/password_textField.dart';
-import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture_patient.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
@@ -16,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpLabBody extends StatelessWidget {
+class SignUpLabBody extends StatefulWidget {
   const SignUpLabBody({super.key});
   static TextEditingController emailController = TextEditingController();
   static TextEditingController passwordController = TextEditingController();
@@ -24,6 +24,13 @@ class SignUpLabBody extends StatelessWidget {
   static TextEditingController locationController = TextEditingController();
   static TextEditingController labNameController = TextEditingController();
   static TextEditingController mobileController = TextEditingController();
+
+  @override
+  State<SignUpLabBody> createState() => _SignUpLabBodyState();
+}
+
+class _SignUpLabBodyState extends State<SignUpLabBody> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -39,12 +46,12 @@ class SignUpLabBody extends StatelessWidget {
                   SizedBox(height: mediaQuery.height * 0.06),
                   const CustomTitle(title: 'Sign Up'),
                   SizedBox(height: mediaQuery.height * 0.04),
-                  const ProfilePicture(),
+                  const ProfilePicturePatinet(),
                   SizedBox(height: mediaQuery.height * 0.04),
                   TextFormContainer(
                     mediaQuery: mediaQuery,
                     label: 'Email',
-                    controller: emailController,
+                    controller: SignUpLabBody.emailController,
                   ),
                   SizedBox(height: mediaQuery.height * 0.02),
                   PasswordTextField(
@@ -52,7 +59,7 @@ class SignUpLabBody extends StatelessWidget {
                         BlocProvider.of<AuthHelperCubit>(context)
                             .passwordVisability();
                       },
-                      controller: passwordController,
+                      controller: SignUpLabBody.passwordController,
                       text: 'Password',
                       mediaQuery: mediaQuery,
                       rePasswordVisible:
@@ -63,7 +70,7 @@ class SignUpLabBody extends StatelessWidget {
                         BlocProvider.of<AuthHelperCubit>(context)
                             .rePasswordVisability();
                       },
-                      controller: rePasswordController,
+                      controller: SignUpLabBody.rePasswordController,
                       text: 'Re-type Password',
                       mediaQuery: mediaQuery,
                       rePasswordVisible:
@@ -81,7 +88,7 @@ class SignUpLabBody extends StatelessWidget {
                     height: mediaQuery.height * 0.054,
                     child: TextForm(
                       label: 'Lab Name',
-                      controller: labNameController,
+                      controller: SignUpLabBody.labNameController,
                     ),
                   ),
                   SizedBox(height: mediaQuery.height * 0.014),
@@ -96,7 +103,7 @@ class SignUpLabBody extends StatelessWidget {
                     height: mediaQuery.height * 0.054,
                     child: TextForm(
                       label: 'Mobile',
-                      controller: mobileController,
+                      controller: SignUpLabBody.mobileController,
                     ),
                   ),
                   SizedBox(height: mediaQuery.height * 0.014),
@@ -111,7 +118,7 @@ class SignUpLabBody extends StatelessWidget {
                   TextFormContainer(
                     mediaQuery: mediaQuery,
                     label: 'Location ',
-                    controller: locationController,
+                    controller: SignUpLabBody.locationController,
                   ),
                   SizedBox(height: mediaQuery.height * 0.04),
                   SizedBox(height: mediaQuery.height * 0.005),
@@ -119,21 +126,21 @@ class SignUpLabBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        BlocProvider.of<AuthHelperCubit>(context).license ==
+                        BlocProvider.of<AuthHelperCubit>(context).labLicense ==
                                 null
                             ? 'Scan your work license'
                             : BlocProvider.of<AuthHelperCubit>(context)
-                                .license!
+                                .labLicense!
                                 .name,
                         style: Styels.textStyle20_200(context),
                       ),
                       GestureDetector(
                           onTap: () async {
                             await BlocProvider.of<AuthHelperCubit>(context)
-                                .uploadLicense();
+                                .uploadLicense(role: 'l');
                           },
                           child: BlocProvider.of<AuthHelperCubit>(context)
-                                      .license ==
+                                      .labLicense ==
                                   null
                               ? Image.asset(
                                   'assets/images/upload_icon.png',
@@ -143,26 +150,34 @@ class SignUpLabBody extends StatelessWidget {
                   ),
                   SizedBox(height: mediaQuery.height * 0.04),
                   SignButton(
-                      isLoading: BlocProvider.of<AuthCubit>(context).isLoding,
+                      isLoading: isLoading,
                       buttonName: 'Sign Up',
                       onClicked: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
                         await BlocProvider.of<AuthCubit>(context).signUp(
                             context: context,
                             data: FormData.fromMap({
-                              'firstName': labNameController.text,
-                              'mobile': mobileController.text,
-                              'location': locationController.text,
+                              'firstName': SignUpLabBody.labNameController.text,
+                              'mobile': SignUpLabBody.mobileController.text,
+                              'location': SignUpLabBody.locationController.text,
                               'city': "city",
                               'country': "country",
                               'license':
                                   BlocProvider.of<AuthHelperCubit>(context)
-                                      .license,
-                              'email': emailController.text,
-                              'password': passwordController.text,
-                              'passwordConfirm': rePasswordController.text,
+                                      .labLicense,
+                              'email': SignUpLabBody.emailController.text,
+                              'password': SignUpLabBody.passwordController.text,
+                              'passwordConfirm':
+                                  SignUpLabBody.rePasswordController.text,
                               'role': 'lab',
                             }),
                             role: 'lab');
+                        setState(() {
+                          isLoading = false;
+                        });
+                       
                       }),
                   SizedBox(height: mediaQuery.height * 0.01),
                   EmailCheck(

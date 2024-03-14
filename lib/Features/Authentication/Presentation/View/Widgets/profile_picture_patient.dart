@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ProfilePicture extends StatelessWidget {
-  const ProfilePicture({super.key});
+class ProfilePicturePatinet extends StatelessWidget {
+  const ProfilePicturePatinet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,12 @@ class ProfilePicture extends StatelessWidget {
                     width: mediaQuery.width * 0.25, // Adjust the size as needed
                     height: mediaQuery.height * 0.12,
                     child: BlocProvider.of<AuthHelperCubit>(context)
-                                .profilePic
+                                .profilePatient
                                 ?.path !=
                             null
                         ? Image.file(
                             File(BlocProvider.of<AuthHelperCubit>(context)
-                                .profilePic!
+                                .profilePatient!
                                 .path),
                             fit: BoxFit.cover,
                           )
@@ -55,8 +55,8 @@ class ProfilePicture extends StatelessWidget {
               child: GestureDetector(
                 onTap: () async {
                   await BlocProvider.of<AuthHelperCubit>(context)
-                      .uploadPicture();
-                  BlocProvider.of<AuthHelperCubit>(context).convertoFile();
+                      .uploadPicture(role: 'r');
+                  // BlocProvider.of<AuthHelperCubit>(context).convertoFile();
                 },
                 child: const ImageIcon(
                   AssetImage('assets/images/upload_icon.png'),
