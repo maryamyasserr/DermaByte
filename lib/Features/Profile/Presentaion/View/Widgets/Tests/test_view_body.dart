@@ -22,9 +22,9 @@ class TestViewBody extends StatelessWidget {
           children: [
             const TestLabPhoto(),
             const SizedBox(height: 30),
-            LabInfo(info: "Test Name : ", data: test.testName ?? ""),
-            LabInfo(info: 'Lab Name : ', data: test.lab.name),
-            LabInfo(info: 'Lab Loacation : ', data: test.lab.location),
+            LabInfo(info: "Test Name : ", data: test.testName![0] ?? ""),
+            LabInfo(info: 'Lab Name : ', data: test.lab.name??""),
+            LabInfo(info: 'Lab Loacation : ', data: test.lab.location??""),
             LabInfo(
                 info: 'Date : ',
                 data:

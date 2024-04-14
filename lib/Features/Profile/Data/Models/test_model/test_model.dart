@@ -2,10 +2,10 @@ import 'lab.dart';
 
 class TestModel {
   String? id;
-  String? testName;
+List<dynamic>? testName;
   List<dynamic>? testResult;
   DateTime? testDate;
-  String patient;
+  String? patient;
   Lab lab;
 
   TestModel({
@@ -19,12 +19,12 @@ class TestModel {
 
   factory TestModel.fromJson(Map<String, dynamic> json) => TestModel(
         id: json['id'] as String?,
-        testName: json['testName'] as String?,
+        testName: json['testName'] as List<dynamic>?,
         testResult: json['testResult'] as List<dynamic>?,
         testDate: json['testDate'] == null
             ? null
             : DateTime.parse(json['testDate'] as String),
-        patient: json['patient'] as String,
+        patient: json['patient'] as String?,
         lab: Lab.fromJson(json['lab'] as Map<String, dynamic>),
       );
 

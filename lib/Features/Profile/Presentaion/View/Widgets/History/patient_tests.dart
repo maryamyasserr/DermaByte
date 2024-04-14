@@ -29,7 +29,7 @@ class PatientTests extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 16),
                       child: HistoryCard(
                         iconCard: Assets.kDoctorAvatar,
-                        cardTitle: state.tests[index].testName!,
+                        cardTitle: state.tests[index].testName![0]!,
                         cardSubTitle:
                             "Scans taken on ${state.tests[index].testDate}",
                         textButton: "View",

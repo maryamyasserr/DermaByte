@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpPatientBody extends StatelessWidget {
+class SignUpPatientBody extends StatefulWidget {
   const SignUpPatientBody({super.key});
   static TextEditingController emailController = TextEditingController();
   static TextEditingController passwordController = TextEditingController();
@@ -23,6 +23,13 @@ class SignUpPatientBody extends StatelessWidget {
   static TextEditingController mobileController = TextEditingController();
   static TextEditingController ageController = TextEditingController();
   static TextEditingController genderController = TextEditingController();
+
+  @override
+  State<SignUpPatientBody> createState() => _SignUpPatientBodyState();
+}
+
+class _SignUpPatientBodyState extends State<SignUpPatientBody> {
+  bool isLoding = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,7 @@ class SignUpPatientBody extends StatelessWidget {
                   TextFormContainer(
                     mediaQuery: mediaQuery,
                     label: 'Email',
-                    controller: emailController,
+                    controller: SignUpPatientBody.emailController,
                   ),
                   SizedBox(height: mediaQuery.height * 0.014),
                   PasswordTextField(
@@ -52,7 +59,7 @@ class SignUpPatientBody extends StatelessWidget {
                         BlocProvider.of<AuthHelperCubit>(context)
                             .passwordVisability();
                       },
-                      controller: passwordController,
+                      controller: SignUpPatientBody.passwordController,
                       text: 'Password',
                       mediaQuery: mediaQuery,
                       rePasswordVisible:
@@ -63,46 +70,62 @@ class SignUpPatientBody extends StatelessWidget {
                         BlocProvider.of<AuthHelperCubit>(context)
                             .rePasswordVisability();
                       },
-                      controller: rePasswordController,
+                      controller: SignUpPatientBody.rePasswordController,
                       text: 'Re-type Password',
                       mediaQuery: mediaQuery,
                       rePasswordVisible:
                           BlocProvider.of<AuthHelperCubit>(context).rePassword),
                   SizedBox(height: mediaQuery.height * 0.02),
                   RequiredTextForm(
-                      label: 'First name', controller: firstNameController),
+                      label: 'First name',
+                      controller: SignUpPatientBody.firstNameController),
                   RequiredTextForm(
-                      label: 'Last name', controller: lastNameController),
+                      label: 'Last name',
+                      controller: SignUpPatientBody.lastNameController),
                   RequiredTextForm(
-                      label: 'Mobile', controller: mobileController),
+                      label: 'Mobile',
+                      controller: SignUpPatientBody.mobileController),
                   SizedBox(height: mediaQuery.height * 0.008),
-                  RequiredTextForm(label: 'age', controller: ageController),
+                  RequiredTextForm(
+                      label: 'age',
+                      controller: SignUpPatientBody.ageController),
                   SizedBox(height: mediaQuery.height * 0.008),
                   RequiredTextForm(
-                      label: 'gender', controller: genderController),
+                      label: 'gender',
+                      controller: SignUpPatientBody.genderController),
                   SizedBox(height: mediaQuery.height * 0.04),
                   SignButton(
-                    isLoading: BlocProvider.of<AuthCubit>(context).isLoding,
+                    isLoading: isLoding,
                     buttonName: 'Sign Up',
                     onClicked: () async {
+                      setState(() {
+                        isLoding = true;
+                      });
                       await BlocProvider.of<AuthCubit>(context).signUp(
                           context: context,
                           data: FormData.fromMap({
-                            'firstName': firstNameController.text,
-                            'lastName': lastNameController.text,
-                            'age': ageController.text,
+                            'firstName':
+                                SignUpPatientBody.firstNameController.text,
+                            'lastName':
+                                SignUpPatientBody.lastNameController.text,
+                            'age': SignUpPatientBody.ageController.text,
                             'city': "city",
                             'country': "country",
                             'profilePic':
                                 BlocProvider.of<AuthHelperCubit>(context)
                                     .profilePatient,
-                            'gender': genderController.text,
-                            'email': emailController.text,
-                            'password': passwordController.text,
-                            'passwordConfirm': rePasswordController.text,
+                            'gender': SignUpPatientBody.genderController.text,
+                            'email': SignUpPatientBody.emailController.text,
+                            'password':
+                                SignUpPatientBody.passwordController.text,
+                            'passwordConfirm':
+                                SignUpPatientBody.rePasswordController.text,
                             'role': 'patient',
                           }),
                           role: 'patient');
+                           setState(() {
+                        isLoding = false;
+                      });
                     },
                   ),
                   const SizedBox(height: 6),

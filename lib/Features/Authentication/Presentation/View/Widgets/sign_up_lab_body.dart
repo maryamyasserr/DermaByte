@@ -164,9 +164,9 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                               'location': SignUpLabBody.locationController.text,
                               'city': "city",
                               'country': "country",
-                              'license':
-                                  BlocProvider.of<AuthHelperCubit>(context)
-                                      .labLicense,
+                              'license':['lab'],
+                                  // BlocProvider.of<AuthHelperCubit>(context)
+                                  //     .labLicense,
                               'email': SignUpLabBody.emailController.text,
                               'password': SignUpLabBody.passwordController.text,
                               'passwordConfirm':
