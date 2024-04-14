@@ -8,9 +8,7 @@ final class FreeTimesInitial extends FreeTimesState {}
 final class FreeTimesLoading extends FreeTimesState {}
 
 final class FreeTimesSuccess extends FreeTimesState {
-  final List<FreeTimeModel> freeTimes;
 
-  FreeTimesSuccess({required this.freeTimes});
 }
 
 final class FreeTimesFailure extends FreeTimesState {

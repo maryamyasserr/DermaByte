@@ -8,6 +8,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/doctor_item.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/E-Doctor%20Cubit/edoctor_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -72,6 +73,9 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                                 .doctorId = state.doctors[index].id;
                             GoRouter.of(context)
                                 .push(AppRoutes.kDoctorReservationView);
+                            BlocProvider.of<FreeTimesCubit>(context).getFreeTimes(
+                              token:BlocProvider.of<AuthCubit>(context).patient!.token ,
+                              body: {"dermatologist":state.doctors[index].id});
                           },
                           textButton: 'Reserve',
                         ),

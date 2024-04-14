@@ -5,7 +5,7 @@ import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_mode
 import 'package:dermabyte/Features/E-lab/Data/Models/lab_reservation.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+
 
 class ElabRepoImpl implements ElabRepo {
   ApiService apiService;

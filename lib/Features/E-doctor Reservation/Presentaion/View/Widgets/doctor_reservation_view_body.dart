@@ -71,8 +71,8 @@ class DoctorReservationViewBody extends StatelessWidget {
               const SizedBox(height: 25),
               SizedBox(
                 height: 140,
-                child: WeekCalender(onChangedSelectedDate: (data) {
-                  print(data);
+                child: WeekCalender(onChangedSelectedDate: (date) {
+                  print("Maryam");
                 }),
               ),
               const SizedBox(height: 30),
