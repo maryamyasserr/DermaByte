@@ -87,10 +87,11 @@ class ScheduleBody extends StatelessWidget {
                       await BlocProvider.of<SetScheduleCubit>(context)
                           .setSchedule(
                               body: {
-                            "day": DateFormat('EEEE')
-                                .format(calenderTime!)
-                                .toString(),
-                            "startTime": startTime.toString(),
+                            "day":calenderTime?.day,
+                                // "day": DateFormat('EEEE')
+                                //     .format(calenderTime!)
+                                //     .toString(),
+                                "startTime": startTime.toString(),
                             "endTime": endTime.toString(),
                             "sessionTime": session.text
                           },

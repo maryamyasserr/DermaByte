@@ -57,7 +57,8 @@ class DoctorReservationViewBody extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: ListView(children: [
+            child: ListView(
+              children: [
               const CustomAppBar(title: 'Reservation'),
               Padding(
                 padding: const EdgeInsets.only(left: 8),
@@ -67,10 +68,12 @@ class DoctorReservationViewBody extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              SizedBox(height: mediaQuery.height * 0.035),
+              const SizedBox(height: 25),
               SizedBox(
                 height: 140,
-                child: WeekCalender(onChangedSelectedDate: (data) {}),
+                child: WeekCalender(onChangedSelectedDate: (data) {
+                  print(data);
+                }),
               ),
               const SizedBox(height: 30),
               AllFreeTime(),
@@ -82,19 +85,17 @@ class DoctorReservationViewBody extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 15),
                   keyboardType: TextInputType.name),
               const SizedBox(height: 8),
-              Stack(children: [
-                AttachDocotorReservaionField(
-                    title: 'Add your scans',
-                    isrequired: true,
-                    padding: const EdgeInsets.only(right: 15, bottom: 10),
-                    onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return const AllPatientScans();
-                          });
-                    }),
-              ]),
+              AttachDocotorReservaionField(
+                  title: 'Add your scans',
+                  isrequired: true,
+                  padding: const EdgeInsets.only(right: 15, bottom: 10),
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return const AllPatientScans();
+                        });
+                  }),
               const SizedBox(height: 36),
               AttachDocotorReservaionField(
                   isrequired: false,
@@ -149,10 +150,9 @@ class DoctorReservationViewBody extends StatelessWidget {
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)
                       .isLoading),
-                const SizedBox(height: 16)
+              const SizedBox(height: 16)
             ]),
           ),
-          
         );
       },
     );

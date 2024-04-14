@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Models/free_time_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
@@ -69,6 +70,25 @@ class EdoctorRepoImpl implements EdoctorRepo {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, List<FreeTimeModel>>> getFreeTime(
+      {required body, required String token}) async {
+    try {
+      var response =
+          await apiService.get(endPoint: 'schedules/Freetimes', token: token);
+      List<FreeTimeModel> freeTimes = [];
+      for (var i in response['data']) {
+        freeTimes.add(FreeTimeModel.fromJson(i));
+      }
+      return right(freeTimes);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString())); 
     }
   }
 
