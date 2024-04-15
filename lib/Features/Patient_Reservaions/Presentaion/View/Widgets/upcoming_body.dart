@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Core/utils/url_launcher.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,12 @@ class UpComingBody extends StatelessWidget {
           ),
           const SizedBox(height: 74),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                await startMeeting(
+                  context: context,
+                  url:  reservation.meetingUrl);
+                
+              },
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.35,

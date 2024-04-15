@@ -4,6 +4,7 @@ import 'scan.dart';
 
 class PreservationModel {
   String? id;
+  String? meetingUrl;
   DateTime date;
   dynamic uploadedTest;
   Patient patient;
@@ -15,6 +16,7 @@ class PreservationModel {
       {this.id,
       required this.date,
       this.uploadedTest,
+      this.meetingUrl,
       required this.patient,
       required this.dermatologist,
       required this.scan,
@@ -23,6 +25,7 @@ class PreservationModel {
   factory PreservationModel.fromJson(Map<String, dynamic> json) {
     return PreservationModel(
         id: json['_id'] as String?,
+        meetingUrl: json['meetingUrl'] as String?,
         date: json['date'] = DateTime.parse(json['date'] as String),
         uploadedTest: json['uploadedTest'] as dynamic,
         patient: json['patient'] =
@@ -38,6 +41,7 @@ class PreservationModel {
         '_id': id,
         'date': date.toIso8601String(),
         'uploadedTest': uploadedTest,
+        'meetingUrl':meetingUrl,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
         'scan': scan.toJson(),
@@ -46,6 +50,7 @@ class PreservationModel {
 
   Map<String, dynamic> toJson2() => {
         'date': date.toIso8601String(),
+        'meetingUrl':meetingUrl,
         'uploadedTest': uploadedTest,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
