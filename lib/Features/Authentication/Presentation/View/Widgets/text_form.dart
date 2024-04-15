@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class TextForm extends StatelessWidget {
   final TextEditingController controller;
-  final FormFieldValidator<String>? validator;
+  final String? Function(String?)? validator;
   final String label;
   final bool obscureText;
   final Widget? suffixIcon;
@@ -23,6 +23,7 @@ class TextForm extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: obscureText,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
