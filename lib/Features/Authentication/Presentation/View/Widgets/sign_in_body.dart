@@ -22,6 +22,7 @@ class SignInBody extends StatefulWidget {
 
 class _SignInBodyState extends State<SignInBody> {
   bool passwordVisible = false;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -45,43 +46,63 @@ class _SignInBodyState extends State<SignInBody> {
                     title: 'Sign In',
                   ),
                   SizedBox(height: mediaQuery.height * 0.07),
-                  TextForm(
-                    label: 'Email',
-                    controller: SignInBody.emailController,
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  TextForm(
-                    label: 'Password',
-                    controller: SignInBody.passwordController,
-                    suffixIcon: GestureDetector(
-                        onTap: () {
-                          passwordVisible = !passwordVisible;
-                          setState(() {});
-                        },
-                        child: passwordVisible == true
-                            ? const Icon(
-                                Icons.visibility_off_outlined,
-                                size: 28,
-                                color: AppColors.kPrimaryColor,
-                              )
-                            : const Icon(
-                                Icons.visibility_outlined,
-                                size: 28,
-                                color: AppColors.kPrimaryColor,
-                              )),
-                    obscureText: !passwordVisible,
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.04),
-                  SignButton(
-                    isLoading: BlocProvider.of<AuthCubit>(context).isLoding,
-                    buttonName: 'Sign in',
-                    onClicked: () async {
-                      await BlocProvider.of<AuthCubit>(context).signIn(body: {
-                        "email": SignInBody.emailController.text,
-                        "password": SignInBody.passwordController.text
-                      }, context: context);
-                    },
-                  ),
+                  Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          TextForm(
+                            validator: (email) {
+                              return email == null || email.trim().isEmpty
+                                  ? "email is required"
+                                  : null;
+                            },
+                            label: 'Email',
+                            controller: SignInBody.emailController,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.014),
+                          TextForm(
+                            validator: (password) {
+                              return password == null || password.trim().isEmpty
+                                  ? "password is required"
+                                  : null;
+                            },
+                            label: 'Password',
+                            controller: SignInBody.passwordController,
+                            suffixIcon: GestureDetector(
+                                onTap: () {
+                                  passwordVisible = !passwordVisible;
+                                  setState(() {});
+                                },
+                                child: passwordVisible == true
+                                    ? const Icon(
+                                        Icons.visibility_off_outlined,
+                                        size: 28,
+                                        color: AppColors.kPrimaryColor,
+                                      )
+                                    : const Icon(
+                                        Icons.visibility_outlined,
+                                        size: 28,
+                                        color: AppColors.kPrimaryColor,
+                                      )),
+                            obscureText: !passwordVisible,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.04),
+                          SignButton(
+                            isLoading:
+                                BlocProvider.of<AuthCubit>(context).isLoding,
+                            buttonName: 'Sign in',
+                            onClicked: () async {
+                              if (_formKey.currentState!.validate()) {
+                                await BlocProvider.of<AuthCubit>(context)
+                                    .signIn(body: {
+                                  "email": SignInBody.emailController.text,
+                                  "password": SignInBody.passwordController.text
+                                }, context: context);
+                              }
+                            },
+                          ),
+                        ],
+                      )),
                   SizedBox(height: mediaQuery.height * 0.05),
                   InkWell(
                     onTap: () {},
