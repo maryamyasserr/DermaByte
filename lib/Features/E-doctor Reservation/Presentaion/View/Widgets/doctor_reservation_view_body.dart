@@ -1,7 +1,9 @@
 import 'package:dermabyte/Core/Widgets/calender.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
+import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_free_time.dart';
@@ -9,32 +11,48 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widge
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/attach_doctor_reservation.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/doctor_reservaion_button.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:mime/mime.dart';
 
-class DoctorReservationViewBody extends StatelessWidget {
+// static String? imgPath;
+// Future<void> uploadPicture(BuildContext context) async {
+//   final picker = ImagePicker();
+//   final XFile? pickedFile =
+//       await picker.pickImage(source: ImageSource.gallery);
+
+//   if (pickedFile != null) {
+//     imgPath = pickedFile.path;
+//     // print('Selected image path: ${imgPath!}');
+//   }
+// }
+
+// static String mimeType = lookupMimeType(imgPath!)!;
+
+class DoctorReservationViewBody extends StatefulWidget {
   const DoctorReservationViewBody({
     super.key,
   });
 
-  static String? imgPath;
-  Future<void> uploadPicture(BuildContext context) async {
-    final picker = ImagePicker();
-    final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.gallery);
+  @override
+  State<DoctorReservationViewBody> createState() =>
+      _DoctorReservationViewBodyState();
+}
 
-    if (pickedFile != null) {
-      imgPath = pickedFile.path;
-      // print('Selected image path: ${imgPath!}');
-    }
+class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
+    bool isVisible = false;
+   @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        isVisible = true;
+      });
+    });
   }
-
-  static String mimeType = lookupMimeType(imgPath!)!;
-
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -57,8 +75,7 @@ class DoctorReservationViewBody extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: ListView(
-              children: [
+            child: ListView(children: [
               const CustomAppBar(title: 'Reservation'),
               Padding(
                 padding: const EdgeInsets.only(left: 8),
@@ -72,11 +89,18 @@ class DoctorReservationViewBody extends StatelessWidget {
               SizedBox(
                 height: 140,
                 child: WeekCalender(onChangedSelectedDate: (date) {
-                  print("Maryam");
+                  setState(() {
+                    BlocProvider.of<FreeTimesCubit>(context).setDay = date;
+                  });
+                  // BlocProvider.of<FreeTimesCubit>(context).sendState();
                 }),
               ),
               const SizedBox(height: 30),
-              AllFreeTime(),
+              isVisible?
+              Visibility(
+                visible: isVisible,
+                child: AllFreeTime())
+                :const Center(child: LoadingIndicator(color: AppColors.kPrimaryColor)),
               const SizedBox(height: 12),
               CustomTextField(
                   hintext: 'When did you start noticing skin changes?',
@@ -111,6 +135,7 @@ class DoctorReservationViewBody extends StatelessWidget {
                   onPressed: () async {
                     await BlocProvider.of<DoctorReservationCubit>(context)
                         .createReservationAndPatientReport(
+                          context: context,
                             reservationData: FormData.fromMap({
                               "patient": BlocProvider.of<AuthCubit>(context)
                                   .patient!
@@ -123,7 +148,7 @@ class DoctorReservationViewBody extends StatelessWidget {
                               "scan": BlocProvider.of<DoctorReservationCubit>(
                                       context)
                                   .scanId,
-                              "date": DateTime.now().toIso8601String(),
+                              "date": BlocProvider.of<FreeTimesCubit>(context).selectedDate?.toIso8601String(),
                               // "uploadedTest": await MultipartFile.fromFile(
                               //     imgPath!,
                               //     filename: imgPath!

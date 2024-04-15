@@ -6,6 +6,8 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Models/free_time_
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EdoctorRepoImpl implements EdoctorRepo {
   EdoctorRepoImpl(this.apiService);
@@ -33,6 +35,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
   Future<Either<Failures, String>> createReservaionAndPatientReport(
       {required FormData reservationData,
       required reportData,
+      required BuildContext context,
       required String token}) async {
     try {
       var reservationResponse = await apiService.postWithMultiForm(
@@ -44,6 +47,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
 
       if (reservationResponse.containsKey('data') &&
           reportResponse.containsKey('data')) {
+        GoRouter.of(context).pop();
         return right("Reservation and report created successfully");
       } else {
         return Left(ServerFailure(
@@ -77,8 +81,8 @@ class EdoctorRepoImpl implements EdoctorRepo {
   Future<Either<Failures, List<FreeTimeModel>>> getFreeTime(
       {required body, required String token}) async {
     try {
-      var response =
-          await apiService.get(endPoint: 'schedules/Freetimes', token: token);
+      var response = await apiService.getWithBody(
+          endPoint: 'schedules/Freetimes', body: body, token: token);
       List<FreeTimeModel> freeTimes = [];
       for (var i in response['data']) {
         freeTimes.add(FreeTimeModel.fromJson(i));
@@ -88,7 +92,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
-      return left(ServerFailure(errMessage: e.toString())); 
+      return left(ServerFailure(errMessage: e.toString()));
     }
   }
 

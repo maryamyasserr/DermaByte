@@ -68,14 +68,22 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                           title: state.doctors[index].firstName!,
                           subTitle:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                          onPressed: () {
+                          onPressed: () async {
+                            print(state.doctors[index].id);
                             BlocProvider.of<DoctorReservationCubit>(context)
                                 .doctorId = state.doctors[index].id;
                             GoRouter.of(context)
                                 .push(AppRoutes.kDoctorReservationView);
-                            BlocProvider.of<FreeTimesCubit>(context).getFreeTimes(
-                              token:BlocProvider.of<AuthCubit>(context).patient!.token ,
-                              body: {"dermatologist":state.doctors[index].id});
+                            await BlocProvider.of<FreeTimesCubit>(context)
+                                .getFreeTimes(
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .patient!
+                                        .token,
+                                    body: {
+                                  "dermatologist": state.doctors[index].id
+                                });
+                            BlocProvider.of<FreeTimesCubit>(context).setDay =
+                                DateTime.now();
                           },
                           textButton: 'Reserve',
                         ),

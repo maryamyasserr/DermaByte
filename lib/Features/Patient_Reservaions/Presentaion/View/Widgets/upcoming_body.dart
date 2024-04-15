@@ -29,7 +29,7 @@ class UpComingBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    "The doctor has scheduled an online appointment for you on Tuesday ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at 2:30 PM.",
+                    "The doctor has scheduled an online appointment for you on Tuesday ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${reservation.date.hour}:${reservation.date.minute} PM.",
                     style: Styels.textStyle18_400(context)),
                 const SizedBox(height: 64),
                 Text(

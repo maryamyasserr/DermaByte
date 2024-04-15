@@ -15,6 +15,15 @@ class ApiService {
     return response.data;
   }
 
+    Future<Map<String, dynamic>> getWithBody(
+      {required String endPoint, required String token,required dynamic body}) async {
+    _dio.options.connectTimeout = const Duration(milliseconds: 15000);
+    _dio.options.receiveTimeout = const Duration(milliseconds: 15000);
+    _dio.options.headers = {"Authorization": "Bearer $token"};
+    Response response = await _dio.get('$_baseUlr$endPoint',data: body);
+    return response.data;
+  }
+
   Future<Map<String, dynamic>> post(
       {required String endPoint,
       required Map data,
