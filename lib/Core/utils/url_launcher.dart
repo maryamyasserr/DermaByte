@@ -11,4 +11,4 @@ Future<void> startMeeting({required BuildContext context, String? url}) async {
       showSnackBar(context, 'Cannot launch $url');
     }
   }
-
+}
