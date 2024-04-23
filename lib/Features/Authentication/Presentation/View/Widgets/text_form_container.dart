@@ -7,11 +7,13 @@ class TextFormContainer extends StatelessWidget {
     required this.mediaQuery,
     required this.label,
     required this.controller,
+    required this.validator
   });
 
   final Size mediaQuery;
   final String label;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class TextFormContainer extends StatelessWidget {
       height: mediaQuery.height * 0.054,
       child: TextForm(
         label: label,
+        validator: validator,
         controller: controller,
       ),
     );

@@ -10,6 +10,7 @@ class PasswordTextField extends StatelessWidget {
     required this.onTap,
     required this.text,
     required this.controller,
+    required this.validator
   });
 
   final Size mediaQuery;
@@ -17,6 +18,7 @@ class PasswordTextField extends StatelessWidget {
   final void Function() onTap;
   final String text;
   final TextEditingController controller;
+  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class PasswordTextField extends StatelessWidget {
       height: mediaQuery.height * 0.05,
       child: TextForm(
         label: text,
+        validator: validator,
         controller: controller,
         suffixIcon: GestureDetector(
             onTap: onTap,

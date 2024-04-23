@@ -8,6 +8,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/pass
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture_patient.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/required_text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
@@ -18,7 +19,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpDoctorBody extends StatefulWidget {
-  SignUpDoctorBody({super.key});
+  const SignUpDoctorBody({super.key});
 
   @override
   State<SignUpDoctorBody> createState() => _SignUpDoctorBodyState();
@@ -47,6 +48,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
+    final _formKey = GlobalKey<FormState>();
     return BlocConsumer<AuthHelperCubit, AuthHeplerState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -61,54 +63,100 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.012),
                   const ProfilePicturePatinet(),
                   SizedBox(height: mediaQuery.height * 0.02),
-                  TextFormContainer(
-                    mediaQuery: mediaQuery,
-                    controller: emailController,
-                    label: 'Email',
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  PasswordTextField(
-                      onTap: () {
-                        BlocProvider.of<AuthHelperCubit>(context)
-                            .passwordVisability();
-                      },
-                      controller: passwordController,
-                      text: 'Password',
-                      mediaQuery: mediaQuery,
-                      rePasswordVisible:
-                          BlocProvider.of<AuthHelperCubit>(context).password),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  PasswordTextField(
-                      onTap: () {
-                        BlocProvider.of<AuthHelperCubit>(context)
-                            .rePasswordVisability();
-                      },
-                      controller: rePasswordController,
-                      text: 'Re-type Password',
-                      mediaQuery: mediaQuery,
-                      rePasswordVisible:
-                          BlocProvider.of<AuthHelperCubit>(context).rePassword),
-                  SizedBox(height: mediaQuery.height * 0.009),
-                  RequiredTextForm(
-                      label: 'First name', controller: firstNameController),
-                  RequiredTextForm(
-                      label: 'Last name', controller: lastNameController),
-                  RequiredTextForm(
-                      label: "Gender", controller: genderController),
-                  RequiredTextForm(
-                      label: 'Mobile', controller: mobileController),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  TextFormContainer(
-                    mediaQuery: mediaQuery,
-                    label: 'Location',
-                    controller: locationController,
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  TextFormContainer(
-                    mediaQuery: mediaQuery,
-                    label: 'about',
-                    controller: aboutController,
-                  ),
+                  Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormContainer(
+                            mediaQuery: mediaQuery,
+                            controller: emailController,
+                            label: 'Email',
+                            validator: (email) {
+                              if (email == null || email.isEmpty) {
+                                return "Email is Required";
+                              }
+                              var regex = RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                              if (!regex.hasMatch(email)) {
+                                return "Invaild Email";
+                              }
+                            },
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          PasswordTextField(
+                              onTap: () {
+                                BlocProvider.of<AuthHelperCubit>(context)
+                                    .passwordVisability();
+                              },
+                              validator: (password) {
+                                if (password == null || password.isEmpty) {
+                                  return "Password is Required";
+                                }
+                                var regex = RegExp(
+                                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                                if (!regex.hasMatch(password)) {
+                                  return "Invaild Password";
+                                }
+                                if(password.length<6){
+                                  return "At least 6 characters"
+                                }
+                              },
+                              controller: passwordController,
+                              text: 'Password',
+                              mediaQuery: mediaQuery,
+                              rePasswordVisible:
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .password),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          PasswordTextField(
+                              onTap: () {
+                                BlocProvider.of<AuthHelperCubit>(context)
+                                    .rePasswordVisability();
+                              },
+                              controller: rePasswordController,
+                              text: 'Re-type Password',
+                              mediaQuery: mediaQuery,
+                              rePasswordVisible:
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .rePassword),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          TextFormContainer(
+                            label: 'First Name',
+                            controller: firstNameController,
+                            mediaQuery: mediaQuery,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          TextFormContainer(
+                            label: 'Last Name',
+                            controller: lastNameController,
+                            mediaQuery: mediaQuery,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          TextFormContainer(
+                            label: 'Gender',
+                            controller: genderController,
+                            mediaQuery: mediaQuery,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          TextFormContainer(
+                            label: 'Phone Number',
+                            controller: mobileController,
+                            mediaQuery: mediaQuery,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          TextFormContainer(
+                            mediaQuery: mediaQuery,
+                            label: 'Location',
+                            controller: locationController,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          TextFormContainer(
+                            mediaQuery: mediaQuery,
+                            label: 'about',
+                            controller: aboutController,
+                          ),
+                        ],
+                      )),
                   SizedBox(height: mediaQuery.height * 0.015),
                   SvgPicture.asset(
                     Assets.kRequiredIcon,
@@ -165,14 +213,14 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                             'password': passwordController.text,
                             'passwordConfirm': rePasswordController.text,
                             'profilePic':
-                                BlocProvider.of<AuthHelperCubit>(context).profileDoctor,
+                                BlocProvider.of<AuthHelperCubit>(context)
+                                    .profileDoctor,
                             'sessionCost': 100,
                             'role': 'dermatologist'
                           }),
                           role: 'doctor',
                         );
-                    
-                        
+
                         setState(() {
                           isLoading = false;
                         });
