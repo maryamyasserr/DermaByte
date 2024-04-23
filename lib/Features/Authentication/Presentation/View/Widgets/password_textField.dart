@@ -1,6 +1,9 @@
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
+
+
+
 
 class PasswordTextField extends StatelessWidget {
   const PasswordTextField({
@@ -18,16 +21,16 @@ class PasswordTextField extends StatelessWidget {
   final void Function() onTap;
   final String text;
   final TextEditingController controller;
-  String? Function(String?)? validator;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: mediaQuery.height * 0.05,
-      child: TextForm(
-        label: text,
-        validator: validator,
-        controller: controller,
+     return TextFormField(
+      controller: controller,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      obscureText: rePasswordVisible,
+      decoration: InputDecoration(
         suffixIcon: GestureDetector(
             onTap: onTap,
             child: rePasswordVisible == true
@@ -41,7 +44,15 @@ class PasswordTextField extends StatelessWidget {
                     size: 28,
                     color: AppColors.kPrimaryColor,
                   )),
-        obscureText: !rePasswordVisible,
+        fillColor: AppColors.kFilledTextForm,
+        filled: true,
+        labelText: text,
+        labelStyle: Styels.textStyle18_300(context).copyWith(
+          color: AppColors.kTextInForm.withOpacity(0.8),
+        ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none),
       ),
     );
   }

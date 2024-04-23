@@ -18,7 +18,7 @@ class TextFormContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: mediaQuery.height * 0.054,
+      height: mediaQuery.height * 0.06,
       child: TextForm(
         label: label,
         validator: validator,

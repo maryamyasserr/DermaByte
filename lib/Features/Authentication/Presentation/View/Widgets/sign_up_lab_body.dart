@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -8,12 +7,10 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/pass
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture_patient.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
-import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form_container.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpLabBody extends StatefulWidget {
@@ -31,6 +28,7 @@ class SignUpLabBody extends StatefulWidget {
 
 class _SignUpLabBodyState extends State<SignUpLabBody> {
   bool isLoading = false;
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -48,80 +46,108 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                   SizedBox(height: mediaQuery.height * 0.04),
                   const ProfilePicturePatinet(),
                   SizedBox(height: mediaQuery.height * 0.04),
-                  TextFormContainer(
-                    mediaQuery: mediaQuery,
-                    label: 'Email',
-                    controller: SignUpLabBody.emailController,
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.02),
-                  PasswordTextField(
-                      onTap: () {
-                        BlocProvider.of<AuthHelperCubit>(context)
-                            .passwordVisability();
-                      },
-                      controller: SignUpLabBody.passwordController,
-                      text: 'Password',
-                      mediaQuery: mediaQuery,
-                      rePasswordVisible:
-                          BlocProvider.of<AuthHelperCubit>(context).password),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  PasswordTextField(
-                      onTap: () {
-                        BlocProvider.of<AuthHelperCubit>(context)
-                            .rePasswordVisability();
-                      },
-                      controller: SignUpLabBody.rePasswordController,
-                      text: 'Re-type Password',
-                      mediaQuery: mediaQuery,
-                      rePasswordVisible:
-                          BlocProvider.of<AuthHelperCubit>(context).rePassword),
-                  SizedBox(height: mediaQuery.height * 0.009),
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: SvgPicture.asset(
-                      Assets.kRequiredIcon,
-                      alignment: Alignment.centerLeft,
-                    ),
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.009),
-                  SizedBox(
-                    height: mediaQuery.height * 0.054,
-                    child: TextForm(
-                      label: 'Lab Name',
-                      controller: SignUpLabBody.labNameController,
-                    ),
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: SvgPicture.asset(
-                      Assets.kRequiredIcon,
-                      alignment: Alignment.centerLeft,
-                    ),
-                  ),
-                  SizedBox(
-                    height: mediaQuery.height * 0.054,
-                    child: TextForm(
-                      label: 'Mobile',
-                      controller: SignUpLabBody.mobileController,
-                    ),
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.014),
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: SvgPicture.asset(
-                      Assets.kRequiredIcon,
-                      alignment: Alignment.centerLeft,
-                    ),
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.009),
-                  TextFormContainer(
-                    mediaQuery: mediaQuery,
-                    label: 'Location ',
-                    controller: SignUpLabBody.locationController,
-                  ),
-                  SizedBox(height: mediaQuery.height * 0.04),
-                  SizedBox(height: mediaQuery.height * 0.005),
+                  Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          TextForm(
+                              validator: (email) {
+                                if (email == null || email.isEmpty) {
+                                  return "Email is Required";
+                                }
+                                var regex = RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                                if (!regex.hasMatch(email)) {
+                                  return "Invaild Email";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              label: 'Email',
+                              controller: SignUpLabBody.emailController),
+                          SizedBox(height: mediaQuery.height * 0.018),
+                          PasswordTextField(
+                              onTap: () {
+                                BlocProvider.of<AuthHelperCubit>(context)
+                                    .passwordVisability();
+                              },
+                              validator: (password) {
+                                if (password == null || password.isEmpty) {
+                                  return "Password is Required";
+                                }
+                                if (password.length < 6) {
+                                  return "At least 6 characters";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              controller: SignUpLabBody.passwordController,
+                              text: 'Password',
+                              mediaQuery: mediaQuery,
+                              rePasswordVisible:
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .password),
+                          SizedBox(height: mediaQuery.height * 0.015),
+                          PasswordTextField(
+                              validator: (repassword) {
+                                if (repassword == null || repassword.isEmpty) {
+                                  return "Re-Password is Required";
+                                }
+                                if (SignUpLabBody.passwordController.text !=
+                                    SignUpLabBody.rePasswordController) {
+                                  return "Password Doesn't Match";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onTap: () {
+                                BlocProvider.of<AuthHelperCubit>(context)
+                                    .rePasswordVisability();
+                              },
+                              controller: SignUpLabBody.rePasswordController,
+                              text: 'Re-type Password',
+                              mediaQuery: mediaQuery,
+                              rePasswordVisible:
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .rePassword),
+                          SizedBox(height: mediaQuery.height * 0.018),
+                          TextForm(
+                              validator: (labName) {
+                                if (labName == null || labName.isEmpty) {
+                                  return "Lab Name is Required";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              label: 'Lab Name',
+                              controller: SignUpLabBody.labNameController),
+                          SizedBox(height: mediaQuery.height * 0.018),
+                          TextForm(
+                            validator: (phone) {
+                              if (phone == null || phone.isEmpty) {
+                                return "Phone Number is Required";
+                              } else {
+                                return null;
+                              }
+                            },
+                            label: 'Phone Number',
+                            controller: SignUpLabBody.mobileController,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.018),
+                          TextForm(
+                            validator: (location) {
+                              if (location == null || location.isEmpty) {
+                                return "Location is Required";
+                              } else {
+                                return null;
+                              }
+                            },
+                            label: 'Location',
+                            controller: SignUpLabBody.locationController,
+                          )
+                        ],
+                      )),
+                  SizedBox(height: mediaQuery.height * 0.019),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -153,7 +179,8 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                       isLoading: isLoading,
                       buttonName: 'Sign Up',
                       onClicked: () async {
-                        setState(() {
+                         if (formKey.currentState!.validate()){
+                            setState(() {
                           isLoading = true;
                         });
                         await BlocProvider.of<AuthCubit>(context).signUp(
@@ -164,9 +191,9 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                               'location': SignUpLabBody.locationController.text,
                               'city': "city",
                               'country': "country",
-                              'license':['lab'],
-                                  // BlocProvider.of<AuthHelperCubit>(context)
-                                  //     .labLicense,
+                              'license': ['lab'],
+                              // BlocProvider.of<AuthHelperCubit>(context)
+                              //     .labLicense,
                               'email': SignUpLabBody.emailController.text,
                               'password': SignUpLabBody.passwordController.text,
                               'passwordConfirm':
@@ -177,7 +204,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                         setState(() {
                           isLoading = false;
                         });
-                       
+                        }
                       }),
                   SizedBox(height: mediaQuery.height * 0.01),
                   EmailCheck(
