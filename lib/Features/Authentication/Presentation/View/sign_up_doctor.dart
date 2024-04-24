@@ -18,7 +18,7 @@ class SignUpDoctor extends StatelessWidget {
               showSnackBar(context, 'Success');
             }
           },
-          child: SignUpDoctorBody()),
+          child: const SignUpDoctorBody()),
     );
   }
 }

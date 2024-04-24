@@ -11,8 +11,8 @@ class SignUpAsViewBody extends StatelessWidget {
     var mediaQuery = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: mediaQuery.height * 0.1),
           const CustomTitle(title: 'Sign Up As'),
@@ -34,6 +34,7 @@ class SignUpAsViewBody extends StatelessWidget {
               onClicked: () {
                 GoRouter.of(context).push(AppRoutes.kSignUpPatient);
               }),
+              
         ],
       ),
     );

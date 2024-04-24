@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,35 +17,31 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   XFile? labLicense;
   XFile? docotrLicense;
 
-  Future<void> uploadPicture(
-    {required String role}
-  ) async {
+  Future<void> uploadPicture({required String role}) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      if(role=='p'){
-      profilePatient = pickedFile;
-      emit(AuthHelperSuccess());
-      }else if(role=='d'){
-         profileDoctor = pickedFile;
-      emit(AuthHelperSuccess());
-      }else{
-         profileLab = pickedFile;
-      emit(AuthHelperSuccess());
+      if (role == 'p') {
+        profilePatient = pickedFile;
+        emit(AuthHelperSuccess());
+      } else if (role == 'd') {
+        profileDoctor = pickedFile;
+        emit(AuthHelperSuccess());
+      } else {
+        profileLab = pickedFile;
+        emit(AuthHelperSuccess());
       }
     }
   }
 
-  Future<void> uploadLicense({
-    required String role
-  }) async {
+  Future<void> uploadLicense({required String role}) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      if(role=='d'){
-      docotrLicense = pickedFile;
-      emit(AuthHelperSuccess());
-      }else{
+      if (role == 'd') {
+        docotrLicense = pickedFile;
+        emit(AuthHelperSuccess());
+      } else {
         docotrLicense = pickedFile;
         emit(AuthHelperSuccess());
       }
