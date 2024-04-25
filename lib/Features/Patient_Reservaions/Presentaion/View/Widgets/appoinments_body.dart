@@ -48,7 +48,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
             BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
               builder: (context, state) {
                 if (state is PreservationInfoFailure) {
-                  return ErrWidget(errMessage: state.errMessage);
+                  return Expanded(child: ErrWidget(errMessage: state.errMessage));
                 } else if (state is PreservationInfoSuccess) {
                   if (state.pReservationInfo.isEmpty) {
                     return const Expanded(

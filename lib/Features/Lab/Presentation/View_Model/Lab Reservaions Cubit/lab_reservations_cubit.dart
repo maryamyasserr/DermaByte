@@ -27,6 +27,11 @@ class LabReservationsCubit extends Cubit<LabReservationsState> {
     _id = id;
   }
 
-  LabReservations get currentReservation =>
-      allReservations.firstWhere((element) => element.id == _id);
+  LabReservations? get currentReservation {
+    try {
+      return allReservations.firstWhere((element) => element.id == _id);
+    } catch (e) {
+      return null;
+    }
+  }
 }

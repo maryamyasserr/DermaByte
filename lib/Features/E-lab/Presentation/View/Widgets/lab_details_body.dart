@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -16,7 +17,7 @@ class LabDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LabModel lab = BlocProvider.of<ELabCubit>(context).currentLab;
+    LabModel? lab = BlocProvider.of<ELabCubit>(context).currentLab;
     return Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -28,7 +29,9 @@ class LabDetailsViewBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
             horizontal: 8,
           ),
-          child:
+          child: lab==null?
+          const ErrWidget(errMessage: "Something is wrong")
+          :
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             const SizedBox(height: 80),
             Text(

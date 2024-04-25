@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
@@ -12,9 +13,12 @@ class PatientTestResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel consultaion =
+    ReportModel? consultaion =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return consultaion==null?
+    const ErrWidget(errMessage: "Something is wrong")
+    :
+    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         "Test Results.",
         style: Styels.textStyle24_600(context),

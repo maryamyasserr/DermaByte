@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -27,7 +28,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    LabModel lab = BlocProvider.of<ELabCubit>(context).currentLab;
+    LabModel? lab = BlocProvider.of<ELabCubit>(context).currentLab;
     return BlocConsumer<LabReservaionCubit, LabReservaionState>(
       listener: (context, state) {
         if (state is LabReservaionFailuer) {
@@ -44,7 +45,10 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
               fit: BoxFit.cover,
             ),
           ),
-          child: Padding(
+          child: lab==null?
+          const ErrWidget(errMessage: "Something is wrong")
+          :
+           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

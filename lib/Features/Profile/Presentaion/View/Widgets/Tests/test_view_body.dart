@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/test_model/test_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Tests/lab_info.dart';
@@ -11,12 +12,15 @@ class TestViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TestModel test = BlocProvider.of<TestsCubit>(context).currentTest;
+    TestModel? test = BlocProvider.of<TestsCubit>(context).currentTest;
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
-      child: Padding(
+      child: test==null?
+      const ErrWidget(errMessage: "Something is wrong")
+      :
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 50),
         child: ListView(
           children: [

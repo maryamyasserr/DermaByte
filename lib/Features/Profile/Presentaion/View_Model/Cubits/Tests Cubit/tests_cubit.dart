@@ -15,7 +15,13 @@ class TestsCubit extends Cubit<TestsState> {
     _id = id;
   }
 
-  TestModel get currentTest => pTests.firstWhere((test) => (test.id == _id));
+  TestModel? get currentTest {
+    try {
+      return pTests.firstWhere((test) => (test.id == _id));
+    } catch (e) {
+      return null;
+    }
+  }
 
   Future<void> getPatientTests({required String token}) async {
     emit(TestsLoading());

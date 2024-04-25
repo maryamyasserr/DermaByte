@@ -37,17 +37,16 @@ class RequestedTestsBody extends StatelessWidget {
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
-          child: Column(
+          child: 
+          report==null?
+          const ErrWidget(errMessage: "Some Thing Is Wrong")
+          :
+          Column(
             children: [
               const CustomAppBar(title: "Follow Up!"),
               const HeaderText(
                   text: "Follow up with your ongoing and future appointments."),
               const SizedBox(height: 26),
-              report==null?
-             const ErrWidget(errMessage: "Some Thing Is Wrong")
-              :
-              Column(
-                children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Align(
@@ -123,8 +122,8 @@ class RequestedTestsBody extends StatelessWidget {
                           ),
                         );
                       }))
-                          ],
-              ),
+                          
+         
             ],
           ),
         );

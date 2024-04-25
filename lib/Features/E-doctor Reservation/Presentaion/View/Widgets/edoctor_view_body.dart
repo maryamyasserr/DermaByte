@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
@@ -52,8 +53,8 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
             ),
             BlocBuilder<EdoctorCubit, EdoctorState>(builder: (context, state) {
               if (state is EdoctorFailure) {
-                return Center(
-                  child: Text(state.errMessage),
+                return Expanded(
+                  child: ErrWidget(errMessage: state.errMessage),
                 );
               } else if (state is EdoctorSuccess) {
                 return Expanded(
@@ -69,7 +70,6 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                           subTitle:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                           onPressed: () async {
-                            print(state.doctors[index].id);
                             BlocProvider.of<DoctorReservationCubit>(context)
                                 .doctorId = state.doctors[index].id;
                             GoRouter.of(context)

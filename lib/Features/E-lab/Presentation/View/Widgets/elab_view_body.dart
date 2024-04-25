@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
@@ -51,9 +52,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
             BlocBuilder<ELabCubit, LabState>(builder: (context, state) {
               if (state is LabFailure) {
                 return Expanded(
-                  child: Center(
-                    child: Text(state.errMessage),
-                  ),
+                  child: ErrWidget(errMessage: state.errMessage)
                 );
               } else if (state is LabSuccess) {
                 return Expanded(

@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -50,7 +51,7 @@ class _AddTestBodyState extends State<AddTestBody> {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel report =
+    ReportModel? report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
     return BlocConsumer<UpdateReportCubit, UpdateReportState>(
       listener: (context, state) {
@@ -112,6 +113,9 @@ class _AddTestBodyState extends State<AddTestBody> {
                         },
                       ),
                     ),
+                    report==null?
+                    const ErrWidget(errMessage: "Something is wrong")
+                    :
                     AddTestButton(
                       isLoading:
                           BlocProvider.of<UpdateReportCubit>(context).isLoading,

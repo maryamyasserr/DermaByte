@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
@@ -12,9 +13,12 @@ class PatientTestRequestedLab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LabReservations reservatino =
+    LabReservations? reservatino =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation;
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return reservatino==null?
+    const ErrWidget(errMessage: "Something is wrong")
+    :
+    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         "Test requested.",
         style: Styels.textStyle24_600(context),

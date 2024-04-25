@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
@@ -23,7 +24,7 @@ class RequestBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LabReservations reservation =
+    LabReservations? reservation =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation;
     return BlocProvider(
       create: (context) => AttachResultCubit(getIt.get<LabRepoImpl>()),
@@ -33,7 +34,10 @@ class RequestBody extends StatelessWidget {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-            child: Padding(
+            child: reservation==null?
+            const ErrWidget(errMessage: "Something is wrong")
+            :
+            Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.03),
               child: ListView(

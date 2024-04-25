@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -21,9 +22,12 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel report =
+    ReportModel? report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
-    return BlocConsumer<UpdateReportCubit, UpdateReportState>(
+    return report==null?
+    const ErrWidget(errMessage: "Something is wrong")
+    :
+     BlocConsumer<UpdateReportCubit, UpdateReportState>(
       listener: (context, state) {
         if (state is UpdatePatientReportStateSuccess) {
           showSnackBar(context, "Done");
