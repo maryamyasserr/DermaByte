@@ -1,6 +1,8 @@
+import 'package:dermabyte/Core/Widgets/alertWidget.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
+import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -52,8 +54,14 @@ class _ElabViewBodyState extends State<ElabViewBody> {
             BlocBuilder<ELabCubit, LabState>(builder: (context, state) {
               if (state is LabFailure) {
                 return Expanded(
-                  child: ErrWidget(errMessage: state.errMessage)
-                );
+                    child: ErrWidget(
+                        onTap: () {
+                          BlocProvider.of<ELabCubit>(context).getAllLabs(
+                              token: BlocProvider.of<AuthCubit>(context)
+                                  .patient!
+                                  .token);
+                        },
+                        errMessage: state.errMessage));
               } else if (state is LabSuccess) {
                 return Expanded(
                   child: ListView.builder(
@@ -74,8 +82,14 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                           onButtonPressed: () {
                             BlocProvider.of<ELabCubit>(context).setId =
                                 state.labs[index].id!;
-                            GoRouter.of(context)
-                                .push(AppRoutes.kLabReservationView);
+                            if (BlocProvider.of<ELabCubit>(context)
+                                    .currentLab ==
+                                null) {
+                              showAlert(context, "Reserve With Another Lab");
+                            } else {
+                              GoRouter.of(context)
+                                  .push(AppRoutes.kLabReservationView);
+                            }
                           },
                           textButton: 'Reserve',
                         ),

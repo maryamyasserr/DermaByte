@@ -17,15 +17,16 @@ class PatientView extends StatelessWidget {
   });
 
   static TextEditingController diagnosesController = TextEditingController();
-  static TextEditingController treatmentPlanController =
-      TextEditingController();
+  static TextEditingController treatmentPlanController =TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     ReportModel? report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
     return report==null?
-    const ErrWidget(errMessage: "Something is wrong")
+    ErrWidget(
+      onTap: (){},
+      errMessage: "Something is wrong")
     :
      BlocConsumer<UpdateReportCubit, UpdateReportState>(
       listener: (context, state) {

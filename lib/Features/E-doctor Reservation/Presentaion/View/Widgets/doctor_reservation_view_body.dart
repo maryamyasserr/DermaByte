@@ -61,7 +61,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
       listener: (context, state) {
         if (state is DoctorReservationFailure) {
           showSnackBar(context, state.errMessage);
-          print(state.errMessage);
+
         } else if (state is DoctorReservationSuccess) {
           showSnackBar(context, "done");
         }
@@ -133,7 +133,14 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   horizontal: 0,
                   textButton: "Confirm",
                   onPressed: () async {
-                    await BlocProvider.of<DoctorReservationCubit>(context)
+                    if (BlocProvider.of<FreeTimesCubit>(context).selectedDate ==
+                        null) {
+                      showSnackBar(context, 'No Date Selected');
+                    } else if (BlocProvider.of<DoctorReservationCubit>(context)
+                            .scanId ==
+                        null) {
+                      showSnackBar(context, "No Scan Selected");
+                    }else{await BlocProvider.of<DoctorReservationCubit>(context)
                         .createReservationAndPatientReport(
                             context: context,
                             reservationData: FormData.fromMap({
@@ -173,7 +180,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                             },
                             token: BlocProvider.of<AuthCubit>(context)
                                 .patient!
-                                .token);
+                                .token);}
+                    
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)
                       .isLoading),

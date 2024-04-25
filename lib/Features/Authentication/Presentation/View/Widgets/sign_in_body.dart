@@ -30,9 +30,7 @@ class _SignInBodyState extends State<SignInBody> {
       listener: (context, state) {
         if (state is AuthFailure) {
           showSnackBar(context, state.errMessage);
-        } else if (state is AuthSuccess) {
-          showSnackBar(context, "Success");
-        }
+        } 
       },
       builder: (context, state) {
         return Padding(

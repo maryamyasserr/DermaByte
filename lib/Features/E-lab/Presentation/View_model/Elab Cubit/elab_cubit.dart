@@ -10,7 +10,7 @@ class ELabCubit extends Cubit<LabState> {
   ELabCubit(this.labRepo) : super(LabInitial());
 
   List<LabModel> allLabs = [];
-  String? _id;
+  String? labId;
 
   Future<void> getAllLabs({required String token}) async {
     emit(LabLoading());
@@ -24,12 +24,12 @@ class ELabCubit extends Cubit<LabState> {
   }
 
   set setId(String id) {
-    _id = id;
+    labId = id;
   }
 
   LabModel? get currentLab {
     try {
-      return allLabs.firstWhere((lab) => lab.id == _id);
+      return allLabs.firstWhere((lab) => lab.id == "labId");
     } catch (e) {
       return null;
     }
