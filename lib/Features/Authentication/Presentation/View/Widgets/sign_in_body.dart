@@ -51,6 +51,7 @@ class _SignInBodyState extends State<SignInBody> {
                       child: Column(
                         children: <Widget>[
                           TextForm(
+                             enable: true,
                             validator: (email) {
                               return email == null || email.trim().isEmpty
                                   ? "email is required"
@@ -61,6 +62,7 @@ class _SignInBodyState extends State<SignInBody> {
                           ),
                           SizedBox(height: mediaQuery.height * 0.014),
                           TextForm(
+                            enable: true,
                             validator: (password) {
                               return password == null || password.trim().isEmpty
                                   ? "password is required"

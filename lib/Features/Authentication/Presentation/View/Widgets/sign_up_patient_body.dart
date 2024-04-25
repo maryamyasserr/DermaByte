@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
@@ -31,7 +30,6 @@ class SignUpPatientBody extends StatefulWidget {
 
 class _SignUpPatientBodyState extends State<SignUpPatientBody> {
   bool isLoding = false;
-
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -55,6 +53,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                       child: Column(
                         children: [
                           TextForm(
+                              enable: true,
                               validator: (email) {
                                 if (email == null || email.isEmpty) {
                                   return "Email is Required";
@@ -118,9 +117,16 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                       .rePassword),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                              enable: true,
                               validator: (fname) {
                                 if (fname == null || fname.isEmpty) {
                                   return "First Name is Required";
+                                }
+                                if (fname.length < 2) {
+                                  return 'Too Short Name';
+                                }
+                                if (fname.length > 32) {
+                                  return 'Too Long Name';
                                 } else {
                                   return null;
                                 }
@@ -130,9 +136,16 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                   SignUpPatientBody.firstNameController),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                            enable: true,
                             validator: (lname) {
                               if (lname == null || lname.isEmpty) {
                                 return "Last Name is Required";
+                              }
+                              if (lname.length < 2) {
+                                return 'Too Short Name';
+                              }
+                              if (lname.length > 32) {
+                                return 'Too Long Name';
                               } else {
                                 return null;
                               }
@@ -141,16 +154,45 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                             controller: SignUpPatientBody.lastNameController,
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
-                          TextForm(
-                            validator: (gender) {
-                              if (gender == null || gender.isEmpty) {
-                                return "Gender is Required";
-                              } else {
-                                return null;
-                              }
-                            },
-                            label: 'Gender',
-                            controller: SignUpPatientBody.genderController,
+                          Stack(
+                            children: [
+                              TextForm(
+                                enable: false,
+                                validator: (gender) {
+                                  if (gender == null || gender.isEmpty) {
+                                    return "Gender is Required";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                label: "Gender",
+                                controller: SignUpPatientBody.genderController,
+                              ),
+                              Positioned(
+                                right: 10,
+                                top: 9,
+                                child: DropdownButton<String>(
+                                  elevation: 0,
+                                  underline: const SizedBox(),
+                                  items: <String>['male', 'female']
+                                      .map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(
+                                        value,
+                                        style: Styels.textStyle20_300(context),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      SignUpPatientBody.genderController.text =
+                                          value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
@@ -164,14 +206,22 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                 return null;
                               }
                             },
+                            enable: true,
                             label: 'Phone Number',
                             controller: SignUpPatientBody.mobileController,
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                            enable: true,
                             validator: (age) {
                               if (age == null || age.isEmpty) {
                                 return "Age is Required";
+                              }
+                              if (int.parse(age) < 16) {
+                                return "Too Young";
+                              }
+                              if (int.parse(age) >= 100) {
+                                return "Invaild Age";
                               } else {
                                 return null;
                               }
@@ -200,10 +250,10 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                               'age': SignUpPatientBody.ageController.text,
                               'city': "city",
                               'country': "country",
-                              'profilePic':
-                                  BlocProvider.of<AuthHelperCubit>(context)
-                                      .profilePatient!
-                                      .readAsBytes(),
+                              // 'profilePic':
+                              //     BlocProvider.of<AuthHelperCubit>(context)
+                              //         .profilePatient!
+                              //         .readAsBytes(),
                               'gender': SignUpPatientBody.genderController.text,
                               'email': SignUpPatientBody.emailController.text,
                               'password':

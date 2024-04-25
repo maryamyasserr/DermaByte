@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -16,34 +14,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http_parser/http_parser.dart';
 
 class SignUpDoctorBody extends StatefulWidget {
   const SignUpDoctorBody({super.key});
+  static TextEditingController emailController = TextEditingController();
+
+  static TextEditingController passwordController = TextEditingController();
+  static TextEditingController rePasswordController = TextEditingController();
+  static TextEditingController firstNameController = TextEditingController();
+  static TextEditingController lastNameController = TextEditingController();
+  static TextEditingController mobileController = TextEditingController();
+  static TextEditingController locationController = TextEditingController();
+  static TextEditingController genderController = TextEditingController();
+  static TextEditingController aboutController = TextEditingController();
 
   @override
   State<SignUpDoctorBody> createState() => _SignUpDoctorBodyState();
 }
 
 class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
-
-  final TextEditingController rePasswordController = TextEditingController();
-
-  final TextEditingController firstNameController = TextEditingController();
-
-  final TextEditingController lastNameController = TextEditingController();
-
-  final TextEditingController mobileController = TextEditingController();
-
-  final TextEditingController locationController = TextEditingController();
-
-  final TextEditingController genderController = TextEditingController();
-
-  final TextEditingController aboutController = TextEditingController();
-
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -68,6 +57,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                       child: Column(
                         children: [
                           TextForm(
+                              enable: true,
                               validator: (email) {
                                 if (email == null || email.isEmpty) {
                                   return "Email is Required";
@@ -81,7 +71,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 }
                               },
                               label: 'Email',
-                              controller: emailController),
+                              controller: SignUpDoctorBody.emailController),
                           SizedBox(height: mediaQuery.height * 0.016),
                           PasswordTextField(
                               onTap: () {
@@ -98,7 +88,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   return null;
                                 }
                               },
-                              controller: passwordController,
+                              controller: SignUpDoctorBody.passwordController,
                               text: 'Password',
                               mediaQuery: mediaQuery,
                               rePasswordVisible:
@@ -110,8 +100,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 if (repassword == null || repassword.isEmpty) {
                                   return "Re-aPassword is Required";
                                 }
-                                if (passwordController.text !=
-                                    rePasswordController.text) {
+                                if (SignUpDoctorBody.passwordController.text!=
+                                    SignUpDoctorBody.rePasswordController.text) {
                                   return "Password Doesn't Match";
                                 } else {
                                   return null;
@@ -121,7 +111,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 BlocProvider.of<AuthHelperCubit>(context)
                                     .rePasswordVisability();
                               },
-                              controller: rePasswordController,
+                              controller: SignUpDoctorBody.rePasswordController,
                               text: 'Re-type Password',
                               mediaQuery: mediaQuery,
                               rePasswordVisible:
@@ -129,6 +119,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                       .rePassword),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                              enable: true,
                               validator: (fname) {
                                 if (fname == null || fname.isEmpty) {
                                   return "First Name is Required";
@@ -137,9 +128,10 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 }
                               },
                               label: 'First Name',
-                              controller: firstNameController),
+                              controller: SignUpDoctorBody.firstNameController),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                            enable: true,
                             validator: (lname) {
                               if (lname == null || lname.isEmpty) {
                                 return "Last Name is Required";
@@ -148,22 +140,51 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               }
                             },
                             label: 'Last Name',
-                            controller: lastNameController,
+                            controller: SignUpDoctorBody.lastNameController,
+                          ),
+                          SizedBox(height: mediaQuery.height * 0.016),
+                          Stack(
+                            children: [
+                              TextForm(
+                                enable: false,
+                                validator: (gender) {
+                                  if (gender == null || gender.isEmpty) {
+                                    return "Gender is Required";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                label: "Gender",
+                                controller: SignUpDoctorBody.genderController,
+                              ),
+                              Positioned(
+                                right: 10,
+                                top: 9,
+                                child: DropdownButton<String>(
+                                  elevation: 0,
+                                  underline: const SizedBox(),
+                                  items: <String>['male', 'female']
+                                      .map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(
+                                        value,
+                                        style: Styels.textStyle20_300(context),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      SignUpDoctorBody.genderController.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
-                            validator: (gender) {
-                              if (gender == null || gender.isEmpty) {
-                                return "Gender is Required";
-                              } else {
-                                return null;
-                              }
-                            },
-                            label: 'Gender',
-                            controller: genderController,
-                          ),
-                          SizedBox(height: mediaQuery.height * 0.016),
-                          TextForm(
+                            enable: true,
                             validator: (phone) {
                               if (phone == null || phone.isEmpty) {
                                 return "Phone Number is Required";
@@ -176,10 +197,11 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               }
                             },
                             label: 'Phone Number',
-                            controller: mobileController,
+                            controller: SignUpDoctorBody.mobileController,
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                            enable: true,
                             validator: (location) {
                               if (location == null || location.isEmpty) {
                                 return "Location is Required";
@@ -188,10 +210,11 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               }
                             },
                             label: 'Location',
-                            controller: locationController,
+                            controller: SignUpDoctorBody.locationController,
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
+                            enable: true,
                             validator: (about) {
                               if (about == null || about.isEmpty) {
                                 return "About is Required";
@@ -200,7 +223,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               }
                             },
                             label: 'about',
-                            controller: aboutController,
+                            controller: SignUpDoctorBody.aboutController,
                           ),
                         ],
                       )),
@@ -249,21 +272,22 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                           await BlocProvider.of<AuthCubit>(context).signUp(
                             context: context,
                             data: FormData.fromMap({
-                              'firstName': firstNameController.text,
-                              'lastName': lastNameController.text,
-                              'gender': genderController.text,
-                              'mobile': mobileController.text,
-                              'location': locationController.text,
+                              'firstName':SignUpDoctorBody.firstNameController.text,
+                              'lastName': SignUpDoctorBody.lastNameController.text,
+                              'gender': SignUpDoctorBody.genderController.text,
+                              'mobile': SignUpDoctorBody.mobileController.text,
+                              'location': SignUpDoctorBody.locationController.text,
                               'city': "Madirid",
                               'country': "Spain",
-                              'specialization': aboutController,
+                              'specialization': SignUpDoctorBody.aboutController,
                               'license': ['Doctor'],
-                              'email': emailController.text,
-                              'password': passwordController.text,
-                              'passwordConfirm': rePasswordController.text,
+                              'email': SignUpDoctorBody.emailController.text,
+                              'password':SignUpDoctorBody.passwordController.text,
+                              'passwordConfirm': SignUpDoctorBody.rePasswordController.text,
                               'profilePic':
                                   BlocProvider.of<AuthHelperCubit>(context)
-                                      .profileDoctor,
+                                      .profileDoctor!
+                                      .readAsBytes(),
                               //         .profileDoctor,)
                               // 'profilePic': await MultipartFile.fromFile(
                               //     BlocProvider.of<AuthHelperCubit>(context)

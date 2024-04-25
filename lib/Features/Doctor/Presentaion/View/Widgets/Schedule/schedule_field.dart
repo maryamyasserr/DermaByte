@@ -19,6 +19,7 @@ class ScheduleForm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: TextForm(
+            enable: true,
             label: label,
             controller: controller,
           ),

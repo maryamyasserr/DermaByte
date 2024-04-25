@@ -9,6 +9,7 @@ class TextForm extends StatelessWidget {
   final String label;
   final bool obscureText;
   final Widget? suffixIcon;
+  final bool enable;
   const TextForm({
     super.key,
     required this.label,
@@ -16,11 +17,13 @@ class TextForm extends StatelessWidget {
     this.validator,
     this.obscureText = false,
     this.suffixIcon,
+    required this.enable
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled:enable,
       controller: controller,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -32,11 +35,13 @@ class TextForm extends StatelessWidget {
         labelText: label,
         labelStyle: Styels.textStyle18_300(context).copyWith(
           color: AppColors.kTextInForm.withOpacity(0.8),
+        
         ),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none),
       ),
+      style: const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400)
     );
   }
 }

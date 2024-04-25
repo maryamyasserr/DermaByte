@@ -3,7 +3,7 @@ import 'package:image_picker/image_picker.dart';
 class PatientModel {
   String? firstName;
   String? lastName;
-  XFile? profilePic;
+  String? profilePic;
   int? age;
   String? city;
   String? country;
@@ -38,7 +38,7 @@ class PatientModel {
   factory PatientModel.fromJson(Map<String, dynamic> json) => PatientModel(
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
-        profilePic: json['profilePic'] as XFile?,
+        profilePic: json['profilePic'] as String?,
         age: json['age'] as int?,
         city: json['city'] as String?,
         country: json['country'] as String?,

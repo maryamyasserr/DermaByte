@@ -51,6 +51,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                       child: Column(
                         children: [
                           TextForm(
+                             enable: true,
                               validator: (email) {
                                 if (email == null || email.isEmpty) {
                                   return "Email is Required";
@@ -112,6 +113,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                                       .rePassword),
                           SizedBox(height: mediaQuery.height * 0.018),
                           TextForm(
+                             enable: true,
                               validator: (labName) {
                                 if (labName == null || labName.isEmpty) {
                                   return "Lab Name is Required";
@@ -123,6 +125,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                               controller: SignUpLabBody.labNameController),
                           SizedBox(height: mediaQuery.height * 0.018),
                           TextForm(
+                             enable: true,
                             validator: (phone) {
                               if (phone == null || phone.isEmpty) {
                                 return "Phone Number is Required";
@@ -135,6 +138,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                           ),
                           SizedBox(height: mediaQuery.height * 0.018),
                           TextForm(
+                             enable: true,
                             validator: (location) {
                               if (location == null || location.isEmpty) {
                                 return "Location is Required";
