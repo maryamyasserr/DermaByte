@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
-
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
@@ -22,14 +22,17 @@ class FollowUpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PreservationModel patientReservation =
+    PreservationModel? patientReservation =
         BlocProvider.of<PreservationInfoCubit>(context).currentReservation;
-    ReportModel report = BlocProvider.of<ReportCubit>(context).patientReport;
+    ReportModel? report = BlocProvider.of<ReportCubit>(context).patientReport;
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: Padding(
+      child: patientReservation == null|| report == null ? 
+      const ErrWidget(errMessage: "Some Thing is Wrong ,refresh")
+      :
+      Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: CustomScrollView(
           slivers: [

@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -13,7 +14,7 @@ class UpComingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PreservationModel reservation =
+    PreservationModel? reservation =
         BlocProvider.of<PreservationInfoCubit>(context).currentReservation;
     return Container(
       decoration: const BoxDecoration(
@@ -24,6 +25,8 @@ class UpComingBody extends StatelessWidget {
           const SizedBox(height: 20),
           const CustomAppBar(title: "Upcoming"),
           const SizedBox(height: 64),
+          reservation ==null?
+          const ErrWidget(errMessage: "Some Thing Is wrong , Please Refresh"):
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Column(
@@ -43,7 +46,7 @@ class UpComingBody extends StatelessWidget {
           ElevatedButton(
               onPressed: () async {
                 await startMeeting(
-                    context: context, url: reservation.meetingUrl);
+                    context: context, url: reservation!.meetingUrl);
               },
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(

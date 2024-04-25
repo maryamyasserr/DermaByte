@@ -10,14 +10,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       : super(PreservationInfoInitial());
   PreservationInfoRepo preservationInfoRepo;
   String? _id;
-  PreservationModel get currentReservation =>
-      reservations.firstWhere((reservation) => reservation.id == _id);
-
   List<PreservationModel> reservations = [];
-
-  set setId(String id) {
-    _id = id;
-  }
 
   Future<void> getPatientReservationInfo({required String token}) async {
     emit(PreservationInfoLoading());
@@ -28,5 +21,17 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       reservations = preservationinfo;
       emit(PreservationInfoSuccess(pReservationInfo: preservationinfo));
     });
+  }
+
+  set setId(String id) {
+    _id = id;
+  }
+
+  PreservationModel? get currentReservation {
+    try {
+      return reservations.firstWhere((reservation) => reservation.id == _id);
+    } catch (e) {
+      return null;
+    }
   }
 }

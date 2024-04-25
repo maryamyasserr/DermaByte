@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
@@ -10,9 +11,13 @@ class ConsutlsHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel consultaion =
+    ReportModel? consultaion =
         BlocProvider.of<ReportCubit>(context).currentConsultation;
-    return Column(
+    return consultaion==null?
+    const ErrWidget(errMessage: "Some Thing is Wrong")
+    :
+    
+    Column(
       children: [
         Align(
             alignment: Alignment.centerRight,

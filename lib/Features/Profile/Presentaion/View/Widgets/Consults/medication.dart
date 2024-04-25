@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
@@ -11,7 +12,7 @@ class Medications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel consultaion =
+    ReportModel? consultaion =
         BlocProvider.of<ReportCubit>(context).currentConsultation;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,6 +22,9 @@ class Medications extends StatelessWidget {
           style: Styels.textStyle24_600(context),
         ),
         const SizedBox(height: 10),
+        consultaion==null?
+        const ErrWidget(errMessage: "Some Thing Is Wrong")
+        :
         ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -22,7 +23,7 @@ class RequestedTestsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel report = BlocProvider.of<ReportCubit>(context).patientReport;
+    ReportModel? report = BlocProvider.of<ReportCubit>(context).patientReport;
     return BlocConsumer<AddTestResultCubit, AddTestResultState>(
       listener: (context, state) {
         if (state is AddTestResultFailure) {
@@ -42,17 +43,23 @@ class RequestedTestsBody extends StatelessWidget {
               const HeaderText(
                   text: "Follow up with your ongoing and future appointments."),
               const SizedBox(height: 26),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Dr ${report.dermatologist?.firstName ?? ""} requested a ${testsCounts!} tests",
-                    style:
-                        Styels.textStyle18_600(context).copyWith(fontSize: 22),
+              report==null?
+             const ErrWidget(errMessage: "Some Thing Is Wrong")
+              :
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Dr ${report.dermatologist!.firstName ?? ""} requested a ${testsCounts!} tests",
+                        style:
+                            Styels.textStyle18_600(context).copyWith(fontSize: 22),
+                      ),
+                    ),
                   ),
-                ),
-              ),
+            
               const SizedBox(height: 20),
               Expanded(
                   child: ListView.builder(
@@ -116,6 +123,8 @@ class RequestedTestsBody extends StatelessWidget {
                           ),
                         );
                       }))
+                          ],
+              ),
             ],
           ),
         );
