@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -100,8 +101,9 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 if (repassword == null || repassword.isEmpty) {
                                   return "Re-aPassword is Required";
                                 }
-                                if (SignUpDoctorBody.passwordController.text!=
-                                    SignUpDoctorBody.rePasswordController.text) {
+                                if (SignUpDoctorBody.passwordController.text !=
+                                    SignUpDoctorBody
+                                        .rePasswordController.text) {
                                   return "Password Doesn't Match";
                                 } else {
                                   return null;
@@ -175,7 +177,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   }).toList(),
                                   onChanged: (value) {
                                     setState(() {
-                                      SignUpDoctorBody.genderController.text = value!;
+                                      SignUpDoctorBody.genderController.text =
+                                          value!;
                                     });
                                   },
                                 ),
@@ -268,22 +271,33 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                           setState(() {
                             isLoading = true;
                           });
-
-                          await BlocProvider.of<AuthCubit>(context).signUp(
+                          if (BlocProvider.of<AuthHelperCubit>(context)
+                                  .profileDoctor ==
+                              null) {
+                            showSnackBar(
+                                context, "The Profile Photo is Required");
+                          }else{
+                             await BlocProvider.of<AuthCubit>(context).signUp(
                             context: context,
                             data: FormData.fromMap({
-                              'firstName':SignUpDoctorBody.firstNameController.text,
-                              'lastName': SignUpDoctorBody.lastNameController.text,
+                              'firstName':
+                                  SignUpDoctorBody.firstNameController.text,
+                              'lastName':
+                                  SignUpDoctorBody.lastNameController.text,
                               'gender': SignUpDoctorBody.genderController.text,
                               'mobile': SignUpDoctorBody.mobileController.text,
-                              'location': SignUpDoctorBody.locationController.text,
+                              'location':
+                                  SignUpDoctorBody.locationController.text,
                               'city': "Madirid",
                               'country': "Spain",
-                              'specialization': SignUpDoctorBody.aboutController,
+                              'specialization':
+                                  SignUpDoctorBody.aboutController,
                               'license': ['Doctor'],
                               'email': SignUpDoctorBody.emailController.text,
-                              'password':SignUpDoctorBody.passwordController.text,
-                              'passwordConfirm': SignUpDoctorBody.rePasswordController.text,
+                              'password':
+                                  SignUpDoctorBody.passwordController.text,
+                              'passwordConfirm':
+                                  SignUpDoctorBody.rePasswordController.text,
                               'profilePic':
                                   BlocProvider.of<AuthHelperCubit>(context)
                                       .profileDoctor!
@@ -300,6 +314,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                             }),
                             role: 'doctor',
                           );
+                          }
+                         
 
                           setState(() {
                             isLoading = false;
