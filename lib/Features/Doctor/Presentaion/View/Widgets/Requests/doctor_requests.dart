@@ -87,7 +87,9 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                           );
                         }));
               } else if (state is MyReservationFailure) {
-                return Expanded(child: Center(child: ErrWidget(errMessage: state.errMessage)));
+                return Expanded(
+                    child:
+                        Center(child: ErrWidget(errMessage: state.errMessage)));
               } else {
                 return const Expanded(
                   child: Center(

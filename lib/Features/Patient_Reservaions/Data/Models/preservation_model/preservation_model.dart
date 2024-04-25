@@ -41,7 +41,7 @@ class PreservationModel {
         '_id': id,
         'date': date.toIso8601String(),
         'uploadedTest': uploadedTest,
-        'meetingUrl':meetingUrl,
+        'meetingUrl': meetingUrl,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
         'scan': scan.toJson(),
@@ -50,7 +50,7 @@ class PreservationModel {
 
   Map<String, dynamic> toJson2() => {
         'date': date.toIso8601String(),
-        'meetingUrl':meetingUrl,
+        'meetingUrl': meetingUrl,
         'uploadedTest': uploadedTest,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),

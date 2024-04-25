@@ -15,8 +15,7 @@ class TextForm extends StatelessWidget {
     required this.controller,
     this.validator,
     this.obscureText = false,
-    this.suffixIcon, 
-
+    this.suffixIcon,
   });
 
   @override

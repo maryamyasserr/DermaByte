@@ -54,7 +54,6 @@ class LabDetailsViewBody extends StatelessWidget {
                   return ServiceItem(
                     testName: lab.services![index].name!,
                     cost: lab.services![index].cost!.toString(),
-                    
                   );
                 },
               ),

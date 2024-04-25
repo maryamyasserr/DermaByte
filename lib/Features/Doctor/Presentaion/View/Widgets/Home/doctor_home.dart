@@ -5,7 +5,6 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-
 class DoctorHome extends StatelessWidget {
   const DoctorHome({super.key});
 
@@ -22,7 +21,6 @@ class DoctorHome extends StatelessWidget {
             "Today's Schedule",
             style: Styels.textStyle24_600(context),
           ),
-        
           Expanded(
               child: ListView.builder(
                   physics: const BouncingScrollPhysics(),

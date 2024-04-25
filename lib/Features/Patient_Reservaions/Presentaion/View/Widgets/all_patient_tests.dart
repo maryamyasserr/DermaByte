@@ -42,7 +42,8 @@ class AllPatientTest extends StatelessWidget {
                             children: [
                               CustomCard(
                                 iconCard: Assets.kAlphaScan,
-                                cardTitle: state.tests[index].testName?[0]??"",
+                                cardTitle:
+                                    state.tests[index].testName?[0] ?? "",
                                 cardSubTitle:
                                     "Scans taken on ${state.tests[index].testDate?.day ?? "29"}/${state.tests[index].testDate?.month ?? "5"}/${state.tests[index].testDate?.year ?? "2022"}",
                                 textButton: "Select",

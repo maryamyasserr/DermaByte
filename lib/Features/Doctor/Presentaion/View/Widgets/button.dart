@@ -24,13 +24,12 @@ class MyButton extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             backgroundColor: AppColors.kPrimaryColor),
-        child: isLoading?
-        const LoadingIndicator(color: Colors.white)
-        :
-        Text(
-          textButton,
-          style: Styels.textStyle24_600(context)
-              .copyWith(fontSize: 20, color: Colors.white),
-        ));
+        child: isLoading
+            ? const LoadingIndicator(color: Colors.white)
+            : Text(
+                textButton,
+                style: Styels.textStyle24_600(context)
+                    .copyWith(fontSize: 20, color: Colors.white),
+              ));
   }
 }

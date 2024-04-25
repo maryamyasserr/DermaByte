@@ -28,7 +28,9 @@ class _TimeState extends State<TimeWidget> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: widget.isSelected ? AppColors.kPrimaryColor : AppColors.kCardColor,
+            color: widget.isSelected
+                ? AppColors.kPrimaryColor
+                : AppColors.kCardColor,
             boxShadow: const [
               BoxShadow(
                 color: Colors.grey,
@@ -41,7 +43,8 @@ class _TimeState extends State<TimeWidget> {
             child: Text(
               widget.title,
               style: Styels.textStyle18_400(context).copyWith(
-                color: widget.isSelected ? Colors.white : AppColors.kPrimaryColor,
+                color:
+                    widget.isSelected ? Colors.white : AppColors.kPrimaryColor,
               ),
             ),
           ),

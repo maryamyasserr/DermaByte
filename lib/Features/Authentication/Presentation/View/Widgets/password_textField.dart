@@ -2,19 +2,15 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
-
-
-
 class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({
-    super.key,
-    required this.mediaQuery,
-    required this.rePasswordVisible,
-    required this.onTap,
-    required this.text,
-    required this.controller,
-    required this.validator
-  });
+  const PasswordTextField(
+      {super.key,
+      required this.mediaQuery,
+      required this.rePasswordVisible,
+      required this.onTap,
+      required this.text,
+      required this.controller,
+      required this.validator});
 
   final Size mediaQuery;
   final bool rePasswordVisible;
@@ -25,7 +21,7 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return TextFormField(
+    return TextFormField(
       controller: controller,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,

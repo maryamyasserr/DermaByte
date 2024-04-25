@@ -43,9 +43,7 @@ class UpComingBody extends StatelessWidget {
           ElevatedButton(
               onPressed: () async {
                 await startMeeting(
-                  context: context,
-                  url:  reservation.meetingUrl);
-                
+                    context: context, url: reservation.meetingUrl);
               },
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(

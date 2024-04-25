@@ -38,18 +38,16 @@ class LabRepoImpl implements LabRepo {
       required body,
       required BuildContext context}) async {
     try {
-      await apiService.post(
-          endPoint: 'labs/tests', data: body, token: token);
+      await apiService.post(endPoint: 'labs/tests', data: body, token: token);
       GoRouter.of(context).pop();
       return right("Done");
     } catch (e) {
       if (e is DioException) {
-      GoRouter.of(context).pop();
+        GoRouter.of(context).pop();
         return left(ServerFailure.fromDioException(e));
-
-      }else{
-      GoRouter.of(context).pop();
-      return left(ServerFailure(errMessage: e.toString()));
+      } else {
+        GoRouter.of(context).pop();
+        return left(ServerFailure(errMessage: e.toString()));
       }
     }
   }
@@ -74,7 +72,9 @@ class LabRepoImpl implements LabRepo {
 
   @override
   Future<Either<Failures, ResultModel>> attachResult(
-      {required String token, required body,required BuildContext context}) async {
+      {required String token,
+      required body,
+      required BuildContext context}) async {
     try {
       var response = await apiService.postWithMultiForm(
           endPoint: "results", data: body, token: token);

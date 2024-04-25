@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -14,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http_parser/http_parser.dart';
 
 class SignUpDoctorBody extends StatefulWidget {
   const SignUpDoctorBody({super.key});
@@ -164,6 +167,10 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                             validator: (phone) {
                               if (phone == null || phone.isEmpty) {
                                 return "Phone Number is Required";
+                              }
+
+                              if (phone.length < 11) {
+                                return "invalid Phone Number";
                               } else {
                                 return null;
                               }
@@ -238,6 +245,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                           setState(() {
                             isLoading = true;
                           });
+
                           await BlocProvider.of<AuthCubit>(context).signUp(
                             context: context,
                             data: FormData.fromMap({
@@ -256,7 +264,14 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               'profilePic':
                                   BlocProvider.of<AuthHelperCubit>(context)
                                       .profileDoctor,
+                              //         .profileDoctor,)
+                              // 'profilePic': await MultipartFile.fromFile(
+                              //     BlocProvider.of<AuthHelperCubit>(context)
+                              //         .profileDoctor,
+                              //     filename: 'image.jpg',
+                              //     contentType: MediaType('image', 'jpeg')),
                               'sessionCost': 100,
+
                               'role': 'dermatologist'
                             }),
                             role: 'doctor',

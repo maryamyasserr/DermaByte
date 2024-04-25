@@ -43,8 +43,8 @@ class DoctorReservationViewBody extends StatefulWidget {
 }
 
 class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
-    bool isVisible = false;
-   @override
+  bool isVisible = false;
+  @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
@@ -53,6 +53,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -96,11 +97,10 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                 }),
               ),
               const SizedBox(height: 30),
-              isVisible?
-              Visibility(
-                visible: isVisible,
-                child: AllFreeTime())
-                :const Center(child: LoadingIndicator(color: AppColors.kPrimaryColor)),
+              isVisible
+                  ? Visibility(visible: isVisible, child: AllFreeTime())
+                  : const Center(
+                      child: LoadingIndicator(color: AppColors.kPrimaryColor)),
               const SizedBox(height: 12),
               CustomTextField(
                   hintext: 'When did you start noticing skin changes?',
@@ -135,7 +135,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   onPressed: () async {
                     await BlocProvider.of<DoctorReservationCubit>(context)
                         .createReservationAndPatientReport(
-                          context: context,
+                            context: context,
                             reservationData: FormData.fromMap({
                               "patient": BlocProvider.of<AuthCubit>(context)
                                   .patient!
@@ -148,7 +148,9 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                               "scan": BlocProvider.of<DoctorReservationCubit>(
                                       context)
                                   .scanId,
-                              "date": BlocProvider.of<FreeTimesCubit>(context).selectedDate?.toIso8601String(),
+                              "date": BlocProvider.of<FreeTimesCubit>(context)
+                                  .selectedDate
+                                  ?.toIso8601String(),
                               // "uploadedTest": await MultipartFile.fromFile(
                               //     imgPath!,
                               //     filename: imgPath!

@@ -12,10 +12,13 @@ class AttachResultCubit extends Cubit<AttachResultState> {
   ResultModel? result;
   bool isLoading = false;
   Future<void> attachResult(
-      {required String token, required dynamic body,required BuildContext context}) async {
+      {required String token,
+      required dynamic body,
+      required BuildContext context}) async {
     emit(AttachResultLoading());
     isLoading = true;
-    var response = await labRepo.attachResult(body: body, token: token,context: context);
+    var response =
+        await labRepo.attachResult(body: body, token: token, context: context);
     response.fold((failure) {
       emit(AttachResultFailure(errMessage: failure.errMessage));
       isLoading = false;

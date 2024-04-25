@@ -34,7 +34,7 @@ class ServerFailure extends Failures {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       print(response);
       // return ServerFailure(
-          // errMessage: response['errors'][0]['msg'] ?? "No Message");
+      // errMessage: response['errors'][0]['msg'] ?? "No Message");
       return ServerFailure(errMessage: response['message'] ?? "No Message");
     } else if (statusCode == 404) {
       return ServerFailure(

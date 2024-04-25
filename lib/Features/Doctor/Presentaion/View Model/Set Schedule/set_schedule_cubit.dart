@@ -7,10 +7,10 @@ part 'set_schedule_state.dart';
 
 class SetScheduleCubit extends Cubit<SetScheduleState> {
   SetScheduleCubit(this.doctortRepo) : super(SetScheduleInitial());
-   DoctorRepo doctortRepo;
+  DoctorRepo doctortRepo;
   bool isLoading = false;
   Future<void> setSchedule(
-      {required Map<String,dynamic> body, required String token}) async {
+      {required Map<String, dynamic> body, required String token}) async {
     emit(SetScheduleLoading());
     isLoading = true;
     var respone = await doctortRepo.setSchedule(body: body, token: token);

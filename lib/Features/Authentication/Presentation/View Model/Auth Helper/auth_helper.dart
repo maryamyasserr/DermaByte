@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -8,9 +11,9 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   AuthHelperCubit() : super(AuthHelperInitial());
   bool password = false;
   bool rePassword = false;
-  // File? patinetphoto;
-  // File? labphoto;
-  // File? doctorphoto;
+  // File? profilePatient;
+  // File? profileLab;
+  // File? profileDoctor;
   XFile? profilePatient;
   XFile? profileDoctor;
   XFile? profileLab;

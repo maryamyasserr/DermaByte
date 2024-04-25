@@ -15,7 +15,6 @@ class ResultModel {
     this.testDate,
     this.patient,
     this.lab,
-
     this.createdAt,
     this.updatedAt,
     this.v,

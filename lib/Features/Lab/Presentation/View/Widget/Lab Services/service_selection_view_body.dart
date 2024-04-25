@@ -123,9 +123,8 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .labModel!
                                         .token);
-                             ServiceSelectionViewBody.testName.clear();
+                            ServiceSelectionViewBody.testName.clear();
                             ServiceSelectionViewBody.cost.clear();
-                           
                           },
                         );
                       });

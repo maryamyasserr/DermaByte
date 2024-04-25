@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
@@ -48,7 +50,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                   SizedBox(height: mediaQuery.height * 0.04),
                   const ProfilePicturePatinet(),
                   SizedBox(height: mediaQuery.height * 0.04),
-                     Form(
+                  Form(
                       key: formKey,
                       child: Column(
                         children: [
@@ -96,7 +98,8 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                   return "Re-aPassword is Required";
                                 }
                                 if (SignUpPatientBody.passwordController.text !=
-                                    SignUpPatientBody.rePasswordController.text) {
+                                    SignUpPatientBody
+                                        .rePasswordController.text) {
                                   return "Password Doesn't Match";
                                 } else {
                                   return null;
@@ -106,7 +109,8 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                 BlocProvider.of<AuthHelperCubit>(context)
                                     .rePasswordVisability();
                               },
-                              controller: SignUpPatientBody.rePasswordController,
+                              controller:
+                                  SignUpPatientBody.rePasswordController,
                               text: 'Re-type Password',
                               mediaQuery: mediaQuery,
                               rePasswordVisible:
@@ -115,20 +119,21 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
                               validator: (fname) {
-                              if (fname == null || fname.isEmpty) {
-                                return "First Name is Required";
-                              } else {
-                                return null;
-                              }
-                            },
+                                if (fname == null || fname.isEmpty) {
+                                  return "First Name is Required";
+                                } else {
+                                  return null;
+                                }
+                              },
                               label: 'First Name',
-                              controller: SignUpPatientBody.firstNameController),
+                              controller:
+                                  SignUpPatientBody.firstNameController),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
                             validator: (lname) {
-                               if (lname == null || lname.isEmpty) {
-                                  return "Last Name is Required";
-                                }else {
+                              if (lname == null || lname.isEmpty) {
+                                return "Last Name is Required";
+                              } else {
                                 return null;
                               }
                             },
@@ -138,36 +143,36 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
                             validator: (gender) {
-                               if (gender == null || gender.isEmpty) {
-                                  return "Gender is Required";
-                                }else {
+                              if (gender == null || gender.isEmpty) {
+                                return "Gender is Required";
+                              } else {
                                 return null;
                               }
                             },
                             label: 'Gender',
                             controller: SignUpPatientBody.genderController,
-                           
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
                           TextForm(
                             validator: (phone) {
-                                if (phone == null || phone.isEmpty) {
-                                  return "Phone Number is Required";
-                                }else {
+                              if (phone == null || phone.isEmpty) {
+                                return "Phone Number is Required";
+                              }
+                              if (phone.length < 11) {
+                                return "Invalid Phone Number";
+                              } else {
                                 return null;
                               }
                             },
                             label: 'Phone Number',
                             controller: SignUpPatientBody.mobileController,
-                        
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
-                         
                           TextForm(
                             validator: (age) {
-                               if (age == null || age.isEmpty) {
-                                  return "Age is Required";
-                                }else {
+                              if (age == null || age.isEmpty) {
+                                return "Age is Required";
+                              } else {
                                 return null;
                               }
                             },
@@ -176,41 +181,41 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                           ),
                         ],
                       )),
-                
                   SizedBox(height: mediaQuery.height * 0.04),
                   SignButton(
                     isLoading: isLoding,
                     buttonName: 'Sign Up',
                     onClicked: () async {
-                       if (formKey.currentState!.validate()){
-                          setState(() {
-                        isLoding = true;
-                      });
-                      await BlocProvider.of<AuthCubit>(context).signUp(
-                          context: context,
-                          data: FormData.fromMap({
-                            'firstName':
-                                SignUpPatientBody.firstNameController.text,
-                            'lastName':
-                                SignUpPatientBody.lastNameController.text,
-                            'age': SignUpPatientBody.ageController.text,
-                            'city': "city",
-                            'country': "country",
-                            'profilePic':
-                                BlocProvider.of<AuthHelperCubit>(context)
-                                    .profilePatient,
-                            'gender': SignUpPatientBody.genderController.text,
-                            'email': SignUpPatientBody.emailController.text,
-                            'password':
-                                SignUpPatientBody.passwordController.text,
-                            'passwordConfirm':
-                                SignUpPatientBody.rePasswordController.text,
-                            'role': 'patient',
-                          }),
-                          role: 'patient');
-                           setState(() {
-                        isLoding = false;
-                      });
+                      if (formKey.currentState!.validate()) {
+                        setState(() {
+                          isLoding = true;
+                        });
+                        await BlocProvider.of<AuthCubit>(context).signUp(
+                            context: context,
+                            data: FormData.fromMap({
+                              'firstName':
+                                  SignUpPatientBody.firstNameController.text,
+                              'lastName':
+                                  SignUpPatientBody.lastNameController.text,
+                              'age': SignUpPatientBody.ageController.text,
+                              'city': "city",
+                              'country': "country",
+                              'profilePic':
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .profilePatient!
+                                      .readAsBytes(),
+                              'gender': SignUpPatientBody.genderController.text,
+                              'email': SignUpPatientBody.emailController.text,
+                              'password':
+                                  SignUpPatientBody.passwordController.text,
+                              'passwordConfirm':
+                                  SignUpPatientBody.rePasswordController.text,
+                              'role': 'patient',
+                            }),
+                            role: 'patient');
+                        setState(() {
+                          isLoding = false;
+                        });
                       }
                     },
                   ),

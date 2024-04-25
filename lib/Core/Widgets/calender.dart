@@ -2,10 +2,10 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:weekly_calendar/weekly_calendar.dart';
 
-
 class WeekCalender extends StatelessWidget {
   const WeekCalender({
-    super.key, required this.onChangedSelectedDate,
+    super.key,
+    required this.onChangedSelectedDate,
   });
 
   final dynamic Function(DateTime) onChangedSelectedDate;
@@ -14,8 +14,8 @@ class WeekCalender extends StatelessWidget {
     return WeeklyCalendar(
       calendarStyle: const CalendarStyle(
         locale: "en_US",
-        padding: EdgeInsets.symmetric(vertical:20, horizontal: 15),
-        margin: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+        margin: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         decoration: BoxDecoration(
             color: AppColors.kPrimaryColor,
             borderRadius: BorderRadius.all(Radius.circular(14))),

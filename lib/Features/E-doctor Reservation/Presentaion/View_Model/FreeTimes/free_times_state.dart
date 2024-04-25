@@ -7,9 +7,7 @@ final class FreeTimesInitial extends FreeTimesState {}
 
 final class FreeTimesLoading extends FreeTimesState {}
 
-final class FreeTimesSuccess extends FreeTimesState {
-
-}
+final class FreeTimesSuccess extends FreeTimesState {}
 
 final class FreeTimesFailure extends FreeTimesState {
   final String errMessage;

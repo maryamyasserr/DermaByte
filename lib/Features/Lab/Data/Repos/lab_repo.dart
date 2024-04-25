@@ -19,5 +19,7 @@ abstract class LabRepo {
       {required String token});
 
   Future<Either<Failures, ResultModel>> attachResult(
-      {required String token, required dynamic body,required BuildContext context});
+      {required String token,
+      required dynamic body,
+      required BuildContext context});
 }

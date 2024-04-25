@@ -34,7 +34,6 @@ class SignUpAsViewBody extends StatelessWidget {
               onClicked: () {
                 GoRouter.of(context).push(AppRoutes.kSignUpPatient);
               }),
-              
         ],
       ),
     );

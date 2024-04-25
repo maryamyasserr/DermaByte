@@ -179,31 +179,34 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                       isLoading: isLoading,
                       buttonName: 'Sign Up',
                       onClicked: () async {
-                         if (formKey.currentState!.validate()){
-                            setState(() {
-                          isLoading = true;
-                        });
-                        await BlocProvider.of<AuthCubit>(context).signUp(
-                            context: context,
-                            data: FormData.fromMap({
-                              'firstName': SignUpLabBody.labNameController.text,
-                              'mobile': SignUpLabBody.mobileController.text,
-                              'location': SignUpLabBody.locationController.text,
-                              'city': "city",
-                              'country': "country",
-                              'license': ['lab'],
-                              // BlocProvider.of<AuthHelperCubit>(context)
-                              //     .labLicense,
-                              'email': SignUpLabBody.emailController.text,
-                              'password': SignUpLabBody.passwordController.text,
-                              'passwordConfirm':
-                                  SignUpLabBody.rePasswordController.text,
-                              'role': 'lab',
-                            }),
-                            role: 'lab');
-                        setState(() {
-                          isLoading = false;
-                        });
+                        if (formKey.currentState!.validate()) {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          await BlocProvider.of<AuthCubit>(context).signUp(
+                              context: context,
+                              data: FormData.fromMap({
+                                'firstName':
+                                    SignUpLabBody.labNameController.text,
+                                'mobile': SignUpLabBody.mobileController.text,
+                                'location':
+                                    SignUpLabBody.locationController.text,
+                                'city': "city",
+                                'country': "country",
+                                'license': ['lab'],
+                                // BlocProvider.of<AuthHelperCubit>(context)
+                                //     .labLicense,
+                                'email': SignUpLabBody.emailController.text,
+                                'password':
+                                    SignUpLabBody.passwordController.text,
+                                'passwordConfirm':
+                                    SignUpLabBody.rePasswordController.text,
+                                'role': 'lab',
+                              }),
+                              role: 'lab');
+                          setState(() {
+                            isLoading = false;
+                          });
                         }
                       }),
                   SizedBox(height: mediaQuery.height * 0.01),

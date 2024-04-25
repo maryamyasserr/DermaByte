@@ -27,7 +27,6 @@ import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%2
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
- 
 void main() {
   runApp(const DermaByte());
   Bloc.observer = DermaByteBlocOpserver();
@@ -75,8 +74,10 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
           create: (context) => LabReservationsCubit(getIt.get<LabRepoImpl>()),
         ),
-        BlocProvider(create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(create: (context)=>FreeTimesCubit(getIt.get<EdoctorRepoImpl>()))
+        BlocProvider(
+            create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(
+            create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

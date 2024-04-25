@@ -12,7 +12,7 @@ class DoctorBody extends StatefulWidget {
   const DoctorBody({super.key});
 
   @override
-  State<DoctorBody> createState() => _DoctorBodyState(); 
+  State<DoctorBody> createState() => _DoctorBodyState();
 }
 
 class _DoctorBodyState extends State<DoctorBody> {
@@ -38,7 +38,8 @@ class _DoctorBodyState extends State<DoctorBody> {
           currentIndex: selectedIndex,
           items: const <BottomNavigationBarItem>[
             // BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.schedule), label: "Schedule"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.schedule), label: "Schedule"),
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.calendarCheck),
                 label: "Appoinments"),

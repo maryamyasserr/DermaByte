@@ -22,8 +22,10 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
     emit(DoctorReservationLoading());
     isLoading = true;
     var reservation = await edoctorRepo.createReservaionAndPatientReport(
-      context: context,
-        reportData: reportData, reservationData: reservationData, token: token);
+        context: context,
+        reportData: reportData,
+        reservationData: reservationData,
+        token: token);
     reservation.fold((failure) {
       emit(DoctorReservationFailure(errMessage: failure.errMessage));
       isLoading = false;

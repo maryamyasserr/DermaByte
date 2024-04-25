@@ -9,7 +9,6 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class ScheduleBody extends StatelessWidget {
   const ScheduleBody({super.key});
   static TextEditingController start = TextEditingController();
@@ -87,11 +86,11 @@ class ScheduleBody extends StatelessWidget {
                       await BlocProvider.of<SetScheduleCubit>(context)
                           .setSchedule(
                               body: {
-                            "day":calenderTime?.day,
-                                // "day": DateFormat('EEEE')
-                                //     .format(calenderTime!)
-                                //     .toString(),
-                                "startTime": startTime.toString(),
+                            "day": calenderTime?.day,
+                            // "day": DateFormat('EEEE')
+                            //     .format(calenderTime!)
+                            //     .toString(),
+                            "startTime": startTime.toString(),
                             "endTime": endTime.toString(),
                             "sessionTime": session.text
                           },
