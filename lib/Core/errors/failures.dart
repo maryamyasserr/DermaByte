@@ -35,7 +35,15 @@ class ServerFailure extends Failures {
       print(response);
       // return ServerFailure(
       // errMessage: response['errors'][0]['msg'] ?? "No Message");
-      return ServerFailure(errMessage: response['message'] ?? "No Message");
+      if (response['message'] is List) {
+        String allMessages = '';
+        for (var err in response['message']) {
+          allMessages = '${'$allMessages' + err},';
+        }
+        return ServerFailure(errMessage: allMessages);
+      } else {
+       return ServerFailure(errMessage: response['message']);
+      }
     } else if (statusCode == 404) {
       return ServerFailure(
           errMessage: 'Your request not found, Please try later!');

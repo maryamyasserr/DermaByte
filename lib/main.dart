@@ -10,6 +10,7 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_R
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/E-Doctor%20Cubit/edoctor_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Elab%20Cubit/elab_cubit.dart';
@@ -77,7 +78,10 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
         BlocProvider(
-            create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>()))
+            create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>())),
+        BlocProvider(
+             create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>()),
+        )
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

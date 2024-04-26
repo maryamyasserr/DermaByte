@@ -285,11 +285,12 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               'lastName':
                                   SignUpDoctorBody.lastNameController.text,
                               'gender': SignUpDoctorBody.genderController.text,
-                              'mobile': SignUpDoctorBody.mobileController.text,
+                              'phone': SignUpDoctorBody.mobileController.text,
                               'location':
                                   SignUpDoctorBody.locationController.text,
                               'city': "Madirid",
                               'country': "Spain",
+                             
                               'specialization':
                                   SignUpDoctorBody.aboutController,
                               'license': ['Doctor'],

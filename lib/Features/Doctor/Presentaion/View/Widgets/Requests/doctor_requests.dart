@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/alertWidget.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
@@ -61,27 +62,42 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                   state.reservations[index].scan?.diseaseName ??
                                       "",
                               diagnose: () {
-                                BlocProvider.of<MyPatientReportCubit>(context)
+                                if (BlocProvider.of<MyPatientReportCubit>(
+                                            context)
+                                        .getPatientReport ==
+                                    null) {
+                                  showAlert(context, "Some Thing Is Wrong");
+                                }else{
+                                    BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
                                     state.reservations[index].scan!.id!;
 
                                 GoRouter.of(context)
                                     .push(AppRoutes.kPatientView);
+                                }
+                              
                               },
                               start: () {},
                               onTap: () async {
-                                await BlocProvider.of<MyPatientReportCubit>(
-                                        context)
-                                    .getMyPatientsReport(
-                                        token:
-                                            BlocProvider.of<AuthCubit>(context)
-                                                .doctorModel!
-                                                .token);
-                                BlocProvider.of<MyPatientReportCubit>(context)
-                                        .setId =
-                                    state.reservations[index].scan!.id!;
-                                GoRouter.of(context)
-                                    .push(AppRoutes.kReportView);
+                                if (BlocProvider.of<MyPatientReportCubit>(
+                                            context)
+                                        .getPatientReport ==
+                                    null) {
+                                  showAlert(context, 'Some Thing is Wrong');
+                                } else {
+                                  await BlocProvider.of<MyPatientReportCubit>(
+                                          context)
+                                      .getMyPatientsReport(
+                                          token: BlocProvider.of<AuthCubit>(
+                                                  context)
+                                              .doctorModel!
+                                              .token);
+                                  BlocProvider.of<MyPatientReportCubit>(context)
+                                          .setId =
+                                      state.reservations[index].scan!.id!;
+                                  GoRouter.of(context)
+                                      .push(AppRoutes.kReportView);
+                                }
                               },
                             ),
                           );

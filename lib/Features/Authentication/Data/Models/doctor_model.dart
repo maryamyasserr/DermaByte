@@ -2,7 +2,7 @@ class DoctorModel {
   String? firstName;
   String? lastName;
   String? gender;
-  String? mobile;
+  String? phone;
   String? location;
   String? city;
   String? country;
@@ -26,7 +26,7 @@ class DoctorModel {
     this.firstName,
     this.lastName,
     this.gender,
-    this.mobile,
+    this.phone,
     this.location,
     this.city,
     this.country,
@@ -51,7 +51,7 @@ class DoctorModel {
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
         gender: json['gender'] as String?,
-        mobile: json['mobile'] as String?,
+        phone: json['phone'] as String?,
         location: json['location'] as String?,
         city: json['city'] as String?,
         country: json['country'] as String?,
@@ -80,7 +80,7 @@ class DoctorModel {
         'firstName': firstName,
         'lastName': lastName,
         'gender': gender,
-        'mobile': mobile,
+        'phone': phone,
         'location': location,
         'city': city,
         'country': country,
