@@ -29,7 +29,7 @@ class ELabCubit extends Cubit<LabState> {
 
   LabModel? get currentLab {
     try {
-      return allLabs.firstWhere((lab) => lab.id == "labId");
+      return allLabs.firstWhere((lab) => lab.id == labId);
     } catch (e) {
       return null;
     }

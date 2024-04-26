@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'doctor_reservation_state.dart';
 

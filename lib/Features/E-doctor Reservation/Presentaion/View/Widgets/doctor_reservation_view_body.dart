@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/alertWidget.dart';
 import 'package:dermabyte/Core/Widgets/calender.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -135,11 +136,11 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   onPressed: () async {
                     if (BlocProvider.of<FreeTimesCubit>(context).selectedDate ==
                         null) {
-                      showSnackBar(context, 'No Date Selected');
+                      showAlert(context, 'No Date Selected');
                     } else if (BlocProvider.of<DoctorReservationCubit>(context)
                             .scanId ==
                         null) {
-                      showSnackBar(context, "No Scan Selected");
+                      showAlert(context, "No Scan Selected");
                     }else{await BlocProvider.of<DoctorReservationCubit>(context)
                         .createReservationAndPatientReport(
                             context: context,

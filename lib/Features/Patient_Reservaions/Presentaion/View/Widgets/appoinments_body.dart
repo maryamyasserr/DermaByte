@@ -37,7 +37,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         child: Column(
           children: [
             const CustomAppBar(title: 'Reservations'),
@@ -48,7 +48,21 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
             BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
               builder: (context, state) {
                 if (state is PreservationInfoFailure) {
-                  return Expanded(child: ErrWidget(errMessage: state.errMessage));
+                  return Expanded(
+                      child: ErrWidget(
+                          onTap: () async{
+                            await BlocProvider.of<PreservationInfoCubit>(context)
+                                .getPatientReservationInfo(
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .patient!
+                                        .token);
+                           await BlocProvider.of<ReportCubit>(context)
+                                .getPatientConults(
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .patient!
+                                        .token);
+                          },
+                          errMessage: state.errMessage));
                 } else if (state is PreservationInfoSuccess) {
                   if (state.pReservationInfo.isEmpty) {
                     return const Expanded(

@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/alertWidget.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -54,7 +55,14 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
             BlocBuilder<EdoctorCubit, EdoctorState>(builder: (context, state) {
               if (state is EdoctorFailure) {
                 return Expanded(
-                  child: ErrWidget(errMessage: state.errMessage),
+                  child: ErrWidget(
+                      onTap: () {
+                        BlocProvider.of<EdoctorCubit>(context).getAllDoctors(
+                            token: BlocProvider.of<AuthCubit>(context)
+                                .patient!
+                                .token);
+                      },
+                      errMessage: state.errMessage),
                 );
               } else if (state is EdoctorSuccess) {
                 return Expanded(
@@ -72,9 +80,15 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                           onPressed: () async {
                             BlocProvider.of<DoctorReservationCubit>(context)
                                 .doctorId = state.doctors[index].id;
-                            GoRouter.of(context)
+                            if (BlocProvider.of<DoctorReservationCubit>(context)
+                                    .doctorId ==
+                                null) {
+                              showAlert(context,
+                                  "try to reserve with another doctor");
+                            }else{
+                               GoRouter.of(context)
                                 .push(AppRoutes.kDoctorReservationView);
-                            await BlocProvider.of<FreeTimesCubit>(context)
+                                await BlocProvider.of<FreeTimesCubit>(context)
                                 .getFreeTimes(
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .patient!
@@ -84,6 +98,9 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                                 });
                             BlocProvider.of<FreeTimesCubit>(context).setDay =
                                 DateTime.now();
+                            }
+                           
+                            
                           },
                           textButton: 'Reserve',
                         ),
@@ -92,7 +109,8 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                   ),
                 );
               } else {
-                return const LoadingIndicator(color: AppColors.kPrimaryColor);
+                return const Expanded(
+                    child: LoadingIndicator(color: AppColors.kPrimaryColor));
               }
             }),
           ],

@@ -18,7 +18,7 @@ class ErrWidget extends StatelessWidget {
             child: const Icon(Icons.refresh,color: AppColors.kPrimaryColor,size: 70,)),
           const SizedBox(height: 9),
           Text(
-            "$errMessage,Try to retry",
+            "$errMessage,Tap to retry",
           style: Styels.textStyle20_700(context),
           textAlign: TextAlign.center,
           )
