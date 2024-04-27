@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,12 +10,12 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   AuthHelperCubit() : super(AuthHelperInitial());
   bool password = false;
   bool rePassword = false;
-  // File? profilePatient;
-  // File? profileLab;
-  // File? profileDoctor;
-  XFile? profilePatient;
-  XFile? profileDoctor;
-  XFile? profileLab;
+  File? profilePatient;
+  File? profileLab;
+  File? profileDoctor;
+  // XFile? profilePatient;
+  // XFile? profileDoctor;
+  // XFile? profileLab;
   XFile? labLicense;
   XFile? docotrLicense;
 
@@ -22,13 +24,13 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       if (role == 'p') {
-        profilePatient = pickedFile;
+        profilePatient =File(pickedFile.path);
         emit(AuthHelperSuccess());
       } else if (role == 'd') {
-        profileDoctor = pickedFile;
+        profileDoctor = File(pickedFile.path);
         emit(AuthHelperSuccess());
       } else {
-        profileLab = pickedFile;
+        profileLab = File(pickedFile.path);
         emit(AuthHelperSuccess());
       }
     }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -250,10 +252,9 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                               'age': SignUpPatientBody.ageController.text,
                               'city': "city",
                               'country': "country",
-                              // 'profilePic':
-                              //     BlocProvider.of<AuthHelperCubit>(context)
-                              //         .profilePatient!
-                              //         .readAsBytes(),
+                              'profilePic':
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .profilePatient!.path,
                               'gender': SignUpPatientBody.genderController.text,
                               'email': SignUpPatientBody.emailController.text,
                               'password':

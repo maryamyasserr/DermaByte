@@ -14,9 +14,7 @@ class SignUpLab extends StatelessWidget {
           listener: (context, state) {
             if (state is AuthFailure) {
               showSnackBar(context, state.errMessage);
-            } else if (state is AuthSuccess) {
-              showSnackBar(context, 'Success');
-            }
+            } 
           },
           child: const SignUpLabBody()),
     );
