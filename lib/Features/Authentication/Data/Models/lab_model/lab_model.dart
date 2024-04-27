@@ -5,6 +5,7 @@ class LabModel {
   String? firstName;
   String? mobile;
   String? location;
+  String? profilePic;
   String? city;
   String? country;
   List<dynamic>? license;
@@ -27,6 +28,7 @@ class LabModel {
     this.mobile,
     this.location,
     this.city,
+    this.profilePic,
     this.country,
     this.license,
     this.email,
@@ -47,6 +49,7 @@ class LabModel {
   factory LabModel.fromJson(Map<String, dynamic> json) => LabModel(
         firstName: json['firstName'] as String?,
         mobile: json['mobile'] as String?,
+        profilePic: json['profilePic'] as String?,
         location: json['location'] as String?,
         city: json['city'] as String?,
         country: json['country'] as String?,
@@ -79,6 +82,7 @@ class LabModel {
         'mobile': mobile,
         'location': location,
         'city': city,
+        'profilePic':profilePic,
         'country': country,
         'license': license,
         'email': email,

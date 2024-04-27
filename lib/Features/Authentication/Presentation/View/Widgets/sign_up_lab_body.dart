@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http_parser/http_parser.dart';
 
 class SignUpLabBody extends StatefulWidget {
   const SignUpLabBody({super.key});
@@ -166,7 +168,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                                 null
                             ? 'Scan your work license'
                             : BlocProvider.of<AuthHelperCubit>(context)
-                                .labLicense!
+                                .labLicense![0]
                                 .name,
                         style: Styels.textStyle20_200(context),
                       ),
@@ -174,6 +176,8 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                           onTap: () async {
                             await BlocProvider.of<AuthHelperCubit>(context)
                                 .uploadLicense(role: 'l');
+                            print(BlocProvider.of<AuthHelperCubit>(context)
+                                .labLicense);
                           },
                           child: BlocProvider.of<AuthHelperCubit>(context)
                                       .labLicense ==
@@ -193,27 +197,73 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                           setState(() {
                             isLoading = true;
                           });
-                          await BlocProvider.of<AuthCubit>(context).signUp(
-                              context: context,
-                              data: FormData.fromMap({
-                                'firstName':
-                                    SignUpLabBody.labNameController.text,
-                                'mobile': SignUpLabBody.mobileController.text,
-                                'location':
-                                    SignUpLabBody.locationController.text,
-                                'city': "city",
-                                'country': "country",
-                                'license': ['lab'],
-                                // BlocProvider.of<AuthHelperCubit>(context)
-                                //     .labLicense,
-                                'email': SignUpLabBody.emailController.text,
-                                'password':
-                                    SignUpLabBody.passwordController.text,
-                                'passwordConfirm':
-                                    SignUpLabBody.rePasswordController.text,
-                                'role': 'lab',
-                              }),
-                              role: 'lab');
+                          if (BlocProvider.of<AuthHelperCubit>(context)
+                                  .profileLab ==
+                              null) {
+                            failedAlert(
+                                context, "The Profile Photo is Required");
+                          } else if (BlocProvider.of<AuthHelperCubit>(context)
+                                  .labLicense ==
+                              null) {
+                            failedAlert(context, "Must Provied Your licenses");
+                          } else {
+                            FormData formData = FormData();
+                            formData.files.add(
+                              MapEntry(
+                                  'profilePic',
+                                  await MultipartFile.fromFile(
+                                      BlocProvider.of<AuthHelperCubit>(context)
+                                          .profileLab!
+                                          .path,
+                                      filename: 'profilePic.jpg',
+                                      contentType: MediaType('image', 'jpeg'))),
+                            );
+                       
+                          
+                            for (int i = 0;
+                                i <
+                                    BlocProvider.of<AuthHelperCubit>(context)
+                                        .labLicense!
+                                        .length;
+                                i++) {
+                              formData.files.add(
+                                MapEntry(
+                                  'lablicense$i',
+                                  await MultipartFile.fromFile(
+                                    BlocProvider.of<AuthHelperCubit>(context)
+                                        .labLicense![i]
+                                        .path,
+                                    filename: 'lablicense$i.jpg',
+                                    contentType: MediaType('image', 'jpeg'),
+                                  ),
+                                ),
+                              );
+                            }
+                            formData.fields.addAll([
+                              MapEntry('firstName',
+                                  SignUpLabBody.labNameController.text),
+                              MapEntry('mobile',
+                                  SignUpLabBody.mobileController.text),
+                              MapEntry('location',
+                                  SignUpLabBody.locationController.text),
+                              const MapEntry('city', 'city'),
+                              // const MapEntry('license', ['license']),
+                              // const MapEntry<String, int>('sessionCost', 100),
+                              const MapEntry('country', 'country'),
+                              MapEntry(
+                                  'email', SignUpLabBody.emailController.text),
+                              MapEntry('password',
+                                  SignUpLabBody.passwordController.text),
+                              MapEntry('passwordConfirm',
+                                  SignUpLabBody.rePasswordController.text),
+
+                            
+                              const MapEntry('role', 'lab'),
+                            ]);
+                            await BlocProvider.of<AuthCubit>(context).signUp(
+                                context: context, data: formData, role: 'lab');
+                          }
+
                           setState(() {
                             isLoading = false;
                           });

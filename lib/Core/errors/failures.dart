@@ -33,23 +33,24 @@ class ServerFailure extends Failures {
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       print(response);
-      // return ServerFailure(
-      // errMessage: response['errors'][0]['msg'] ?? "No Message");
-      if (response['message'] is List) {
-        String allMessages = '';
-        for (var err in response['message']) {
-          allMessages = '${'$allMessages' + err},';
-        }
-        return ServerFailure(errMessage: allMessages);
-      } else {
-       return ServerFailure(errMessage: response['message']);
+      String allMessages = '';
+      for (var err in response['message']) {
+        allMessages = '${allMessages + err},';
       }
+      return ServerFailure(errMessage: allMessages);
     } else if (statusCode == 404) {
       return ServerFailure(
           errMessage: 'Your request not found, Please try later!');
     } else if (statusCode == 500) {
-      return ServerFailure(errMessage: response['message']);
+      print(response);
+
+      String allMessages = '';
+      for (var err in response['message']) {
+        allMessages = '${allMessages + err},';
+      }
+      return ServerFailure(errMessage: allMessages);
     } else {
+      print(response);
       return ServerFailure(errMessage: 'There was an Error, Please try again');
     }
   }

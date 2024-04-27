@@ -241,9 +241,10 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                       if (formKey.currentState!.validate()) {
                         setState(() {
                           isLoding = true;
-                        });   
+                        });
                         FormData formData = FormData();
-                        formData.files.add(
+                        if(BlocProvider.of<AuthHelperCubit>(context).profilePatient!=null){
+                         formData.files.add(
                           MapEntry(
                               'profilePic',
                               await MultipartFile.fromFile(
@@ -254,6 +255,8 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                   contentType: MediaType('image', 'jpeg')
                                   )),
                         );
+                        }   
+                       
                         formData.fields.addAll([
                           MapEntry('firstName',
                               SignUpPatientBody.firstNameController.text),

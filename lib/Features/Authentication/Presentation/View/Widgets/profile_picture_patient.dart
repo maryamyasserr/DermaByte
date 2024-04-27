@@ -13,10 +13,6 @@ class ProfilePicturePatinet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    // final Map<String, dynamic>? args =
-    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    // XFile? imagePath = args?['imagePath'];
-
           return Column(
             children: [
               Stack(
@@ -106,6 +102,7 @@ class ProfilePicturePatinet extends StatelessWidget {
               ),
             ],
           );
+        
         } 
    
   }

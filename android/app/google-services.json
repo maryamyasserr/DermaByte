@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257322940116",
+    "project_id": "derma-byte-6564c",
+    "storage_bucket": "derma-byte-6564c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257322940116:android:1740197b252ff0c3302d41",
+        "android_client_info": {
+          "package_name": "com.example.dermabyte"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXKSGD1dce2IAcqcc3iN7mXpXQKVjIpz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

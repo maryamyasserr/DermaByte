@@ -11,8 +11,8 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   XFile? profilePatient;
   XFile? profileDoctor;
   XFile? profileLab;
-  XFile? labLicense;
-  XFile? docotrLicense;
+  List<XFile>? docotrLicense;
+  List<XFile>? labLicense;
 
   Future<void> uploadPicture({required String role}) async {
     final picker = ImagePicker();
@@ -32,22 +32,17 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   }
 
   Future<void> uploadLicense({required String role}) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      if (role == 'd') {
-        docotrLicense = pickedFile;
-        emit(AuthHelperSuccess());
-      } else {
-        docotrLicense = pickedFile;
-        emit(AuthHelperSuccess());
-      }
+    final List<XFile> pickedFile = await ImagePicker().pickMultiImage();
+    if (role == 'd') {
+      docotrLicense = pickedFile;
+      emit(AuthHelperSuccess());
+    } else {
+      labLicense = pickedFile;
+      emit(AuthHelperSuccess());
     }
   }
 
-  // void convertoFile() {
-  //   photo = File(profilePic?.path ?? "");
-  // }
+
 
   void passwordVisability() {
     password = !password;
@@ -59,3 +54,4 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
     emit(AuthHelperSuccess());
   }
 }
+

@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -15,11 +15,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http_parser/http_parser.dart';
 
 class SignUpDoctorBody extends StatefulWidget {
   const SignUpDoctorBody({super.key});
   static TextEditingController emailController = TextEditingController();
-
   static TextEditingController passwordController = TextEditingController();
   static TextEditingController rePasswordController = TextEditingController();
   static TextEditingController firstNameController = TextEditingController();
@@ -244,7 +244,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 null
                             ? 'Scan your work license'
                             : BlocProvider.of<AuthHelperCubit>(context)
-                                .docotrLicense!
+                                .docotrLicense![0]
                                 .name,
                         style: Styels.textStyle20_200(context),
                       ),
@@ -274,50 +274,70 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                           if (BlocProvider.of<AuthHelperCubit>(context)
                                   .profileDoctor ==
                               null) {
-                            showSnackBar(
+                            failedAlert(
                                 context, "The Profile Photo is Required");
-                          }else{
-                             await BlocProvider.of<AuthCubit>(context).signUp(
-                            context: context,
-                            data: FormData.fromMap({
-                              'firstName':
-                                  SignUpDoctorBody.firstNameController.text,
-                              'lastName':
-                                  SignUpDoctorBody.lastNameController.text,
-                              'gender': SignUpDoctorBody.genderController.text,
-                              'phone': SignUpDoctorBody.mobileController.text,
-                              'location':
-                                  SignUpDoctorBody.locationController.text,
-                              'city': "Madirid",
-                              'country': "Spain",
-                             
-                              'specialization':
-                                  SignUpDoctorBody.aboutController,
-                              'license': ['Doctor'],
-                              'email': SignUpDoctorBody.emailController.text,
-                              'password':
-                                  SignUpDoctorBody.passwordController.text,
-                              'passwordConfirm':
-                                  SignUpDoctorBody.rePasswordController.text,
-                              'profilePic':
+                          } else if (BlocProvider.of<AuthHelperCubit>(context)
+                                  .docotrLicense==null
+                              ) {
+                            failedAlert(context, "Must Provied Your licenses");
+                          } else {
+                            FormData formData = FormData();
+                            formData.files.add(
+                              MapEntry(
+                                  'profilePic',
+                                  await MultipartFile.fromFile(
+                                      BlocProvider.of<AuthHelperCubit>(context)
+                                          .profileDoctor!
+                                          .path,
+                                      filename: 'profilePic.jpg',
+                                      contentType: MediaType('image', 'jpeg'))),
+                            );
+                              for (int i = 0;
+                              i <
                                   BlocProvider.of<AuthHelperCubit>(context)
-                                      .profileDoctor!
-                                      .readAsBytes(),
-                              //         .profileDoctor,)
-                              // 'profilePic': await MultipartFile.fromFile(
-                              //     BlocProvider.of<AuthHelperCubit>(context)
-                              //         .profileDoctor,
-                              //     filename: 'image.jpg',
-                              //     contentType: MediaType('image', 'jpeg')),
-                              'sessionCost': 100,
-
-                              'role': 'dermatologist'
-                            }),
-                            role: 'doctor',
-                          );
+                                      .docotrLicense!
+                                      .length;
+                              i++) {
+                            formData.files.add(
+                              MapEntry(
+                                'docotrLicense$i',
+                                await MultipartFile.fromFile(
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .docotrLicense![i]
+                                      .path,
+                                  filename: 'docotrLicense$i.jpg',
+                                  contentType: MediaType('image', 'jpeg'),
+                                ),
+                              ),
+                            );
                           }
-                         
-
+                            formData.fields.addAll([
+                              MapEntry('firstName',
+                                  SignUpDoctorBody.firstNameController.text),
+                              MapEntry('lastName',
+                                  SignUpDoctorBody.lastNameController.text),
+                              const MapEntry('age', "Age"),
+                              const MapEntry('city', 'city'),
+                              // const MapEntry<String, int>('sessionCost', 100),
+                              const MapEntry('country', 'country'),
+                              MapEntry('gender',
+                                  SignUpDoctorBody.genderController.text),
+                              MapEntry('email',
+                                  SignUpDoctorBody.emailController.text),
+                              MapEntry('password',
+                                  SignUpDoctorBody.passwordController.text),
+                              MapEntry('passwordConfirm',
+                                  SignUpDoctorBody.rePasswordController.text),
+                              MapEntry("specialization",
+                                  SignUpDoctorBody.aboutController.text),
+                              const MapEntry('role', 'dermatologist'),
+                            ]);
+                            await BlocProvider.of<AuthCubit>(context).signUp(
+                              context: context,
+                              data: formData,
+                              role: 'doctor',
+                            );
+                          }
                           setState(() {
                             isLoading = false;
                           });
