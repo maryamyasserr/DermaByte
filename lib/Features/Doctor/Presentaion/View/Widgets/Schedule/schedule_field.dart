@@ -6,10 +6,12 @@ class ScheduleForm extends StatelessWidget {
     super.key,
     required this.label,
     required this.controller,
+    this.validator
   });
 
   final String label;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class ScheduleForm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: TextForm(
+            validator: validator,
             enable: true,
             label: label,
             controller: controller,

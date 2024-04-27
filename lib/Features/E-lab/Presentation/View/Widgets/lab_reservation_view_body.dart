@@ -1,8 +1,9 @@
-import 'package:dermabyte/Core/Widgets/alertWidget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/Widgets/payment_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Core/utils/url_launcher.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/lab_service_item.dart';
@@ -32,9 +33,17 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
     return BlocConsumer<LabReservaionCubit, LabReservaionState>(
       listener: (context, state) {
         if (state is LabReservaionFailuer) {
-          showAlert(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         } else if (state is LabReservaionSuccess) {
-          showSnackBar(context, "Done");
+          if (BlocProvider.of<LabReservaionCubit>(context).url == null) {
+            failedAlert(context, "Something is wrong ,try to reserve again");
+          } else {
+            paymentAlert(context, () async {
+              await cUrlLauncher(
+                  context: context,
+                  url: BlocProvider.of<LabReservaionCubit>(context).url);
+            });
+          }
         }
       },
       builder: (context, state) {
@@ -120,10 +129,10 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                         isLoading: BlocProvider.of<LabReservaionCubit>(context)
                             .isLoading,
                         horizontal: 0,
-                        textButton: "Submit",
+                        textButton: "Continue",
                         onPressed: () async {
                           if (labTests.isEmpty) {
-                            showAlert(context, "No Tests Selected");
+                            failedAlert(context, "No Tests Selected");
                           } else {
                             await BlocProvider.of<LabReservaionCubit>(context)
                                 .createReservation(
@@ -131,6 +140,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .patient!
                                         .token);
+                      
                           }
                         }),
                   ),

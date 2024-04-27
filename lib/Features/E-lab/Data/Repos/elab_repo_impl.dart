@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_model/lab_model.dart';
-import 'package:dermabyte/Features/E-lab/Data/Models/lab_reservation.dart';
 import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo.dart';
 import 'package:dio/dio.dart';
 
@@ -29,14 +28,15 @@ class ElabRepoImpl implements ElabRepo {
   }
 
   @override
-  Future<Either<Failures, LabReservationModel>> createReservation(
+  Future<Either<Failures, String>> createReservation(
       {required body, required String token}) async {
     try {
-      var reservation = await apiService.post(
-          endPoint: "laboratories-reservations", data: body, token: token);
-      LabReservationModel labReservation =
-          LabReservationModel.fromJson(reservation);
-      return right(labReservation);
+      var reservation = await apiService.getWithBody(
+          endPoint: 'bookings/checkout-session/lab', body: body, token: token);
+      print(reservation);
+      String url = reservation['session']['url'];
+      print(url);
+      return right(url);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

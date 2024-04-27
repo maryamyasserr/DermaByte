@@ -10,6 +10,7 @@ class TextForm extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final bool enable;
+  final TextInputType? keyboardType;
   const TextForm({
     super.key,
     required this.label,
@@ -17,12 +18,14 @@ class TextForm extends StatelessWidget {
     this.validator,
     this.obscureText = false,
     this.suffixIcon,
-    required this.enable
+    required this.enable,
+    this.keyboardType
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType:keyboardType ,
       enabled:enable,
       controller: controller,
       validator: validator,

@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/alertWidget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -84,7 +84,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                             if (BlocProvider.of<ELabCubit>(context)
                                     .currentLab ==
                                 null) {
-                              showAlert(context, "Reserve With Another Lab");
+                              failedAlert(context, "Reserve With Another Lab");
                             } else {
                               GoRouter.of(context)
                                   .push(AppRoutes.kLabReservationView);

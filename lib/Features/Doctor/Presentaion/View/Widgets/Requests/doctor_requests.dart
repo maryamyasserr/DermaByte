@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/alertWidget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
@@ -66,16 +66,15 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                             context)
                                         .getPatientReport ==
                                     null) {
-                                  showAlert(context, "Some Thing Is Wrong");
-                                }else{
-                                    BlocProvider.of<MyPatientReportCubit>(context)
-                                        .setId =
-                                    state.reservations[index].scan!.id!;
+                                  failedAlert(context, "Some Thing Is Wrong");
+                                } else {
+                                  BlocProvider.of<MyPatientReportCubit>(context)
+                                          .setId =
+                                      state.reservations[index].scan!.id!;
 
-                                GoRouter.of(context)
-                                    .push(AppRoutes.kPatientView);
+                                  GoRouter.of(context)
+                                      .push(AppRoutes.kPatientView);
                                 }
-                              
                               },
                               start: () {},
                               onTap: () async {
@@ -83,7 +82,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                             context)
                                         .getPatientReport ==
                                     null) {
-                                  showAlert(context, 'Some Thing is Wrong');
+                                  failedAlert(context, 'Some Thing is Wrong');
                                 } else {
                                   await BlocProvider.of<MyPatientReportCubit>(
                                           context)

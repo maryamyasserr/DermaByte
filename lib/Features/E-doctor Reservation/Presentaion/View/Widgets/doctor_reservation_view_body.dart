@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/alertWidget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/calender.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -62,7 +62,6 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
       listener: (context, state) {
         if (state is DoctorReservationFailure) {
           showSnackBar(context, state.errMessage);
-
         } else if (state is DoctorReservationSuccess) {
           showSnackBar(context, "done");
         }
@@ -136,53 +135,54 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   onPressed: () async {
                     if (BlocProvider.of<FreeTimesCubit>(context).selectedDate ==
                         null) {
-                      showAlert(context, 'No Date Selected');
+                      failedAlert(context, 'No Date Selected');
                     } else if (BlocProvider.of<DoctorReservationCubit>(context)
                             .scanId ==
                         null) {
-                      showAlert(context, "No Scan Selected");
-                    }else{await BlocProvider.of<DoctorReservationCubit>(context)
-                        .createReservationAndPatientReport(
-                            context: context,
-                            reservationData: FormData.fromMap({
-                              "patient": BlocProvider.of<AuthCubit>(context)
+                      failedAlert(context, "No Scan Selected");
+                    } else {
+                      await BlocProvider.of<DoctorReservationCubit>(context)
+                          .createReservationAndPatientReport(
+                              context: context,
+                              reservationData: FormData.fromMap({
+                                "patient": BlocProvider.of<AuthCubit>(context)
+                                    .patient!
+                                    .patient
+                                    .id,
+                                "dermatologist":
+                                    BlocProvider.of<DoctorReservationCubit>(
+                                            context)
+                                        .doctorId,
+                                "scan": BlocProvider.of<DoctorReservationCubit>(
+                                        context)
+                                    .scanId,
+                                "date": BlocProvider.of<FreeTimesCubit>(context)
+                                    .selectedDate
+                                    ?.toIso8601String(),
+                                // "uploadedTest": await MultipartFile.fromFile(
+                                //     imgPath!,
+                                //     filename: imgPath!
+                                //         .split('/')
+                                //         .last, // Extracts the filename from the path
+                                //     contentType: MediaType.parse(mimeType))
+                              }),
+                              reportData: {
+                                "patient": BlocProvider.of<AuthCubit>(context)
+                                    .patient!
+                                    .patient
+                                    .id,
+                                "dermatologist":
+                                    BlocProvider.of<DoctorReservationCubit>(
+                                            context)
+                                        .doctorId,
+                                "scan": BlocProvider.of<DoctorReservationCubit>(
+                                        context)
+                                    .scanId,
+                              },
+                              token: BlocProvider.of<AuthCubit>(context)
                                   .patient!
-                                  .patient
-                                  .id,
-                              "dermatologist":
-                                  BlocProvider.of<DoctorReservationCubit>(
-                                          context)
-                                      .doctorId,
-                              "scan": BlocProvider.of<DoctorReservationCubit>(
-                                      context)
-                                  .scanId,
-                              "date": BlocProvider.of<FreeTimesCubit>(context)
-                                  .selectedDate
-                                  ?.toIso8601String(),
-                              // "uploadedTest": await MultipartFile.fromFile(
-                              //     imgPath!,
-                              //     filename: imgPath!
-                              //         .split('/')
-                              //         .last, // Extracts the filename from the path
-                              //     contentType: MediaType.parse(mimeType))
-                            }),
-                            reportData: {
-                              "patient": BlocProvider.of<AuthCubit>(context)
-                                  .patient!
-                                  .patient
-                                  .id,
-                              "dermatologist":
-                                  BlocProvider.of<DoctorReservationCubit>(
-                                          context)
-                                      .doctorId,
-                              "scan": BlocProvider.of<DoctorReservationCubit>(
-                                      context)
-                                  .scanId,
-                            },
-                            token: BlocProvider.of<AuthCubit>(context)
-                                .patient!
-                                .token);}
-                    
+                                  .token);
+                    }
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)
                       .isLoading),

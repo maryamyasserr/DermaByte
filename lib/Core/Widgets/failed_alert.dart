@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-showAlert(BuildContext context, String text) {
+failedAlert(BuildContext context, String text) {
   return showDialog(
       context: context,
       builder: (context) {

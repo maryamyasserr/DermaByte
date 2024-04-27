@@ -84,6 +84,7 @@ class DermaByte extends StatelessWidget {
         )
       ],
       child: MaterialApp.router(
+
         routerConfig: AppRoutes.router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

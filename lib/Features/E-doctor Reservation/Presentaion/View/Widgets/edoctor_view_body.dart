@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/alertWidget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -83,24 +83,22 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                             if (BlocProvider.of<DoctorReservationCubit>(context)
                                     .doctorId ==
                                 null) {
-                              showAlert(context,
+                              failedAlert(context,
                                   "try to reserve with another doctor");
-                            }else{
-                               GoRouter.of(context)
-                                .push(AppRoutes.kDoctorReservationView);
-                                await BlocProvider.of<FreeTimesCubit>(context)
-                                .getFreeTimes(
-                                    token: BlocProvider.of<AuthCubit>(context)
-                                        .patient!
-                                        .token,
-                                    body: {
-                                  "dermatologist": state.doctors[index].id
-                                });
-                            BlocProvider.of<FreeTimesCubit>(context).setDay =
-                                DateTime.now();
+                            } else {
+                              GoRouter.of(context)
+                                  .push(AppRoutes.kDoctorReservationView);
+                              await BlocProvider.of<FreeTimesCubit>(context)
+                                  .getFreeTimes(
+                                      token: BlocProvider.of<AuthCubit>(context)
+                                          .patient!
+                                          .token,
+                                      body: {
+                                    "dermatologist": state.doctors[index].id
+                                  });
+                              BlocProvider.of<FreeTimesCubit>(context).setDay =
+                                  DateTime.now();
                             }
-                           
-                            
                           },
                           textButton: 'Reserve',
                         ),

@@ -25,27 +25,28 @@ class UpComingBody extends StatelessWidget {
           const SizedBox(height: 20),
           const CustomAppBar(title: "Upcoming"),
           const SizedBox(height: 64),
-          reservation ==null?
-          const ErrWidget(errMessage: "Some Thing Is wrong , Please Refresh"):
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                    "The doctor has scheduled an online appointment for you on Tuesday ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${reservation.date.hour}:${reservation.date.minute} PM.",
-                    style: Styels.textStyle18_400(context)),
-                const SizedBox(height: 64),
-                Text(
-                    "please click on the call button right 5 minutes before the appointment.",
-                    style: Styels.textStyle14_300(context)),
-              ],
-            ),
-          ),
+          reservation == null
+              ? const ErrWidget(
+                  errMessage: "Some Thing Is wrong , Please Refresh")
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          "The doctor has scheduled an online appointment for you on Tuesday ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${reservation.date.hour}:${reservation.date.minute} PM.",
+                          style: Styels.textStyle18_400(context)),
+                      const SizedBox(height: 64),
+                      Text(
+                          "please click on the call button right 5 minutes before the appointment.",
+                          style: Styels.textStyle14_300(context)),
+                    ],
+                  ),
+                ),
           const SizedBox(height: 74),
           ElevatedButton(
               onPressed: () async {
-                await startMeeting(
+                await cUrlLauncher(
                     context: context, url: reservation!.meetingUrl);
               },
               style: ElevatedButton.styleFrom(

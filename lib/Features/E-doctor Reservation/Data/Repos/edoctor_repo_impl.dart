@@ -39,7 +39,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
       required String token}) async {
     try {
       var reservationResponse = await apiService.postWithMultiForm(
-          endPoint: "Dermatologist-reservation",
+          endPoint: "bookings/checkout-session",
           data: reservationData,
           token: token);
       var reportResponse = await apiService.post(
