@@ -80,6 +80,7 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                           onPressed: () async {
                             BlocProvider.of<DoctorReservationCubit>(context)
                                 .doctorId = state.doctors[index].id;
+                           
                             if (BlocProvider.of<DoctorReservationCubit>(context)
                                     .doctorId ==
                                 null) {

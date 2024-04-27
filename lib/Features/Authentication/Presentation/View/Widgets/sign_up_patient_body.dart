@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -14,6 +12,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http_parser/http_parser.dart';
 
 class SignUpPatientBody extends StatefulWidget {
   const SignUpPatientBody({super.key});
@@ -191,6 +190,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                       SignUpPatientBody.genderController.text =
                                           value!;
                                     });
+                                
                                   },
                                 ),
                               ),
@@ -241,29 +241,42 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                       if (formKey.currentState!.validate()) {
                         setState(() {
                           isLoding = true;
-                        });
+                        });   
+                        FormData formData = FormData();
+                        formData.files.add(
+                          MapEntry(
+                              'profilePic',
+                              await MultipartFile.fromFile(
+                                  BlocProvider.of<AuthHelperCubit>(context)
+                                      .profilePatient!
+                                      .path,
+                                  filename: 'profilePic.jpg',
+                                  contentType: MediaType('image', 'jpeg')
+                                  )),
+                        );
+                        formData.fields.addAll([
+                          MapEntry('firstName',
+                              SignUpPatientBody.firstNameController.text),
+                          MapEntry('lastName',
+                              SignUpPatientBody.lastNameController.text),
+                          MapEntry('age', SignUpPatientBody.ageController.text),
+                          const MapEntry('city', 'city'),
+                          const MapEntry('country', 'country'),
+                          MapEntry('gender',
+                              SignUpPatientBody.genderController.text),
+                          MapEntry(
+                              'email', SignUpPatientBody.emailController.text),
+                          MapEntry('password',
+                              SignUpPatientBody.passwordController.text),
+                          MapEntry('passwordConfirm',
+                              SignUpPatientBody.rePasswordController.text),
+                          const MapEntry('role', 'patient'),
+                        ]);
                         await BlocProvider.of<AuthCubit>(context).signUp(
                             context: context,
-                            data: FormData.fromMap({
-                              'firstName':
-                                  SignUpPatientBody.firstNameController.text,
-                              'lastName':
-                                  SignUpPatientBody.lastNameController.text,
-                              'age': SignUpPatientBody.ageController.text,
-                              'city': "city",
-                              'country': "country",
-                              'profilePic':
-                                  BlocProvider.of<AuthHelperCubit>(context)
-                                      .profilePatient!.path,
-                              'gender': SignUpPatientBody.genderController.text,
-                              'email': SignUpPatientBody.emailController.text,
-                              'password':
-                                  SignUpPatientBody.passwordController.text,
-                              'passwordConfirm':
-                                  SignUpPatientBody.rePasswordController.text,
-                              'role': 'patient',
-                            }),
+                            data: formData,
                             role: 'patient');
+                               
                         setState(() {
                           isLoding = false;
                         });
