@@ -292,25 +292,25 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                       filename: 'profilePic.jpg',
                                       contentType: MediaType('image', 'jpeg'))),
                             );
-                              for (int i = 0;
-                              i <
-                                  BlocProvider.of<AuthHelperCubit>(context)
-                                      .docotrLicense!
-                                      .length;
-                              i++) {
-                            formData.files.add(
-                              MapEntry(
-                                'docotrLicense$i',
-                                await MultipartFile.fromFile(
-                                  BlocProvider.of<AuthHelperCubit>(context)
-                                      .docotrLicense![i]
-                                      .path,
-                                  filename: 'docotrLicense$i.jpg',
-                                  contentType: MediaType('image', 'jpeg'),
-                                ),
-                              ),
-                            );
-                          }
+                          //     for (int i = 0;
+                          //     i <
+                          //         BlocProvider.of<AuthHelperCubit>(context)
+                          //             .docotrLicense!
+                          //             .length;
+                          //     i++) {
+                          //   formData.files.add(
+                          //     MapEntry(
+                          //       'docotrLicense$i',
+                          //       await MultipartFile.fromFile(
+                          //         BlocProvider.of<AuthHelperCubit>(context)
+                          //             .docotrLicense![i]
+                          //             .path,
+                          //         filename: 'docotrLicense$i.jpg',
+                          //         contentType: MediaType('image', 'jpeg'),
+                          //       ),
+                          //     ),
+                          //   );
+                          // }
                             formData.fields.addAll([
                               MapEntry('firstName',
                                   SignUpDoctorBody.firstNameController.text),
