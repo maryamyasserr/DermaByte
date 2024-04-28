@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomTrackWidget extends StatelessWidget {
@@ -38,11 +39,11 @@ class CustomTrackWidget extends StatelessWidget {
                       .copyWith(fontSize: 20, color: AppColors.kWhiteColor),
                 ),
               ),
-              // const Expanded(child: SizedBox()),
+               const Flexible(child: SizedBox(height: 3,)),
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  'Your next scan should be in 10 \n days.',
+                  " Elevate your health journey with\n our AI's precise",
                   style: Styels.textStyle18_300(context)
                       .copyWith(fontSize: 16, color: AppColors.kWhiteColor),
                 ),
