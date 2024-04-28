@@ -12,6 +12,7 @@ import 'package:dermabyte/Features/E-lab/Presentation/View_model/Elab%20Cubit/el
 import 'package:dermabyte/Features/E-lab/Presentation/View_model/Lab%20Reservation%20Cubit/lab_reservaion_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LabReservationViewBody extends StatefulWidget {
   const LabReservationViewBody(
@@ -42,6 +43,8 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
               await cUrlLauncher(
                   context: context,
                   url: BlocProvider.of<LabReservaionCubit>(context).url);
+              GoRouter.of(context).pop();
+              GoRouter.of(context).pop();
             });
           }
         }
@@ -140,7 +143,6 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .patient!
                                         .token);
-                      
                           }
                         }),
                   ),

@@ -6,6 +6,7 @@ import 'package:dermabyte/Core/Widgets/payment_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+
 import 'package:dermabyte/Core/utils/url_launcher.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_free_time.dart';
@@ -18,6 +19,7 @@ import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_f
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 // static String? imgPath;
 // Future<void> uploadPicture(BuildContext context) async {
@@ -70,6 +72,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
               await cUrlLauncher(
                   context: context,
                   url: BlocProvider.of<DoctorReservationCubit>(context).url);
+              GoRouter.of(context).pop();
+              GoRouter.of(context).pop();
             });
           }
         }
