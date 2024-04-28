@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
@@ -37,7 +38,15 @@ class PatientConsults extends StatelessWidget {
                         onPressed: () {
                           BlocProvider.of<ReportCubit>(context)
                               .setConsulationId = state.reports[index].id!;
+                          if (BlocProvider.of<ReportCubit>(context)
+                                  .currentConsultation ==
+                              null) {
+                            failedAlert(
+                                context, "Something is Wrong, try later");
+                          }
+                          else{
                           GoRouter.of(context).push(AppRoutes.kConsults);
+                          }
                         },
                       ),
                     )

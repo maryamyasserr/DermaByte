@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/medication.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_requsted.dart';
@@ -14,11 +13,9 @@ class ConsultsBodySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel? consultaion =
-        BlocProvider.of<ReportCubit>(context).currentConsultation;
-    return consultaion==null?
-    const ErrWidget(errMessage: "Some Thing Is Wrong")
-    :
+    ReportModel consultaion =
+        BlocProvider.of<ReportCubit>(context).currentConsultation!;
+    return 
     Align(
       alignment: Alignment.centerLeft,
       child: Column(

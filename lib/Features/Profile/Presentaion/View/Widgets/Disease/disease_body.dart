@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
+
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/scan.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Disease/disease_body_section.dart';
@@ -13,14 +13,14 @@ class DiseaseBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScanModel? scan = BlocProvider.of<ScanCubit>(context).currentScan;
+    ScanModel scan = BlocProvider.of<ScanCubit>(context).currentScan!;
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: scan==null?
-      const ErrWidget(errMessage: "Something is wrong")
-      :
+      child: 
+    
+      
        Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(

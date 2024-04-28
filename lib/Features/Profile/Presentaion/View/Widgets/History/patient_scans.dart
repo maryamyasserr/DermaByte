@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
@@ -35,7 +36,12 @@ class PatientScans extends StatelessWidget {
                       onPressed: () {
                         BlocProvider.of<ScanCubit>(context).setId =
                             state.scans[index].id!;
+                        if (BlocProvider.of<ScanCubit>(context).currentScan ==
+                            null) {
+                          failedAlert(context, 'Something is wrong ,try later');
+                        }else{
                         GoRouter.of(context).push(AppRoutes.kDisease);
+                        }
                       },
                     ),
                   )

@@ -1,5 +1,6 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
@@ -50,13 +51,14 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                 if (state is PreservationInfoFailure) {
                   return Expanded(
                       child: ErrWidget(
-                          onTap: () async{
-                            await BlocProvider.of<PreservationInfoCubit>(context)
+                          onTap: () async {
+                            await BlocProvider.of<PreservationInfoCubit>(
+                                    context)
                                 .getPatientReservationInfo(
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .patient!
                                         .token);
-                           await BlocProvider.of<ReportCubit>(context)
+                            await BlocProvider.of<ReportCubit>(context)
                                 .getPatientConults(
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .patient!
@@ -92,10 +94,21 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                             .setReporId =
                                         state.pReservationInfo[index]
                                             .dermatologist.id!;
+                                    if (BlocProvider.of<ReportCubit>(context)
+                                                .patientReport ==
+                                            null ||
+                                        BlocProvider.of<PreservationInfoCubit>(
+                                                    context)
+                                                .currentReservation ==
+                                            null) {
+                                      failedAlert(context,
+                                          "Something is wrong ,Delete this reservation and try again");
+                                    }else{
                                     GoRouter.of(context).push(
                                         AppRoutes.kFollowUp,
                                         extra:
                                             state.pReservationInfo[index].id);
+                                    }
                                   },
                                   textButton: "View",
                                 ),
