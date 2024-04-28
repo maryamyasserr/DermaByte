@@ -318,7 +318,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   SignUpDoctorBody.passwordController.text),
                               MapEntry('passwordConfirm',
                                   SignUpDoctorBody.rePasswordController.text),
-                              MapEntry("specialization",
+                              MapEntry("about",
                                   SignUpDoctorBody.aboutController.text),
                               const MapEntry('role', 'dermatologist'),
                             ]);
