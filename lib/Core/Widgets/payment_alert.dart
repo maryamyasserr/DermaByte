@@ -12,7 +12,7 @@ paymentAlert(BuildContext context, void Function()? onPressed) {
             style: Styels.textStyle16_400(context),
           ),
           content: Text(
-            'Complete the Payment Process',
+            'You successfully set up your appointment. proceed to payment',
             style: Styels.textStyle14_300(context),
           ),
           actions: [

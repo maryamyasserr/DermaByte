@@ -32,7 +32,7 @@ class ServerFailure extends Failures {
   }
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      print(response);
+  
       String allMessages = '';
       for (var err in response['message']) {
         allMessages = '${allMessages + err},';
@@ -42,7 +42,7 @@ class ServerFailure extends Failures {
       return ServerFailure(
           errMessage: 'Your request not found, Please try later!');
     } else if (statusCode == 500) {
-      print(response);
+
 
       String allMessages = '';
       for (var err in response['message']) {
@@ -50,7 +50,7 @@ class ServerFailure extends Failures {
       }
       return ServerFailure(errMessage: allMessages);
     } else {
-      print(response);
+
       return ServerFailure(errMessage: 'There was an Error, Please try again');
     }
   }

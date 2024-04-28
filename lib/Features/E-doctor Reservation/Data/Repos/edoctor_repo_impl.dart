@@ -7,7 +7,6 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_rep
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class EdoctorRepoImpl implements EdoctorRepo {
   EdoctorRepoImpl(this.apiService);
@@ -38,22 +37,16 @@ class EdoctorRepoImpl implements EdoctorRepo {
       required BuildContext context,
       required String token}) async {
     try {
-      var reservationResponse = await apiService.postWithMultiForm(
+      var reservationResponse = await apiService.getWithBody(
           endPoint: "bookings/checkout-session",
-          data: reservationData,
+          body: reservationData,
           token: token);
-      var reportResponse = await apiService.post(
+       await apiService.post(
           endPoint: "reports", data: reportData, token: token);
-
-      if (reservationResponse.containsKey('data') &&
-          reportResponse.containsKey('data')) {
-        GoRouter.of(context).pop();
-        
-        return right("Reservation and report created successfully");
-      } else {
-        return Left(ServerFailure(
-            errMessage: "Failed to create reservation and/or report"));
-      }
+ 
+        // GoRouter.of(context).pop();
+        return right(reservationResponse['session']['url']);
+    
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

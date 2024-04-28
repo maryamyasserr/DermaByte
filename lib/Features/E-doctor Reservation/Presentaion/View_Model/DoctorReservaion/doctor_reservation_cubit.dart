@@ -11,7 +11,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
 
   bool isLoading = false;
 
-  String? scanId, doctorId;
+  String? scanId, doctorId, url;
 
   Future<void> createReservationAndPatientReport(
       {required FormData reservationData,
@@ -28,7 +28,8 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
     reservation.fold((failure) {
       emit(DoctorReservationFailure(errMessage: failure.errMessage));
       isLoading = false;
-    }, (data) {
+    }, (paymentUrl) {
+      url = paymentUrl;
       emit(DoctorReservationSuccess(successMessage: "Done"));
       isLoading = false;
     });

@@ -2,10 +2,11 @@ import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/calender.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/Widgets/payment_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Core/utils/url_launcher.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_free_time.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_patient_scans.dart';
@@ -16,7 +17,6 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model
 import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // static String? imgPath;
@@ -61,9 +61,17 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
     return BlocConsumer<DoctorReservationCubit, DoctorReservationState>(
       listener: (context, state) {
         if (state is DoctorReservationFailure) {
-          showSnackBar(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         } else if (state is DoctorReservationSuccess) {
-          showSnackBar(context, "done");
+          if (BlocProvider.of<DoctorReservationCubit>(context).url == null) {
+            failedAlert(context, 'Failed of Payment Process,try later');
+          } else {
+            paymentAlert(context, () async {
+              await cUrlLauncher(
+                  context: context,
+                  url: BlocProvider.of<DoctorReservationCubit>(context).url);
+            });
+          }
         }
       },
       builder: (context, state) {
