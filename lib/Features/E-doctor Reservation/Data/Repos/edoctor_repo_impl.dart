@@ -48,6 +48,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
       if (reservationResponse.containsKey('data') &&
           reportResponse.containsKey('data')) {
         GoRouter.of(context).pop();
+        
         return right("Reservation and report created successfully");
       } else {
         return Left(ServerFailure(

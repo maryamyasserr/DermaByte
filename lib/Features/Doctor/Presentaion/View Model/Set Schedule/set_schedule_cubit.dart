@@ -8,6 +8,7 @@ part 'set_schedule_state.dart';
 class SetScheduleCubit extends Cubit<SetScheduleState> {
   SetScheduleCubit(this.doctortRepo) : super(SetScheduleInitial());
   DoctorRepo doctortRepo;
+  bool success = false;
   bool isLoading = false;
   Future<void> setSchedule(
       {required Map<String, dynamic> body, required String token}) async {
@@ -16,9 +17,11 @@ class SetScheduleCubit extends Cubit<SetScheduleState> {
     var respone = await doctortRepo.setSchedule(body: body, token: token);
     respone.fold((failure) {
       emit(SetScheduleFailure(errMessage: failure.errMessage));
+      success = false;
       isLoading = false;
     }, (done) {
       emit(SetScheduleSuccess(successMessage: done));
+      success = true;
       isLoading = false;
     });
   }

@@ -16,6 +16,7 @@ class ScheduleBody extends StatefulWidget {
   static TextEditingController start = TextEditingController();
   static TextEditingController end = TextEditingController();
   static TextEditingController session = TextEditingController();
+  static TextEditingController sessionPrice = TextEditingController();
   static DateTime? calenderTime;
   static DateTime? startTime;
   static DateTime? endTime;
@@ -36,7 +37,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
         if (state is SetScheduleSuccess) {
           showSnackBar(context, state.successMessage);
         } else if (state is SetScheduleFailure) {
-          showSnackBar(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         }
       },
       builder: (context, state) {
@@ -79,6 +80,8 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               validator: (s) {
                                 if (s == null || s.isEmpty) {
                                   return 'Start-Time is required';
+                                } else if (int.parse(s) > 12) {
+                                  return "Invalid Time";
                                 } else {
                                   return null;
                                 }
@@ -103,7 +106,9 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               keyboardType: TextInputType.number,
                               validator: (e) {
                                 if (e == null || e.isEmpty) {
-                                  return 'Start-Time is required';
+                                  return 'End-Time is required';
+                                } else if (int.parse(e) > 12) {
+                                  return "Invalid Time";
                                 } else {
                                   return null;
                                 }
@@ -131,6 +136,20 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                           },
                           controller: ScheduleBody.session,
                           label: "Session-Time",
+                        ),
+                        const SizedBox(height: 24),
+                        TextForm(
+                          enable: true,
+                          keyboardType: TextInputType.number,
+                          validator: (sp) {
+                            if (sp == null || sp.isEmpty) {
+                              return 'Session-Price is required';
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: ScheduleBody.sessionPrice,
+                          label: "Session-Price",
                         ),
                       ],
                     )),
@@ -184,15 +203,21 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                                 "day": ScheduleBody.calenderTime?.day,
                                 "startTime": ScheduleBody.startTime.toString(),
                                 "endTime": ScheduleBody.endTime.toString(),
-                                "sessionTime": ScheduleBody.session.text
+                                "sessionTime": ScheduleBody.session.text,
+                                'sessionCost': ScheduleBody.sessionPrice.text
                               },
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .doctorModel!
                                       .token);
-
-                          ScheduleBody.start.clear();
-                          ScheduleBody.end.clear();
-                          ScheduleBody.session.clear();
+                          if (BlocProvider.of<SetScheduleCubit>(context)
+                                  .success ==
+                              true) {
+                            ScheduleBody.start.clear();
+                            ScheduleBody.end.clear();
+                            ScheduleBody.session.clear();
+                            ScheduleBody.sessionPrice.clear();
+                            setState(() {});
+                          }
                         }
                       }
                     },
