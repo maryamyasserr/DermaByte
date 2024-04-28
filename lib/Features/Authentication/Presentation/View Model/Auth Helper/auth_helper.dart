@@ -33,17 +33,56 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
 
   Future<void> uploadLicense({required String role}) async {
     final List<XFile> pickedFile = await ImagePicker().pickMultiImage();
-    if (role == 'd') {
-      docotrLicense = pickedFile;
-      emit(AuthHelperSuccess());
-    } else {
-      labLicense = pickedFile;
-      emit(AuthHelperSuccess());
+    if (role == 'l') {
+      if (labLicense == null || labLicense!.isEmpty) {
+        labLicense = pickedFile;
+        emit(AuthHelperSuccess());
+      } else {
+        for (var e in pickedFile) {
+          bool exists =
+              labLicense!.any((existingFile) => existingFile.name == e.name);
+          if (!exists) {
+            labLicense!.add(e);
+          }
+        }
+        emit(AuthHelperSuccess());
+      }
+    } else{
+      if (docotrLicense == null || docotrLicense!.isEmpty) {
+        docotrLicense = pickedFile;
+        emit(AuthHelperSuccess());
+      } else {
+        for (var e in pickedFile) {
+          bool exists =
+              docotrLicense!.any((existingFile) => existingFile.name == e.name);
+          if (!exists) {
+            docotrLicense!.add(e);
+          }
+        }
+        emit(AuthHelperSuccess());
+      }
     }
+      
+    
   }
 
   void removePhoto() {
     profilePatient = null;
+    emit(AuthHelperSuccess());
+  }
+
+  void removeLicense(XFile license, String role) {
+    if (role == 'l') {
+      labLicense!.remove(license);
+      emit(AuthHelperSuccess());
+    } else {
+      docotrLicense!.remove(license);
+      emit(AuthHelperSuccess());
+    }
+  }
+
+  void removeDoctorLicense(XFile license) {
+    docotrLicense!.remove(license);
     emit(AuthHelperSuccess());
   }
 

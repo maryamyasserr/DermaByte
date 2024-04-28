@@ -10,6 +10,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/pass
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/upload_license.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,8 +40,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     final formKey = GlobalKey<FormState>();
-    return BlocConsumer<AuthHelperCubit, AuthHeplerState>(
-      listener: (context, state) {},
+    return BlocBuilder<AuthHelperCubit, AuthHeplerState>(
+
       builder: (context, state) {
         return Padding(
             padding: const EdgeInsets.all(15.0),
@@ -247,33 +248,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                     Assets.kRequiredIcon,
                     alignment: Alignment.centerLeft,
                   ),
-                  SizedBox(height: mediaQuery.height * 0.005),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        BlocProvider.of<AuthHelperCubit>(context).labLicense ==
-                                null
-                            ? 'Scan your work license'
-                            : BlocProvider.of<AuthHelperCubit>(context)
-                                .docotrLicense![0]
-                                .name,
-                        style: Styels.textStyle20_200(context),
-                      ),
-                      GestureDetector(
-                          onTap: () async {
-                            await BlocProvider.of<AuthHelperCubit>(context)
-                                .uploadLicense(role: 'd');
-                          },
-                          child: BlocProvider.of<AuthHelperCubit>(context)
-                                      .docotrLicense ==
-                                  null
-                              ? Image.asset(
-                                  'assets/images/upload_icon.png',
-                                )
-                              : const Icon(Icons.done))
-                    ],
-                  ),
+                  SizedBox(height: mediaQuery.height * 0.006),
+                 UploadLicense(license: BlocProvider.of<AuthHelperCubit>(context).docotrLicense, role: 'd'),
                   SizedBox(height: mediaQuery.height * 0.03),
                   SignButton(
                       isLoading: isLoading,
@@ -290,7 +266,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 context, "The Profile Photo is Required");
                           } else if (BlocProvider.of<AuthHelperCubit>(context)
                                   .docotrLicense ==
-                              null) {
+                              null||BlocProvider.of<AuthHelperCubit>(context).docotrLicense!.isEmpty) {
                             failedAlert(context, "Must Provied Your licenses");
                           } else {
                             FormData formData = FormData();

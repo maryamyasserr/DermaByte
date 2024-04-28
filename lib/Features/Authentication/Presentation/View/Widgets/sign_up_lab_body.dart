@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
@@ -9,9 +9,11 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/pass
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/title.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/upload_license.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -34,8 +36,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    return BlocConsumer<AuthHelperCubit, AuthHeplerState>(
-      listener: (context, state) {},
+    return BlocBuilder<AuthHelperCubit, AuthHeplerState>(
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: mediaQuery.width * 0.03),
@@ -160,33 +161,15 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                         ],
                       )),
                   SizedBox(height: mediaQuery.height * 0.019),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        BlocProvider.of<AuthHelperCubit>(context).labLicense ==
-                                null
-                            ? 'Scan your work license'
-                            : BlocProvider.of<AuthHelperCubit>(context)
-                                .labLicense![0]
-                                .name,
-                        style: Styels.textStyle20_200(context),
-                      ),
-                      GestureDetector(
-                          onTap: () async {
-                            await BlocProvider.of<AuthHelperCubit>(context)
-                                .uploadLicense(role: 'l');
-                            print(BlocProvider.of<AuthHelperCubit>(context)
-                                .labLicense);
-                          },
-                          child: BlocProvider.of<AuthHelperCubit>(context)
-                                      .labLicense ==
-                                  null
-                              ? Image.asset(
-                                  'assets/images/upload_icon.png',
-                                )
-                              : const Icon(Icons.done))
-                    ],
+                    SvgPicture.asset(
+                    Assets.kRequiredIcon,
+                    alignment: Alignment.centerLeft,
+                  ),
+                  SizedBox(height: mediaQuery.height * 0.006),
+                  UploadLicense(
+                    license:
+                        BlocProvider.of<AuthHelperCubit>(context).labLicense,
+                    role: 'l',
                   ),
                   SizedBox(height: mediaQuery.height * 0.04),
                   SignButton(
@@ -204,7 +187,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                                 context, "The Profile Photo is Required");
                           } else if (BlocProvider.of<AuthHelperCubit>(context)
                                   .labLicense ==
-                              null) {
+                              null||BlocProvider.of<AuthHelperCubit>(context).labLicense!.isEmpty) {
                             failedAlert(context, "Must Provied Your licenses");
                           } else {
                             FormData formData = FormData();
@@ -218,8 +201,6 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                                       filename: 'profilePic.jpg',
                                       contentType: MediaType('image', 'jpeg'))),
                             );
-                       
-                          
                             for (int i = 0;
                                 i <
                                     BlocProvider.of<AuthHelperCubit>(context)
@@ -242,12 +223,11 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                             formData.fields.addAll([
                               MapEntry('firstName',
                                   SignUpLabBody.labNameController.text),
-                              MapEntry('phone',
-                                  SignUpLabBody.mobileController.text),
+                              MapEntry(
+                                  'phone', SignUpLabBody.mobileController.text),
                               MapEntry('location',
                                   SignUpLabBody.locationController.text),
                               const MapEntry('city', 'city'),
-                     
                               const MapEntry('country', 'country'),
                               MapEntry(
                                   'email', SignUpLabBody.emailController.text),
@@ -255,8 +235,6 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                                   SignUpLabBody.passwordController.text),
                               MapEntry('passwordConfirm',
                                   SignUpLabBody.rePasswordController.text),
-
-                            
                               const MapEntry('role', 'lab'),
                             ]);
                             await BlocProvider.of<AuthCubit>(context).signUp(
@@ -274,9 +252,8 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                     text: 'Already have an account?',
                     textButton: 'sign in',
                     onPressed: () {
-                      // GoRouter.of(context).push(AppRoutes.kSignIn);
-                      GoRouter.of(context)
-                          .push(AppRoutes.kServiceSelectionView);
+                      GoRouter.of(context).push(AppRoutes.kSignIn);
+                     
                     },
                   ),
                 ]),
@@ -286,3 +263,4 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
     );
   }
 }
+
