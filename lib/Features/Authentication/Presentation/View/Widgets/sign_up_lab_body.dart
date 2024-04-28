@@ -228,7 +228,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                                 i++) {
                               formData.files.add(
                                 MapEntry(
-                                  'lablicense$i',
+                                  'license',
                                   await MultipartFile.fromFile(
                                     BlocProvider.of<AuthHelperCubit>(context)
                                         .labLicense![i]
@@ -242,13 +242,12 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                             formData.fields.addAll([
                               MapEntry('firstName',
                                   SignUpLabBody.labNameController.text),
-                              MapEntry('mobile',
+                              MapEntry('phone',
                                   SignUpLabBody.mobileController.text),
                               MapEntry('location',
                                   SignUpLabBody.locationController.text),
                               const MapEntry('city', 'city'),
-                              // const MapEntry('license', ['license']),
-                              // const MapEntry<String, int>('sessionCost', 100),
+                     
                               const MapEntry('country', 'country'),
                               MapEntry(
                                   'email', SignUpLabBody.emailController.text),

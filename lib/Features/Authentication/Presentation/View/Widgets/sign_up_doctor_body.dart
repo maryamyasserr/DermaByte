@@ -125,6 +125,12 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               validator: (fname) {
                                 if (fname == null || fname.isEmpty) {
                                   return "First Name is Required";
+                                }
+                                if (fname.length < 2) {
+                                  return "At Least 2 Characters";
+                                }
+                                if (fname.length > 32) {
+                                  return "Maximum Characters is 32";
                                 } else {
                                   return null;
                                 }
@@ -137,6 +143,12 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                             validator: (lname) {
                               if (lname == null || lname.isEmpty) {
                                 return "Last Name is Required";
+                              }
+                              if (lname.length < 2) {
+                                return "At Least 2 Characters";
+                              }
+                              if (lname.length > 32) {
+                                return "Maximum Characters is 32";
                               } else {
                                 return null;
                               }
@@ -277,8 +289,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                             failedAlert(
                                 context, "The Profile Photo is Required");
                           } else if (BlocProvider.of<AuthHelperCubit>(context)
-                                  .docotrLicense==null
-                              ) {
+                                  .docotrLicense ==
+                              null) {
                             failedAlert(context, "Must Provied Your licenses");
                           } else {
                             FormData formData = FormData();
@@ -292,25 +304,25 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                       filename: 'profilePic.jpg',
                                       contentType: MediaType('image', 'jpeg'))),
                             );
-                          //     for (int i = 0;
-                          //     i <
-                          //         BlocProvider.of<AuthHelperCubit>(context)
-                          //             .docotrLicense!
-                          //             .length;
-                          //     i++) {
-                          //   formData.files.add(
-                          //     MapEntry(
-                          //       'docotrLicense$i',
-                          //       await MultipartFile.fromFile(
-                          //         BlocProvider.of<AuthHelperCubit>(context)
-                          //             .docotrLicense![i]
-                          //             .path,
-                          //         filename: 'docotrLicense$i.jpg',
-                          //         contentType: MediaType('image', 'jpeg'),
-                          //       ),
-                          //     ),
-                          //   );
-                          // }
+                            for (int i = 0;
+                                i <
+                                    BlocProvider.of<AuthHelperCubit>(context)
+                                        .docotrLicense!
+                                        .length;
+                                i++) {
+                              formData.files.add(
+                                MapEntry(
+                                  'license',
+                                  await MultipartFile.fromFile(
+                                    BlocProvider.of<AuthHelperCubit>(context)
+                                        .docotrLicense![i]
+                                        .path,
+                                    filename: 'docotrLicense$i.jpg',
+                                    contentType: MediaType('image', 'jpeg'),
+                                  ),
+                                ),
+                              );
+                            }
                             formData.fields.addAll([
                               MapEntry('firstName',
                                   SignUpDoctorBody.firstNameController.text),
@@ -322,6 +334,8 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               const MapEntry('country', 'country'),
                               MapEntry('gender',
                                   SignUpDoctorBody.genderController.text),
+                              MapEntry('phone',
+                                  SignUpDoctorBody.mobileController.text),
                               MapEntry('email',
                                   SignUpDoctorBody.emailController.text),
                               MapEntry('password',

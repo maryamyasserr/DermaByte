@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -29,7 +29,7 @@ class _SignInBodyState extends State<SignInBody> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthFailure) {
-          showSnackBar(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         } 
       },
       builder: (context, state) {

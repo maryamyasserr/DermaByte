@@ -46,9 +46,9 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                 children: [
                   SizedBox(height: mediaQuery.height * 0.06),
                   const CustomTitle(title: 'Sign Up'),
-                  SizedBox(height: mediaQuery.height * 0.04),
+                  SizedBox(height: mediaQuery.height * 0.02),
                   const ProfilePicturePatinet(),
-                  SizedBox(height: mediaQuery.height * 0.04),
+                  SizedBox(height: mediaQuery.height * 0.02),
                   Form(
                       key: formKey,
                       child: Column(
@@ -202,7 +202,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                               if (phone == null || phone.isEmpty) {
                                 return "Phone Number is Required";
                               }
-                              if (phone.length < 11) {
+                              if (phone.length < 11||phone.length>11) {
                                 return "Invalid Phone Number";
                               } else {
                                 return null;
@@ -263,6 +263,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                           MapEntry('lastName',
                               SignUpPatientBody.lastNameController.text),
                           MapEntry('age', SignUpPatientBody.ageController.text),
+                           MapEntry('phone', SignUpPatientBody.mobileController .text),
                           const MapEntry('city', 'city'),
                           const MapEntry('country', 'country'),
                           MapEntry('gender',

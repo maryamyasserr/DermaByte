@@ -42,7 +42,10 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
     }
   }
 
-
+  void removePhoto() {
+    profilePatient = null;
+    emit(AuthHelperSuccess());
+  }
 
   void passwordVisability() {
     password = !password;
@@ -54,4 +57,3 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
     emit(AuthHelperSuccess());
   }
 }
-

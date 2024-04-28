@@ -41,6 +41,7 @@ class AuthRepoImpl implements AuthRepo {
       try {
         var response = await apiService.postWithMultiForm(
             endPoint: endPoint, data: data, token: null);
+        print(response);
         DoctorToken doctor = DoctorToken.fromJson(response);
         GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
         return right(doctor);

@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_up_doctor_body.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +13,8 @@ class SignUpDoctor extends StatelessWidget {
       body: BlocListener<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthFailure) {
-              showSnackBar(context, state.errMessage);
-            } 
+              failedAlert(context, state.errMessage);
+            }
           },
           child: const SignUpDoctorBody()),
     );
