@@ -17,7 +17,7 @@ paymentAlert(BuildContext context, void Function()? onPressed) {
           ),
           actions: [
             TextButton(
-              onPressed:onPressed, 
+              onPressed: onPressed,
               child: Text(
                 'Pay',
                 style: Styels.textStyle18_600(context),

@@ -41,7 +41,6 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
     var mediaQuery = MediaQuery.of(context).size;
     final formKey = GlobalKey<FormState>();
     return BlocBuilder<AuthHelperCubit, AuthHeplerState>(
-
       builder: (context, state) {
         return Padding(
             padding: const EdgeInsets.all(15.0),
@@ -174,12 +173,12 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                               ),
                               GenderDropList(
                                 onChanged: (value) {
-                                    setState(() {
-                                      SignUpDoctorBody.genderController.text =
-                                          value!;
-                                    });
-                                  },
-                               ),
+                                  setState(() {
+                                    SignUpDoctorBody.genderController.text =
+                                        value!;
+                                  });
+                                },
+                              ),
                             ],
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
@@ -233,7 +232,10 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                     alignment: Alignment.centerLeft,
                   ),
                   SizedBox(height: mediaQuery.height * 0.006),
-                 UploadLicense(license: BlocProvider.of<AuthHelperCubit>(context).docotrLicense, role: 'd'),
+                  UploadLicense(
+                      license: BlocProvider.of<AuthHelperCubit>(context)
+                          .docotrLicense,
+                      role: 'd'),
                   SizedBox(height: mediaQuery.height * 0.03),
                   SignButton(
                       isLoading: isLoading,
@@ -249,8 +251,11 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                             failedAlert(
                                 context, "The Profile Photo is Required");
                           } else if (BlocProvider.of<AuthHelperCubit>(context)
-                                  .docotrLicense ==
-                              null||BlocProvider.of<AuthHelperCubit>(context).docotrLicense!.isEmpty) {
+                                      .docotrLicense ==
+                                  null ||
+                              BlocProvider.of<AuthHelperCubit>(context)
+                                  .docotrLicense!
+                                  .isEmpty) {
                             failedAlert(context, "Must Provied Your licenses");
                           } else {
                             FormData formData = FormData();
@@ -290,7 +295,6 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   SignUpDoctorBody.lastNameController.text),
                               const MapEntry('age', "Age"),
                               const MapEntry('city', 'city'),
-                          
                               const MapEntry('country', 'country'),
                               MapEntry('gender',
                                   SignUpDoctorBody.genderController.text),
@@ -306,13 +310,12 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   SignUpDoctorBody.aboutController.text),
                               const MapEntry('role', 'dermatologist'),
                             ]);
-                           
+
                             await BlocProvider.of<AuthCubit>(context).signUp(
                               context: context,
                               data: formData,
                               role: 'doctor',
                             );
-                            
                           }
                           setState(() {
                             isLoading = false;
@@ -332,5 +335,3 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
     );
   }
 }
-
-

@@ -39,8 +39,8 @@ class PatientScans extends StatelessWidget {
                         if (BlocProvider.of<ScanCubit>(context).currentScan ==
                             null) {
                           failedAlert(context, 'Something is wrong ,try later');
-                        }else{
-                        GoRouter.of(context).push(AppRoutes.kDisease);
+                        } else {
+                          GoRouter.of(context).push(AppRoutes.kDisease);
                         }
                       },
                     ),

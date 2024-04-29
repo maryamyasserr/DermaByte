@@ -43,9 +43,8 @@ class PatientConsults extends StatelessWidget {
                               null) {
                             failedAlert(
                                 context, "Something is Wrong, try later");
-                          }
-                          else{
-                          GoRouter.of(context).push(AppRoutes.kConsults);
+                          } else {
+                            GoRouter.of(context).push(AppRoutes.kConsults);
                           }
                         },
                       ),

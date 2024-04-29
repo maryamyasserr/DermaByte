@@ -41,7 +41,8 @@ class ProfileBody extends StatelessWidget {
               height: 12,
             ),
             DoctorItem(
-              iconCard: Assets.kDoctorAvatar,
+              price: '',
+              imageCard: Assets.kDoctorAvatar,
               title: "Dr. Luka Modrich",
               subTitle:
                   "An eye doctor to spread magic, creativity and happiness to us",

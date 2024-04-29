@@ -47,7 +47,7 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
         }
         emit(AuthHelperSuccess());
       }
-    } else{
+    } else {
       if (docotrLicense == null || docotrLicense!.isEmpty) {
         docotrLicense = pickedFile;
         emit(AuthHelperSuccess());
@@ -62,8 +62,6 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
         emit(AuthHelperSuccess());
       }
     }
-      
-    
   }
 
   void removePhoto() {

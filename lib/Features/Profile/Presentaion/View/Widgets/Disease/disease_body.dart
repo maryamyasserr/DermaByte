@@ -18,10 +18,7 @@ class DiseaseBody extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: 
-    
-      
-       Padding(
+      child: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [

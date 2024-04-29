@@ -39,7 +39,10 @@ class CustomTrackWidget extends StatelessWidget {
                       .copyWith(fontSize: 20, color: AppColors.kWhiteColor),
                 ),
               ),
-               const Flexible(child: SizedBox(height: 3,)),
+              const Flexible(
+                  child: SizedBox(
+                height: 3,
+              )),
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(

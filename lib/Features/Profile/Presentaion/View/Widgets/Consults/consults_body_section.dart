@@ -15,8 +15,7 @@ class ConsultsBodySection extends StatelessWidget {
   Widget build(BuildContext context) {
     ReportModel consultaion =
         BlocProvider.of<ReportCubit>(context).currentConsultation!;
-    return 
-    Align(
+    return Align(
       alignment: Alignment.centerLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

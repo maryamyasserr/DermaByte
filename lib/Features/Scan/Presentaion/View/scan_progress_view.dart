@@ -2,9 +2,9 @@ import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_progress_v
 import 'package:flutter/material.dart';
 
 class ScanProgressView extends StatelessWidget {
-
-
-  const ScanProgressView({Key? key,}) : super(key: key);
+  const ScanProgressView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

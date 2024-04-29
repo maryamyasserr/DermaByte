@@ -28,8 +28,7 @@ class FollowUpBody extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child:
-      Padding(
+      child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: CustomScrollView(
           slivers: [

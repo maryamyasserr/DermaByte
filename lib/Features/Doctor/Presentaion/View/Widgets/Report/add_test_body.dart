@@ -113,24 +113,25 @@ class _AddTestBodyState extends State<AddTestBody> {
                         },
                       ),
                     ),
-                    report==null?
-                    const ErrWidget(errMessage: "Something is wrong")
-                    :
-                    AddTestButton(
-                      isLoading:
-                          BlocProvider.of<UpdateReportCubit>(context).isLoading,
-                      onPressed: () async {
-                        List<Map<String, String>> tests = generateTestsJson();
-                        await BlocProvider.of<UpdateReportCubit>(context)
-                            .updateReport(
-                                context: context,
-                                id: report.id!,
-                                body: {"tests": tests},
-                                token: BlocProvider.of<AuthCubit>(context)
-                                    .doctorModel!
-                                    .token);
-                      },
-                    ),
+                    report == null
+                        ? const ErrWidget(errMessage: "Something is wrong")
+                        : AddTestButton(
+                            isLoading:
+                                BlocProvider.of<UpdateReportCubit>(context)
+                                    .isLoading,
+                            onPressed: () async {
+                              List<Map<String, String>> tests =
+                                  generateTestsJson();
+                              await BlocProvider.of<UpdateReportCubit>(context)
+                                  .updateReport(
+                                      context: context,
+                                      id: report.id!,
+                                      body: {"tests": tests},
+                                      token: BlocProvider.of<AuthCubit>(context)
+                                          .doctorModel!
+                                          .token);
+                            },
+                          ),
                     const Expanded(flex: 2, child: SizedBox())
                   ],
                 ),

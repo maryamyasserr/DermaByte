@@ -12,7 +12,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:http_parser/http_parser.dart';
 
-
 class CameraViewBody extends StatefulWidget {
   const CameraViewBody({super.key});
 
@@ -108,30 +107,35 @@ class _CameraViewBodyState extends State<CameraViewBody> {
                               )),
                           onPressed: buttonColor == AppColors.kPrimaryColor
                               ? () async {
-                                  await BlocProvider.of<CreateScanCubit>(context)
+                                  await BlocProvider.of<CreateScanCubit>(
+                                          context)
                                       .takePhoto(context);
                                   if (BlocProvider.of<CreateScanCubit>(context)
                                           .takePhotoPath ==
                                       null) {
                                     failedAlert(context, 'No Photo is Taken');
                                   } else {
-                                    FormData formData=FormData();
-                                    formData.files.add(
-                                    MapEntry('diseasePhoto', await MultipartFile.fromFile(
-                                      BlocProvider.of<CreateScanCubit>(context)
-                                          .takePhotoPath!,
-                                      filename: 'profilePic.jpg',
-                                      contentType: MediaType('image', 'jpeg')) )
-                                    );
-                                    formData.fields.addAll(
-                                      [
+                                    FormData formData = FormData();
+                                    formData.files.add(MapEntry(
+                                        'diseasePhoto',
+                                        await MultipartFile.fromFile(
+                                            BlocProvider.of<CreateScanCubit>(
+                                                    context)
+                                                .takePhotoPath!,
+                                            filename: 'profilePic.jpg',
+                                            contentType:
+                                                MediaType('image', 'jpeg'))));
+                                    formData.fields.addAll([
                                       const MapEntry('diseaseName', "Eczema")
-                                      ]
-                                    );
-                                  await  BlocProvider.of<CreateScanCubit>(context).createScan
-                                    (data: formData
-                                    , token: BlocProvider.of<AuthCubit>(context).patient!.token);
-                               
+                                    ]);
+                                    await BlocProvider.of<CreateScanCubit>(
+                                            context)
+                                        .createScan(
+                                            data: formData,
+                                            token: BlocProvider.of<AuthCubit>(
+                                                    context)
+                                                .patient!
+                                                .token);
                                   }
                                 }
                               : null,

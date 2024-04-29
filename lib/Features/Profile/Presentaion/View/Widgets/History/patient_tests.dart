@@ -42,8 +42,8 @@ class PatientTests extends StatelessWidget {
                               null) {
                             failedAlert(
                                 context, "Something is Wrong,try later");
-                          }else{
-                          GoRouter.of(context).push(AppRoutes.kTestView);
+                          } else {
+                            GoRouter.of(context).push(AppRoutes.kTestView);
                           }
                         },
                       ),

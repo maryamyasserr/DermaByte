@@ -15,42 +15,41 @@ class PatientTestResult extends StatelessWidget {
   Widget build(BuildContext context) {
     ReportModel? consultaion =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
-    return consultaion==null?
-    const ErrWidget(errMessage: "Something is wrong")
-    :
-    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        "Test Results.",
-        style: Styels.textStyle24_600(context),
-      ),
-      const SizedBox(height: 10),
-      ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: consultaion.testResult!.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "- ${consultaion.testResult?[index].testName ?? ""}",
-                      style: Styels.textStyle18_400(context),
+    return consultaion == null
+        ? const ErrWidget(errMessage: "Something is wrong")
+        : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              "Test Results.",
+              style: Styels.textStyle24_600(context),
+            ),
+            const SizedBox(height: 10),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: consultaion.testResult!.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "- ${consultaion.testResult?[index].testName ?? ""}",
+                            style: Styels.textStyle18_400(context),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        // CachedNetworkImage(
+                        //   imageUrl: consultaion.testResult?[index].testResult?[0],
+                        //   errorWidget: (context, url, error) {
+                        //     return const Icon(Icons.error);
+                        //   },
+                        // )
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  // CachedNetworkImage(
-                  //   imageUrl: consultaion.testResult?[index].testResult?[0],
-                  //   errorWidget: (context, url, error) {
-                  //     return const Icon(Icons.error);
-                  //   },
-                  // )
-                ],
-              ),
-            );
-          }),
-    ]);
+                  );
+                }),
+          ]);
   }
 }

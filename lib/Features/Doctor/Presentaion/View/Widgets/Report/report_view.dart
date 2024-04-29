@@ -29,69 +29,70 @@ class ReportView extends StatelessWidget {
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-          child: report ==null?
-          const ErrWidget(errMessage: "Something is wrong")
-          : 
-           Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.03),
-            child: ListView(
-              children: [
-                const SizedBox(
-                  height: 60,
+          child: report == null
+              ? const ErrWidget(errMessage: "Something is wrong")
+              : Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.03),
+                  child: ListView(
+                    children: [
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      Text(
+                        "${report.patient?.firstName ?? ""}'s report",
+                        style: Styels.textStyle24_600(context)
+                            .copyWith(fontSize: 28),
+                      ),
+                      const SizedBox(height: 8),
+                      const Divider(
+                        color: Colors.black,
+                      ),
+                      const SizedBox(height: 16),
+                      const PersonalInfoSection(),
+                      const Divider(
+                        color: Colors.black,
+                      ),
+                      const SizedBox(height: 16),
+                      DiseaseReport(
+                        diseaseName: report.scan?.diseaseName ?? "",
+                      ),
+                      const SizedBox(height: 32),
+                      report.tests!.isEmpty
+                          ? const SizedBox()
+                          : const PatientTestRequested(),
+                      const SizedBox(height: 24),
+                      report.testResult!.isEmpty
+                          ? const SizedBox()
+                          : const PatientTestResult(),
+                      const SizedBox(height: 24),
+                      report.medicine!.isEmpty
+                          ? const SizedBox()
+                          : const PatientMedications(),
+                      const SizedBox(height: 24),
+                      report.treatmentPlan == null
+                          ? const SizedBox()
+                          : const PatientTreatmentPlan(),
+                      const SizedBox(height: 64),
+                      Align(
+                        alignment: Alignment.center,
+                        child: MyButton(
+                            isLoading: false,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.25,
+                            textButton: "Request a test",
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const AddTestBody();
+                                  });
+                            }),
+                      ),
+                      const SizedBox(height: 16)
+                    ],
+                  ),
                 ),
-                Text(
-                  "${report.patient?.firstName ?? ""}'s report",
-                  style: Styels.textStyle24_600(context).copyWith(fontSize: 28),
-                ),
-                const SizedBox(height: 8),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 16),
-                const PersonalInfoSection(),
-                const Divider(
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 16),
-                DiseaseReport(
-                  diseaseName: report.scan?.diseaseName ?? "",
-                ),
-                const SizedBox(height: 32),
-                report.tests!.isEmpty
-                    ? const SizedBox()
-                    : const PatientTestRequested(),
-                const SizedBox(height: 24),
-                report.testResult!.isEmpty
-                    ? const SizedBox()
-                    : const PatientTestResult(),
-                const SizedBox(height: 24),
-                report.medicine!.isEmpty
-                    ? const SizedBox()
-                    : const PatientMedications(),
-                const SizedBox(height: 24),
-                report.treatmentPlan == null
-                    ? const SizedBox()
-                    : const PatientTreatmentPlan(),
-                const SizedBox(height: 64),
-                Align(
-                  alignment: Alignment.center,
-                  child: MyButton(
-                      isLoading: false,
-                      horizontal: MediaQuery.of(context).size.width * 0.25,
-                      textButton: "Request a test",
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return const AddTestBody();
-                            });
-                      }),
-                ),
-                const SizedBox(height: 16)
-              ],
-            ),
-          ),
         ),
       ),
     );

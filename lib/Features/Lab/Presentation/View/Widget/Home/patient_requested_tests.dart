@@ -15,28 +15,27 @@ class PatientTestRequestedLab extends StatelessWidget {
   Widget build(BuildContext context) {
     LabReservations? reservatino =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation;
-    return reservatino==null?
-    const ErrWidget(errMessage: "Something is wrong")
-    :
-    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        "Test requested.",
-        style: Styels.textStyle24_600(context),
-      ),
-      const SizedBox(height: 10),
-      ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: reservatino.test!.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Text(
-                "- ${reservatino.test?[index].name ?? ""}",
-                style: Styels.textStyle18_400(context),
-              ),
-            );
-          }),
-    ]);
+    return reservatino == null
+        ? const ErrWidget(errMessage: "Something is wrong")
+        : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              "Test requested.",
+              style: Styels.textStyle24_600(context),
+            ),
+            const SizedBox(height: 10),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: reservatino.test!.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      "- ${reservatino.test?[index].name ?? ""}",
+                      style: Styels.textStyle18_400(context),
+                    ),
+                  );
+                }),
+          ]);
   }
 }

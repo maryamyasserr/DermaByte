@@ -74,7 +74,7 @@ class UploadLicense extends StatelessWidget {
                                       onTap: () {
                                         BlocProvider.of<AuthHelperCubit>(
                                                 context)
-                                            .removeLicense(e,role);
+                                            .removeLicense(e, role);
                                       },
                                       child: const Icon(
                                         Icons.cancel,

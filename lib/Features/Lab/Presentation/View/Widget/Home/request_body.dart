@@ -34,78 +34,82 @@ class RequestBody extends StatelessWidget {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-            child: reservation==null?
-            const ErrWidget(errMessage: "Something is wrong")
-            :
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.03),
-              child: ListView(
-                children: [
-                  const SizedBox(height: 50),
-                  const PatientPhoto(radius: 50),
-                  const SizedBox(height: 30),
-                  PatientInfo(
-                      info: 'Name :',
-                      data:
-                          "${reservation.patient!.firstName!} ${reservation.patient!.lastName!}"),
-                  const PatientInfo(info: 'Age :', data: "21"),
-                  const PatientInfo(info: 'Gender :', data: " Male"),
-                  const PatientInfo(info: 'Date :', data: " 29/5/2022"),
-                  const SizedBox(height: 16),
-                  const Divider(
-                    thickness: 0.3,
-                    color: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
-                  reservation.test!.isEmpty
-                      ? const SizedBox()
-                      : const PatientTestRequestedLab(),
-                  const SizedBox(height: 50),
-                  const FileUpload(),
-                  const SizedBox(height: 80),
-                  BlocConsumer<AttachResultCubit, AttachResultState>(
-                    listener: (context, state) {
-                      if (state is AttachResultSuccess) {
-                        showSnackBar(context, "Done");
-                      } else if (state is AttachResultFailure) {
-                        showSnackBar(context, "Error");
-                        print(state.errMessage);
-                      }
-                    },
-                    builder: (context, state) {
-                      return AttachButton(
-                        isLoading: BlocProvider.of<AttachResultCubit>(context)
-                            .isLoading,
-                        onPressed: () async {
-                          // print(
-                          //   BlocProvider.of<LabHelperCubit>(context)
-                          //       .allTest(reservation.test!),
+            child: reservation == null
+                ? const ErrWidget(errMessage: "Something is wrong")
+                : Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.03),
+                    child: ListView(
+                      children: [
+                        const SizedBox(height: 50),
+                        const PatientPhoto(radius: 50),
+                        const SizedBox(height: 30),
+                        PatientInfo(
+                            info: 'Name :',
+                            data:
+                                "${reservation.patient!.firstName!} ${reservation.patient!.lastName!}"),
+                        const PatientInfo(info: 'Age :', data: "21"),
+                        const PatientInfo(info: 'Gender :', data: " Male"),
+                        const PatientInfo(info: 'Date :', data: " 29/5/2022"),
+                        const SizedBox(height: 16),
+                        const Divider(
+                          thickness: 0.3,
+                          color: Colors.black,
+                        ),
+                        const SizedBox(height: 16),
+                        reservation.test!.isEmpty
+                            ? const SizedBox()
+                            : const PatientTestRequestedLab(),
+                        const SizedBox(height: 50),
+                        const FileUpload(),
+                        const SizedBox(height: 80),
+                        BlocConsumer<AttachResultCubit, AttachResultState>(
+                          listener: (context, state) {
+                            if (state is AttachResultSuccess) {
+                              showSnackBar(context, "Done");
+                            } else if (state is AttachResultFailure) {
+                              showSnackBar(context, "Error");
+                              print(state.errMessage);
+                            }
+                          },
+                          builder: (context, state) {
+                            return AttachButton(
+                              isLoading:
+                                  BlocProvider.of<AttachResultCubit>(context)
+                                      .isLoading,
+                              onPressed: () async {
+                                // print(
+                                //   BlocProvider.of<LabHelperCubit>(context)
+                                //       .allTest(reservation.test!),
 
-                          // );
-                          await BlocProvider.of<AttachResultCubit>(context)
-                              .attachResult(
-                                  context: context,
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .labModel!
-                                      .token,
-                                  body: FormData.fromMap({
-                                    "testName":
-                                        BlocProvider.of<LabHelperCubit>(context)
-                                            .allTest(reservation.test!),
-                                    "testResult":
-                                        BlocProvider.of<LabHelperCubit>(context)
-                                            .files,
-                                    "patient": reservation.patient!.id
-                                  }));
-                        },
-                      );
-                    },
+                                // );
+                                await BlocProvider.of<AttachResultCubit>(
+                                        context)
+                                    .attachResult(
+                                        context: context,
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .labModel!
+                                                .token,
+                                        body: FormData.fromMap({
+                                          "testName":
+                                              BlocProvider.of<LabHelperCubit>(
+                                                      context)
+                                                  .allTest(reservation.test!),
+                                          "testResult":
+                                              BlocProvider.of<LabHelperCubit>(
+                                                      context)
+                                                  .files,
+                                          "patient": reservation.patient!.id
+                                        }));
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 30),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 30),
-                ],
-              ),
-            ),
           ),
         ),
       ),

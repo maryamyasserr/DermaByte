@@ -2,12 +2,11 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text
 import 'package:flutter/material.dart';
 
 class ScheduleForm extends StatelessWidget {
-  const ScheduleForm({
-    super.key,
-    required this.label,
-    required this.controller,
-    this.validator
-  });
+  const ScheduleForm(
+      {super.key,
+      required this.label,
+      required this.controller,
+      this.validator});
 
   final String label;
   final TextEditingController controller;

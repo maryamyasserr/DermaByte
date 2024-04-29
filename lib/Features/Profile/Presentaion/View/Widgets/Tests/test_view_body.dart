@@ -16,8 +16,7 @@ class TestViewBody extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
-      child: 
-      Padding(
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 50),
         child: ListView(
           children: [

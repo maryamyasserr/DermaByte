@@ -82,7 +82,7 @@ class LabModel {
         'mobile': mobile,
         'location': location,
         'city': city,
-        'profilePic':profilePic,
+        'profilePic': profilePic,
         'country': country,
         'license': license,
         'email': email,

@@ -221,7 +221,6 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                     isLoading: isLoding,
                     buttonName: 'Sign Up',
                     onClicked: () async {
-                      
                       if (formKey.currentState!.validate()) {
                         setState(() {
                           isLoding = true;
@@ -261,11 +260,9 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                               SignUpPatientBody.rePasswordController.text),
                           const MapEntry('role', 'patient'),
                         ]);
-                       
-                      
+
                         await BlocProvider.of<AuthCubit>(context).signUp(
                             context: context, data: formData, role: 'patient');
-                     
 
                         setState(() {
                           isLoding = false;

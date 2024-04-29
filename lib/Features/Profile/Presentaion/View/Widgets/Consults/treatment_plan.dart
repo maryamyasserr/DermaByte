@@ -15,20 +15,18 @@ class TreatmentPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     ReportModel? consultaion =
         BlocProvider.of<ReportCubit>(context).currentConsultation;
-    return 
-    consultaion==null?
-    const ErrWidget(errMessage: 'Refresh')
-    :
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Treatment plan", style: Styels.textStyle24_600(context)),
-        const SizedBox(height: 10),
-        Text(
-          "- ${consultaion.treatmentPlan}",
-          style: Styels.textStyle18_400(context),
-        ),
-      ],
-    );
+    return consultaion == null
+        ? const ErrWidget(errMessage: 'Refresh')
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Treatment plan", style: Styels.textStyle24_600(context)),
+              const SizedBox(height: 10),
+              Text(
+                "- ${consultaion.treatmentPlan}",
+                style: Styels.textStyle18_400(context),
+              ),
+            ],
+          );
   }
 }

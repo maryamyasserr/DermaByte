@@ -14,13 +14,17 @@ class ErrWidget extends StatelessWidget {
         children: [
           // SvgPicture.asset(Assets.kErrorIcon),
           GestureDetector(
-            onTap:onTap ,
-            child: const Icon(Icons.refresh,color: AppColors.kPrimaryColor,size: 70,)),
+              onTap: onTap,
+              child: const Icon(
+                Icons.refresh,
+                color: AppColors.kPrimaryColor,
+                size: 70,
+              )),
           const SizedBox(height: 9),
           Text(
             "$errMessage,Tap to retry",
-          style: Styels.textStyle20_700(context),
-          textAlign: TextAlign.center,
+            style: Styels.textStyle20_700(context),
+            textAlign: TextAlign.center,
           )
         ],
       ),

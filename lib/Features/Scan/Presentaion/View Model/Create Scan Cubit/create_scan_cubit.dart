@@ -27,7 +27,7 @@ class CreateScanCubit extends Cubit<CreateScanState> {
     if (pickedFile != null) {
       takePhotoPath = pickedFile.path;
       GoRouter.of(context).push(AppRoutes.kScanProgress);
-    } 
+    }
   }
 
   Future<void> uploadPicture(BuildContext context) async {
@@ -36,6 +36,6 @@ class CreateScanCubit extends Cubit<CreateScanState> {
     if (pickedFile != null) {
       takePhotoPath = pickedFile.path;
       GoRouter.of(context).push(AppRoutes.kScanProgress);
-    } 
+    }
   }
 }

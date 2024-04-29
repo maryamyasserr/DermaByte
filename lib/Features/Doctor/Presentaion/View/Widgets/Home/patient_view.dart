@@ -17,95 +17,98 @@ class PatientView extends StatelessWidget {
   });
 
   static TextEditingController diagnosesController = TextEditingController();
-  static TextEditingController treatmentPlanController =TextEditingController();
+  static TextEditingController treatmentPlanController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     ReportModel? report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
-    return report==null?
-    ErrWidget(
-      onTap: (){},
-      errMessage: "Something is wrong")
-    :
-     BlocConsumer<UpdateReportCubit, UpdateReportState>(
-      listener: (context, state) {
-        if (state is UpdatePatientReportStateSuccess) {
-          showSnackBar(context, "Done");
-        } else if (state is UpdatePatientReportStateFailure) {
-          showSnackBar(context, state.errMessage);
-        }
-      },
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            body: Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
-                child: ListView(
-                  children: [
-                    Text("Patient’s diagnoses and treatment",
-                        style: Styels.textStyle24_600(context)
-                            .copyWith(fontSize: 28)),
-                    const SizedBox(height: 42),
-                    AspectRatio(
-                        aspectRatio: 342 / 165,
-                        child: PatientTextFieldReport(
-                          controller: diagnosesController,
-                          maxLines: 3,
-                          hintText: "Diagnoses",
-                        )),
-                    const SizedBox(height: 32),
-                    AspectRatio(
-                      aspectRatio: 342 / 165,
-                      child: PatientTextFieldReport(
-                        controller: treatmentPlanController,
-                        maxLines: 3,
-                        hintText: "Treatment plan",
+    return report == null
+        ? ErrWidget(onTap: () {}, errMessage: "Something is wrong")
+        : BlocConsumer<UpdateReportCubit, UpdateReportState>(
+            listener: (context, state) {
+              if (state is UpdatePatientReportStateSuccess) {
+                showSnackBar(context, "Done");
+              } else if (state is UpdatePatientReportStateFailure) {
+                showSnackBar(context, state.errMessage);
+              }
+            },
+            builder: (context, state) {
+              return SafeArea(
+                child: Scaffold(
+                  body: Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(Assets.kBackground),
+                            fit: BoxFit.fill)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 50, horizontal: 10),
+                      child: ListView(
+                        children: [
+                          Text("Patient’s diagnoses and treatment",
+                              style: Styels.textStyle24_600(context)
+                                  .copyWith(fontSize: 28)),
+                          const SizedBox(height: 42),
+                          AspectRatio(
+                              aspectRatio: 342 / 165,
+                              child: PatientTextFieldReport(
+                                controller: diagnosesController,
+                                maxLines: 3,
+                                hintText: "Diagnoses",
+                              )),
+                          const SizedBox(height: 32),
+                          AspectRatio(
+                            aspectRatio: 342 / 165,
+                            child: PatientTextFieldReport(
+                              controller: treatmentPlanController,
+                              maxLines: 3,
+                              hintText: "Treatment plan",
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          // AspectRatio(
+                          //   aspectRatio: 342 / 135,
+                          //   child: PatientTextFieldReport(
+                          //     controller: TextEditingController(text: ''),
+                          //     maxLines: 2,
+                          //     hintText: "Test Requested",
+                          //   ),
+                          // ),
+                          const SizedBox(height: 50),
+                          // Buttons(),
+                          MyButton(
+                            isLoading:
+                                BlocProvider.of<UpdateReportCubit>(context)
+                                    .isLoading,
+                            horizontal: 100,
+                            textButton: "Send Report",
+                            onPressed: () async {
+                              await BlocProvider.of<UpdateReportCubit>(context)
+                                  .updateReport(
+                                      token: BlocProvider.of<AuthCubit>(context)
+                                          .doctorModel!
+                                          .token,
+                                      id: report.id!,
+                                      body: {
+                                        "medicine": [
+                                          (diagnosesController.text)
+                                        ],
+                                        "treatmentPlan":
+                                            treatmentPlanController.text,
+                                      },
+                                      context: context);
+                            },
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    // AspectRatio(
-                    //   aspectRatio: 342 / 135,
-                    //   child: PatientTextFieldReport(
-                    //     controller: TextEditingController(text: ''),
-                    //     maxLines: 2,
-                    //     hintText: "Test Requested",
-                    //   ),
-                    // ),
-                    const SizedBox(height: 50),
-                    // Buttons(),
-                    MyButton(
-                      isLoading:
-                          BlocProvider.of<UpdateReportCubit>(context).isLoading,
-                      horizontal: 100,
-                      textButton: "Send Report",
-                      onPressed: () async {
-                        await BlocProvider.of<UpdateReportCubit>(context)
-                            .updateReport(
-                                token: BlocProvider.of<AuthCubit>(context)
-                                    .doctorModel!
-                                    .token,
-                                id: report.id!,
-                                body: {
-                                  "medicine": [(diagnosesController.text)],
-                                  "treatmentPlan": treatmentPlanController.text,
-                                },
-                                context: context);
-                      },
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
+              );
+            },
+          );
   }
 }
 

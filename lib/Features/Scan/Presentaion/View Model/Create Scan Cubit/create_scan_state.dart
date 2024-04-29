@@ -14,7 +14,7 @@ final class CreateScanSuccess extends CreateScanState {
 }
 
 final class CreateScanFailuer extends CreateScanState {
-    final String errMessage;
+  final String errMessage;
 
   CreateScanFailuer({required this.errMessage});
 }

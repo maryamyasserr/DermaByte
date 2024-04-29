@@ -21,22 +21,21 @@ class TestRequested extends StatelessWidget {
         style: Styels.textStyle24_600(context),
       ),
       const SizedBox(height: 10),
-      consultaion==null?
-      const ErrWidget(errMessage: 'Some Thing Is Wrong')
-      :
-      ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: consultaion.tests?.length ?? 0,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Text(
-                "- ${consultaion.tests?[index].testName ?? ""}",
-                style: Styels.textStyle18_400(context),
-              ),
-            );
-          }),
+      consultaion == null
+          ? const ErrWidget(errMessage: 'Some Thing Is Wrong')
+          : ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: consultaion.tests?.length ?? 0,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "- ${consultaion.tests?[index].testName ?? ""}",
+                    style: Styels.textStyle18_400(context),
+                  ),
+                );
+              }),
     ]);
   }
 }

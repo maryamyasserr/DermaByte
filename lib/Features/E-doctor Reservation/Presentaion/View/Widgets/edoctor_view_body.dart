@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
@@ -65,48 +66,58 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                       errMessage: state.errMessage),
                 );
               } else if (state is EdoctorSuccess) {
-                return Expanded(
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: state.doctors.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 24),
-                        child: DoctorItem(
-                          iconCard: Assets.kWomanIcon,
-                          title: state.doctors[index].firstName!,
-                          subTitle:
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                          onPressed: () async {
-                            BlocProvider.of<DoctorReservationCubit>(context)
-                                .doctorId = state.doctors[index].id;
-                           
-                            if (BlocProvider.of<DoctorReservationCubit>(context)
-                                    .doctorId ==
-                                null) {
-                              failedAlert(context,
-                                  "try to reserve with another doctor");
-                            } else {
-                              GoRouter.of(context)
-                                  .push(AppRoutes.kDoctorReservationView);
-                              await BlocProvider.of<FreeTimesCubit>(context)
-                                  .getFreeTimes(
-                                      token: BlocProvider.of<AuthCubit>(context)
-                                          .patient!
-                                          .token,
-                                      body: {
-                                    "dermatologist": state.doctors[index].id
-                                  });
-                              BlocProvider.of<FreeTimesCubit>(context).setDay =
-                                  DateTime.now();
-                            }
-                          },
-                          textButton: 'Reserve',
-                        ),
-                      );
-                    },
-                  ),
-                );
+                if (state.doctors.isEmpty) {
+                  return const Expanded(
+                    child:
+                        EmptyWidget(text: "There are no doctors available now"),
+                  );
+                } else {
+                  return Expanded(
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: state.doctors.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: DoctorItem(
+                            imageCard: state.doctors[index].profilePic!,
+                            price: state.doctors[index].schedules![index].sessionCost!,
+                            title:
+                                "${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",
+                            subTitle: state.doctors[index].about!,
+                            onPressed: () async {
+                              BlocProvider.of<DoctorReservationCubit>(context)
+                                  .doctorId = state.doctors[index].id;
+
+                              if (BlocProvider.of<DoctorReservationCubit>(
+                                          context)
+                                      .doctorId ==
+                                  null) {
+                                failedAlert(context,
+                                    "try to reserve with another doctor");
+                              } else {
+                                GoRouter.of(context)
+                                    .push(AppRoutes.kDoctorReservationView);
+                                await BlocProvider.of<FreeTimesCubit>(context)
+                                    .getFreeTimes(
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .patient!
+                                                .token,
+                                        body: {
+                                      "dermatologist": state.doctors[index].id
+                                    });
+                                BlocProvider.of<FreeTimesCubit>(context)
+                                    .setDay = DateTime.now();
+                              }
+                            },
+                            textButton: 'Reserve',
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
               } else {
                 return const Expanded(
                     child: LoadingIndicator(color: AppColors.kPrimaryColor));

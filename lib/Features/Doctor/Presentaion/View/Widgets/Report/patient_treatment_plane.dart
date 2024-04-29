@@ -14,18 +14,17 @@ class PatientTreatmentPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     ReportModel? report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
-    return report ==null?
-    const ErrWidget(errMessage: "Something is wrong")
-    :
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Treatment plan", style: Styels.textStyle24_600(context)),
-        Text(
-          "- ${report.treatmentPlan}",
-          style: Styels.textStyle18_400(context),
-        ),
-      ],
-    );
+    return report == null
+        ? const ErrWidget(errMessage: "Something is wrong")
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Treatment plan", style: Styels.textStyle24_600(context)),
+              Text(
+                "- ${report.treatmentPlan}",
+                style: Styels.textStyle18_400(context),
+              ),
+            ],
+          );
   }
 }

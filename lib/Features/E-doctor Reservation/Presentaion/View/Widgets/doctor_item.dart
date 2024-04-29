@@ -1,19 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class DoctorItem extends StatelessWidget {
   const DoctorItem(
       {super.key,
-      required this.iconCard,
+      required this.imageCard,
       required this.title,
       required this.subTitle,
       required this.textButton,
+      required this.price,
       this.onPressed,
       this.width});
-  final String iconCard, title, subTitle, textButton;
+  final String imageCard, title, subTitle, textButton,price;
   final void Function()? onPressed;
   final double? width;
   @override
@@ -35,17 +37,23 @@ class DoctorItem extends StatelessWidget {
           children: [
             Expanded(
               child: Row(children: [
-                const SizedBox(width: 16),
+                // const SizedBox(width: 16),
                 Expanded(
-                  flex: 2,
-                  child: SvgPicture.asset(
-                    iconCard,
-                  ),
-                ),
+                    flex: 2,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.fill,
+                        imageUrl: imageCard,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                    )),
                 const SizedBox(width: 16),
                 Expanded(
                   flex: 4,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 8),
                       Expanded(
@@ -58,10 +66,8 @@ class DoctorItem extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                            SvgPicture.asset('assets/images/star_icon.svg'),
-                            SvgPicture.asset('assets/images/star_icon.svg'),
-                            SvgPicture.asset('assets/images/star_icon.svg'),
-                            const Expanded(flex: 3, child: SizedBox()),
+                            Text("$price"r"$",style:Styels.textStyle16_400(context).copyWith(color: const Color.fromARGB(255, 44, 133, 47)) ,),
+                            const Expanded(flex: 6, child: SizedBox()),
                             CardButton(
                                 textButton: textButton, onPressed: onPressed),
                             const Flexible(child: SizedBox(width: 8)),

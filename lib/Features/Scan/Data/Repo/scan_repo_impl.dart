@@ -11,7 +11,7 @@ class ScanRepoImpl implements ScanRepo {
   Future<Either<Failures, String>> createScan(
       {required dynamic data, required String token}) async {
     try {
-       await apiService.postWithMultiForm(
+      await apiService.postWithMultiForm(
           endPoint: "scans", data: data, token: token);
       return right("Done");
     } catch (e) {

@@ -10,11 +10,13 @@ failedAlert(BuildContext context, String text) {
         return CupertinoAlertDialog(
           title: Text(
             "Failed",
-            style: Styels.textStyle18_400(context).copyWith(color: const Color.fromARGB(255, 156, 11, 0),fontSize: 19),
+            style: Styels.textStyle18_400(context).copyWith(
+                color: const Color.fromARGB(255, 156, 11, 0), fontSize: 19),
           ),
           content: Text(
             text,
-            style: Styels.textStyle15_300(context).copyWith(fontWeight: FontWeight.w200),
+            style: Styels.textStyle15_300(context)
+                .copyWith(fontWeight: FontWeight.w200),
           ),
           actions: [
             TextButton(
@@ -23,7 +25,8 @@ failedAlert(BuildContext context, String text) {
               },
               child: Text(
                 'Close',
-                style: Styels.textStyle16_400(context).copyWith(fontWeight: FontWeight.w700),
+                style: Styels.textStyle16_400(context)
+                    .copyWith(fontWeight: FontWeight.w700),
               ),
             )
           ],

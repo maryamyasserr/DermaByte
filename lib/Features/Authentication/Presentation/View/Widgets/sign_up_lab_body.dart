@@ -161,7 +161,7 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                         ],
                       )),
                   SizedBox(height: mediaQuery.height * 0.019),
-                    SvgPicture.asset(
+                  SvgPicture.asset(
                     Assets.kRequiredIcon,
                     alignment: Alignment.centerLeft,
                   ),
@@ -186,8 +186,11 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                             failedAlert(
                                 context, "The Profile Photo is Required");
                           } else if (BlocProvider.of<AuthHelperCubit>(context)
-                                  .labLicense ==
-                              null||BlocProvider.of<AuthHelperCubit>(context).labLicense!.isEmpty) {
+                                      .labLicense ==
+                                  null ||
+                              BlocProvider.of<AuthHelperCubit>(context)
+                                  .labLicense!
+                                  .isEmpty) {
                             failedAlert(context, "Must Provied Your licenses");
                           } else {
                             FormData formData = FormData();
@@ -253,7 +256,6 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
                     textButton: 'sign in',
                     onPressed: () {
                       GoRouter.of(context).push(AppRoutes.kSignIn);
-                     
                     },
                   ),
                 ]),
@@ -263,4 +265,3 @@ class _SignUpLabBodyState extends State<SignUpLabBody> {
     );
   }
 }
-

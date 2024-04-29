@@ -174,6 +174,8 @@ abstract class AppRoutes {
         testData: state.extra as TestData,
       ),
     ),
-     GoRoute(path: kScanProgress, builder: (context, state) => const ScanProgressView()),
+    GoRoute(
+        path: kScanProgress,
+        builder: (context, state) => const ScanProgressView()),
   ]);
 }

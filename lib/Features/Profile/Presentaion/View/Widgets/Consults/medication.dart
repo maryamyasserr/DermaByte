@@ -22,24 +22,23 @@ class Medications extends StatelessWidget {
           style: Styels.textStyle24_600(context),
         ),
         const SizedBox(height: 10),
-        consultaion==null?
-        const ErrWidget(errMessage: "Some Thing Is Wrong")
-        :
-        ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: consultaion.medicine!.isEmpty
-                ? 0
-                : consultaion.medicine!.length,
-            itemBuilder: ((context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Text(
-                  "- ${consultaion.medicine?[index] ?? ""}",
-                  style: Styels.textStyle18_400(context),
-                ),
-              );
-            }))
+        consultaion == null
+            ? const ErrWidget(errMessage: "Some Thing Is Wrong")
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: consultaion.medicine!.isEmpty
+                    ? 0
+                    : consultaion.medicine!.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      "- ${consultaion.medicine?[index] ?? ""}",
+                      style: Styels.textStyle18_400(context),
+                    ),
+                  );
+                }))
       ],
     );
   }

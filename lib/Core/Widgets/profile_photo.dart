@@ -10,7 +10,6 @@ class ProfilePhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(2),
-    
       decoration: const BoxDecoration(
           color: AppColors.kPrimaryColor, shape: BoxShape.circle),
       child: CircleAvatar(

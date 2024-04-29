@@ -13,7 +13,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PatientModel patient= BlocProvider.of<AuthCubit>(context).patient!.patient;
+    PatientModel patient = BlocProvider.of<AuthCubit>(context).patient!.patient;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -36,8 +36,7 @@ class HomeViewBody extends StatelessWidget {
                   const Flexible(child: SizedBox(height: 12)),
                   Text(
                     'Step into the future of dermatology care.',
-                    style:
-                        Styels.textStyle18_300(context),
+                    style: Styels.textStyle18_300(context),
                   ),
                   const Flexible(child: SizedBox(height: 48)),
                   const CustomTrackWidget(),

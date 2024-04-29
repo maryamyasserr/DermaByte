@@ -14,7 +14,7 @@ class SignUpPatient extends StatelessWidget {
             listener: (context, state) {
               if (state is AuthFailure) {
                 failedAlert(context, state.errMessage);
-              } 
+              }
             },
             child: const SignUpPatientBody()));
   }

@@ -30,7 +30,7 @@ class _SignInBodyState extends State<SignInBody> {
       listener: (context, state) {
         if (state is AuthFailure) {
           failedAlert(context, state.errMessage);
-        } 
+        }
       },
       builder: (context, state) {
         return Padding(
@@ -49,7 +49,7 @@ class _SignInBodyState extends State<SignInBody> {
                       child: Column(
                         children: <Widget>[
                           TextForm(
-                             enable: true,
+                            enable: true,
                             validator: (email) {
                               return email == null || email.trim().isEmpty
                                   ? "email is required"

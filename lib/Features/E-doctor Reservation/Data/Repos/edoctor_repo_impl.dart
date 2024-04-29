@@ -15,8 +15,8 @@ class EdoctorRepoImpl implements EdoctorRepo {
   Future<Either<Failures, List<DoctorModel>>> getAllDoctors(
       {required String token}) async {
     try {
-      var response =
-          await apiService.get(endPoint: 'dermatologists', token: token);
+      var response = await apiService.get(
+          endPoint: 'dermatologists?state=true', token: token);
       List<DoctorModel> doctors = [];
       for (var doctor in response['data']) {
         doctors.add(DoctorModel.fromJson(doctor));
@@ -41,12 +41,11 @@ class EdoctorRepoImpl implements EdoctorRepo {
           endPoint: "bookings/checkout-session",
           body: reservationData,
           token: token);
-       await apiService.post(
+      await apiService.post(
           endPoint: "reports", data: reportData, token: token);
- 
-        // GoRouter.of(context).pop();
-        return right(reservationResponse['session']['url']);
-    
+
+      // GoRouter.of(context).pop();
+      return right(reservationResponse['session']['url']);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

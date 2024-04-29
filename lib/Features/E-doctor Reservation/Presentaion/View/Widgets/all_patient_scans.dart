@@ -54,7 +54,8 @@ class _AllPatientScansState extends State<AllPatientScans> {
                           return Column(
                             children: [
                               DoctorItem(
-                                iconCard: Assets.kAlphaScan,
+                                price: "",
+                                imageCard: Assets.kAlphaScan,
                                 title: state.scans[index].diseaseName,
                                 subTitle:
                                     "Scans taken on ${state.scans[index].scanDate.day}/${state.scans[index].scanDate.month}/${state.scans[index].scanDate.year}",

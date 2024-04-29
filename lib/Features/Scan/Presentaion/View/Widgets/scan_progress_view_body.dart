@@ -11,8 +11,6 @@ class ScanProgressViewBody extends StatelessWidget {
   }) : super(key: key);
 
   @override
-
-
   @override
   Widget build(BuildContext context) {
     String imagePath = BlocProvider.of<CreateScanCubit>(context).takePhotoPath!;
@@ -28,8 +26,7 @@ class ScanProgressViewBody extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: [
+          Column(children: [
             Expanded(
               child: Column(
                 children: [

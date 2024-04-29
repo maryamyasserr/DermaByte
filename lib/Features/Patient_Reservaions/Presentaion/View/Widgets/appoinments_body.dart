@@ -103,11 +103,11 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                             null) {
                                       failedAlert(context,
                                           "Something is wrong ,Delete this reservation and try again");
-                                    }else{
-                                    GoRouter.of(context).push(
-                                        AppRoutes.kFollowUp,
-                                        extra:
-                                            state.pReservationInfo[index].id);
+                                    } else {
+                                      GoRouter.of(context).push(
+                                          AppRoutes.kFollowUp,
+                                          extra:
+                                              state.pReservationInfo[index].id);
                                     }
                                   },
                                   textButton: "View",
