@@ -117,7 +117,7 @@ class _CameraViewBodyState extends State<CameraViewBody> {
                                   } else {
                                     FormData formData=FormData();
                                     formData.files.add(
-                                    MapEntry('diseasePhoto',  await MultipartFile.fromFile(
+                                    MapEntry('diseasePhoto', await MultipartFile.fromFile(
                                       BlocProvider.of<CreateScanCubit>(context)
                                           .takePhotoPath!,
                                       filename: 'profilePic.jpg',
