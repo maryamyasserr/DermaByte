@@ -52,6 +52,9 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
         isVisible = true;
       });
     });
+
+    BlocProvider.of<FreeTimesCubit>(context).selectedDate = null;
+    BlocProvider.of<DoctorReservationCubit>(context).deleteScan();
   }
 
   @override
@@ -111,9 +114,9 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                       child: LoadingIndicator(color: AppColors.kPrimaryColor)),
               const SizedBox(height: 10),
               const AttachDocotorReservaionField(
-                  isrequired: true,
-                  padding: EdgeInsets.only(right: 15, bottom: 10),
-                 ),
+                isrequired: true,
+                padding: EdgeInsets.only(right: 15, bottom: 10),
+              ),
               const SizedBox(height: 36),
               // AttachDocotorReservaionField(
               //     isrequired: false,

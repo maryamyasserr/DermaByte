@@ -1,31 +1,31 @@
 class ScanModel {
   String? id;
   DateTime scanDate;
-  String dieseasePhoto;
-  String dieseaseName;
+  String diseasePhoto;
+  String diseaseName;
   String patient;
 
   ScanModel({
     this.id,
     required this.scanDate,
-    required this.dieseasePhoto,
-    required this.dieseaseName,
+    required this.diseasePhoto,
+    required this.diseaseName,
     required this.patient,
   });
 
   factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
         id: json['id'] as String?,
         scanDate: DateTime.parse(json['scanDate'] as String),
-        dieseasePhoto: json['dieseasePhoto'] as String,
-        dieseaseName: json['dieseaseName'] as String,
+        diseasePhoto: json['diseasePhoto'] as String,
+        diseaseName: json['diseaseName'] as String,
         patient: json['patient'] as String,
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'scanDate': scanDate.toIso8601String(),
-        'dieseasePhoto': dieseasePhoto,
-        'dieseaseName': dieseaseName,
+        'diseasePhoto': diseasePhoto,
+        'diseaseName': diseaseName,
         'patient': patient,
       };
 }

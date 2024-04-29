@@ -61,8 +61,14 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                           selectedTime == freetimes.freeTime![index].toString(),
                       onSelect: () {
                         selectTime(freetimes.freeTime![index].toString());
-                        BlocProvider.of<FreeTimesCubit>(context).setDate =
-                            freetimes.freeTime?[index];
+                        if (selectedTime ==
+                            freetimes.freeTime![index].toString()) {
+                          BlocProvider.of<FreeTimesCubit>(context)
+                              .selectedDate = freetimes.freeTime?[index];
+                        } else {
+                          BlocProvider.of<FreeTimesCubit>(context)
+                              .selectedDate = null;
+                        }
                       },
                     ),
                   );

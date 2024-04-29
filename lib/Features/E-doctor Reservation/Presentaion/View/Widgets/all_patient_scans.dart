@@ -55,8 +55,8 @@ class _AllPatientScansState extends State<AllPatientScans> {
                               CarddItem(
                                 aspectRatio: 330 / 100,
                                 bottomText: "",
-                                imageCard: state.scans[index].dieseasePhoto,
-                                title: state.scans[index].dieseaseName,
+                                imageCard: state.scans[index].diseasePhoto,
+                                title: state.scans[index].diseaseName,
                                 subTitle:
                                     "Scans taken on ${state.scans[index].scanDate.day}/${state.scans[index].scanDate.month}/${state.scans[index].scanDate.year}",
                                 textButton: "Select",
@@ -64,7 +64,7 @@ class _AllPatientScansState extends State<AllPatientScans> {
                                   BlocProvider.of<DoctorReservationCubit>(
                                           context)
                                       .selectScan(state.scans[index].id!,
-                                          state.scans[index].dieseaseName);
+                                          state.scans[index].diseaseName);
                                   GoRouter.of(context).pop();
                                 },
                               ),

@@ -28,13 +28,13 @@ class DiseaseBody extends StatelessWidget {
             ),
             DiseaseHeaderSection(
               scanDate: scan.scanDate,
-              diseaseName: scan.dieseaseName,
+              diseaseName: scan.diseaseName,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             DiseaseBodySection(
-              diseaseName: scan.dieseaseName,
+              diseaseName: scan.diseaseName,
             )
           ],
         ),
