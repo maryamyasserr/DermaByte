@@ -1,8 +1,8 @@
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/gender_droplist.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/password_textField.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/profile_picture_patient.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
@@ -169,31 +169,14 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                                 label: "Gender",
                                 controller: SignUpPatientBody.genderController,
                               ),
-                              Positioned(
-                                right: 10,
-                                top: 9,
-                                child: DropdownButton<String>(
-                                  elevation: 0,
-                                  underline: const SizedBox(),
-                                  items: <String>['male', 'female']
-                                      .map((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(
-                                        value,
-                                        style: Styels.textStyle20_300(context),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      SignUpPatientBody.genderController.text =
-                                          value!;
-                                    });
-                                
-                                  },
-                                ),
-                              ),
+                              GenderDropList(
+                                onChanged: (value) {
+                                  setState(() {
+                                    SignUpPatientBody.genderController.text =
+                                        value!;
+                                  });
+                                },
+                              )
                             ],
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
@@ -202,7 +185,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                               if (phone == null || phone.isEmpty) {
                                 return "Phone Number is Required";
                               }
-                              if (phone.length < 11||phone.length>11) {
+                              if (phone.length < 11 || phone.length > 11) {
                                 return "Invalid Phone Number";
                               } else {
                                 return null;
@@ -238,32 +221,34 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                     isLoading: isLoding,
                     buttonName: 'Sign Up',
                     onClicked: () async {
+                      
                       if (formKey.currentState!.validate()) {
                         setState(() {
                           isLoding = true;
                         });
                         FormData formData = FormData();
-                        if(BlocProvider.of<AuthHelperCubit>(context).profilePatient!=null){
-                         formData.files.add(
-                          MapEntry(
-                              'profilePic',
-                              await MultipartFile.fromFile(
-                                  BlocProvider.of<AuthHelperCubit>(context)
-                                      .profilePatient!
-                                      .path,
-                                  filename: 'profilePic.jpg',
-                                  contentType: MediaType('image', 'jpeg')
-                                  )),
-                        );
-                        }   
-                       
+                        if (BlocProvider.of<AuthHelperCubit>(context)
+                                .profilePatient !=
+                            null) {
+                          formData.files.add(
+                            MapEntry(
+                                'profilePic',
+                                await MultipartFile.fromFile(
+                                    BlocProvider.of<AuthHelperCubit>(context)
+                                        .profilePatient!
+                                        .path,
+                                    filename: 'profilePic.jpg',
+                                    contentType: MediaType('image', 'jpeg'))),
+                          );
+                        }
                         formData.fields.addAll([
                           MapEntry('firstName',
                               SignUpPatientBody.firstNameController.text),
                           MapEntry('lastName',
                               SignUpPatientBody.lastNameController.text),
                           MapEntry('age', SignUpPatientBody.ageController.text),
-                           MapEntry('phone', SignUpPatientBody.mobileController .text),
+                          MapEntry(
+                              'phone', SignUpPatientBody.mobileController.text),
                           const MapEntry('city', 'city'),
                           const MapEntry('country', 'country'),
                           MapEntry('gender',
@@ -276,11 +261,12 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
                               SignUpPatientBody.rePasswordController.text),
                           const MapEntry('role', 'patient'),
                         ]);
+                       
+                      
                         await BlocProvider.of<AuthCubit>(context).signUp(
-                            context: context,
-                            data: formData,
-                            role: 'patient');
-                               
+                            context: context, data: formData, role: 'patient');
+                     
+
                         setState(() {
                           isLoding = false;
                         });

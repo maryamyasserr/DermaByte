@@ -1,11 +1,11 @@
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/doc_pic.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/email_check.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/gender_droplist.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/password_textField.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_button.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
@@ -172,30 +172,14 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                 label: "Gender",
                                 controller: SignUpDoctorBody.genderController,
                               ),
-                              Positioned(
-                                right: 10,
-                                top: 9,
-                                child: DropdownButton<String>(
-                                  elevation: 0,
-                                  underline: const SizedBox(),
-                                  items: <String>['male', 'female']
-                                      .map((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(
-                                        value,
-                                        style: Styels.textStyle20_300(context),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
+                              GenderDropList(
+                                onChanged: (value) {
                                     setState(() {
                                       SignUpDoctorBody.genderController.text =
                                           value!;
                                     });
                                   },
-                                ),
-                              ),
+                               ),
                             ],
                           ),
                           SizedBox(height: mediaQuery.height * 0.016),
@@ -306,7 +290,7 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   SignUpDoctorBody.lastNameController.text),
                               const MapEntry('age', "Age"),
                               const MapEntry('city', 'city'),
-                              // const MapEntry<String, int>('sessionCost', 100),
+                          
                               const MapEntry('country', 'country'),
                               MapEntry('gender',
                                   SignUpDoctorBody.genderController.text),
@@ -322,11 +306,13 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
                                   SignUpDoctorBody.aboutController.text),
                               const MapEntry('role', 'dermatologist'),
                             ]);
+                           
                             await BlocProvider.of<AuthCubit>(context).signUp(
                               context: context,
                               data: formData,
                               role: 'doctor',
                             );
+                            
                           }
                           setState(() {
                             isLoading = false;
@@ -346,3 +332,5 @@ class _SignUpDoctorBodyState extends State<SignUpDoctorBody> {
     );
   }
 }
+
+
