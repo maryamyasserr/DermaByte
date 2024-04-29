@@ -29,7 +29,7 @@ class PatientScans extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: HistoryCard(
                       iconCard: Assets.kDoctorAvatar,
-                      cardTitle: state.scans[index].diseaseName,
+                      cardTitle: state.scans[index].dieseaseName,
                       cardSubTitle:
                           "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
                       textButton: "View",

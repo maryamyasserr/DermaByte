@@ -11,7 +11,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
 
   bool isLoading = false;
 
-  String? scanId, doctorId, url;
+  String? scanId, doctorId, url, scanName;
 
   Future<void> createReservationAndPatientReport(
       {required FormData reservationData,
@@ -33,5 +33,17 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
       emit(DoctorReservationSuccess(successMessage: "Done"));
       isLoading = false;
     });
+  }
+
+  void selectScan(String id, name) {
+    scanId = id;
+    scanName = name;
+    emit(SelectScanSuccess());
+  }
+
+  void deleteScan() {
+    scanId = null;
+    scanName = null;
+    emit(SelectScanFailuar());
   }
 }

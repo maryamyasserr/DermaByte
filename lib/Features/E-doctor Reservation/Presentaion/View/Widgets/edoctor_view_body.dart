@@ -79,11 +79,12 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 24),
-                          child: DoctorItem(
+                          child: CarddItem(
                             imageCard: state.doctors[index].profilePic!,
-                            price: state.doctors[index].schedules![index].sessionCost!,
+                            bottomText: state
+                                .doctors[index].schedules![index].sessionCost!,
                             title:
-                                "${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",
+                                "Dr ${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",
                             subTitle: state.doctors[index].about!,
                             onPressed: () async {
                               BlocProvider.of<DoctorReservationCubit>(context)

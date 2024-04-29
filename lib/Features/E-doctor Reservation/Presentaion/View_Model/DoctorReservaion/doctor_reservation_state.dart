@@ -18,3 +18,7 @@ final class DoctorReservationFailure extends DoctorReservationState {
 
   DoctorReservationFailure({required this.errMessage});
 }
+
+final class SelectScanSuccess extends DoctorReservationState {}
+final class SelectScanFailuar extends DoctorReservationState {}
+

@@ -6,16 +6,13 @@ import 'package:dermabyte/Core/Widgets/payment_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-
 import 'package:dermabyte/Core/utils/url_launcher.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_free_time.dart';
-import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_patient_scans.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/attach_doctor_reservation.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/doctor_reservaion_button.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
-import 'package:dermabyte/Features/E-lab/Presentation/View/Widgets/custom_text_field.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +56,6 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
     return BlocConsumer<DoctorReservationCubit, DoctorReservationState>(
       listener: (context, state) {
         if (state is DoctorReservationFailure) {
@@ -113,33 +109,19 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   ? Visibility(visible: isVisible, child: AllFreeTime())
                   : const Center(
                       child: LoadingIndicator(color: AppColors.kPrimaryColor)),
-              const SizedBox(height: 12),
-              CustomTextField(
-                  hintext: 'When did you start noticing skin changes?',
-                  width: mediaQuery.height * 0.5,
+              const SizedBox(height: 10),
+              const AttachDocotorReservaionField(
                   isrequired: true,
-                  padding: const EdgeInsets.only(right: 15),
-                  keyboardType: TextInputType.name),
-              const SizedBox(height: 8),
-              AttachDocotorReservaionField(
-                  title: 'Add your scans',
-                  isrequired: true,
-                  padding: const EdgeInsets.only(right: 15, bottom: 10),
-                  onTap: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return const AllPatientScans();
-                        });
-                  }),
+                  padding: EdgeInsets.only(right: 15, bottom: 10),
+                 ),
               const SizedBox(height: 36),
-              AttachDocotorReservaionField(
-                  isrequired: false,
-                  title: "Add your lab tests",
-                  onTap: () {
-                    // uploadPicture(context);
-                    print(BlocProvider.of<AuthCubit>(context).patient?.token);
-                  }),
+              // AttachDocotorReservaionField(
+              //     isrequired: false,
+              //     title: "Add your lab tests",
+              //     onTap: () {
+              //       // uploadPicture(context);
+              //       print(BlocProvider.of<AuthCubit>(context).patient?.token);
+              //     }),
               const SizedBox(height: 32),
               DoctorButton(
                   horizontal: 0,

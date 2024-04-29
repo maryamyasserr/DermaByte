@@ -5,23 +5,24 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
-class DoctorItem extends StatelessWidget {
-  const DoctorItem(
+class CarddItem extends StatelessWidget {
+  const CarddItem(
       {super.key,
       required this.imageCard,
       required this.title,
       required this.subTitle,
       required this.textButton,
-      required this.price,
+      required this.bottomText,
       this.onPressed,
-      this.width});
-  final String imageCard, title, subTitle, textButton,price;
+      this.aspectRatio});
+  final String imageCard, title, subTitle, textButton, bottomText;
+
   final void Function()? onPressed;
-  final double? width;
+  final double? aspectRatio;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 330 / 125,
+      aspectRatio: aspectRatio==null? 330 / 125:aspectRatio!,
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.kCardColor,
@@ -42,11 +43,14 @@ class DoctorItem extends StatelessWidget {
                     flex: 2,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.fill,
-                        imageUrl: imageCard,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                      child: AspectRatio(
+                        aspectRatio: 0.8,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fill,
+                          imageUrl: imageCard,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
                       ),
                     )),
                 const SizedBox(width: 16),
@@ -66,7 +70,12 @@ class DoctorItem extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                            Text("$price"r"$",style:Styels.textStyle16_400(context).copyWith(color: const Color.fromARGB(255, 44, 133, 47)) ,),
+                            Text(
+                              bottomText,
+                              style: Styels.textStyle16_400(context).copyWith(
+                                  color:
+                                      const Color.fromARGB(255, 44, 133, 47)),
+                            ),
                             const Expanded(flex: 6, child: SizedBox()),
                             CardButton(
                                 textButton: textButton, onPressed: onPressed),

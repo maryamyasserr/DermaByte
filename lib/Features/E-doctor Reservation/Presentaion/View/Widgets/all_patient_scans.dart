@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
@@ -53,17 +52,19 @@ class _AllPatientScansState extends State<AllPatientScans> {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                              DoctorItem(
-                                price: "",
-                                imageCard: Assets.kAlphaScan,
-                                title: state.scans[index].diseaseName,
+                              CarddItem(
+                                aspectRatio: 330 / 100,
+                                bottomText: "",
+                                imageCard: state.scans[index].dieseasePhoto,
+                                title: state.scans[index].dieseaseName,
                                 subTitle:
                                     "Scans taken on ${state.scans[index].scanDate.day}/${state.scans[index].scanDate.month}/${state.scans[index].scanDate.year}",
                                 textButton: "Select",
                                 onPressed: () {
                                   BlocProvider.of<DoctorReservationCubit>(
                                           context)
-                                      .scanId = state.scans[index].id;
+                                      .selectScan(state.scans[index].id!,
+                                          state.scans[index].dieseaseName);
                                   GoRouter.of(context).pop();
                                 },
                               ),
@@ -82,8 +83,13 @@ class _AllPatientScansState extends State<AllPatientScans> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ErrWidget(errMessage: state.errMessage),
-              const SizedBox(height: 16),
+              Text(
+                state.errMessage,
+                style: Styels.textStyle20_300(context)
+                    .copyWith(fontWeight: FontWeight.w600),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
               ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<ScanCubit>(context).getPatientScan(

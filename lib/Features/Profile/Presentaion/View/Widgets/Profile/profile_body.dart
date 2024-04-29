@@ -40,8 +40,8 @@ class ProfileBody extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            DoctorItem(
-              price: '',
+            CarddItem(
+              bottomText: '',
               imageCard: Assets.kDoctorAvatar,
               title: "Dr. Luka Modrich",
               subTitle:
