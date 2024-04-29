@@ -2,14 +2,14 @@ import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_progress_v
 import 'package:flutter/material.dart';
 
 class ScanProgressView extends StatelessWidget {
-  final String imagePath;
 
-  const ScanProgressView({Key? key, required this.imagePath}) : super(key: key);
+
+  const ScanProgressView({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScanProgressViewBody(imagePath: imagePath),
+    return const Scaffold(
+      body: ScanProgressViewBody(),
     );
   }
 }

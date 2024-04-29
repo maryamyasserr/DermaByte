@@ -6,6 +6,7 @@ import 'package:dermabyte/Features/E-lab/Data/Repos/elab_repo_impl.dart';
 import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo_impl.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo_impl.dart';
+import 'package:dermabyte/Features/Scan/Data/Repo/scan_repo_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -46,4 +47,6 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<DoctorRepoImpl>(
       DoctorRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<ScanRepoImpl>(ScanRepoImpl(getIt.get<ApiService>()));
 }

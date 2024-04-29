@@ -32,6 +32,7 @@ import 'package:dermabyte/Features/Profile/Presentaion/View/profile_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/settings_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/test_view.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/camera_view.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View/scan_progress_view.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/scan_ways_view.dart';
 import 'package:dermabyte/Features/Splash/View/intro_view.dart';
 import 'package:dermabyte/Features/Splash/View/splash_view.dart';
@@ -75,6 +76,7 @@ abstract class AppRoutes {
   static String kDoctorScheduleView = '/DoctorScheduleView';
   static String kTestView = '/testView';
   static String kRequestedTest = '/requestedTests';
+  static String kScanProgress = '/scanProgress';
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const SplashView()),
     // GoRoute(path: '/', builder: (context, state) => const DoctorView()),
@@ -171,6 +173,7 @@ abstract class AppRoutes {
       builder: (context, state) => RequestedTestsView(
         testData: state.extra as TestData,
       ),
-    )
+    ),
+     GoRoute(path: kScanProgress, builder: (context, state) => const ScanProgressView()),
   ]);
 }

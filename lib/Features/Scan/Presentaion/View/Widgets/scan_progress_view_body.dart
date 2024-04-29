@@ -1,56 +1,49 @@
 import 'dart:io';
+import 'package:dermabyte/Features/Scan/Presentaion/View%20Model/Create%20Scan%20Cubit/create_scan_cubit.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/result_container.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_progress_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ScanProgressViewBody extends StatefulWidget {
-  const ScanProgressViewBody({Key? key, required this.imagePath})
-      : super(key: key);
-  final String imagePath;
-
-  @override
-  State<ScanProgressViewBody> createState() => _ScanProgressViewBodyState();
-}
-
-class _ScanProgressViewBodyState extends State<ScanProgressViewBody> {
-  bool resultsContainer = false;
+class ScanProgressViewBody extends StatelessWidget {
+  const ScanProgressViewBody({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  void initState() {
-    super.initState();
 
-    // Delay for 3 seconds before showing the empty container
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        setState(() {
-          resultsContainer = true;
-        });
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    String imagePath = BlocProvider.of<CreateScanCubit>(context).takePhotoPath!;
     return Scaffold(
       body: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: FileImage(File(widget
-                    .imagePath)), // Use FileImage to load image from file path
+                image: FileImage(File(
+                    imagePath)), // Use FileImage to load image from file path
                 fit: BoxFit.fill,
               ),
             ),
           ),
-          Column(children: [
+          Column(
+            children: [
             Expanded(
               child: Column(
                 children: [
                   const Expanded(child: SizedBox()),
-                  resultsContainer
-                      ? const Expanded(flex: 3, child: ResutlContainer())
-                      : const ScanProgressContainer()
+                  BlocBuilder<CreateScanCubit, CreateScanState>(
+                    builder: (context, state) {
+                      if (state is CreateScanLoading) {
+                        return const ScanProgressContainer();
+                      } else {
+                        return const Expanded(
+                            flex: 3, child: ResutlContainer());
+                      }
+                    },
+                  )
                 ],
               ),
             )

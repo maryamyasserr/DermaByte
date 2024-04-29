@@ -1,36 +1,19 @@
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+import 'package:dermabyte/Features/Scan/Presentaion/View%20Model/Create%20Scan%20Cubit/create_scan_cubit.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/custom_scan_widget.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/possibilities.dart';
-import 'package:dermabyte/Features/Scan/Presentaion/View/Widgets/scan_progress_view_body.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:http_parser/http_parser.dart';
 
-class ScanWaysViewBody extends StatefulWidget {
+class ScanWaysViewBody extends StatelessWidget {
   const ScanWaysViewBody({super.key});
-
-  @override
-  State<ScanWaysViewBody> createState() => _ScanWaysViewBodyState();
-}
-
-class _ScanWaysViewBodyState extends State<ScanWaysViewBody> {
-  Future<void> uploadPicture() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              ScanProgressViewBody(imagePath: pickedFile.path),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +59,32 @@ class _ScanWaysViewBodyState extends State<ScanWaysViewBody> {
                 ),
                 SizedBox(height: mediaQuery.height * 0.05),
                 GestureDetector(
-                  onTap: uploadPicture,
+                  onTap: () async {
+                    await BlocProvider.of<CreateScanCubit>(context)
+                        .uploadPicture(context);
+                    if (BlocProvider.of<CreateScanCubit>(context)
+                            .takePhotoPath ==
+                        null) {
+                      failedAlert(context, "No Photo is Uploaded");
+                    } else {
+                      FormData formData = FormData();
+                      formData.files.add(MapEntry(
+                          'diseasePhoto',
+                          await MultipartFile.fromFile(
+                              BlocProvider.of<CreateScanCubit>(context)
+                                  .takePhotoPath!,
+                              filename: 'profilePic.jpg',
+                              contentType: MediaType('image', 'jpeg'))));
+                     formData.fields.addAll(
+                                      [
+                                      const MapEntry('diseaseName', "Eczema")
+                                      ]
+                                    );
+                                  await  BlocProvider.of<CreateScanCubit>(context).createScan
+                                    (data: formData
+                                    , token: BlocProvider.of<AuthCubit>(context).patient!.token);
+                    }
+                  },
                   child: CustomScanWidget(
                     image: Assets.kUploadPhoto,
                     title: 'Upload picture',
