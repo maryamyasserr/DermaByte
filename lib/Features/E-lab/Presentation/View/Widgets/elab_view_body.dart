@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
@@ -62,7 +63,11 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                         },
                         errMessage: state.errMessage));
               } else if (state is LabSuccess) {
-                return Expanded(
+                if (state.labs.isEmpty) {
+                  return const EmptyWidget(text: "There are no Labs available now");
+                }
+                else{
+                     return Expanded(
                   child: ListView.builder(
                     itemCount: state.labs.length,
                     itemBuilder: (context, index) {
@@ -96,6 +101,8 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                     },
                   ),
                 );
+                }
+             
               } else {
                 return const Expanded(
                     child: Center(

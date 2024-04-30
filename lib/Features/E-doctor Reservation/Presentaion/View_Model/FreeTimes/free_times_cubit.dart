@@ -25,7 +25,10 @@ class FreeTimesCubit extends Cubit<FreeTimesState> {
     var response = await edoctorRepo.getFreeTime(body: body, token: token);
     response.fold(
         (failure) => {emit(FreeTimesFailure(errMessage: failure.errMessage))},
-        (data) => {freeTimes = data, emit(FreeTimesSuccess())});
+        (data) {
+      freeTimes = data;
+      emit(FreeTimesSuccess());
+    });
   }
 
   set setDay(DateTime selectedDay) {

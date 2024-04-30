@@ -107,7 +107,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                   iconCard: Assets.kFollowUpIcon,
                                   cardTitle: "Follow Up",
                                   cardSubTitle:
-                                      "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${state.pReservationInfo[index].date.hour}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')}  ",
+                                      "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on ${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${state.pReservationInfo[index].date.hour}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')}  ",
                                   onPressed: () {
                                     BlocProvider.of<PreservationInfoCubit>(
                                                 context)

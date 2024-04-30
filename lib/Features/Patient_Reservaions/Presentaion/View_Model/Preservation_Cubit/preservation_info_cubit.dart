@@ -18,16 +18,13 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
     }, (preservationinfo) {
-      List<PreservationModel> temp = preservationinfo;
-      for (var e in temp) {
-        if (e.date.isBefore(DateTime.now())) {
-          temp.remove(e);
-        }
+      reservations = preservationinfo;
+      for (int i = 0; i < reservations.length; i++) {
+        if (reservations[i].date.isBefore(DateTime.now()) == true) {
+          reservations.remove(reservations[i]);
+        } 
       }
-
-      reservations = temp;
-
-      emit(PreservationInfoSuccess(pReservationInfo: temp));
+      emit(PreservationInfoSuccess(pReservationInfo: reservations));
     });
   }
 
@@ -48,7 +45,8 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
         date1.month == date2.month &&
         date1.day == date2.day &&
         date1.hour == date2.hour &&
-        date1.minute == date2.minute) {
+        (date1.minute == date2.minute||
+        date1.difference(date2)<=const Duration(minutes: 10))) {
       return true;
     } else {
       return false;
