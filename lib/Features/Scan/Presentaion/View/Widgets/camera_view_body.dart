@@ -125,9 +125,6 @@ class _CameraViewBodyState extends State<CameraViewBody> {
                                             filename: 'profilePic.jpg',
                                             contentType:
                                                 MediaType('image', 'jpeg'))));
-                                    formData.fields.addAll([
-                                      const MapEntry('diseaseName', "Eczema")
-                                    ]);
                                     await BlocProvider.of<CreateScanCubit>(
                                             context)
                                         .createScan(

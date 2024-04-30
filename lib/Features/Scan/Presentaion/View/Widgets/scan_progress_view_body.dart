@@ -37,7 +37,7 @@ class ScanProgressViewBody extends StatelessWidget {
                         return const ScanProgressContainer();
                       } else {
                         return const Expanded(
-                            flex: 3, child: ResutlContainer());
+                            flex: 1, child: ResutlContainer());
                       }
                     },
                   )

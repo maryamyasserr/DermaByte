@@ -14,6 +14,7 @@ class ResutlContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       decoration: const BoxDecoration(
         color: AppColors.kWhiteColor,
         borderRadius: BorderRadius.only(
@@ -21,53 +22,37 @@ class ResutlContainer extends StatelessWidget {
       ),
       child: BlocBuilder<CreateScanCubit, CreateScanState>(
         builder: (context, state) {
-          if (state is CreateScanLoading) {
-            return const LoadingIndicator(color: AppColors.kPrimaryColor);
-          } else if (state is CreateScanFailuer) {
-            BlocProvider.of<CreateScanCubit>(context).takePhotoPath = null;
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(Assets.kErrorIcon),
-                const SizedBox(height: 9),
-                Text(
-                  state.errMessage,
-                  style: Styels.textStyle20_700(context),
-                  textAlign: TextAlign.center,
-                )
-              ],
-            );
-          } else {
+          if (state is CreateScanSuccess) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Flexible(child: SizedBox(height: 32)),
                   Text(
-                    'We think it’s:',
+                    'We think it’s: ( ${ state.scanResult.diseaseName!} )',
                     style:
                         Styels.textStyle18_600(context).copyWith(fontSize: 22),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Melanoma',
-                    style:
-                        Styels.textStyle20_300(context).copyWith(fontSize: 24),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    'Which is a type of skin cancer. We advise\nyou to see a doctor and discuss\npossible treatments.',
+                    state.scanResult.description!,
                     style:
                         Styels.textStyle20_300(context).copyWith(fontSize: 16),
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.start,
                   ),
-                  const Flexible(
-                    child: SizedBox(
-                      height: 32,
-                    ),
+
+                  const Divider(
+                    color: Color.fromRGBO(0, 0, 0, 0.4),
+                    endIndent: 5,
+                    indent: 5,
+                    thickness: 1,
+                    height: 40,
                   ),
                   AspectRatio(
-                    aspectRatio: 350 / 150,
+                    aspectRatio: 350 / 120,
                     child: Container(
                       padding:
                           const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -100,29 +85,25 @@ class ResutlContainer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Divider(
-                    color: Color.fromRGBO(0, 0, 0, 0.4),
-                    endIndent: 5,
-                    indent: 5,
-                    thickness: 1,
-                    height: 30,
-                  ),
-                  Text(
-                    'What is Melanoma?',
-                    style: Styels.textStyle20_300(context),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Sed vehicula porttitor\neros, ut sagittis augue gravida eu\nDonec dictum, elit mollis lobortis elei',
-                    style:
-                        Styels.textStyle20_300(context).copyWith(fontSize: 16),
-                  ),
-                  const Flexible(
-                    child: SizedBox(height: 8),
-                  )
                 ],
               ),
             );
+          } else if (state is CreateScanFailuer) {
+            // BlocProvider.of<CreateScanCubit>(context).takePhotoPath = null;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(Assets.kErrorIcon),
+                const SizedBox(height: 9),
+                Text(
+                  state.errMessage,
+                  style: Styels.textStyle20_700(context),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            );
+          } else {
+            return const LoadingIndicator(color: AppColors.kPrimaryColor);
           }
         },
       ),

@@ -22,7 +22,7 @@ class CarddItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: aspectRatio==null? 330 / 125:aspectRatio!,
+      aspectRatio: aspectRatio == null ? 330 / 125 : aspectRatio!,
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.kCardColor,

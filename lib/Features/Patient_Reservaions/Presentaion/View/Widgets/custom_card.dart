@@ -11,8 +11,8 @@ class CustomCard extends StatelessWidget {
       required this.cardTitle,
       required this.cardSubTitle,
       required this.textButton,
-       this.textButton2,
-       this.antoherButton,
+      this.textButton2,
+      this.antoherButton,
       this.onPressed,
       this.onDelete});
   final String iconCard, cardTitle, cardSubTitle, textButton;
@@ -70,7 +70,8 @@ class CustomCard extends StatelessWidget {
                         const SizedBox(width: 16),
                         antoherButton == true
                             ? CardButton(
-                                textButton: textButton2??"", onPressed: onDelete)
+                                textButton: textButton2 ?? "",
+                                onPressed: onDelete)
                             : const SizedBox(),
                       ],
                     ),

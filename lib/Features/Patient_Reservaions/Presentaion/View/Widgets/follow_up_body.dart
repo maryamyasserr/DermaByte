@@ -65,7 +65,6 @@ class FollowUpBody extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(bottom: 24, right: 4, left: 4),
                     child: CustomCard(
-                      
                         iconCard: Assets.kAppoinments,
                         cardTitle:
                             'Dr. ${report.dermatologist?.firstName ?? "The Doctor"} requested tests.',

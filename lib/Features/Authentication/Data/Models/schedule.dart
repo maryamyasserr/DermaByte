@@ -26,7 +26,6 @@ class Schedule {
   });
 
   factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
-       
         day: json['day'] == null ? null : DateTime.parse(json['day'] as String),
         startTime: json['startTime'] == null
             ? null

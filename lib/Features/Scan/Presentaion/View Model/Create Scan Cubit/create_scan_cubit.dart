@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Scan/Data/Models/scan_result.dart';
 import 'package:dermabyte/Features/Scan/Data/Repo/scan_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,13 +13,17 @@ class CreateScanCubit extends Cubit<CreateScanState> {
 
   ScanRepo scanRepo;
   String? takePhotoPath;
+  ScanResult? scan;
   Future<void> createScan(
       {required dynamic data, required String token}) async {
     emit(CreateScanLoading());
     var response = await scanRepo.createScan(data: data, token: token);
     response.fold(
         (failuer) => emit(CreateScanFailuer(errMessage: failuer.errMessage)),
-        (success) => emit(CreateScanSuccess(successMessage: success)));
+        (data) {
+      emit(CreateScanSuccess(scanResult: data));
+      scan = data;
+    });
   }
 
   Future<void> takePhoto(BuildContext context) async {

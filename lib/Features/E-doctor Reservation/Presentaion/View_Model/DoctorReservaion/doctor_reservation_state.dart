@@ -20,5 +20,5 @@ final class DoctorReservationFailure extends DoctorReservationState {
 }
 
 final class SelectScanSuccess extends DoctorReservationState {}
-final class SelectScanFailuar extends DoctorReservationState {}
 
+final class SelectScanFailuar extends DoctorReservationState {}

@@ -75,8 +75,6 @@ class ScanWaysViewBody extends StatelessWidget {
                                   .takePhotoPath!,
                               filename: 'profilePic.jpg',
                               contentType: MediaType('image', 'jpeg'))));
-                      formData.fields
-                          .addAll([const MapEntry('diseaseName', "Eczema")]);
                       await BlocProvider.of<CreateScanCubit>(context)
                           .createScan(
                               data: formData,

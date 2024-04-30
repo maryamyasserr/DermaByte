@@ -8,9 +8,9 @@ final class CreateScanInitial extends CreateScanState {}
 final class CreateScanLoading extends CreateScanState {}
 
 final class CreateScanSuccess extends CreateScanState {
-  final String successMessage;
+  final ScanResult scanResult;
 
-  CreateScanSuccess({required this.successMessage});
+  CreateScanSuccess({required this.scanResult});
 }
 
 final class CreateScanFailuer extends CreateScanState {

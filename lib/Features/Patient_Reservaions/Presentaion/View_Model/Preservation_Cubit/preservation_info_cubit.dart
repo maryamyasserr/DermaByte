@@ -18,7 +18,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
     }, (preservationinfo) {
-      List<PreservationModel>temp=preservationinfo;
+      List<PreservationModel> temp = preservationinfo;
       for (var e in temp) {
         if (e.date.isBefore(DateTime.now())) {
           temp.remove(e);
@@ -29,7 +29,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
 
       emit(PreservationInfoSuccess(pReservationInfo: temp));
     });
-  } 
+  }
 
   set setId(String id) {
     _id = id;
