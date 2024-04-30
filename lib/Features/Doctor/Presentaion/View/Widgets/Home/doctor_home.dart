@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/utils/assets.dart';
+
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
@@ -29,7 +29,8 @@ class DoctorHome extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 7),
                       child: PatientCard(
-                        iconCard: Assets.kAvatar,
+                        imageCard:"" ,
+                        date: "10 AM",
                         cardTitle: "Jude Bellengham",
                         cardSubTitle:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

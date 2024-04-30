@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
@@ -21,17 +20,17 @@ class ReportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReportModel? report =
-        BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
+    ReportModel report =
+        BlocProvider.of<MyPatientReportCubit>(context).getPatientReport!;
     return SafeArea(
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-          child: report == null
-              ? const ErrWidget(errMessage: "Something is wrong")
-              : Padding(
+          child: 
+            
+               Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.03),
                   child: ListView(
@@ -82,7 +81,7 @@ class ReportView extends StatelessWidget {
                                 MediaQuery.of(context).size.width * 0.25,
                             textButton: "Request a test",
                             onPressed: () {
-                              showDialog(
+                              showModalBottomSheet(
                                   context: context,
                                   builder: (context) {
                                     return const AddTestBody();

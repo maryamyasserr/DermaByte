@@ -38,8 +38,7 @@ class _DoctorBodyState extends State<DoctorBody> {
           currentIndex: selectedIndex,
           items: const <BottomNavigationBarItem>[
             // BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.schedule), label: "Schedule"),
+          
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.calendarCheck),
                 label: "Appoinments"),
@@ -47,6 +46,8 @@ class _DoctorBodyState extends State<DoctorBody> {
             //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.call_received), label: "Requetsts"),
+                  BottomNavigationBarItem(
+                icon: Icon(Icons.schedule), label: "Schedule"),
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.userDoctor), label: "Profile"),
           ],
@@ -61,9 +62,9 @@ class _DoctorBodyState extends State<DoctorBody> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               // const DoctorView(),
-              const ScheduleView(),
               const EdoctorAppoinments(),
               const DoctorRequests(),
+              const ScheduleView(),
               EdoctorProfile()
             ],
           ),

@@ -97,6 +97,7 @@ class RequestedTestsBody extends StatelessWidget {
                                     const SizedBox(height: 230),
                                     Center(
                                       child: AddTestButton(
+                                        text: 'Confirm',
                                           onPressed: () async {
                                             await BlocProvider.of<
                                                     AddTestResultCubit>(context)

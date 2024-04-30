@@ -1,5 +1,5 @@
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -63,12 +63,17 @@ class _AddTestBodyState extends State<AddTestBody> {
         }
       },
       builder: (context, state) {
+        final formKey = GlobalKey<FormState>();
         return Material(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Stack(
-              children: [
-                Column(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+              child: Form(
+                key: formKey,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -90,8 +95,15 @@ class _AddTestBodyState extends State<AddTestBody> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 8, horizontal: 4),
-                            child: TextField(
+                            child: TextFormField(
                               controller: _controllers[index],
+                              validator: (testName) {
+                                if (testName == null || testName.isEmpty) {
+                                  return "Add Test Name";
+                                } else {
+                                  return null;
+                                }
+                              },
                               keyboardType: TextInputType.name,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -113,39 +125,44 @@ class _AddTestBodyState extends State<AddTestBody> {
                         },
                       ),
                     ),
-                    report == null
-                        ? const ErrWidget(errMessage: "Something is wrong")
-                        : AddTestButton(
+                    Expanded(
+                      flex: 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AddTestButton(
+                            text: '   Add   ',
+                            isLoading:false,
+                            onPressed: _addTextField,
+                          ),
+                          AddTestButton(
+                            text: 'Confirm',
                             isLoading:
                                 BlocProvider.of<UpdateReportCubit>(context)
                                     .isLoading,
                             onPressed: () async {
-                              List<Map<String, String>> tests =
+                               if (formKey.currentState!.validate()){
+                                  List<Map<String, String>> tests =
                                   generateTestsJson();
                               await BlocProvider.of<UpdateReportCubit>(context)
                                   .updateReport(
                                       context: context,
-                                      id: report.id!,
+                                      id: report!.id!,
                                       body: {"tests": tests},
                                       token: BlocProvider.of<AuthCubit>(context)
                                           .doctorModel!
                                           .token);
+                               }
+                            
                             },
                           ),
+                        ],
+                      ),
+                    ),
                     const Expanded(flex: 2, child: SizedBox())
                   ],
                 ),
-                Positioned(
-                  bottom: 20,
-                  right: 6,
-                  child: FloatingActionButton(
-                    backgroundColor: AppColors.kPrimaryColor,
-                    onPressed: _addTextField,
-                    shape: const CircleBorder(),
-                    child: const Icon(Icons.add, size: 35, color: Colors.white),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         );

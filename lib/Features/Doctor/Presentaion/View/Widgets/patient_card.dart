@@ -1,20 +1,25 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 class PatientCard extends StatelessWidget {
   const PatientCard(
       {super.key,
-      required this.iconCard,
+      this.imageCard,
       required this.cardTitle,
       required this.cardSubTitle,
       required this.diagnose,
+      required this.date,
       required this.start,
       required this.onTap});
-  final String iconCard, cardTitle, cardSubTitle;
+  final String cardTitle, cardSubTitle,date;
+  final String ?imageCard;
   final void Function() diagnose, start, onTap;
   @override
   Widget build(BuildContext context) {
@@ -39,12 +44,22 @@ class PatientCard extends StatelessWidget {
               Expanded(
                 child: Row(children: [
                   Expanded(
-                    child: SvgPicture.asset(
-                      iconCard,
-                      color: Colors.grey[600],
-                    ),
+                    child:ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: AspectRatio(
+                        aspectRatio: 0.5,
+                        child: imageCard==null?
+                        SvgPicture.asset(
+                          Assets.kAvatar
+                        ):
+                         CachedNetworkImage(
+                          fit: BoxFit.fill,
+                        imageUrl: imageCard!,
+                        ),
+                      ),
+                    )
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 12),
                   Expanded(
                     flex: 3,
                     child: Column(
@@ -54,18 +69,21 @@ class PatientCard extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                flex: 6,
-                                child: CardText(
-                                  cardTitle: cardTitle,
-                                  cardSubTitle: cardSubTitle,
+                                flex: 8,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: CardText(
+                                    cardTitle: cardTitle,
+                                    cardSubTitle: cardSubTitle,
+                                  ),
                                 ),
                               ),
                               Expanded(
-                                flex: 2,
+                                flex: 3,
                                 child: Column(
                                   children: [
                                     Text(
-                                      "10:00 AM",
+                                      date,
                                       style: Styels.textStyle14_300(context),
                                     ),
                                   ],

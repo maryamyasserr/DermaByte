@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/utils/assets.dart';
+
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +25,11 @@ class PatientsDay extends StatelessWidget {
                       horizontal: MediaQuery.of(context).size.width * 0.01,
                       vertical: MediaQuery.of(context).size.height * 0.01),
                   child: PatientCard(
+                    date: "10 AM",
                     cardTitle: "Ahmed Mohamed",
                     cardSubTitle:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    iconCard: Assets.kAvatar,
+                    imageCard: "Assets.kAvatar",
                     start: () {},
                     diagnose: () {},
                     onTap: () {},

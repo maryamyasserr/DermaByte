@@ -10,16 +10,9 @@ class DoctorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) =>
-                MyReservationCubit(getIt.get<DoctorRepoImpl>()),
-          ),
-        ],
-        child: const DoctorBody(),
-      ),
+    return BlocProvider(
+      create: (context) => MyReservationCubit(getIt.get<DoctorRepoImpl>()),
+      child: const DoctorBody(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -27,6 +26,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
+       
     super.initState();
   }
 
@@ -54,10 +54,11 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 7),
                             child: PatientCard(
-                              iconCard: Assets.kAvatar,
-                              cardTitle: state
-                                      .reservations[index].patient?.firstName ??
-                                  "",
+                              date: "${state.reservations[index].date!.day}/${state.reservations[index].date!.month}/${state.reservations[index].date!.year}",
+                              imageCard: state.reservations[index].scan?.diseasePhoto,
+                              cardTitle:"${ state
+                                      .reservations[index].patient?.firstName??""}'s report"
+                                  ,
                               cardSubTitle:
                                   state.reservations[index].scan?.diseaseName ??
                                       "",
@@ -77,23 +78,18 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                 }
                               },
                               start: () {},
-                              onTap: () async {
+                              onTap: () {
+                               
+                                  BlocProvider.of<MyPatientReportCubit>(context)
+                                          .setId =
+                                      state.reservations[index].scan!.id!;
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)
                                         .getPatientReport ==
                                     null) {
-                                  failedAlert(context, 'Some Thing is Wrong');
+                                  failedAlert(context, 'Something is Wrong');
                                 } else {
-                                  await BlocProvider.of<MyPatientReportCubit>(
-                                          context)
-                                      .getMyPatientsReport(
-                                          token: BlocProvider.of<AuthCubit>(
-                                                  context)
-                                              .doctorModel!
-                                              .token);
-                                  BlocProvider.of<MyPatientReportCubit>(context)
-                                          .setId =
-                                      state.reservations[index].scan!.id!;
+                                 
                                   GoRouter.of(context)
                                       .push(AppRoutes.kReportView);
                                 }
