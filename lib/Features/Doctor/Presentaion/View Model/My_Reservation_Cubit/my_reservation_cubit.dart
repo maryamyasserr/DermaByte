@@ -9,9 +9,9 @@ class MyReservationCubit extends Cubit<MyReservationState> {
   MyReservationCubit(this.doctorRepo) : super(MyReservationInitial());
   DoctorRepo doctorRepo;
 
-  Future<void> getMyReservations({required String token}) async {
+  Future<void> getMyReservations({required String token,required String reviwed}) async {
     emit(MyReservationLoading());
-    var response = await doctorRepo.getMyReservation(token: token);
+    var response = await doctorRepo.getMyReservation(token: token,reviewd: reviwed);
     response.fold(
         (failure) => emit(MyReservationFailure(errMessage: failure.errMessage)),
         (data) => emit(MyReservationSuccess(reservations: data)));

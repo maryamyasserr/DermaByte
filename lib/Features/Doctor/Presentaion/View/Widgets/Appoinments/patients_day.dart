@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class PatientsDay extends StatelessWidget {
   const PatientsDay({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -28,8 +30,8 @@ class PatientsDay extends StatelessWidget {
                     date: "10 AM",
                     cardTitle: "Ahmed Mohamed",
                     cardSubTitle:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    imageCard: "Assets.kAvatar",
+                        "",
+                    imageCard: null,
                     start: () {},
                     diagnose: () {},
                     onTap: () {},

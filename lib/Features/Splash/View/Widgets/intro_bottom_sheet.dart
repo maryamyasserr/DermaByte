@@ -18,8 +18,7 @@ class IntroBottomSheet extends StatelessWidget {
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
-      child: Column(children: [
-        const Flexible(child: SizedBox(height: 20)),
+      child: ListView(children: [
         Text(
           'Detect skin cancer \n with 95% accuracy',
           textAlign: TextAlign.center,
@@ -32,7 +31,7 @@ class IntroBottomSheet extends StatelessWidget {
           style: Styels.textStyle20_300(context)
               .copyWith(fontSize: 24, color: const Color(0xff5B52C8)),
         ),
-        const Expanded(child: SizedBox()),
+        const SizedBox(height: 22),
         Row(
           children: [
             Expanded(
@@ -40,9 +39,11 @@ class IntroBottomSheet extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                         backgroundColor: AppColors.kPrimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
+                      
                         )),
                     onPressed: () {
                       GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);

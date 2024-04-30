@@ -1,5 +1,9 @@
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
+import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/add_test_body.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/disease_report.dart';
@@ -28,12 +32,13 @@ class ReportView extends StatelessWidget {
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-          child: 
-            
-               Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.03),
-                  child: ListView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.03),
+            child: BlocBuilder<MyPatientReportCubit, MyPatientReportState>(
+              builder: (context, state) {
+                if (state is MyPatientReportSuccess) {
+                  return ListView(
                     children: [
                       const SizedBox(
                         height: 60,
@@ -90,8 +95,27 @@ class ReportView extends StatelessWidget {
                       ),
                       const SizedBox(height: 16)
                     ],
-                  ),
-                ),
+                  );
+                } else if (state is MyPatientReportFailure) {
+                  return Center(
+                      child: ErrWidget(
+                    errMessage: state.errMessage,
+                    onTap: () async {
+                      await BlocProvider.of<MyPatientReportCubit>(context)
+                          .getMyPatientsReport(
+                              token: BlocProvider.of<AuthCubit>(context)
+                                  .doctorModel!
+                                  .token);
+                    },
+                  ));
+                } else {
+                  return const Center(
+                    child: LoadingIndicator(color: AppColors.kPrimaryColor),
+                  );
+                }
+              },
+            ),
+          ),
         ),
       ),
     );

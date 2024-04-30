@@ -62,20 +62,12 @@ class DermaByte extends StatelessWidget {
         BlocProvider(create: (context) =>UpdateReportCubit(getIt.get<DoctorRepoImpl>())),
         BlocProvider(create: (context) => AuthHelperCubit()),
         BlocProvider(create: (context) => LabHelperCubit()),
-        BlocProvider(
-            create: (context) => AddServiceCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(
-            create: (context) =>
-                LabReservationsCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(
-            create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(
-            create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>())),
-        BlocProvider(
-            create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>())),
-        BlocProvider(
-          create: (context) => CreateScanCubit(getIt.get<ScanRepoImpl>()),
-        )
+        BlocProvider(create: (context) => AddServiceCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(create: (context) =>LabReservationsCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>())),
+        BlocProvider(create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>())),
+        BlocProvider(create: (context) => CreateScanCubit(getIt.get<ScanRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

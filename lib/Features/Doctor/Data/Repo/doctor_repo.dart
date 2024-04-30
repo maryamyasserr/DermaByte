@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 abstract class DoctorRepo {
   Future<Either<Failures, List<MyReservaionModel>>> getMyReservation(
-      {required String token});
+      {required String token,required String reviewd});
 
   Future<Either<Failures, List<ReportModel>>> getMyPatientsReports(
       {required String token});
@@ -16,7 +16,9 @@ abstract class DoctorRepo {
       token,
       required dynamic body,
       required BuildContext context});
-
+  Future<Either<Failures, String>> deleteTest(
+      {required String id, required String token});
+ 
   Future<Either<Failures, String>> setSchedule(
       {required dynamic body, required String token});
 }

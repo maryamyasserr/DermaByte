@@ -23,10 +23,11 @@ class _DoctorRequestsState extends State<DoctorRequests> {
   @override
   void initState() {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
+      reviwed: 'false',
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
-       
+
     super.initState();
   }
 
@@ -54,11 +55,12 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 7),
                             child: PatientCard(
-                              date: "${state.reservations[index].date!.day}/${state.reservations[index].date!.month}/${state.reservations[index].date!.year}",
-                              imageCard: state.reservations[index].scan?.diseasePhoto,
-                              cardTitle:"${ state
-                                      .reservations[index].patient?.firstName??""}'s report"
-                                  ,
+                              date:
+                                  "${state.reservations[index].date!.day}/${state.reservations[index].date!.month}/${state.reservations[index].date!.year}",
+                              imageCard:
+                                  state.reservations[index].scan?.diseasePhoto,
+                              cardTitle:
+                                  "${state.reservations[index].patient?.firstName ?? ""}'s report",
                               cardSubTitle:
                                   state.reservations[index].scan?.diseaseName ??
                                       "",
@@ -79,17 +81,16 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                               },
                               start: () {},
                               onTap: () {
-                               
-                                  BlocProvider.of<MyPatientReportCubit>(context)
-                                          .setId =
-                                      state.reservations[index].scan!.id!;
+                                BlocProvider.of<MyPatientReportCubit>(context)
+                                        .setId =
+                                    state.reservations[index].scan!.id!;
+                                print( state.reservations[index].scan!.id!);
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)
                                         .getPatientReport ==
                                     null) {
                                   failedAlert(context, 'Something is Wrong');
                                 } else {
-                                 
                                   GoRouter.of(context)
                                       .push(AppRoutes.kReportView);
                                 }

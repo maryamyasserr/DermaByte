@@ -79,14 +79,27 @@ class _AddTestBodyState extends State<AddTestBody> {
                   children: [
                     Expanded(
                         flex: 2,
-                        child: SizedBox(
-                          child: Align(
-                              alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
                               child: Text(
                                 "Required tests",
                                 style: Styels.textStyle24_600(context),
-                              )),
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: _addTextField
+                            
+                                ,
+                                icon: const Icon(
+                                  Icons.add_circle,
+                                  size: 30,
+                                  color: AppColors.kPrimaryColor,
+                                )),
+                          ],
                         )),
+                        const SizedBox(height: 15),
                     Expanded(
                       flex: 11,
                       child: ListView.builder(
@@ -104,6 +117,8 @@ class _AddTestBodyState extends State<AddTestBody> {
                                   return null;
                                 }
                               },
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                               keyboardType: TextInputType.name,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -125,41 +140,30 @@ class _AddTestBodyState extends State<AddTestBody> {
                         },
                       ),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AddTestButton(
-                            text: '   Add   ',
-                            isLoading:false,
-                            onPressed: _addTextField,
-                          ),
-                          AddTestButton(
-                            text: 'Confirm',
-                            isLoading:
-                                BlocProvider.of<UpdateReportCubit>(context)
-                                    .isLoading,
-                            onPressed: () async {
-                               if (formKey.currentState!.validate()){
-                                  List<Map<String, String>> tests =
-                                  generateTestsJson();
-                              await BlocProvider.of<UpdateReportCubit>(context)
-                                  .updateReport(
-                                      context: context,
-                                      id: report!.id!,
-                                      body: {"tests": tests},
-                                      token: BlocProvider.of<AuthCubit>(context)
-                                          .doctorModel!
-                                          .token);
-                               }
-                            
-                            },
-                          ),
-                        ],
-                      ),
+                    AddTestButton(
+                      text: 'Confirm',
+                      isLoading:
+                          BlocProvider.of<UpdateReportCubit>(context).isLoading,
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          List<Map<String, String>> tests = generateTestsJson();
+                          await BlocProvider.of<UpdateReportCubit>(context)
+                              .updateReport(
+                                  context: context,
+                                  id: report!.id!,
+                                  body: {"tests": tests},
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .doctorModel!
+                                      .token);
+                          await BlocProvider.of<MyPatientReportCubit>(context)
+                              .getMyPatientsReport(
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .doctorModel!
+                                      .token);
+                        }
+                      },
                     ),
-                    const Expanded(flex: 2, child: SizedBox())
+                    const Expanded(flex: 1, child: SizedBox())
                   ],
                 ),
               ),
