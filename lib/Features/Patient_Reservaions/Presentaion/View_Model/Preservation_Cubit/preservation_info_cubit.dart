@@ -18,10 +18,18 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
     }, (preservationinfo) {
-      reservations = preservationinfo;
-      emit(PreservationInfoSuccess(pReservationInfo: preservationinfo));
+      List<PreservationModel>temp=preservationinfo;
+      for (var e in temp) {
+        if (e.date.isBefore(DateTime.now())) {
+          temp.remove(e);
+        }
+      }
+
+      reservations = temp;
+
+      emit(PreservationInfoSuccess(pReservationInfo: temp));
     });
-  }
+  } 
 
   set setId(String id) {
     _id = id;
@@ -32,6 +40,18 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       return reservations.firstWhere((reservation) => reservation.id == _id);
     } catch (e) {
       return null;
+    }
+  }
+
+  bool compareDates(DateTime date1, DateTime date2) {
+    if (date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day &&
+        date1.hour == date2.hour &&
+        date1.minute == date2.minute) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

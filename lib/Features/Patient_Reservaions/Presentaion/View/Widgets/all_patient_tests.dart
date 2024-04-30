@@ -41,6 +41,7 @@ class AllPatientTest extends StatelessWidget {
                           return Column(
                             children: [
                               CustomCard(
+                               
                                 iconCard: Assets.kAlphaScan,
                                 cardTitle:
                                     state.tests[index].testName?[0] ?? "",

@@ -5,16 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({
-    super.key,
-    required this.iconCard,
-    required this.cardTitle,
-    required this.cardSubTitle,
-    required this.textButton,
-    this.onPressed,
-  });
+  const CustomCard(
+      {super.key,
+      required this.iconCard,
+      required this.cardTitle,
+      required this.cardSubTitle,
+      required this.textButton,
+       this.textButton2,
+       this.antoherButton,
+      this.onPressed,
+      this.onDelete});
   final String iconCard, cardTitle, cardSubTitle, textButton;
-  final void Function()? onPressed;
+  final String? textButton2;
+  final void Function()? onPressed, onDelete;
+
+  final bool? antoherButton;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +62,18 @@ class CustomCard extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(right: 16),
-                    child: CardButton(
-                        textButton: textButton, onPressed: onPressed),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CardButton(
+                            textButton: textButton, onPressed: onPressed),
+                        const SizedBox(width: 16),
+                        antoherButton == true
+                            ? CardButton(
+                                textButton: textButton2??"", onPressed: onDelete)
+                            : const SizedBox(),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),

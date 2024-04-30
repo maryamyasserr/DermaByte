@@ -1,5 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -14,8 +14,8 @@ class UpComingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PreservationModel? reservation =
-        BlocProvider.of<PreservationInfoCubit>(context).currentReservation;
+    PreservationModel reservation =
+        BlocProvider.of<PreservationInfoCubit>(context).currentReservation!;
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -25,29 +25,32 @@ class UpComingBody extends StatelessWidget {
           const SizedBox(height: 20),
           const CustomAppBar(title: "Upcoming"),
           const SizedBox(height: 64),
-          reservation == null
-              ? const ErrWidget(
-                  errMessage: "Some Thing Is wrong , Please Refresh")
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          "The doctor has scheduled an online appointment for you on Tuesday ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${reservation.date.hour}:${reservation.date.minute} PM.",
-                          style: Styels.textStyle18_400(context)),
-                      const SizedBox(height: 64),
-                      Text(
-                          "please click on the call button right 5 minutes before the appointment.",
-                          style: Styels.textStyle14_300(context)),
-                    ],
-                  ),
-                ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                    "The doctor has scheduled an online appointment for you on ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${reservation.date.hour}:${reservation.date.minute.toString().padLeft(2, '0')} PM.",
+                    style: Styels.textStyle18_400(context)),
+                const SizedBox(height: 64),
+                Text(
+                    "please click on the call button right 5 minutes before the appointment.",
+                    style: Styels.textStyle14_300(context)),
+              ],
+            ),
+          ),
           const SizedBox(height: 74),
           ElevatedButton(
               onPressed: () async {
-                await cUrlLauncher(
-                    context: context, url: reservation!.meetingUrl);
+                if (BlocProvider.of<PreservationInfoCubit>(context)
+                        .compareDates(DateTime.now(), reservation.date) ==
+                    true) {
+                  await cUrlLauncher(
+                      context: context, url: reservation.meetingUrl);
+                } else {
+                  failedAlert(context, "Your appointment has not come yet");
+                }
               },
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(

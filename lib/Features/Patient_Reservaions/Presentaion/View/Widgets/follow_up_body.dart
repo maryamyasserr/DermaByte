@@ -29,7 +29,7 @@ class FollowUpBody extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
@@ -47,8 +47,8 @@ class FollowUpBody extends StatelessWidget {
                       cardTitle:
                           "Dr. ${patientReservation.dermatologist.firstName}'s appointment",
                       cardSubTitle:
-                          'Dr. ${patientReservation.dermatologist.firstName} has reviewed your scans and scheduled an online   appointment   ',
-                      textButton: 'View',
+                          'When your appointment comes,click here to start the session  ',
+                      textButton: 'Start',
                       onPressed: () {
                         GoRouter.of(context).push(AppRoutes.kUpcoming);
                       },
@@ -65,6 +65,7 @@ class FollowUpBody extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(bottom: 24, right: 4, left: 4),
                     child: CustomCard(
+                      
                         iconCard: Assets.kAppoinments,
                         cardTitle:
                             'Dr. ${report.dermatologist?.firstName ?? "The Doctor"} requested tests.',

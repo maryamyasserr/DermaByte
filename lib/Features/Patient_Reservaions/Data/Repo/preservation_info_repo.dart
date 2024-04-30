@@ -8,4 +8,9 @@ abstract class PreservationInfoRepo {
       {required String token});
   Future<Either<Failures, ReportModel>> addTestResult(
       {required String id, token, required dynamic body});
+
+  Future<Either<Failures, String>> deleteReservation({
+    required String token,
+    required String id
+  });
 }

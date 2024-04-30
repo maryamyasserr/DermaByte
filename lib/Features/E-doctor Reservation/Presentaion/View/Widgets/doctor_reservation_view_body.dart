@@ -52,7 +52,6 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
         isVisible = true;
       });
     });
-
     BlocProvider.of<FreeTimesCubit>(context).selectedDate = null;
     BlocProvider.of<DoctorReservationCubit>(context).deleteScan();
   }

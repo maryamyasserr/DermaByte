@@ -27,7 +27,7 @@ class CardText extends StatelessWidget {
               const SizedBox(height: 4),
               Text(cardSubTitle,
                   maxLines: 3,
-                  style: Styels.textStyle14_300(context)
+                  style: Styels.textStyle15_300(context)
                       .copyWith(overflow: TextOverflow.ellipsis)),
             ],
           ),

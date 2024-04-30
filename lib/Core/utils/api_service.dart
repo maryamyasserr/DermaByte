@@ -86,7 +86,13 @@ class ApiService {
     return response.data;
   }
 
-  Future<void> delete({required String endPoint, required int id}) async {
+  Future<void> delete({required String endPoint, required String id,required String? token}) async {
+     if (token != null) {
+      _dio.options.headers['Authorization'] = "Bearer $token";
+      _dio.options.headers['Content-Type'] = "application/json";
+    } else {
+      _dio.options.headers.remove('Authorization');
+    }
     await _dio.delete('$_baseUlr$endPoint$id');
   }
 }
