@@ -170,8 +170,7 @@ abstract class AppRoutes {
     GoRoute(path: kTestView, builder: (context, state) => const TestView()),
     GoRoute(
       path: kRequestedTest,
-      builder: (context, state) => RequestedTestsView(
-        testData: state.extra as TestData,
+      builder: (context, state) => const RequestedTestsView(
       ),
     ),
     GoRoute(

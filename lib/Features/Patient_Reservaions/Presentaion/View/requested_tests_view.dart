@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RequestedTestsView extends StatelessWidget {
-  const RequestedTestsView({super.key, required this.testData});
+  const RequestedTestsView({super.key,});
 
-  final TestData testData;
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,8 @@ class RequestedTestsView extends StatelessWidget {
         body: BlocProvider(
           create: (context) =>
               AddTestResultCubit(getIt.get<PreservationInfoRepoImpl>()),
-          child: RequestedTestsBody(
-            testName: testData.test,
-            testsCounts: testData.testCount,
+          child: const RequestedTestsBody(
+           
           ),
         ),
       ),
@@ -27,9 +26,4 @@ class RequestedTestsView extends StatelessWidget {
   }
 }
 
-class TestData {
-  final List<dynamic>? test;
-  final int testCount;
 
-  TestData({required this.test, required this.testCount});
-}
