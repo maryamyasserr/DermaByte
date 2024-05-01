@@ -30,7 +30,7 @@ class ResutlContainer extends StatelessWidget {
                 children: [
                   const Flexible(child: SizedBox(height: 32)),
                   Text(
-                    'We think it’s: ( ${ state.scanResult.diseaseName!} )',
+                    'We think it’s: ( ${state.scanResult.diseaseName!} )',
                     style:
                         Styels.textStyle18_600(context).copyWith(fontSize: 22),
                   ),
@@ -43,7 +43,6 @@ class ResutlContainer extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
                   ),
-
                   const Divider(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     endIndent: 5,

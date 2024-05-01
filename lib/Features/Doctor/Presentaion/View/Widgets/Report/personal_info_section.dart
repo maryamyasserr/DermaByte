@@ -10,7 +10,7 @@ class PersonalInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       ReportModel report =
+    ReportModel report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,8 +20,9 @@ class PersonalInfoSection extends StatelessWidget {
           style: Styels.textStyle24_600(context),
         ),
         const SizedBox(height: 12),
-         PersonalInfo(data: "${report.patient!.firstName} ${report.patient!.lastName}"),
-         PersonalInfo(data: "${report.patient!.age} Years Old"),
+        PersonalInfo(
+            data: "${report.patient!.firstName} ${report.patient!.lastName}"),
+        PersonalInfo(data: "${report.patient!.age} Years Old"),
         //  PersonalInfo(data:  "${report.scan!.scanDate}"),
         const SizedBox(height: 18),
       ],

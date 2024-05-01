@@ -131,7 +131,6 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                           AppRoutes.kFollowUp,
                                           extra:
                                               state.pReservationInfo[index].id);
-                                    
                                     }
                                   },
                                   textButton: "View",

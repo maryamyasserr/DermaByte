@@ -22,7 +22,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       for (int i = 0; i < reservations.length; i++) {
         if (reservations[i].date.isBefore(DateTime.now()) == true) {
           reservations.remove(reservations[i]);
-        } 
+        }
       }
       emit(PreservationInfoSuccess(pReservationInfo: reservations));
     });
@@ -45,8 +45,8 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
         date1.month == date2.month &&
         date1.day == date2.day &&
         date1.hour == date2.hour &&
-        (date1.minute == date2.minute||
-        date1.difference(date2)<=const Duration(minutes: 10))) {
+        (date1.minute == date2.minute ||
+            date1.difference(date2) <= const Duration(minutes: 10))) {
       return true;
     } else {
       return false;

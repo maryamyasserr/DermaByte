@@ -54,41 +54,39 @@ class LabServiceItem extends StatelessWidget {
                         style: Styels.textStyle18_600(context),
                       ),
                     ),
-                  
                   ],
                 ),
                 const SizedBox(height: 20),
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                  Row(
-                    children: [
-                      Text(
-                      "Cost : ",
-                      style: Styels.textStyle15_400(context),
-                                      ),
-                                      Text(
-                      cost,
-                      style: Styels.textStyle15_400(context),
-                                      ),
-                    ],
-                  ),
-                selected
-                    ? const Center(
-                        child: Icon(
-                          Icons.check_box,
-                          size: 34,
-                          color: AppColors.kPrimaryColor,
+                    Row(
+                      children: [
+                        Text(
+                          "Cost : ",
+                          style: Styels.textStyle15_400(context),
                         ),
-                      )
-                    : const Center(
-                        child: Icon(
-                          Icons.check_box_outline_blank,
-                          size: 34,
-                          color: AppColors.kPrimaryColor,
+                        Text(
+                          cost,
+                          style: Styels.textStyle15_400(context),
                         ),
-                      )
-                  
+                      ],
+                    ),
+                    selected
+                        ? const Center(
+                            child: Icon(
+                              Icons.check_box,
+                              size: 34,
+                              color: AppColors.kPrimaryColor,
+                            ),
+                          )
+                        : const Center(
+                            child: Icon(
+                              Icons.check_box_outline_blank,
+                              size: 34,
+                              color: AppColors.kPrimaryColor,
+                            ),
+                          )
                   ],
                 ),
               ],

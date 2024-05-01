@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RequestedTestsView extends StatelessWidget {
-  const RequestedTestsView({super.key,});
-
-
+  const RequestedTestsView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,9 @@ class RequestedTestsView extends StatelessWidget {
         body: BlocProvider(
           create: (context) =>
               AddTestResultCubit(getIt.get<PreservationInfoRepoImpl>()),
-          child: const RequestedTestsBody(
-           
-          ),
+          child: const RequestedTestsBody(),
         ),
       ),
     );
   }
 }
-
-

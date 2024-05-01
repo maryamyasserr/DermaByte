@@ -19,7 +19,6 @@ class ScanResult {
     this.createdAt,
     this.updatedAt,
     this.v,
-
   });
 
   factory ScanResult.fromJson(Map<String, dynamic> json) => ScanResult(

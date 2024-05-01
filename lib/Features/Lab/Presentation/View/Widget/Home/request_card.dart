@@ -20,7 +20,7 @@ class RequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 330 / 130,
+      aspectRatio: 330 / 125,
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.kCardColor,
@@ -35,23 +35,23 @@ class RequestCard extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Row(
-                children: [
+              child: Row(children: [
                 Expanded(
                   flex: 2,
-                  child: imageCard==null?
-                   SvgPicture.asset(
-                    Assets.kAvatar,
-                  ):ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: AspectRatio(
-                        aspectRatio: 0.8,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.fill,
-                          imageUrl: imageCard!,
+                  child: imageCard == null
+                      ? SvgPicture.asset(
+                          Assets.kAvatar,
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: AspectRatio(
+                            aspectRatio: 0.7,
+                            child: CachedNetworkImage(
+                              fit: BoxFit.fill,
+                              imageUrl: imageCard!,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(

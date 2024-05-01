@@ -12,7 +12,6 @@ class DoctorRepoImpl implements DoctorRepo {
   DoctorRepoImpl(this.apiService);
   ApiService apiService;
 
-
   @override
   Future<Either<Failures, List<ReportModel>>> getMyPatientsReports(
       {required String token}) async {
@@ -46,10 +45,10 @@ class DoctorRepoImpl implements DoctorRepo {
       return right(report);
     } catch (e) {
       if (e is DioException) {
-          GoRouter.of(context).pop();
+        GoRouter.of(context).pop();
         return left(ServerFailure.fromDioException(e));
       }
-        GoRouter.of(context).pop();
+      GoRouter.of(context).pop();
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
@@ -67,18 +66,22 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failures, String>> deleteTest({required String id, required String token}) {
+  Future<Either<Failures, String>> deleteTest(
+      {required String id, required String token}) {
     // TODO: implement deleteTest
     throw UnimplementedError();
   }
-  
+
   @override
-  Future<Either<Failures, List<MyReservaionModel>>> getMyReservation({required String token, required String reviewd})async {
+  Future<Either<Failures, List<MyReservaionModel>>> getMyReservation(
+      {required String token, required String reviewd}) async {
     try {
       var response = await apiService.get(
-          endPoint: 'dermatologists/Dermatologist-reservation?reviewed=$reviewd', token: token);
+          endPoint:
+              'dermatologists/Dermatologist-reservation?reviewed=$reviewd',
+          token: token);
       List<MyReservaionModel> myReservations = [];
       for (var element in response['data']) {
         myReservations.add(MyReservaionModel.fromJson(element));
@@ -91,5 +94,4 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-
 }

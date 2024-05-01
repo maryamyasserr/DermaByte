@@ -1,12 +1,9 @@
-
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
 import 'package:flutter/material.dart';
 
 class PatientsDay extends StatelessWidget {
   const PatientsDay({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +26,7 @@ class PatientsDay extends StatelessWidget {
                   child: PatientCard(
                     date: "10 AM",
                     cardTitle: "Ahmed Mohamed",
-                    cardSubTitle:
-                        "",
+                    cardSubTitle: "",
                     imageCard: null,
                     start: () {},
                     diagnose: () {},

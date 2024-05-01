@@ -54,20 +54,35 @@ class DermaByte extends StatelessWidget {
             create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>())
               ..getPatientTests(
                   token: BlocProvider.of<AuthCubit>(context).patient!.token)),
-        BlocProvider(create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())..getPatientConults(
+        BlocProvider(
+            create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
+              ..getPatientConults(
                   token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(create: (context) => ELabCubit(getIt.get<ElabRepoImpl>())),
-        BlocProvider( create: (context) =>DoctorReservationCubit(getIt.get<EdoctorRepoImpl>())),
-        BlocProvider(create: (context) =>MyPatientReportCubit(getIt.get<DoctorRepoImpl>())),
-        BlocProvider(create: (context) =>UpdateReportCubit(getIt.get<DoctorRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                DoctorReservationCubit(getIt.get<EdoctorRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                MyPatientReportCubit(getIt.get<DoctorRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                UpdateReportCubit(getIt.get<DoctorRepoImpl>())),
         BlocProvider(create: (context) => AuthHelperCubit()),
         BlocProvider(create: (context) => LabHelperCubit()),
-        BlocProvider(create: (context) => AddServiceCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(create: (context) =>LabReservationsCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
-        BlocProvider(create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>())),
-        BlocProvider(create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>())),
-        BlocProvider(create: (context) => CreateScanCubit(getIt.get<ScanRepoImpl>()))
+        BlocProvider(
+            create: (context) => AddServiceCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                LabReservationsCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(
+            create: (context) => GetLabServicesCubit(getIt.get<LabRepoImpl>())),
+        BlocProvider(
+            create: (context) => FreeTimesCubit(getIt.get<EdoctorRepoImpl>())),
+        BlocProvider(
+            create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>())),
+        BlocProvider(
+            create: (context) => CreateScanCubit(getIt.get<ScanRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

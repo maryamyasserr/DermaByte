@@ -7,7 +7,6 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class PatientCard extends StatelessWidget {
   const PatientCard(
       {super.key,
@@ -18,8 +17,8 @@ class PatientCard extends StatelessWidget {
       required this.date,
       required this.start,
       required this.onTap});
-  final String cardTitle, cardSubTitle,date;
-  final String ?imageCard;
+  final String cardTitle, cardSubTitle, date;
+  final String? imageCard;
   final void Function() diagnose, start, onTap;
   @override
   Widget build(BuildContext context) {
@@ -44,21 +43,18 @@ class PatientCard extends StatelessWidget {
               Expanded(
                 child: Row(children: [
                   Expanded(
-                    child:ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: AspectRatio(
-                        aspectRatio: 0.5,
-                        child: imageCard==null?
-                        SvgPicture.asset(
-                          Assets.kAvatar
-                        ):
-                         CachedNetworkImage(
-                          fit: BoxFit.fill,
-                        imageUrl: imageCard!,
-                        ),
-                      ),
-                    )
-                  ),
+                      child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: AspectRatio(
+                      aspectRatio: 0.5,
+                      child: imageCard == null
+                          ? SvgPicture.asset(Assets.kAvatar)
+                          : CachedNetworkImage(
+                              fit: BoxFit.fill,
+                              imageUrl: imageCard!,
+                            ),
+                    ),
+                  )),
                   const SizedBox(width: 12),
                   Expanded(
                     flex: 3,

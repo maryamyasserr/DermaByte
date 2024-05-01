@@ -43,18 +43,18 @@ class CarddItem extends StatelessWidget {
                 // const SizedBox(width: 16),
                 Expanded(
                     flex: 2,
-                    child: imageCard==null?
-                    SvgPicture.asset(Assets.kAvatar):
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: AspectRatio(
-                        aspectRatio: 0.8,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.fill,
-                          imageUrl: imageCard!,
-                        ),
-                      ),
-                    )),
+                    child: imageCard == null
+                        ? SvgPicture.asset(Assets.kAvatar)
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: AspectRatio(
+                              aspectRatio: 0.8,
+                              child: CachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl: imageCard!,
+                              ),
+                            ),
+                          )),
                 const SizedBox(width: 16),
                 Expanded(
                   flex: 4,

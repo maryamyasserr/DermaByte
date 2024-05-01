@@ -23,7 +23,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
   @override
   void initState() {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
-      reviwed: 'false',
+        reviwed: 'false',
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
@@ -84,7 +84,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
                                     state.reservations[index].scan!.id!;
-                                print( state.reservations[index].scan!.id!);
+                                print(state.reservations[index].scan!.id!);
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)
                                         .getPatientReport ==

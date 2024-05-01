@@ -38,7 +38,7 @@ class _DoctorBodyState extends State<DoctorBody> {
           currentIndex: selectedIndex,
           items: const <BottomNavigationBarItem>[
             // BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          
+
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.calendarCheck),
                 label: "Appoinments"),
@@ -46,7 +46,7 @@ class _DoctorBodyState extends State<DoctorBody> {
             //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.call_received), label: "Requetsts"),
-                  BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon: Icon(Icons.schedule), label: "Schedule"),
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.userDoctor), label: "Profile"),

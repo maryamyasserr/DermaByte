@@ -39,11 +39,10 @@ class IntroBottomSheet extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         backgroundColor: AppColors.kPrimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
-                      
                         )),
                     onPressed: () {
                       GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);

@@ -90,7 +90,8 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                   SizedBox(height: mediaQuery.height * 0.02),
                   lab.services!.isEmpty
                       ? const Expanded(
-                          child:EmptyWidget(text: "No Services Provided From This lab"))
+                          child: EmptyWidget(
+                              text: "No Services Provided From This lab"))
                       : Expanded(
                           child: GridView.builder(
                             physics: const BouncingScrollPhysics(),
@@ -99,7 +100,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 30,
                                     crossAxisSpacing: 15,
-                                    childAspectRatio:1.2),
+                                    childAspectRatio: 1.2),
                             itemCount: lab.services!.length,
                             itemBuilder: (context, index) {
                               bool isSelected = selectedIndices.contains(index);

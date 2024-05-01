@@ -14,8 +14,9 @@ class PatientTestRequested extends StatelessWidget {
   Widget build(BuildContext context) {
     ReportModel report =
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport!;
-    return
-       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         Text(
           "Test requested.",
           style: Styels.textStyle24_600(context),
@@ -29,7 +30,7 @@ class PatientTestRequested extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  "- ${report.tests?[index].testName!.join(',')  ?? ""} Test",
+                  "- ${report.tests?[index].testName!.join(',') ?? ""} Test",
                   style: Styels.textStyle18_400(context),
                 ),
               );

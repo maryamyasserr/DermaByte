@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/result_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-
 part 'attach_result_state.dart';
 
 class AttachResultCubit extends Cubit<AttachResultState> {
