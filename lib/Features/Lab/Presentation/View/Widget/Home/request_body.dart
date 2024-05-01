@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
@@ -24,8 +23,8 @@ class RequestBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LabReservations? reservation =
-        BlocProvider.of<LabReservationsCubit>(context).currentReservation;
+    LabReservations reservation =
+        BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
     return BlocProvider(
       create: (context) => AttachResultCubit(getIt.get<LabRepoImpl>()),
       child: SafeArea(
@@ -34,9 +33,7 @@ class RequestBody extends StatelessWidget {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-            child: reservation == null
-                ? const ErrWidget(errMessage: "Something is wrong")
-                : Padding(
+            child: Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.03),
                     child: ListView(
@@ -48,9 +45,8 @@ class RequestBody extends StatelessWidget {
                             info: 'Name :',
                             data:
                                 "${reservation.patient!.firstName!} ${reservation.patient!.lastName!}"),
-                        const PatientInfo(info: 'Age :', data: "21"),
-                        const PatientInfo(info: 'Gender :', data: " Male"),
-                        const PatientInfo(info: 'Date :', data: " 29/5/2022"),
+                        const PatientInfo(info: 'Age :', data: "22"),
+                        PatientInfo(info: 'Date : ', data: "${reservation.date!.day}/${reservation.date!.month}/${reservation.date!.year}"),
                         const SizedBox(height: 16),
                         const Divider(
                           thickness: 0.3,
@@ -62,7 +58,7 @@ class RequestBody extends StatelessWidget {
                             : const PatientTestRequestedLab(),
                         const SizedBox(height: 50),
                         const FileUpload(),
-                        const SizedBox(height: 80),
+                        const SizedBox(height: 50),
                         BlocConsumer<AttachResultCubit, AttachResultState>(
                           listener: (context, state) {
                             if (state is AttachResultSuccess) {

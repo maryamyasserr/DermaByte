@@ -6,16 +6,12 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/service_item.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/sheet_body.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View_Model/Add%20Lab%20Services/add_lab_services_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Get%20Lab%20Services/get_lab_services_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ServiceSelectionViewBody extends StatefulWidget {
   const ServiceSelectionViewBody({super.key});
-  static TextEditingController testName = TextEditingController();
-  static TextEditingController cost = TextEditingController();
 
   @override
   State<ServiceSelectionViewBody> createState() =>
@@ -56,8 +52,12 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
               builder: (context, state) {
                 if (state is GetLabServicesSuccess) {
                   if (state.services.isEmpty) {
-                    return const Expanded(
-                        child: Center(child: Text("No Services Yet")));
+                    return Expanded(
+                        child: Center(
+                            child: Text(
+                      "No Services Yet",
+                      style: Styels.textStyle24_600(context),
+                    )));
                   } else {
                     return Expanded(
                       child: GridView.builder(
@@ -80,7 +80,16 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                 } else if (state is GetLabServicesFailure) {
                   return Expanded(
                       child: Center(
-                          child: ErrWidget(errMessage: state.errMessage)));
+                          child: ErrWidget(
+                    errMessage: state.errMessage,
+                    onTap: () {
+                      BlocProvider.of<GetLabServicesCubit>(context)
+                          .getMyServices(
+                              token: BlocProvider.of<AuthCubit>(context)
+                                  .labModel!
+                                  .token);
+                    },
+                  )));
                 } else {
                   return const Expanded(
                       child: Center(
@@ -101,32 +110,7 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                   showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return SheetBody(
-                          isLoading: BlocProvider.of<AddServiceCubit>(context)
-                              .isLoading,
-                          testName: ServiceSelectionViewBody.testName,
-                          cost: ServiceSelectionViewBody.cost,
-                          onPressed: () async {
-                            await BlocProvider.of<AddServiceCubit>(context)
-                                .addService(
-                                    context: context,
-                                    token: BlocProvider.of<AuthCubit>(context)
-                                        .labModel!
-                                        .token,
-                                    body: {
-                                  "name":
-                                      "${ServiceSelectionViewBody.testName.text} test",
-                                  "cost": ServiceSelectionViewBody.cost.text
-                                });
-                            await BlocProvider.of<GetLabServicesCubit>(context)
-                                .getMyServices(
-                                    token: BlocProvider.of<AuthCubit>(context)
-                                        .labModel!
-                                        .token);
-                            ServiceSelectionViewBody.testName.clear();
-                            ServiceSelectionViewBody.cost.clear();
-                          },
-                        );
+                        return const SheetBody();
                       });
                 },
                 child: Text(

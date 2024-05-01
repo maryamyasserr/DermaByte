@@ -99,7 +99,7 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 30,
                                     crossAxisSpacing: 15,
-                                    childAspectRatio: 1),
+                                    childAspectRatio:1.2),
                             itemCount: lab.services!.length,
                             itemBuilder: (context, index) {
                               bool isSelected = selectedIndices.contains(index);

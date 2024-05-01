@@ -35,26 +35,44 @@ class LabServiceItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 10, left: 5),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.medical_information,
-                  size: 40,
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.file_copy_rounded,
+                      size: 40,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    SizedBox(
+                      width: 80,
+                      child: Text(
+                        testName,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Styels.textStyle18_600(context),
+                      ),
+                    ),
+                  
+                  ],
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  testName,
-                  style: Styels.textStyle18_600(context),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  cost,
-                  style: Styels.textStyle15_400(context),
-                ),
+                const SizedBox(height: 20),
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Row(
+                    children: [
+                      Text(
+                      "Cost : ",
+                      style: Styels.textStyle15_400(context),
+                                      ),
+                                      Text(
+                      cost,
+                      style: Styels.textStyle15_400(context),
+                                      ),
+                    ],
+                  ),
                 selected
                     ? const Center(
                         child: Icon(
@@ -70,6 +88,9 @@ class LabServiceItem extends StatelessWidget {
                           color: AppColors.kPrimaryColor,
                         ),
                       )
+                  
+                  ],
+                ),
               ],
             ),
           ),

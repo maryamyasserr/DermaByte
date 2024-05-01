@@ -1,5 +1,6 @@
+import 'package:dermabyte/Core/Widgets/empty.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
@@ -57,12 +58,8 @@ class _HomeBodyState extends State<HomeBody> {
               );
             } else if (state is LabReservaionsSuccess) {
               if (state.labRequests.isEmpty) {
-                return Expanded(
-                    child: Center(
-                        child: Text(
-                  "No Reservaions Yet",
-                  style: Styels.textStyle20_300(context),
-                )));
+                return const Expanded(
+                    child: EmptyWidget(text: "No Reservaions Yet"));
               } else {
                 return Expanded(
                     child: ListView.builder(
@@ -72,17 +69,24 @@ class _HomeBodyState extends State<HomeBody> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: RequestCard(
-                              iconCard: Assets.kAvatar,
+                              imageCard: null,
                               cardSubTitle:
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                                  "The ${state.labRequests[index].test![index].name} was requested on ${state.labRequests[index].date!.day}/${state.labRequests[index].date!.month}/${state.labRequests[index].date!.year} at ${state.labRequests[index].date!.hour}:${state.labRequests[index].date!.minute.toString().padLeft(2, '0')}",
                               cardTitle:
                                   state.labRequests[index].patient!.firstName ??
                                       'No Patient Name',
                               onPressed: () {
                                 BlocProvider.of<LabReservationsCubit>(context)
                                     .setId = state.labRequests[index].id!;
+                                if (BlocProvider.of<LabReservationsCubit>(
+                                            context)
+                                        .currentReservation ==
+                                    null) {
+                                  failedAlert(context, "Something is wrong");
+                                }else{
                                 GoRouter.of(context)
                                     .push(AppRoutes.kRequestBody);
+                                }
                               },
                               textButton: "View",
                             ),
