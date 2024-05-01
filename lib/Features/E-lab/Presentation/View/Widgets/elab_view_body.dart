@@ -64,45 +64,45 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                         errMessage: state.errMessage));
               } else if (state is LabSuccess) {
                 if (state.labs.isEmpty) {
-                  return const EmptyWidget(text: "There are no Labs available now");
+                  return const EmptyWidget(
+                      text: "There are no Labs available now");
+                } else {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: state.labs.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 24.0),
+                          child: LabItem(
+                            imageCard: state.labs[index].profilePic,
+                            labTitle: state.labs[index].firstName ?? "",
+                            labSubTitle:
+                                '${state.labs[index].firstName} laboratory in Giza that provides ${state.labs[index].services!.length} services',
+                            onTap: () {
+                              BlocProvider.of<ELabCubit>(context).setId =
+                                  state.labs[index].id!;
+                              GoRouter.of(context).push(AppRoutes.kLabDetails);
+                            },
+                            onButtonPressed: () {
+                              BlocProvider.of<ELabCubit>(context).setId =
+                                  state.labs[index].id!;
+                              if (BlocProvider.of<ELabCubit>(context)
+                                      .currentLab ==
+                                  null) {
+                                failedAlert(context,
+                                    "Something is Wrong Reserve With Another Lab");
+                              } else {
+                                GoRouter.of(context)
+                                    .push(AppRoutes.kLabReservationView);
+                              }
+                            },
+                            textButton: 'Reserve',
+                          ),
+                        );
+                      },
+                    ),
+                  );
                 }
-                else{
-                     return Expanded(
-                  child: ListView.builder(
-                    itemCount: state.labs.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 24.0),
-                        child: LabItem(
-                          iconCard: Assets.kAlphaScan,
-                          labTitle: state.labs[index].firstName ?? "",
-                          labSubTitle:
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                          onTap: () {
-                            BlocProvider.of<ELabCubit>(context).setId =
-                                state.labs[index].id!;
-                            GoRouter.of(context).push(AppRoutes.kLabDetails);
-                          },
-                          onButtonPressed: () {
-                            BlocProvider.of<ELabCubit>(context).setId =
-                                state.labs[index].id!;
-                            if (BlocProvider.of<ELabCubit>(context)
-                                    .currentLab ==
-                                null) {
-                              failedAlert(context, "Reserve With Another Lab");
-                            } else {
-                              GoRouter.of(context)
-                                  .push(AppRoutes.kLabReservationView);
-                            }
-                          },
-                          textButton: 'Reserve',
-                        ),
-                      );
-                    },
-                  ),
-                );
-                }
-             
               } else {
                 return const Expanded(
                     child: Center(

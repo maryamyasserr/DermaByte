@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CarddItem extends StatelessWidget {
   const CarddItem(
@@ -15,8 +17,8 @@ class CarddItem extends StatelessWidget {
       required this.bottomText,
       this.onPressed,
       this.aspectRatio});
-  final String imageCard, title, subTitle, textButton, bottomText;
-
+  final String title, subTitle, textButton, bottomText;
+  final String? imageCard;
   final void Function()? onPressed;
   final double? aspectRatio;
   @override
@@ -41,15 +43,15 @@ class CarddItem extends StatelessWidget {
                 // const SizedBox(width: 16),
                 Expanded(
                     flex: 2,
-                    child: ClipRRect(
+                    child: imageCard==null?
+                    SvgPicture.asset(Assets.kAvatar):
+                    ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: AspectRatio(
                         aspectRatio: 0.8,
                         child: CachedNetworkImage(
                           fit: BoxFit.fill,
-                          imageUrl: imageCard,
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
+                          imageUrl: imageCard!,
                         ),
                       ),
                     )),

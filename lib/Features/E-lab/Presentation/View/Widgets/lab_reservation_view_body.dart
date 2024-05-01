@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/payment_alert.dart';
@@ -88,12 +89,8 @@ class _LabReservationViewBodyState extends State<LabReservationViewBody> {
                   ),
                   SizedBox(height: mediaQuery.height * 0.02),
                   lab.services!.isEmpty
-                      ? Expanded(
-                          child: Center(
-                              child: Text(
-                          "No Services Provided From This lab",
-                          style: Styels.textStyle20_300(context),
-                        )))
+                      ? const Expanded(
+                          child:EmptyWidget(text: "No Services Provided From This lab"))
                       : Expanded(
                           child: GridView.builder(
                             physics: const BouncingScrollPhysics(),

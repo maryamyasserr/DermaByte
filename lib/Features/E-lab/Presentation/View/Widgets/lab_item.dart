@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,14 +9,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 class LabItem extends StatelessWidget {
   const LabItem(
       {super.key,
-      required this.iconCard,
+      required this.imageCard,
       required this.labTitle,
       required this.labSubTitle,
       required this.textButton,
       this.onTap,
       this.onButtonPressed,
       this.width});
-  final String iconCard, labTitle, labSubTitle, textButton;
+  final String labTitle, labSubTitle, textButton;
+  final String? imageCard;
   final void Function()? onTap, onButtonPressed;
   final double? width;
   @override
@@ -38,17 +41,28 @@ class LabItem extends StatelessWidget {
             children: [
               Expanded(
                 child: Row(children: [
-                  const SizedBox(width: 16),
                   Expanded(
                     flex: 2,
-                    child: SvgPicture.asset(
-                      iconCard,
-                    ),
+                    child: imageCard == null
+                        ? SvgPicture.asset(
+                            Assets.kAvatar,
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: AspectRatio(
+                              aspectRatio: 0.8,
+                              child: CachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl: imageCard!,
+                              ),
+                            ),
+                          ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     flex: 4,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 8),
                         Expanded(
@@ -61,10 +75,7 @@ class LabItem extends StatelessWidget {
                         Expanded(
                           child: Row(
                             children: [
-                              SvgPicture.asset('assets/images/star_icon.svg'),
-                              SvgPicture.asset('assets/images/star_icon.svg'),
-                              SvgPicture.asset('assets/images/star_icon.svg'),
-                              const Expanded(flex: 3, child: SizedBox()),
+                              const Expanded(flex: 6, child: SizedBox()),
                               CardButton(
                                   textButton: textButton,
                                   onPressed: onButtonPressed),
