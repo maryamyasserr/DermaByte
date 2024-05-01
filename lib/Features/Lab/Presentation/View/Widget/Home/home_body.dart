@@ -71,7 +71,7 @@ class _HomeBodyState extends State<HomeBody> {
                             child: RequestCard(
                               imageCard: state.labRequests[index].patient!.profilePic,
                               cardSubTitle:
-                                  "The ${state.labRequests[index].patient!.firstName} was requested ${state.labRequests[index].test!.length} on ${state.labRequests[index].date!.day}/${state.labRequests[index].date!.month}/${state.labRequests[index].date!.year} at ${state.labRequests[index].date!.hour}:${state.labRequests[index].date!.minute.toString().padLeft(2, '0')}",
+                                  "The ${state.labRequests[index].patient!.firstName} was requested ${state.labRequests[index].test!.length} tests on ${state.labRequests[index].date!.day}/${state.labRequests[index].date!.month}/${state.labRequests[index].date!.year} at ${state.labRequests[index].date!.hour}:${state.labRequests[index].date!.minute.toString().padLeft(2, '0')}",
                               cardTitle:
                                   state.labRequests[index].patient!.firstName ??
                                       'No Patient Name',

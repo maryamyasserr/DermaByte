@@ -46,12 +46,15 @@ class LabServiceItem extends StatelessWidget {
                       width: 8,
                     ),
                     SizedBox(
-                      width: 80,
-                      child: Text(
-                        testName,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Styels.textStyle18_600(context),
+                      width: 95,
+                      child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                        child: Text(
+                          testName,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: Styels.textStyle18_600(context),
+                        ),
                       ),
                     ),
                   ],

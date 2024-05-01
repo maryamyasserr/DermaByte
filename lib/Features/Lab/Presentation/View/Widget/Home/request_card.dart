@@ -43,7 +43,7 @@ class RequestCard extends StatelessWidget {
                           Assets.kAvatar,
                         )
                       : ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
                           child: AspectRatio(
                             aspectRatio: 0.7,
                             child: CachedNetworkImage(

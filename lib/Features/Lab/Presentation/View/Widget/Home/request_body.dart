@@ -15,10 +15,11 @@ import 'package:dermabyte/Features/Lab/Presentation/View/Widget/patient_photo.da
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Attach%20Result/attach_result_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:http_parser/http_parser.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RequestBody extends StatefulWidget {
   const RequestBody({super.key});
@@ -38,6 +39,10 @@ class _RequestBodyState extends State<RequestBody> {
   Widget build(BuildContext context) {
     LabReservations reservation =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
+    List<XFile> testResults =
+        BlocProvider.of<LabHelperCubit>(context).testResults;
+    List<String> allTests = BlocProvider.of<LabHelperCubit>(context).allTests;
+
     return BlocProvider(
       create: (context) => AttachResultCubit(getIt.get<LabRepoImpl>()),
       child: SafeArea(
@@ -58,7 +63,8 @@ class _RequestBodyState extends State<RequestBody> {
                       info: 'Name :',
                       data:
                           "${reservation.patient!.firstName!} ${reservation.patient!.lastName!}"),
-                  const PatientInfo(info: 'Age :', data: "22"),
+                  PatientInfo(
+                      info: 'Age :', data: '${reservation.patient!.age}'),
                   PatientInfo(
                       info: 'Date : ',
                       data:
@@ -89,24 +95,57 @@ class _RequestBodyState extends State<RequestBody> {
                         isLoading: BlocProvider.of<AttachResultCubit>(context)
                             .isLoading,
                         onPressed: () async {
-                          BlocProvider.of<LabHelperCubit>(context).allTest(reservation.test!);
-                            if (BlocProvider.of<LabHelperCubit>(context)
-                                    .allTests
-                                    .isEmpty ||
-                                BlocProvider.of<LabHelperCubit>(context)
-                                    .testResults
-                                    .isEmpty) {
-                              failedAlert(context, "Attach Test Result");
-                            }else{
-
+                          BlocProvider.of<LabHelperCubit>(context)
+                              .allTest(reservation.test!);
+                          if (BlocProvider.of<LabHelperCubit>(context)
+                                  .allTests
+                                  .isEmpty ||
+                              BlocProvider.of<LabHelperCubit>(context)
+                                  .testResults
+                                  .isEmpty) {
+                            failedAlert(context, "Attach Test Result");
+                          } else {
+                            FormData formData = FormData();
+                            for (int i = 0; i < testResults.length; i++) {
+                              formData.files.add(
+                                MapEntry(
+                                  'testResult',
+                                  await MultipartFile.fromFile(
+                                    testResults[i].path,
+                                    filename: 'docotrLicense$i.jpg',
+                                    contentType: MediaType('image', 'jpeg'),
+                                  ),
+                                ),
+                              );
+                              for (int i = 0; i < allTests.length; i++) {
+                                formData.fields.addAll(
+                                    [MapEntry("testName", allTests[i])]);
+                              }
+                              formData.fields.addAll([
+                                MapEntry("patient", reservation.patient!.id!)
+                              ]);
+                            }
+                           
                             await BlocProvider.of<AttachResultCubit>(context)
                                 .attachResult(
                                     context: context,
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .labModel!
                                         .token,
-                                    body: BlocProvider.of<LabHelperCubit>(context).formatData(patinetId: reservation.patient!.id!));
-                            }
+                                      body: formData
+                            // body:FormData.fromMap({
+                            //       "testName":
+                            //           BlocProvider.of<LabHelperCubit>(
+                            //                   context)
+                            //               .allTest(reservation.test!),
+                            //       "testResult":
+                            //           BlocProvider.of<LabHelperCubit>(
+                            //                   context)
+                            //               .testResults,
+                            //       "patient": reservation.patient!.id
+                            //     })
+                            );
+                          }
                         },
                       );
                     },
