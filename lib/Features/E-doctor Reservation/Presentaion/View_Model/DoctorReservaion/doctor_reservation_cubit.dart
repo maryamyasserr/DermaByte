@@ -19,6 +19,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
       required BuildContext context,
       required String token}) async {
     emit(DoctorReservationLoading());
+    emit(SelectScanSuccess());
     isLoading = true;
     var reservation = await edoctorRepo.createReservaionAndPatientReport(
         context: context,
@@ -27,6 +28,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
         token: token);
     reservation.fold((failure) {
       emit(DoctorReservationFailure(errMessage: failure.errMessage));
+      emit(SelectScanSuccess());
       isLoading = false;
     }, (paymentUrl) {
       url = paymentUrl;

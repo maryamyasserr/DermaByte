@@ -52,7 +52,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
         isVisible = true;
       });
     });
-    BlocProvider.of<FreeTimesCubit>(context).selectedDate = null;
+    BlocProvider.of<FreeTimesCubit>(context).removeSelectedDate();
     BlocProvider.of<DoctorReservationCubit>(context).deleteScan();
   }
 
@@ -111,7 +111,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   ? Visibility(visible: isVisible, child: AllFreeTime())
                   : const Center(
                       child: LoadingIndicator(color: AppColors.kPrimaryColor)),
-              const SizedBox(height: 10),
+              const SizedBox(height: 32),
               const AttachDocotorReservaionField(
                 isrequired: true,
                 padding: EdgeInsets.only(right: 15, bottom: 10),
@@ -178,6 +178,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                               token: BlocProvider.of<AuthCubit>(context)
                                   .patient!
                                   .token);
+                       
                     }
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)

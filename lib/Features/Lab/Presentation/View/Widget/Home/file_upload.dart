@@ -11,8 +11,8 @@ class FileUpload extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LabHelperCubit, LabHelperState>(
       builder: (context, state) {
-        if (BlocProvider.of<LabHelperCubit>(context).testResults == null ||
-            BlocProvider.of<LabHelperCubit>(context).testResults!.isEmpty) {
+        if (
+            BlocProvider.of<LabHelperCubit>(context).testResults.isEmpty) {
           return Container(
             width: MediaQuery.of(context).size.width * 0.9,
             height: 60,
@@ -58,7 +58,7 @@ class FileUpload extends StatelessWidget {
                   },
                   child: Column(
                     children: BlocProvider.of<LabHelperCubit>(context)
-                        .testResults!
+                        .testResults
                         .map((e) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 12),

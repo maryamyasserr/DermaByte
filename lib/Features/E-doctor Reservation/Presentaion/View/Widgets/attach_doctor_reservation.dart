@@ -57,7 +57,7 @@ class AttachDocotorReservaionField extends StatelessWidget {
                       ),
                       const SizedBox(width: 6),
                       const Icon(
-                        Icons.cloud_done,
+                        Icons.file_download_done_sharp,
                         size: 27,
                         color: Color.fromARGB(255, 51, 144, 54),
                       )
@@ -80,7 +80,8 @@ class AttachDocotorReservaionField extends StatelessWidget {
           )
         ]);
       } else {
-        return Column(children: [
+        return Column(
+          children: [
           isrequired
               ? Padding(
                   padding: padding!,

@@ -49,6 +49,11 @@ class FreeTimesCubit extends Cubit<FreeTimesState> {
     }
   }
 
+  void removeSelectedDate() {
+    selectedDate = null;
+    emit(FreeTimesSuccess());
+  }
+
   FreeTimeModel? get currentFreeTime {
     try {
       return freeTimes.firstWhere((element) =>
