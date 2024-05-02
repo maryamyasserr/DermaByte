@@ -200,7 +200,8 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                           await BlocProvider.of<SetScheduleCubit>(context)
                               .setSchedule(
                                   body: {
-                                "day": ScheduleBody.calenderTime?.day,
+                                "day": ScheduleBody.calenderTime!.toString(),
+                                // 'day': DateTime.now().day,
                                 "startTime": ScheduleBody.startTime.toString(),
                                 "endTime": ScheduleBody.endTime.toString(),
                                 "sessionTime": ScheduleBody.session.text,

@@ -34,7 +34,7 @@ class PatientTextFieldReport extends StatelessWidget {
               style: Styels.textStyle18_400(context)
                   .copyWith(fontWeight: FontWeight.w600),
             ),
-            TextField(
+            TextFormField(
               controller: controller,
               maxLines: maxLines,
               keyboardType: TextInputType.text,

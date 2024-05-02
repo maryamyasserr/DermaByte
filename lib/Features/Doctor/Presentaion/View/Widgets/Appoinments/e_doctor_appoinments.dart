@@ -1,9 +1,11 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Appoinments/patients_day.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class EdoctorAppoinments extends StatefulWidget {
   const EdoctorAppoinments({super.key});
@@ -18,9 +20,10 @@ class _EdoctorAppoinmentsState extends State<EdoctorAppoinments> {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token,
         reviwed: 'true');
+         BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
+        token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
