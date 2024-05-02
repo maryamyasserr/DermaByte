@@ -79,8 +79,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                     .setId = state.reservation![index].scan!.id!;
                                 if (BlocProvider.of<MyPatientReportCubit>(
-                                            context)
-<<<<<<< HEAD
+                                            context))
                                         .viewPatient(
                                             id: reservations[index].id!,
                                             token: BlocProvider.of<AuthCubit>(
@@ -119,7 +118,6 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                             BlocProvider.of<AuthCubit>(context)
                                                 .doctorModel!
                                                 .token);
-=======
                                         .getPatientReport ==
                                     null) {
                                   failedAlert(context, 'Something is Wrong');
@@ -138,7 +136,6 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                               {'reviewed': 'true'}));
                                
                                 }
->>>>>>> frpsm
                               },
                               onTap: () {},
                             ),
