@@ -98,14 +98,14 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                               }
                                               
                                             ));
-                                    // await BlocProvider.of<MyReservationCubit>(
-                                    //         context)
-                                    //     .getMyReservations(
-                                    //         token: BlocProvider.of<AuthCubit>(
-                                    //                 context)
-                                    //             .doctorModel!
-                                    //             .token,
-                                    //         reviwed: 'false');
+                                    await BlocProvider.of<MyReservationCubit>(
+                                            context)
+                                        .getMyReservations(
+                                            token: BlocProvider.of<AuthCubit>(
+                                                    context)
+                                                .doctorModel!
+                                                .token,
+                                            reviwed: 'false');
                                   }
                                 },
                                 onTap: () {},
