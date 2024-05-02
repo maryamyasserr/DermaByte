@@ -80,8 +80,7 @@ class AttachDocotorReservaionField extends StatelessWidget {
           )
         ]);
       } else {
-        return Column(
-          children: [
+        return Column(children: [
           isrequired
               ? Padding(
                   padding: padding!,

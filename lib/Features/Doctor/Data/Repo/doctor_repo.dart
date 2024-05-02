@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
-import 'package:dermabyte/Features/Doctor/Data/Models/my_reservaion_model/my_reservaion_model.dart';
+import 'package:dermabyte/Features/Doctor/Data/Models/p_reservation/p_reservation.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +16,8 @@ abstract class DoctorRepo {
       token,
       required dynamic body,
       required BuildContext context});
+  Future<Either<Failures, String>> reviewdPatient(
+      {required String id, required String token,required dynamic body});
   Future<Either<Failures, String>> deleteTest(
       {required String id, required String token});
 

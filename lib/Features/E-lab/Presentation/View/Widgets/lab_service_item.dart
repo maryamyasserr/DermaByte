@@ -48,7 +48,7 @@ class LabServiceItem extends StatelessWidget {
                     SizedBox(
                       width: 95,
                       child: FittedBox(
-                          fit: BoxFit.scaleDown,
+                        fit: BoxFit.scaleDown,
                         child: Text(
                           testName,
                           maxLines: 2,

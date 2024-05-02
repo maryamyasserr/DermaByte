@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
-import 'package:dermabyte/Features/Doctor/Data/Models/my_reservaion_model/my_reservaion_model.dart';
+import 'package:dermabyte/Features/Doctor/Data/Models/p_reservation/p_reservation.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
@@ -68,13 +68,6 @@ class DoctorRepoImpl implements DoctorRepo {
   }
 
   @override
-  Future<Either<Failures, String>> deleteTest(
-      {required String id, required String token}) {
-    // TODO: implement deleteTest
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either<Failures, List<MyReservaionModel>>> getMyReservation(
       {required String token, required String reviewd}) async {
     try {
@@ -89,6 +82,29 @@ class DoctorRepoImpl implements DoctorRepo {
       return right(myReservations);
     } catch (e) {
       if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, String>> deleteTest(
+      {required String id, required String token}) {
+    // TODO: implement deleteTest
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failures, String>> reviewdPatient(
+      {required String id, required String token, required body}) async {
+    try {
+      await apiService.updateWithMultipart(
+          endPoint: "Dermatologist-reservation/$id", data: body, token: token);
+      return right("Done");
+    } catch (e) {
+      if (e is DioException) {
+        print(e);
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errMessage: e.toString()));

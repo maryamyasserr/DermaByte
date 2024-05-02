@@ -125,26 +125,26 @@ class _RequestBodyState extends State<RequestBody> {
                                 MapEntry("patient", reservation.patient!.id!)
                               ]);
                             }
-                           
+
                             await BlocProvider.of<AttachResultCubit>(context)
                                 .attachResult(
                                     context: context,
                                     token: BlocProvider.of<AuthCubit>(context)
                                         .labModel!
                                         .token,
-                                      body: formData
-                            // body:FormData.fromMap({
-                            //       "testName":
-                            //           BlocProvider.of<LabHelperCubit>(
-                            //                   context)
-                            //               .allTest(reservation.test!),
-                            //       "testResult":
-                            //           BlocProvider.of<LabHelperCubit>(
-                            //                   context)
-                            //               .testResults,
-                            //       "patient": reservation.patient!.id
-                            //     })
-                            );
+                                    body: formData
+                                    // body:FormData.fromMap({
+                                    //       "testName":
+                                    //           BlocProvider.of<LabHelperCubit>(
+                                    //                   context)
+                                    //               .allTest(reservation.test!),
+                                    //       "testResult":
+                                    //           BlocProvider.of<LabHelperCubit>(
+                                    //                   context)
+                                    //               .testResults,
+                                    //       "patient": reservation.patient!.id
+                                    //     })
+                                    );
                           }
                         },
                       );

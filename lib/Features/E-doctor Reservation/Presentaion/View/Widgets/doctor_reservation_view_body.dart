@@ -178,7 +178,6 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                               token: BlocProvider.of<AuthCubit>(context)
                                   .patient!
                                   .token);
-                       
                     }
                   },
                   isLoading: BlocProvider.of<DoctorReservationCubit>(context)

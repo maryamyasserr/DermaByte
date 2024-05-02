@@ -22,14 +22,12 @@ class PatientPhoto extends StatelessWidget {
                 backgroundColor: const Color(0xffB9EEE8),
                 radius: radius,
                 child: SvgPicture.asset(Assets.kProfileAvatar))
-            :
-            CircleAvatar(
-              radius: 60,
-              child: CircleAvatar(
+            : CircleAvatar(
                 radius: 60,
-                backgroundImage: 
-                NetworkImage( reservation.patient!.profilePic!)
-              ),
-            ));
+                child: CircleAvatar(
+                    radius: 60,
+                    backgroundImage:
+                        NetworkImage(reservation.patient!.profilePic!)),
+              ));
   }
 }

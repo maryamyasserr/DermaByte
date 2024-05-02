@@ -23,7 +23,6 @@ class PersonalInfoSection extends StatelessWidget {
         PersonalInfo(
             data: "${report.patient!.firstName} ${report.patient!.lastName}"),
         PersonalInfo(data: "${report.patient!.age} Years Old"),
-        //  PersonalInfo(data:  "${report.scan!.scanDate}"),
         const SizedBox(height: 18),
       ],
     );

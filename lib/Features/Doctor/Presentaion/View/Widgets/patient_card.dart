@@ -3,7 +3,6 @@ import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -14,60 +13,71 @@ class PatientCard extends StatelessWidget {
       required this.cardTitle,
       required this.cardSubTitle,
       required this.diagnose,
-      required this.date,
-      required this.start,
+      this.hour,
+      this.minutes,
+      this.date,
+      required this.textButton,
+      required this.show,
+      required this.onPressed,
       required this.onTap});
-  final String cardTitle, cardSubTitle, date;
-  final String? imageCard;
-  final void Function() diagnose, start, onTap;
+  final String cardTitle, cardSubTitle, textButton;
+  final int? hour;
+  final int? minutes;
+  final bool show;
+  final String? imageCard, date;
+  final void Function() diagnose, onPressed, onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: AspectRatio(
-        aspectRatio: 342 / 140,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-          decoration: BoxDecoration(
-              color: AppColors.kCardColor,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0.0, 2.6),
-                  blurRadius: 6.0,
-                )
-              ]),
-          child: Row(
+        onTap: onTap,
+        child: AspectRatio(
+          aspectRatio: 300 / 125,
+          child: Stack(
             children: [
-              Expanded(
-                child: Row(children: [
-                  Expanded(
-                      child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: AspectRatio(
-                      aspectRatio: 0.5,
-                      child: imageCard == null
-                          ? SvgPicture.asset(Assets.kAvatar)
-                          : CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: imageCard!,
-                            ),
-                    ),
-                  )),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: AppColors.kCardColor,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 2.6),
+                        blurRadius: 6.0,
+                      )
+                    ]),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Row(children: [
                         Expanded(
                           flex: 2,
-                          child: Row(
+                          child: imageCard == null
+                              ? SvgPicture.asset(
+                                  Assets.kAvatar,
+                                )
+                              : ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20)),
+                                  child: AspectRatio(
+                                    aspectRatio: 0.6,
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.fill,
+                                      imageUrl: imageCard!,
+                                    ),
+                                  ),
+                                ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          flex: 5,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              const SizedBox(height: 8),
                               Expanded(
-                                flex: 8,
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
+                                flex: 3,
+                                child: SizedBox(
                                   child: CardText(
                                     cardTitle: cardTitle,
                                     cardSubTitle: cardSubTitle,
@@ -75,44 +85,48 @@ class PatientCard extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                flex: 3,
-                                child: Column(
+                                child: Row(
                                   children: [
-                                    Text(
-                                      date,
-                                      style: Styels.textStyle14_300(context),
+                                    const Expanded(child: SizedBox()),
+                                    show==true?
+                                    CardButton(
+                                      textButton: "Diagnose",
+                                      onPressed: diagnose,
+                                    ):const SizedBox(),
+                                    const SizedBox(width: 8),
+                                    CardButton(
+                                      textButton: textButton,
+                                      onPressed: onPressed,
                                     ),
+                                    const SizedBox(width: 10)
                                   ],
                                 ),
                               ),
+                              const SizedBox(height: 8),
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: Row(
-                            children: [
-                              const Expanded(child: SizedBox()),
-                              CardButton(
-                                textButton: "Diagnose",
-                                onPressed: diagnose,
-                              ),
-                              const SizedBox(width: 8),
-                              CardButton(
-                                textButton: "Start",
-                                onPressed: start,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ]),
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               ),
+              date == null
+                  ? Positioned(
+                      top: 10,
+                      right: 20,
+                      child: Row(
+                        children: [
+                          Text("$hour"),
+                          minutes == null
+                              ? const SizedBox()
+                              : Text(":${minutes.toString().padLeft(2, '0')}"),
+                          hour! > 12 ? const Text(' PM') : const Text(' AM')
+                        ],
+                      ))
+                  : Positioned(top: 10, right: 10, child: Text("$date"))
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

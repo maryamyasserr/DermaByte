@@ -37,13 +37,9 @@ class _DoctorBodyState extends State<DoctorBody> {
           unselectedItemColor: Colors.grey,
           currentIndex: selectedIndex,
           items: const <BottomNavigationBarItem>[
-            // BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.calendarCheck),
                 label: "Appoinments"),
-            // BottomNavigationBarItem(
-            //     icon: SvgPicture.asset(Assets.kRequests), label: "Requests"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.call_received), label: "Requetsts"),
             BottomNavigationBarItem(
@@ -61,7 +57,6 @@ class _DoctorBodyState extends State<DoctorBody> {
             onPageChanged: (page) {},
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              // const DoctorView(),
               const EdoctorAppoinments(),
               const DoctorRequests(),
               const ScheduleView(),

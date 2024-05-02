@@ -11,8 +11,7 @@ class FileUpload extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LabHelperCubit, LabHelperState>(
       builder: (context, state) {
-        if (
-            BlocProvider.of<LabHelperCubit>(context).testResults.isEmpty) {
+        if (BlocProvider.of<LabHelperCubit>(context).testResults.isEmpty) {
           return Container(
             width: MediaQuery.of(context).size.width * 0.9,
             height: 60,
@@ -54,7 +53,8 @@ class FileUpload extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () async {
-                    await BlocProvider.of<LabHelperCubit>(context).uploadResult();
+                    await BlocProvider.of<LabHelperCubit>(context)
+                        .uploadResult();
                   },
                   child: Column(
                     children: BlocProvider.of<LabHelperCubit>(context)
@@ -107,46 +107,43 @@ class FileUpload extends StatelessWidget {
                         ),
                       );
                     }).toList(),
-                  )
-                  
+                  )),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: AppColors.kCardColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 2.6),
+                        blurRadius: 6.0,
+                      )
+                    ]),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Additional resutls",
+                        style: Styels.textStyle16_400(context),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await BlocProvider.of<LabHelperCubit>(context)
+                              .uploadResult();
+                        },
+                        child: const Icon(
+                          Icons.add,
+                          size: 35,
+                        ),
+                      )
+                    ],
                   ),
-
-                  Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: 60,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: AppColors.kCardColor,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(0.0, 2.6),
-                    blurRadius: 6.0,
-                  )
-                ]),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Additional resutls",
-                    style: Styels.textStyle16_400(context),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      await BlocProvider.of<LabHelperCubit>(context)
-                          .uploadResult();
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      size: 35,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
+                ),
+              )
             ],
           );
         }

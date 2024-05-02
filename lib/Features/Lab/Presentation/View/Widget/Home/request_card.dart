@@ -19,7 +19,8 @@ class RequestCard extends StatelessWidget {
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
+    return
+     AspectRatio(
       aspectRatio: 330 / 125,
       child: Container(
         decoration: BoxDecoration(
@@ -43,7 +44,9 @@ class RequestCard extends StatelessWidget {
                           Assets.kAvatar,
                         )
                       : ClipRRect(
-                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)),
                           child: AspectRatio(
                             aspectRatio: 0.7,
                             child: CachedNetworkImage(
@@ -86,5 +89,6 @@ class RequestCard extends StatelessWidget {
         ),
       ),
     );
+
   }
 }

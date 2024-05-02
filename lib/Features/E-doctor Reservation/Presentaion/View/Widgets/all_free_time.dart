@@ -33,7 +33,7 @@ class _AllFreeTimeState extends State<AllFreeTime> {
         BlocProvider.of<FreeTimesCubit>(context).currentFreeTime;
     return BlocBuilder<FreeTimesCubit, FreeTimesState>(
       builder: (context, state) {
-        if (state is FreeTimesSuccess||state is FreeTimesLoading) {
+        if (state is FreeTimesSuccess || state is FreeTimesLoading) {
           if (freetimes == null) {
             return Center(
               child: Text(
