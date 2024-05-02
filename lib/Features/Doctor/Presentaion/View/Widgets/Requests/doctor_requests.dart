@@ -79,45 +79,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                     .setId = state.reservation![index].scan!.id!;
                                 if (BlocProvider.of<MyPatientReportCubit>(
-                                            context))
-                                        .viewPatient(
-                                            id: reservations[index].id!,
-                                            token: BlocProvider.of<AuthCubit>(
-                                                    context)
-                                                .doctorModel!
-                                                .token,
-                                            body: FormData.fromMap(
-                                              {
-                                                'reviewed':'true'
-                                              }
-                                              
-                                            ));
-                                    await BlocProvider.of<MyReservationCubit>(
                                             context)
-                                        .getMyReservations(
-                                            token: BlocProvider.of<AuthCubit>(
-                                                    context)
-                                                .doctorModel!
-                                                .token,
-                                            reviwed: 'false');
-                                  }
-                                },
-                                onTap: () {},
-                              ),
-                            );
-                          }));
-                } else if (state is MyReservationFailure) {
-                  return Expanded(
-                      child: Center(
-                          child: ErrWidget(
-                              onTap: () {
-                                BlocProvider.of<MyReservationCubit>(context)
-                                    .getMyReservations(
-                                        reviwed: 'false',
-                                        token:
-                                            BlocProvider.of<AuthCubit>(context)
-                                                .doctorModel!
-                                                .token);
                                         .getPatientReport ==
                                     null) {
                                   failedAlert(context, 'Something is Wrong');
