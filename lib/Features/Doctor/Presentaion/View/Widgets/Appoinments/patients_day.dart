@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Core/utils/url_launcher.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
@@ -12,6 +13,7 @@ import 'package:intl/intl.dart';
 
 class PatientsDay extends StatelessWidget {
   const PatientsDay({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyReservationCubit, MyReservationState>(
@@ -126,36 +128,49 @@ class PatientsDay extends StatelessWidget {
                                     "${state.appoinments[index].patient?.firstName ?? ""} had an scan and the result was ${state.appoinments[index].scan?.diseaseName ?? ""}",
                                 imageCard: state
                                     .appoinments[index].patient?.profilePic,
-                                onPressed: () {},
+                                onPressed: () async {
+                if (BlocProvider.of<MyReservationCubit>(context)
+                        .compareDates(DateTime.now(), state.appoinments[index].date!) ==
+                    true) {
+                  await cUrlLauncher(
+                      context: context, url: state.appoinments[index].meetingUrl);
+                } else {
+                  failedAlert(context, "appointment has not come yet");
+                }
+              },
                                 diagnose: () {
-                                                                  if (BlocProvider.of<MyPatientReportCubit>(
-                                            context)
-                                        .getPatientReport ==
-                                    null) {
-                                  failedAlert(context, "Some Thing Is Wrong");
-                                } else {
+                                    BlocProvider.of<MyPatientReportCubit>(context)
+                                          .setId =
+                                      state.appoinments[index].scan!.id!;
+                                  if (BlocProvider.of<MyPatientReportCubit>(
+                                              context)
+                                          .getPatientReport ==
+                                      null) {
+                                    failedAlert(context, "Some Thing Is Wrong");
+                                  } else {
+                                    BlocProvider.of<MyPatientReportCubit>(
+                                                context)
+                                            .setId =
+                                        state.appoinments[index].scan!.id!;
+
+                                    GoRouter.of(context)
+                                        .push(AppRoutes.kPatientView);
+                                  }
+                                },
+                                onTap: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
                                       state.appoinments[index].scan!.id!;
 
-                                  GoRouter.of(context)
-                                      .push(AppRoutes.kPatientView);
-                                }
-                                },
-                                onTap: () {
-                                   BlocProvider.of<MyPatientReportCubit>(context)
-                                        .setId =
-                                    state.appoinments[index].scan!.id!;
-                           
-                                if (BlocProvider.of<MyPatientReportCubit>(
-                                            context)
-                                        .getPatientReport ==
-                                    null) {
-                                  failedAlert(context, 'Something is Wrong');
-                                } else {
-                                  GoRouter.of(context)
-                                      .push(AppRoutes.kReportView);
-                                }
+                                  if (BlocProvider.of<MyPatientReportCubit>(
+                                              context)
+                                          .getPatientReport ==
+                                      null) {
+                                    failedAlert(context, 'Something is Wrong');
+                                  } else {
+                                    GoRouter.of(context)
+                                        .push(AppRoutes.kReportView);
+                                  }
                                 },
                               ),
                             );

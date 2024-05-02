@@ -24,7 +24,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 330 / 140,
+      aspectRatio: 320 / 140,
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.kCardColor,
@@ -54,6 +54,8 @@ class CustomCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 3),
                     child: CardText(
+                      titleWidth: MediaQuery.sizeOf(context).width * 0.645,
+                      subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
                       cardTitle: cardTitle,
                       cardSubTitle: cardSubTitle,
                     ),

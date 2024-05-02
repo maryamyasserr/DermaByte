@@ -1,11 +1,14 @@
+
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View%20Model/Create%20Scan%20Cubit/create_scan_cubit.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http_parser/http_parser.dart';
 
 class ResutlContainer extends StatelessWidget {
   const ResutlContainer({
@@ -89,17 +92,21 @@ class ResutlContainer extends StatelessWidget {
             );
           } else if (state is CreateScanFailuer) {
             // BlocProvider.of<CreateScanCubit>(context).takePhotoPath = null;
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(Assets.kErrorIcon),
-                const SizedBox(height: 9),
-                Text(
-                  state.errMessage,
-                  style: Styels.textStyle20_700(context),
-                  textAlign: TextAlign.center,
-                )
-              ],
+            return ErrWidget(
+              errMessage: state.errMessage,
+              onTap: () async {
+                FormData formData = FormData();
+                formData.files.add(MapEntry(
+                    'diseasePhoto',
+                    await MultipartFile.fromFile(
+                        BlocProvider.of<CreateScanCubit>(context)
+                            .takePhotoPath!,
+                        filename: 'profilePic.jpg',
+                        contentType: MediaType('image', 'jpeg'))));
+                await BlocProvider.of<CreateScanCubit>(context).createScan(
+                    data: formData,
+                    token: BlocProvider.of<AuthCubit>(context).patient!.token);
+              },
             );
           } else {
             return const LoadingIndicator(color: AppColors.kPrimaryColor);

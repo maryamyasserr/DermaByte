@@ -20,11 +20,9 @@ class MyReservationCubit extends Cubit<MyReservationState> {
     response.fold(
         (failure) => emit(MyReservationFailure(errMessage: failure.errMessage)),
         (data) {
-      emit(MyReservationSuccess());
+      emit(MyReservationSuccess(reservation: data));
       allAppoinments = data;
-      print(data);
       for (var e in data) {
-        print(e);
         if (myDates.any((date) =>
             date.year == e.date!.year &&
             date.month == e.date!.month &&
@@ -46,7 +44,7 @@ class MyReservationCubit extends Cubit<MyReservationState> {
         await doctorRepo.reviewdPatient(id: id, token: token, body: body);
     response.fold(
         (failure) => emit(MyReservationFailure(errMessage: failure.errMessage)),
-        (data) => emit(MyReservationSuccess()));
+        (data) => emit(ViewPatientState()));
   }
 
   set setDate(DateTime date) {
@@ -63,5 +61,18 @@ class MyReservationCubit extends Cubit<MyReservationState> {
       } else {}
     }
     emit(MyAppoinmentsSuccess(appoinments: selectedAppoinments));
+  }
+
+    bool compareDates(DateTime date1, DateTime date2) {
+    if (date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day &&
+        date1.hour == date2.hour &&
+        (date1.minute == date2.minute ||
+            date1.difference(date2) <= const Duration(minutes: 10))) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

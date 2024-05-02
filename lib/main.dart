@@ -7,6 +7,8 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Helper/auth_helper.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/doctor_repo_impl.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Set%20Schedule/set_schedule_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
@@ -82,7 +84,13 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) => EdoctorCubit(getIt.get<EdoctorRepoImpl>())),
         BlocProvider(
-            create: (context) => CreateScanCubit(getIt.get<ScanRepoImpl>()))
+            create: (context) => CreateScanCubit(getIt.get<ScanRepoImpl>())),
+
+        BlocProvider( create: (context) => SetScheduleCubit(getIt.get<DoctorRepoImpl>())),
+
+        BlocProvider( create: (context) => MyReservationCubit(getIt.get<DoctorRepoImpl>()))
+
+
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

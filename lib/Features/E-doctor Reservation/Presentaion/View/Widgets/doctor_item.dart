@@ -46,7 +46,7 @@ class CarddItem extends StatelessWidget {
                     child: imageCard == null
                         ? SvgPicture.asset(Assets.kAvatar)
                         : ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
                             child: AspectRatio(
                               aspectRatio: 0.8,
                               child: CachedNetworkImage(
@@ -65,6 +65,8 @@ class CarddItem extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: CardText(
+                          titleWidth: MediaQuery.sizeOf(context).width * 0.645,
+                          subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
                           cardTitle: title,
                           cardSubTitle: subTitle,
                         ),

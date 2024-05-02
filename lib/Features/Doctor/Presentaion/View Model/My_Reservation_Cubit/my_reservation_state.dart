@@ -7,7 +7,13 @@ final class MyReservationInitial extends MyReservationState {}
 
 final class MyReservationLoading extends MyReservationState {}
 
-final class MyReservationSuccess extends MyReservationState {}
+final class ViewPatientState extends MyReservationState {}
+
+final class MyReservationSuccess extends MyReservationState {
+  final List<MyReservaionModel>? reservation;
+
+  MyReservationSuccess({required this.reservation});
+}
 
 final class MyAppoinmentsSuccess extends MyReservationState {
   final List<MyReservaionModel> appoinments;

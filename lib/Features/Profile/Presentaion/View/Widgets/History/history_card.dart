@@ -53,6 +53,8 @@ class HistoryCard extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: CardText(
+                            titleWidth: MediaQuery.sizeOf(context).width * 0.645,
+                            subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
                             cardTitle: cardTitle,
                             cardSubTitle: cardSubTitle,
                           ),

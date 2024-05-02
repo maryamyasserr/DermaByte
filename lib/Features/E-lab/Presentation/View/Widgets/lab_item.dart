@@ -68,6 +68,8 @@ class LabItem extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: CardText(
+                            titleWidth: MediaQuery.sizeOf(context).width * 0.645,
+                            subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
                             cardTitle: labTitle,
                             cardSubTitle: labSubTitle,
                           ),

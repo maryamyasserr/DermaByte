@@ -79,6 +79,8 @@ class PatientCard extends StatelessWidget {
                                 flex: 3,
                                 child: SizedBox(
                                   child: CardText(
+                                    titleWidth: MediaQuery.sizeOf(context).width * 0.645,
+                                    subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
                                     cardTitle: cardTitle,
                                     cardSubTitle: cardSubTitle,
                                   ),

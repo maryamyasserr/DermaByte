@@ -45,7 +45,6 @@ class DoctorRepoImpl implements DoctorRepo {
       return right(report);
     } catch (e) {
       if (e is DioException) {
-        GoRouter.of(context).pop();
         return left(ServerFailure.fromDioException(e));
       }
       GoRouter.of(context).pop();

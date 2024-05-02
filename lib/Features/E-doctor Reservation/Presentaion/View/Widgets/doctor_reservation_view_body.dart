@@ -137,14 +137,20 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                         null) {
                       failedAlert(context, "No Scan Selected");
                     } else {
+                      print(BlocProvider.of<DoctorReservationCubit>(context)
+                          .scanId);
+                      print(BlocProvider.of<DoctorReservationCubit>(context)
+                          .doctorId);
+                      print(BlocProvider.of<AuthCubit>(context)
+                          .patient!
+                          .patient
+                          .id);
+                      print(BlocProvider.of<FreeTimesCubit>(context)
+                          .selectedDate);
                       await BlocProvider.of<DoctorReservationCubit>(context)
                           .createReservationAndPatientReport(
                               context: context,
                               reservationData: FormData.fromMap({
-                                "patient": BlocProvider.of<AuthCubit>(context)
-                                    .patient!
-                                    .patient
-                                    .id,
                                 "dermatologist":
                                     BlocProvider.of<DoctorReservationCubit>(
                                             context)
