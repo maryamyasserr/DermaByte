@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FileUpload extends StatelessWidget {
-  const FileUpload({super.key});
+  const FileUpload({super.key, required this.index});
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class FileUpload extends StatelessWidget {
                   GestureDetector(
                     onTap: () async {
                       await BlocProvider.of<LabHelperCubit>(context)
-                          .uploadResult();
+                          .uploadTests(index: index);
                     },
                     child: const Icon(
                       Icons.add,
@@ -54,7 +56,7 @@ class FileUpload extends StatelessWidget {
               GestureDetector(
                   onTap: () async {
                     await BlocProvider.of<LabHelperCubit>(context)
-                        .uploadResult();
+                        .uploadTests(index:  1);
                   },
                   child: Column(
                     children: BlocProvider.of<LabHelperCubit>(context)
@@ -87,7 +89,7 @@ class FileUpload extends StatelessWidget {
                                 IconButton(
                                     onPressed: () {
                                       BlocProvider.of<LabHelperCubit>(context)
-                                          .removePhoto(e);
+                                          .removePhoto(index, e);
                                     },
                                     icon: const Icon(
                                       Icons.close,
@@ -133,7 +135,7 @@ class FileUpload extends StatelessWidget {
                       GestureDetector(
                         onTap: () async {
                           await BlocProvider.of<LabHelperCubit>(context)
-                              .uploadResult();
+                              .uploadTests(index:  index);
                         },
                         child: const Icon(
                           Icons.add,

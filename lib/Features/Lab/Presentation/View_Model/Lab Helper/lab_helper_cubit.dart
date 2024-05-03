@@ -10,35 +10,38 @@ class LabHelperCubit extends Cubit<LabHelperState> {
   LabHelperCubit() : super(LabHelperInitial());
   List<XFile> testResults = [];
   List<String> allTests = [];
-  Future<void> uploadResult() async {
+  List<List<XFile>> allUploadedTests = [];
+
+  Future<void> uploadTests({required int index}) async {
     final List<XFile> pickedFile = await ImagePicker().pickMultiImage();
-    if (testResults.isEmpty) {
-      testResults = pickedFile;
+    if (allUploadedTests[index].isEmpty) {
+      allUploadedTests[index] = pickedFile;
       emit(LabHelperSuccess());
     } else {
       for (var e in pickedFile) {
-        bool exists =
-            testResults.any((existingFile) => existingFile.name == e.name);
+        bool exists = allUploadedTests[index]
+            .any((existingFile) => existingFile.name == e.name);
         if (!exists) {
-          testResults.add(e);
+          allUploadedTests[index].add(e);
         }
       }
       emit(LabHelperFailure());
     }
   }
 
-  void removePhoto(XFile photo) {
-    testResults.remove(photo);
+  void removePhoto(index, XFile test) {
+    allUploadedTests[index].remove(test);
     emit(LabHelperSuccess());
   }
 
-  List<String> allTest(List<Test> patientTest) {
+  void allTest(List<Test> patientTest) {
     // String tests = '';
     for (var item in patientTest) {
-      allTests.add(item.name!);
+      if (allTests.contains(item.name)) {
+      } else {
+        allTests.add(item.name!);
+      }
     }
     // tests = allTests.join(',');
-
-    return allTests;
   }
 }

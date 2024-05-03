@@ -37,6 +37,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
     }, (paymentUrl) {
       url = paymentUrl;
       emit(DoctorReservationSuccess(successMessage: "Done"));
+        emit(SelectScanSuccess(scans: [scanName, scanId]));
       isLoading = false;
     });
   }
