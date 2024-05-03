@@ -9,7 +9,7 @@ class PreservationModel {
   dynamic uploadedTest;
   Patient patient;
   Dermatologist dermatologist;
-  Scan scan;
+  List<Scan> scan;
   List? tests;
 
   PreservationModel(
@@ -32,8 +32,9 @@ class PreservationModel {
             Patient.fromJson(json['patient'] as Map<String, dynamic>),
         dermatologist: json['dermatologist'] = Dermatologist.fromJson(
             json['dermatologist'] as Map<String, dynamic>),
-        scan: json['scan'] =
-            Scan.fromJson(json['scan'] as Map<String, dynamic>),
+        scan: (json['scan'] as List<dynamic>?)
+            !.map((e) => Scan.fromJson(e as Map<String, dynamic>))
+            .toList(),
         tests: json['tests'] as List?);
   }
 
@@ -44,7 +45,7 @@ class PreservationModel {
         'meetingUrl': meetingUrl,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
-        'scan': scan.toJson(),
+        'scan':scan.map((e) => e.toJson()).toList(),
         'tests': tests
       };
 
@@ -54,7 +55,7 @@ class PreservationModel {
         'uploadedTest': uploadedTest,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
-        'scan': scan.toJson(),
+        'scan': scan.map((e) => e.toJson()).toList(),
         'tests': tests
       };
 }

@@ -103,7 +103,9 @@ class _PatientViewState extends State<PatientView> {
                         } else {
                           await BlocProvider.of<UpdateReportCubit>(context)
                               .updateReport(
-                                token: BlocProvider.of<AuthCubit>(context).doctorModel!.token,
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .doctorModel!
+                                      .token,
                                   id: report.id!,
                                   body: {
                                     "medicine": [

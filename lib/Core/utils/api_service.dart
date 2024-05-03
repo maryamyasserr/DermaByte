@@ -86,7 +86,7 @@ class ApiService {
     return response.data;
   }
 
-    Future<Map<String, dynamic>> updateWithMultipart(
+  Future<Map<String, dynamic>> updateWithMultipart(
       {required String endPoint,
       required dynamic data,
       @required String? token}) async {
@@ -96,11 +96,9 @@ class ApiService {
     } else {
       _dio.options.headers.remove('Authorization');
     }
-    Response response = await _dio.put(
-      '$_baseUlr$endPoint',
-      data: data,
-       options: Options(contentType: Headers.multipartFormDataContentType)
-      );
+    Response response = await _dio.put('$_baseUlr$endPoint',
+        data: data,
+        options: Options(contentType: Headers.multipartFormDataContentType));
     return response.data;
   }
 

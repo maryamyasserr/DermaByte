@@ -5,7 +5,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/button.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/all_patient_tests.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/attack_field.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/attach_field.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
@@ -72,6 +72,7 @@ class RequestedTestsBody extends StatelessWidget {
                                   .copyWith(fontWeight: FontWeight.bold)),
                           const SizedBox(height: 16),
                           AttachedField(
+                            index: 0,
                             title: "Add Your Lab Tests",
                             onTap: () {
                               showModalBottomSheet(
@@ -88,8 +89,14 @@ class RequestedTestsBody extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           AttachedField(
+                            index:index
+                               ,
                             title: "Upload External Tests",
-                            onTap: () {},
+                            onTap: () async {
+                              await BlocProvider.of<AddTestResultCubit>(context)
+                                  .uploadExternalTests(
+                                      index);
+                            },
                           ),
                         ],
                       ),

@@ -18,7 +18,6 @@ class Report {
   });
 
   factory Report.fromJson(Map<String, dynamic> json) => Report(
-       
         scan: json['scan'] == null
             ? null
             : Scan.fromJson(json['scan'] as Map<String, dynamic>),

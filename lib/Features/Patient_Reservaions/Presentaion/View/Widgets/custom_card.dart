@@ -55,7 +55,7 @@ class CustomCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 3),
                     child: CardText(
                       titleWidth: MediaQuery.sizeOf(context).width * 0.645,
-                      subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
+                      subTitleWidth: MediaQuery.sizeOf(context).width * 0.6,
                       cardTitle: cardTitle,
                       cardSubTitle: cardSubTitle,
                     ),

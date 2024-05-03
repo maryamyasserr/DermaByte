@@ -129,17 +129,22 @@ class PatientsDay extends StatelessWidget {
                                 imageCard: state
                                     .appoinments[index].patient?.profilePic,
                                 onPressed: () async {
-                if (BlocProvider.of<MyReservationCubit>(context)
-                        .compareDates(DateTime.now(), state.appoinments[index].date!) ==
-                    true) {
-                  await cUrlLauncher(
-                      context: context, url: state.appoinments[index].meetingUrl);
-                } else {
-                  failedAlert(context, "appointment has not come yet");
-                }
-              },
+                                  if (BlocProvider.of<MyReservationCubit>(
+                                              context)
+                                          .compareDates(DateTime.now(),
+                                              state.appoinments[index].date!) ==
+                                      true) {
+                                    await cUrlLauncher(
+                                        context: context,
+                                        url: state
+                                            .appoinments[index].meetingUrl);
+                                  } else {
+                                    failedAlert(context,
+                                        "appointment has not come yet");
+                                  }
+                                },
                                 diagnose: () {
-                                    BlocProvider.of<MyPatientReportCubit>(context)
+                                  BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
                                       state.appoinments[index].scan!.id!;
                                   if (BlocProvider.of<MyPatientReportCubit>(

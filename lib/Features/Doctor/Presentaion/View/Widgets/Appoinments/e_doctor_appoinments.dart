@@ -6,7 +6,6 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Appoinments/p
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class EdoctorAppoinments extends StatefulWidget {
   const EdoctorAppoinments({super.key});
 
@@ -20,10 +19,11 @@ class _EdoctorAppoinmentsState extends State<EdoctorAppoinments> {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token,
         reviwed: 'true');
-         BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
+    BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

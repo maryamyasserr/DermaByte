@@ -17,7 +17,7 @@ abstract class DoctorRepo {
       required dynamic body,
       required BuildContext context});
   Future<Either<Failures, String>> reviewdPatient(
-      {required String id, required String token,required dynamic body});
+      {required String id, required String token, required dynamic body});
   Future<Either<Failures, String>> deleteTest(
       {required String id, required String token});
 

@@ -1,25 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
-import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CarddItem extends StatelessWidget {
-  const CarddItem(
+class SelectedScan extends StatelessWidget {
+  const SelectedScan(
       {super.key,
       required this.imageCard,
       required this.title,
       required this.subTitle,
-      required this.textButton,
-      required this.bottomText,
       this.onPressed,
-      this.aspectRatio});
-  final String title, subTitle, textButton, bottomText;
+      this.aspectRatio,
+      required this.selected});
+  final String title, subTitle;
   final String? imageCard;
   final void Function()? onPressed;
+  final bool selected;
   final double? aspectRatio;
   @override
   Widget build(BuildContext context) {
@@ -76,15 +74,15 @@ class CarddItem extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                            Text(
-                              bottomText,
-                              style: Styels.textStyle16_400(context).copyWith(
-                                  color:
-                                      const Color.fromARGB(255, 44, 133, 47)),
-                            ),
                             const Expanded(flex: 6, child: SizedBox()),
-                            CardButton(
-                                textButton: textButton, onPressed: onPressed),
+                            GestureDetector(
+                              onTap: onPressed,
+                              child: selected == true
+                                  ? const Icon(Icons.check_circle_rounded,
+                                      size: 27,
+                                      color: Color.fromARGB(255, 44, 133, 47))
+                                  : const Icon(Icons.circle_outlined,size: 27,),
+                            ),
                             const Flexible(child: SizedBox(width: 8)),
                           ],
                         ),

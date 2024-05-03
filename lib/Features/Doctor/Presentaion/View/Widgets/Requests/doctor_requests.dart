@@ -53,57 +53,56 @@ class _DoctorRequestsState extends State<DoctorRequests> {
             builder: (context, state) {
               if (state is MyReservationSuccess) {
                 if (state.reservation == null || state.reservation!.isEmpty) {
-                  return const Expanded(child: EmptyWidget(text: "No Reservation Yet"));
-                }else{
-
-                return Expanded(
-                    child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: state.reservation!.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 7),
-                            child: PatientCard(
-                              show: false,
-                              date: DateFormat.yMMMd()
-                                  .format(state.reservation![index].date!),
-                              imageCard:
-                                  state.reservation![index].scan?.diseasePhoto,
-                              cardTitle:
-                                  "${state.reservation![index].patient?.firstName ?? ""}'s report",
-                              cardSubTitle:
-                                  "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?.diseaseName ?? ""}",
-                              diagnose: () {},
-                              textButton: 'View',
-                              onPressed: () async {
-                                BlocProvider.of<MyPatientReportCubit>(context)
-                                    .setId = state.reservation![index].scan!.id!;
-                                if (BlocProvider.of<MyPatientReportCubit>(
+                  return const Expanded(
+                      child: EmptyWidget(text: "No Reservation Yet"));
+                } else {
+                  return Expanded(
+                      child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: state.reservation!.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 7),
+                              child: PatientCard(
+                                show: false,
+                                date: DateFormat.yMMMd()
+                                    .format(state.reservation![index].date!),
+                                imageCard: state
+                                    .reservation![index].scan?.diseasePhoto,
+                                cardTitle:
+                                    "${state.reservation![index].patient?.firstName ?? ""}'s report",
+                                cardSubTitle:
+                                    "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?.diseaseName ?? ""}",
+                                diagnose: () {},
+                                textButton: 'View',
+                                onPressed: () async {
+                                  BlocProvider.of<MyPatientReportCubit>(context)
+                                          .setId =
+                                      state.reservation![index].scan!.id!;
+                                  if (BlocProvider.of<MyPatientReportCubit>(
+                                              context)
+                                          .getPatientReport ==
+                                      null) {
+                                    failedAlert(context, 'Something is Wrong');
+                                  } else {
+                                    GoRouter.of(context)
+                                        .push(AppRoutes.kReportView);
+                                    await BlocProvider.of<MyReservationCubit>(
                                             context)
-                                        .getPatientReport ==
-                                    null) {
-                                  failedAlert(context, 'Something is Wrong');
-                                } else {
-                                  GoRouter.of(context)
-                                      .push(AppRoutes.kReportView);
-                                  await BlocProvider.of<MyReservationCubit>(
-                                          context)
-                                      .viewPatient(
-                                          id: state.reservation![index].id!,
-                                          token: BlocProvider.of<AuthCubit>(
-                                                  context)
-                                              .doctorModel!
-                                              .token,
-                                          body: FormData.fromMap(
-                                              {'reviewed': 'true'}));
-                               
-                                }
-                              },
-                              onTap: () {},
-                            ),
-                          );
-                        }));
-              
+                                        .viewPatient(
+                                            id: state.reservation![index].id!,
+                                            token: BlocProvider.of<AuthCubit>(
+                                                    context)
+                                                .doctorModel!
+                                                .token,
+                                            body: FormData.fromMap(
+                                                {'reviewed': 'true'}));
+                                  }
+                                },
+                                onTap: () {},
+                              ),
+                            );
+                          }));
                 }
               } else if (state is MyReservationFailure) {
                 return Expanded(

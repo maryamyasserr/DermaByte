@@ -19,8 +19,7 @@ class RequestCard extends StatelessWidget {
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return
-     AspectRatio(
+    return AspectRatio(
       aspectRatio: 330 / 125,
       child: Container(
         decoration: BoxDecoration(
@@ -91,6 +90,5 @@ class RequestCard extends StatelessWidget {
         ),
       ),
     );
-
   }
 }

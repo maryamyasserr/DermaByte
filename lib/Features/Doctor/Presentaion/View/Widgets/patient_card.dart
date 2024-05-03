@@ -79,8 +79,11 @@ class PatientCard extends StatelessWidget {
                                 flex: 3,
                                 child: SizedBox(
                                   child: CardText(
-                                    titleWidth: MediaQuery.sizeOf(context).width * 0.645,
-                                    subTitleWidth: MediaQuery.sizeOf(context).width * 0.4,
+                                    titleWidth:
+                                        MediaQuery.sizeOf(context).width *
+                                            0.645,
+                                    subTitleWidth:
+                                        MediaQuery.sizeOf(context).width * 0.64,
                                     cardTitle: cardTitle,
                                     cardSubTitle: cardSubTitle,
                                   ),
@@ -90,11 +93,12 @@ class PatientCard extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     const Expanded(child: SizedBox()),
-                                    show==true?
-                                    CardButton(
-                                      textButton: "Diagnose",
-                                      onPressed: diagnose,
-                                    ):const SizedBox(),
+                                    show == true
+                                        ? CardButton(
+                                            textButton: "Diagnose",
+                                            onPressed: diagnose,
+                                          )
+                                        : const SizedBox(),
                                     const SizedBox(width: 8),
                                     CardButton(
                                       textButton: textButton,

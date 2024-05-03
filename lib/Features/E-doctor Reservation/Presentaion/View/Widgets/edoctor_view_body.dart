@@ -81,8 +81,9 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                           padding: const EdgeInsets.only(bottom: 24),
                           child: CarddItem(
                             imageCard: state.doctors[index].profilePic!,
-                            bottomText: "${state
-                                .doctors[index].schedules![index].sessionCost!}"r"$",
+                            bottomText:
+                                "${state.doctors[index].schedules![index].sessionCost!}"
+                                r"$",
                             title:
                                 "Dr ${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",
                             subTitle: state.doctors[index].about!,

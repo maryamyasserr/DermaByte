@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
@@ -58,7 +59,7 @@ class FollowUpBody extends StatelessWidget {
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
             SliverList.builder(
-                itemCount: 1,
+                itemCount: report.tests!.isEmpty ? 0 : 1,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding:
@@ -71,6 +72,8 @@ class FollowUpBody extends StatelessWidget {
                             "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
                         textButton: "View",
                         onPressed: () {
+                          BlocProvider.of<AddTestResultCubit>(context)
+                              .getLengthTets(report.tests!.length);
                           GoRouter.of(context).push(
                             AppRoutes.kRequestedTest,
                           );

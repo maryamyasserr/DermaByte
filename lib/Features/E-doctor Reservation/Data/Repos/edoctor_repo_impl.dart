@@ -32,7 +32,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
 
   @override
   Future<Either<Failures, String>> createReservaionAndPatientReport(
-      {required FormData reservationData,
+      {required dynamic reservationData,
       required reportData,
       required BuildContext context,
       required String token}) async {

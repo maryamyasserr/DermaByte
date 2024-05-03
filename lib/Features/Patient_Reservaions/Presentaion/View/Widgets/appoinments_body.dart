@@ -79,31 +79,34 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                       child: Column(
                         children: [
                           Expanded(
-                            flex: 10,
+                              flex: 10,
                               child: ListView.builder(
                                   itemCount: state.pReservationInfo.length,
                                   physics: const BouncingScrollPhysics(),
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 12),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
                                       child: CustomCard(
                                         antoherButton: true,
                                         onDelete: () async {
                                           await BlocProvider.of<
-                                                  DeleteReservationCubit>(context)
+                                                      DeleteReservationCubit>(
+                                                  context)
                                               .deleteReservation(
                                                   id: state
-                                                      .pReservationInfo[index].id!,
-                                                  token: BlocProvider.of<AuthCubit>(
-                                                          context)
+                                                      .pReservationInfo[index]
+                                                      .id!,
+                                                  token: BlocProvider.of<
+                                                          AuthCubit>(context)
                                                       .patient!
                                                       .token);
                                           await BlocProvider.of<
-                                                  PreservationInfoCubit>(context)
+                                                      PreservationInfoCubit>(
+                                                  context)
                                               .getPatientReservationInfo(
-                                                  token: BlocProvider.of<AuthCubit>(
-                                                          context)
+                                                  token: BlocProvider.of<
+                                                          AuthCubit>(context)
                                                       .patient!
                                                       .token);
                                         },
@@ -121,7 +124,8 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                                   .setReporId =
                                               state.pReservationInfo[index]
                                                   .dermatologist.id!;
-                                          if (BlocProvider.of<ReportCubit>(context)
+                                          if (BlocProvider.of<ReportCubit>(
+                                                          context)
                                                       .patientReport ==
                                                   null ||
                                               BlocProvider.of<PreservationInfoCubit>(
@@ -133,16 +137,16 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                           } else {
                                             GoRouter.of(context).push(
                                                 AppRoutes.kFollowUp,
-                                                extra:
-                                                    state.pReservationInfo[index].id);
+                                                extra: state
+                                                    .pReservationInfo[index]
+                                                    .id);
                                           }
                                         },
                                         textButton: "View",
                                       ),
                                     );
                                   })),
-
-                            const Expanded(child: SizedBox())
+                          const Expanded(child: SizedBox())
                         ],
                       ),
                     );

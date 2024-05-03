@@ -34,7 +34,8 @@ class MyReservaionModel {
     this.report,
   });
 
-  factory MyReservaionModel.fromJson(Map<String, dynamic> json) => MyReservaionModel(
+  factory MyReservaionModel.fromJson(Map<String, dynamic> json) =>
+      MyReservaionModel(
         date: json['date'] == null
             ? null
             : DateTime.parse(json['date'] as String),

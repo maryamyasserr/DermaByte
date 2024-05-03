@@ -7,7 +7,9 @@ class CardText extends StatelessWidget {
   const CardText({
     super.key,
     required this.cardTitle,
-    required this.cardSubTitle, required this.titleWidth, required this.subTitleWidth,
+    required this.cardSubTitle,
+    required this.titleWidth,
+    required this.subTitleWidth,
   });
   final String cardTitle, cardSubTitle;
   final double titleWidth, subTitleWidth;

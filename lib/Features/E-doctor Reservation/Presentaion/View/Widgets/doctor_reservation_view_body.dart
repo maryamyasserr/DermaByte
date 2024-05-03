@@ -13,7 +13,6 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widge
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/doctor_reservaion_button.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -53,7 +52,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
       });
     });
     BlocProvider.of<FreeTimesCubit>(context).removeSelectedDate();
-    BlocProvider.of<DoctorReservationCubit>(context).deleteScan();
+    BlocProvider.of<DoctorReservationCubit>(context).deleteAllScans();
+    BlocProvider.of<DoctorReservationCubit>(context).indices = [];
   }
 
   @override
@@ -62,6 +62,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
       listener: (context, state) {
         if (state is DoctorReservationFailure) {
           failedAlert(context, state.errMessage);
+          print(state.errMessage);
         } else if (state is DoctorReservationSuccess) {
           if (BlocProvider.of<DoctorReservationCubit>(context).url == null) {
             failedAlert(context, 'Failed of Payment Process,try later');
@@ -134,23 +135,13 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                       failedAlert(context, 'No Date Selected');
                     } else if (BlocProvider.of<DoctorReservationCubit>(context)
                             .scanId ==
-                        null) {
+                        []) {
                       failedAlert(context, "No Scan Selected");
                     } else {
-                      print(BlocProvider.of<DoctorReservationCubit>(context)
-                          .scanId);
-                      print(BlocProvider.of<DoctorReservationCubit>(context)
-                          .doctorId);
-                      print(BlocProvider.of<AuthCubit>(context)
-                          .patient!
-                          .patient
-                          .id);
-                      print(BlocProvider.of<FreeTimesCubit>(context)
-                          .selectedDate);
                       await BlocProvider.of<DoctorReservationCubit>(context)
                           .createReservationAndPatientReport(
                               context: context,
-                              reservationData: FormData.fromMap({
+                              reservationData: {
                                 "dermatologist":
                                     BlocProvider.of<DoctorReservationCubit>(
                                             context)
@@ -161,13 +152,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                                 "date": BlocProvider.of<FreeTimesCubit>(context)
                                     .selectedDate
                                     ?.toIso8601String(),
-                                // "uploadedTest": await MultipartFile.fromFile(
-                                //     imgPath!,
-                                //     filename: imgPath!
-                                //         .split('/')
-                                //         .last, // Extracts the filename from the path
-                                //     contentType: MediaType.parse(mimeType))
-                              }),
+                              },
                               reportData: {
                                 "patient": BlocProvider.of<AuthCubit>(context)
                                     .patient!
@@ -179,7 +164,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                                         .doctorId,
                                 "scan": BlocProvider.of<DoctorReservationCubit>(
                                         context)
-                                    .scanId,
+                                    .scanId
                               },
                               token: BlocProvider.of<AuthCubit>(context)
                                   .patient!
