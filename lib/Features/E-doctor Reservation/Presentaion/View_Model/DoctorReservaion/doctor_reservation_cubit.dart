@@ -14,6 +14,9 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
   List<String> scanId = [];
   List<int> indices = [];
   List<String> scanName = [];
+
+  List<String> ids = [];
+  List<String> scans = [];
   Future<void> createReservationAndPatientReport(
       {required dynamic reservationData,
       required dynamic reportData,

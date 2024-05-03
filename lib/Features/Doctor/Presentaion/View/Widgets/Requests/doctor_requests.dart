@@ -68,17 +68,17 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                 date: DateFormat.yMMMd()
                                     .format(state.reservation![index].date!),
                                 imageCard: state
-                                    .reservation![index].scan?.diseasePhoto,
+                                    .reservation![index].scan?[index].diseasePhoto,
                                 cardTitle:
                                     "${state.reservation![index].patient?.firstName ?? ""}'s report",
                                 cardSubTitle:
-                                    "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?.diseaseName ?? ""}",
+                                    "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?[index].diseaseName ?? ""}",
                                 diagnose: () {},
                                 textButton: 'View',
                                 onPressed: () async {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
-                                      state.reservation![index].scan!.id!;
+                                      state.reservation![index].report![index].id!;;
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
                                           .getPatientReport ==

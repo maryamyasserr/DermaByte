@@ -27,12 +27,12 @@ class _AllPatientScansState extends State<AllPatientScans> {
     super.initState();
   }
 
-  List<String> ids = [];
-  List<String> scans = [];
   @override
   Widget build(BuildContext context) {
     List<int> indices =
         BlocProvider.of<DoctorReservationCubit>(context).indices;
+    List<String> ids = BlocProvider.of<DoctorReservationCubit>(context).ids;
+    List<String> scans = BlocProvider.of<DoctorReservationCubit>(context).scans;
     return BlocBuilder<ScanCubit, ScanState>(builder: (context, state) {
       if (state is ScanSuccess) {
         return Container(

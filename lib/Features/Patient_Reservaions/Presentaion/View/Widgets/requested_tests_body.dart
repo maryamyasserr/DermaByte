@@ -89,13 +89,11 @@ class RequestedTestsBody extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           AttachedField(
-                            index:index
-                               ,
+                            index: index,
                             title: "Upload External Tests",
                             onTap: () async {
                               await BlocProvider.of<AddTestResultCubit>(context)
-                                  .uploadExternalTests(
-                                      index);
+                                  .uploadExternalTests(index);
                             },
                           ),
                         ],

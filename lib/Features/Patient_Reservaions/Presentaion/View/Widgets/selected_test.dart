@@ -74,7 +74,6 @@ class SelectedScan extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                          
                             const Expanded(flex: 6, child: SizedBox()),
                             GestureDetector(
                               onTap: onPressed,
@@ -82,7 +81,10 @@ class SelectedScan extends StatelessWidget {
                                   ? const Icon(Icons.check_circle_rounded,
                                       size: 27,
                                       color: Color.fromARGB(255, 44, 133, 47))
-                                  : const Icon(Icons.circle_outlined,size: 27,),
+                                  : const Icon(
+                                      Icons.circle_outlined,
+                                      size: 27,
+                                    ),
                             ),
                             const Flexible(child: SizedBox(width: 8)),
                           ],

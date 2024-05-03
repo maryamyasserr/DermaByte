@@ -32,8 +32,8 @@ class PreservationModel {
             Patient.fromJson(json['patient'] as Map<String, dynamic>),
         dermatologist: json['dermatologist'] = Dermatologist.fromJson(
             json['dermatologist'] as Map<String, dynamic>),
-        scan: (json['scan'] as List<dynamic>?)
-            !.map((e) => Scan.fromJson(e as Map<String, dynamic>))
+        scan: (json['scan'] as List<dynamic>?)!
+            .map((e) => Scan.fromJson(e as Map<String, dynamic>))
             .toList(),
         tests: json['tests'] as List?);
   }
@@ -45,7 +45,7 @@ class PreservationModel {
         'meetingUrl': meetingUrl,
         'patient': patient.toJson(),
         'dermatologist': dermatologist.toJson(),
-        'scan':scan.map((e) => e.toJson()).toList(),
+        'scan': scan.map((e) => e.toJson()).toList(),
         'tests': tests
       };
 

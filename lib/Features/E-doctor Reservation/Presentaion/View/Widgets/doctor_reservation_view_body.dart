@@ -54,6 +54,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
     BlocProvider.of<FreeTimesCubit>(context).removeSelectedDate();
     BlocProvider.of<DoctorReservationCubit>(context).deleteAllScans();
     BlocProvider.of<DoctorReservationCubit>(context).indices = [];
+    BlocProvider.of<DoctorReservationCubit>(context).ids = [];
+    BlocProvider.of<DoctorReservationCubit>(context).scans = [];
   }
 
   @override
@@ -138,6 +140,10 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                         []) {
                       failedAlert(context, "No Scan Selected");
                     } else {
+                       List<String> formattedScan = 
+                         BlocProvider.of<DoctorReservationCubit>(
+                                        context)
+                                    .scanId.map((str) => '($str)').toList();
                       await BlocProvider.of<DoctorReservationCubit>(context)
                           .createReservationAndPatientReport(
                               context: context,
@@ -146,9 +152,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                                     BlocProvider.of<DoctorReservationCubit>(
                                             context)
                                         .doctorId,
-                                "scan": BlocProvider.of<DoctorReservationCubit>(
-                                        context)
-                                    .scanId,
+                                "scan":formattedScan,
+                               
                                 "date": BlocProvider.of<FreeTimesCubit>(context)
                                     .selectedDate
                                     ?.toIso8601String(),

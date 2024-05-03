@@ -33,8 +33,8 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
       emit(AddTestResultSuccess());
     } else {
       for (var e in pickedFile) {
-        bool exists =
-            allUploadedTests[index].any((existingFile) => existingFile.name == e.name);
+        bool exists = allUploadedTests[index]
+            .any((existingFile) => existingFile.name == e.name);
         if (!exists) {
           allUploadedTests[index].add(e);
         }

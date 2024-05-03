@@ -6,7 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AttachedField extends StatelessWidget {
-  const AttachedField({super.key, required this.title, required this.onTap, required this.index});
+  const AttachedField(
+      {super.key,
+      required this.title,
+      required this.onTap,
+      required this.index});
   final String title;
   final int index;
   final void Function() onTap;
@@ -78,7 +82,7 @@ class AttachedField extends StatelessWidget {
                                     onTap: () {
                                       BlocProvider.of<AddTestResultCubit>(
                                               context)
-                                          .removeLicense(index,e);
+                                          .removeLicense(index, e);
                                     },
                                     child: const Icon(
                                       Icons.cancel,

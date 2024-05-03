@@ -31,7 +31,7 @@ class MyPatientReportCubit extends Cubit<MyPatientReportState> {
 
   ReportModel? get getPatientReport {
     try {
-      return _myPatientsReport.firstWhere((element) => element.scan!.id == _id);
+      return _myPatientsReport.firstWhere((element) => element.id == _id);
     } catch (e) {
       return null;
     }
