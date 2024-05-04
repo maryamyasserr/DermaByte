@@ -24,7 +24,7 @@ class PreservationModel {
 
   factory PreservationModel.fromJson(Map<String, dynamic> json) {
     return PreservationModel(
-        id: json['_id'] as String?,
+        id: json['id'] as String?,
         meetingUrl: json['meetingUrl'] as String?,
         date: json['date'] = DateTime.parse(json['date'] as String),
         uploadedTest: json['uploadedTest'] as dynamic,
@@ -39,7 +39,7 @@ class PreservationModel {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
+        'id': id,
         'date': date.toIso8601String(),
         'uploadedTest': uploadedTest,
         'meetingUrl': meetingUrl,
@@ -50,6 +50,7 @@ class PreservationModel {
       };
 
   Map<String, dynamic> toJson2() => {
+        'id': id,
         'date': date.toIso8601String(),
         'meetingUrl': meetingUrl,
         'uploadedTest': uploadedTest,

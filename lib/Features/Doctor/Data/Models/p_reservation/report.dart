@@ -4,7 +4,7 @@ import 'scan.dart';
 
 class Report {
   String? id;
-  Scan? scan;
+  List<Scan>? scan;
   Patient? patient;
   Dermatologist? dermatologist;
   List<dynamic>? testResult;
@@ -18,9 +18,9 @@ class Report {
   });
 
   factory Report.fromJson(Map<String, dynamic> json) => Report(
-        scan: json['scan'] == null
-            ? null
-            : Scan.fromJson(json['scan'] as Map<String, dynamic>),
+         scan: (json['scan'] as List<dynamic>?)!
+            .map((e) => Scan.fromJson(e as Map<String, dynamic>))
+            .toList(),
         patient: json['patient'] == null
             ? null
             : Patient.fromJson(json['patient'] as Map<String, dynamic>),
@@ -33,7 +33,7 @@ class Report {
       );
 
   Map<String, dynamic> toJson() => {
-        'scan': scan?.toJson(),
+        'scan': scan!.map((e) => e.toJson()).toList(),
         'patient': patient?.toJson(),
         'dermatologist': dermatologist?.toJson(),
         'testResult': testResult,

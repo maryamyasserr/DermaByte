@@ -9,25 +9,33 @@ import 'package:flutter_svg/svg.dart';
 class PatientPhoto extends StatelessWidget {
   const PatientPhoto({super.key, required this.radius});
   final double radius;
+
+  @override
+ 
+
   @override
   Widget build(BuildContext context) {
-    LabReservations reservation =
-        BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
+    LabReservations reservation=  BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
     return Container(
         padding: const EdgeInsets.all(2),
         decoration: const BoxDecoration(
             color: AppColors.kPrimaryColor, shape: BoxShape.circle),
-        child: reservation.patient!.profilePic == null
-            ? CircleAvatar(
-                backgroundColor: const Color(0xffB9EEE8),
-                radius: radius,
-                child: SvgPicture.asset(Assets.kProfileAvatar))
-            : CircleAvatar(
+        child: reservation.patient!.profilePic!=null?
+           
+               CircleAvatar(
                 radius: 60,
                 child: CircleAvatar(
                     radius: 60,
                     backgroundImage:
                         NetworkImage(reservation.patient!.profilePic!)),
-              ));
+              ):
+              
+               CircleAvatar(
+                  backgroundColor: const Color(0xffB9EEE8),
+                  radius: radius,
+                  child: SvgPicture.asset(Assets.kProfileAvatar))
+            
+          
+        );
   }
 }

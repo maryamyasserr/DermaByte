@@ -18,7 +18,7 @@ abstract class LabRepo {
   Future<Either<Failures, List<ServiceModel>>> getMyServices(
       {required String token});
 
-  Future<Either<Failures, ResultModel>> attachResult(
+  Future<Either<Failures, String>> attachResult(
       {required String token,
       required dynamic body,
       required BuildContext context});

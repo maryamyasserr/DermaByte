@@ -21,7 +21,7 @@ class PatientTreatmentPlan extends StatelessWidget {
             children: [
               Text("Treatment plan", style: Styels.textStyle24_600(context)),
               Text(
-                "- ${report.treatmentPlan[0]}",
+                "- ${report.treatmentPlan??""}",
                 style: Styels.textStyle18_400(context),
               ),
             ],

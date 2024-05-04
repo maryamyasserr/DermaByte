@@ -4,12 +4,13 @@ import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Core/utils/service_locator.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
-import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo_impl.dart';
+import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
+
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/patient_info.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/patient_requested_tests.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/uploaded.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/patient_photo.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Attach%20Result/attach_result_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
@@ -23,135 +24,186 @@ import 'package:image_picker/image_picker.dart';
 class RequestBody extends StatefulWidget {
   const RequestBody({super.key});
 
+  static List<UploadedTestModel> allTestResults = [];
+
   @override
   State<RequestBody> createState() => _RequestBodyState();
 }
 
 class _RequestBodyState extends State<RequestBody> {
-  @override
-  void initState() {
-    BlocProvider.of<LabHelperCubit>(context).testResults = [];
-    BlocProvider.of<LabHelperCubit>(context).allTests = [];
-    super.initState();
+  bool isExist(String name) {
+    return RequestBody.allTestResults.any((test) => test.testName == name);
   }
 
   @override
   Widget build(BuildContext context) {
     LabReservations reservation =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
-    List<XFile> testResults =
-        BlocProvider.of<LabHelperCubit>(context).testResults;
-    List<String> allTests = BlocProvider.of<LabHelperCubit>(context).allTests;
-
-    return BlocProvider(
-      create: (context) => AttachResultCubit(getIt.get<LabRepoImpl>()),
-      child: SafeArea(
-        child: Scaffold(
-          body: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.03),
-              child: ListView(
-                children: [
-                  const SizedBox(height: 50),
-                  const PatientPhoto(radius: 40),
-                  const SizedBox(height: 30),
-                  PatientInfo(
-                      info: 'Name :',
-                      data:
-                          "${reservation.patient!.firstName!} ${reservation.patient!.lastName!}"),
-                  PatientInfo(
-                      info: 'Age :', data: '${reservation.patient!.age}'),
-                  PatientInfo(
-                      info: 'Date : ',
-                      data:
-                          "${reservation.date!.day}/${reservation.date!.month}/${reservation.date!.year}"),
-                  const SizedBox(height: 16),
-                  const Divider(
-                    thickness: 0.3,
-                    color: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
-                  reservation.test!.isEmpty
-                      ? const SizedBox()
-                      : const PatientTestRequestedLab(),
-                  const SizedBox(height: 50),
-                  BlocConsumer<AttachResultCubit, AttachResultState>(
-                    listener: (context, state) {
-                      if (state is AttachResultSuccess) {
-                        showSnackBar(context, "Done");
-                      } else if (state is AttachResultFailure) {
-                        failedAlert(context, state.errMessage);
-                        print(state.errMessage);
-                      }
-                    },
-                    builder: (context, state) {
-                      return AttachButton(
-                        isLoading: BlocProvider.of<AttachResultCubit>(context)
-                            .isLoading,
-                        onPressed: () async {
-                          BlocProvider.of<LabHelperCubit>(context)
-                              .allTest(reservation.test!);
-                          if (BlocProvider.of<LabHelperCubit>(context)
-                                  .allTests
-                                  .isEmpty ||
-                              BlocProvider.of<LabHelperCubit>(context)
-                                  .testResults
-                                  .isEmpty) {
-                            failedAlert(context, "Attach Test Result");
-                          } else {
-                            FormData formData = FormData();
-                            for (int i = 0; i < testResults.length; i++) {
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.03),
+            child: ListView(
+              children: [
+                const SizedBox(height: 50),
+                const PatientPhoto(radius: 40),
+                const SizedBox(height: 30),
+                PatientInfo(
+                    info: 'Name : ',
+                    data:
+                        "${reservation.patient!.firstName!} ${reservation.patient!.lastName!}"),
+                PatientInfo(
+                    info: 'Age : ', data: '${reservation.patient!.age}'),
+                PatientInfo(
+                    info: 'Date : ',
+                    data:
+                        "${reservation.date!.day}/${reservation.date!.month}/${reservation.date!.year}"),
+                const SizedBox(height: 16),
+                const Divider(
+                  thickness: 0.3,
+                  color: Colors.black,
+                ),
+                Column(
+                  children: reservation.test!.map((e) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          e.name!,
+                          style: Styels.textStyle20_300(context),
+                        ),
+                        const SizedBox(height: 16),
+                        isExist(e.name!) == true
+                            ? Uploaded(
+                                tests: RequestBody.allTestResults,
+                                onTap: () {
+                                  setState(() {});
+                                  print(RequestBody.allTestResults);
+                                },
+                              )
+                            : GestureDetector(
+                                onTap: () async {
+                                  final List<XFile> pickedFile =
+                                      await ImagePicker().pickMultiImage();
+                                  UploadedTestModel test = UploadedTestModel(
+                                      testName: e.name!,
+                                      testsFiles: pickedFile);
+                                  RequestBody.allTestResults.add(test);
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.95,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.07,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: AppColors.kCardColor,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(0.0, 2.6),
+                                          blurRadius: 6.0,
+                                        )
+                                      ]),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Attach Test Result",
+                                          style:
+                                              Styels.textStyle16_400(context),
+                                        ),
+                                        const Icon(
+                                          Icons.add,
+                                          size: 35,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                      ],
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 50),
+                BlocConsumer<AttachResultCubit, AttachResultState>(
+                  listener: (context, state) {
+                    if (state is AttachResultSuccess) {
+                      showSnackBar(context, "Done");
+                    } else if (state is AttachResultFailure) {
+                      failedAlert(context, state.errMessage);
+                      print(state.errMessage);
+                    }
+                  },
+                  builder: (context, state) {
+                    return AttachButton(
+                      isLoading:
+                          BlocProvider.of<AttachResultCubit>(context).isLoading,
+                      onPressed: () async {
+                        BlocProvider.of<LabHelperCubit>(context)
+                            .allTest(reservation.test!);
+                        if (BlocProvider.of<LabHelperCubit>(context)
+                                .allTests
+                                .isEmpty ||
+                            BlocProvider.of<LabHelperCubit>(context)
+                                .allUploadedTests
+                                .isEmpty) {
+                          failedAlert(context, "Attach Test Result");
+                        } else {
+                          FormData formData = FormData();
+                          for (int i = 0;
+                              i < RequestBody.allTestResults.length;
+                              i++) {
+                            for (int j = 0;
+                                j <
+                                    RequestBody
+                                        .allTestResults[i].testsFiles.length;
+                                j++) {
                               formData.files.add(
                                 MapEntry(
-                                  'testResult',
+                                  RequestBody.allTestResults[i].testName,
                                   await MultipartFile.fromFile(
-                                    testResults[i].path,
-                                    filename: 'docotrLicense$i.jpg',
+                                    RequestBody
+                                        .allTestResults[i].testsFiles[j].path,
+                                    filename: 'test Results$i.jpg',
                                     contentType: MediaType('image', 'jpeg'),
                                   ),
                                 ),
                               );
-                              // for (int i = 0; i < allTests.length; i++) {
-                              //   formData.fields.addAll(
-                              //       [MapEntry("testName", allTests[i])]);
-                              // }
-                              formData.fields.addAll([
-                                MapEntry("patient", reservation.patient!.id!)
-                              ]);
                             }
-
-                          
-                            await BlocProvider.of<AttachResultCubit>(context)
-                                .attachResult(
-                                    context: context,
-                                    token: BlocProvider.of<AuthCubit>(context)
-                                        .labModel!
-                                        .token,
-                                    body: formData
-                                    // body:FormData.fromMap({
-                                    //       "testName":
-                                    //           BlocProvider.of<LabHelperCubit>(
-                                    //                   context)
-                                    //               .allTest(reservation.test!),
-                                    //       "testResult":
-                                    //           BlocProvider.of<LabHelperCubit>(
-                                    //                   context)
-                                    //               .testResults,
-                                    //       "patient": reservation.patient!.id
-                                    //     })
-                                    );
+                            formData.fields.add(
+                              MapEntry("patient", reservation.patient!.id!)
+                            );
                           }
-                        },
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 30),
-                ],
-              ),
+
+                          print(formData.fields);
+                          // print(formData.files);
+                          await BlocProvider.of<AttachResultCubit>(context)
+                              .attachResult(
+                                  context: context,
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .labModel!
+                                      .token,
+                                  body: formData
+                                  );
+                        }
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 30),
+              ],
             ),
           ),
         ),
@@ -159,7 +211,6 @@ class _RequestBodyState extends State<RequestBody> {
     );
   }
 }
-
 
 class AttachButton extends StatelessWidget {
   const AttachButton({

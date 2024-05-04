@@ -59,7 +59,7 @@ class ReportView extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       DiseaseReport(
-                        diseaseName: report.scan?.diseaseName ?? "",
+                        diseaseName: report.scan?[0].diseaseName ?? "",
                       ),
                       const SizedBox(height: 32),
                       report.tests!.isEmpty
@@ -74,7 +74,7 @@ class ReportView extends StatelessWidget {
                           ? const SizedBox()
                           : const PatientMedications(),
                       const SizedBox(height: 24),
-                      report.treatmentPlan == null
+                      report.treatmentPlan!.isEmpty
                           ? const SizedBox()
                           : const PatientTreatmentPlan(),
                       const SizedBox(height: 64),

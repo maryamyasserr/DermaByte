@@ -25,13 +25,13 @@ class DiseaseReport extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.31,
           child: AspectRatio(
               aspectRatio: 0.7,
-              child: report.scan!.diseasePhoto == null
+              child: report.scan![0].diseasePhoto == null
                   ? const Icon(FontAwesomeIcons.circleExclamation)
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
                           fit: BoxFit.fill,
-                          imageUrl: report.scan!.diseasePhoto!),
+                          imageUrl: report.scan![0].diseasePhoto!),
                     )),
         ),
         SizedBox(width: MediaQuery.of(context).size.width * 0.05),
@@ -50,7 +50,7 @@ class DiseaseReport extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.58,
               child: Text(
-                "The scans taken on ${DateFormat.yMMMMd().format(report.scan!.scanDate!)}  showed that ${report.patient?.firstName ?? ""} might be suffering from ${report.scan?.diseaseName ?? ""}. And Although our AI model is 95% accurate a doctor’s consultation is still a must.",
+                "The scans taken on ${DateFormat.yMMMMd().format(report.scan![0].scanDate!)}  showed that ${report.patient?.firstName ?? ""} might be suffering from ${report.scan?[0].diseaseName ?? ""}. And Although our AI model is 95% accurate a doctor’s consultation is still a must.",
                 maxLines: 7,
                 overflow: TextOverflow.ellipsis,
               ),

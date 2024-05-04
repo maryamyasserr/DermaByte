@@ -17,7 +17,7 @@ class ConsutlsHeaderSection extends StatelessWidget {
         Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "${consultaion.scan!.scanDate!.year}/${consultaion.scan!.scanDate!.month}/${consultaion.scan!.scanDate!.day}",
+              "${consultaion.scan![0].scanDate!.year}/${consultaion.scan![0].scanDate!.month}/${consultaion.scan![0].scanDate!.day}",
               style: Styels.textStyle14_300(context),
             )),
         Row(
@@ -41,12 +41,12 @@ class ConsutlsHeaderSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    consultaion.scan!.diseaseName!,
+                    consultaion.scan![0].diseaseName!,
                     style: Styels.textStyle24_600(context),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "The scans taken on ${consultaion.scan!.scanDate!.year}/${consultaion.scan!.scanDate!.month}/${consultaion.scan!.scanDate!.day} show that you have ${consultaion.scan!.diseaseName!}.",
+                    "The scans taken on ${consultaion.scan![0].scanDate!.year}/${consultaion.scan![0].scanDate!.month}/${consultaion.scan![0].scanDate!.day} show that you have ${consultaion.scan![0].diseaseName!}.",
                     style: Styels.textStyle14_300(context),
                   ),
                 ],

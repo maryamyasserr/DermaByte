@@ -60,6 +60,7 @@ class FollowUpBody extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
             SliverList.builder(
                 itemCount: report.tests!.isEmpty ? 0 : 1,
+                // itemCount: 1,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding:
@@ -72,8 +73,10 @@ class FollowUpBody extends StatelessWidget {
                             "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
                         textButton: "View",
                         onPressed: () {
+                       
                           BlocProvider.of<AddTestResultCubit>(context)
                               .getLengthTets(report.tests!.length);
+
                           GoRouter.of(context).push(
                             AppRoutes.kRequestedTest,
                           );

@@ -71,16 +71,15 @@ class LabRepoImpl implements LabRepo {
   }
 
   @override
-  Future<Either<Failures, ResultModel>> attachResult(
+  Future<Either<Failures, String>> attachResult(
       {required String token,
       required body,
       required BuildContext context}) async {
     try {
-      var response = await apiService.postWithMultiForm(
+       await apiService.postWithMultiForm(
           endPoint: "results", data: body, token: token);
-      ResultModel result = ResultModel.fromJson(response['data']);
       GoRouter.of(context).pop();
-      return right(result);
+      return right("Done");
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

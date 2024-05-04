@@ -4,7 +4,6 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/button.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/all_patient_tests.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/attach_field.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
@@ -65,23 +64,24 @@ class RequestedTestsBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                            
                               report.tests![index].testName!
                                   .join(',')
                                   .toString(),
                               style: Styels.textStyle24_600(context)
                                   .copyWith(fontWeight: FontWeight.bold)),
                           const SizedBox(height: 16),
-                          AttachedField(
-                            index: 0,
-                            title: "Add Your Lab Tests",
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return const AllPatientTest();
-                                  });
-                            },
-                          ),
+                          // AttachedField(
+                          //   index: 0,
+                          //   title: "Add Your Lab Tests",
+                          //   onTap: () {
+                          //     showModalBottomSheet(
+                          //         context: context,
+                          //         builder: (context) {
+                          //           return const AllPatientTest();
+                          //         });
+                          //   },
+                          // ),
                           const SizedBox(height: 16),
                           Text(
                             'or',
@@ -100,6 +100,9 @@ class RequestedTestsBody extends StatelessWidget {
                       ),
                     );
                   }),
+            
+            
+            
               const SizedBox(height: 30),
               Center(
                 child: AddTestButton(
