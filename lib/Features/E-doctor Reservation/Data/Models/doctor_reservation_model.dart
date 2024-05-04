@@ -1,4 +1,3 @@
-
 class DoctorReservationModel {
   DateTime? date;
   List<dynamic>? uploadedTest;
@@ -58,4 +57,3 @@ class DoctorReservationModel {
         'id': id,
       };
 }
-

@@ -1,22 +1,15 @@
 // ignore_for_file: file_names
-import 'package:dermabyte/Core/utils/assets.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomAppBar extends StatefulWidget {
+class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key, required this.title});
 
   final String title;
-
-  @override
-  State<CustomAppBar> createState() => _CustomAppBarState();
-}
-
-class _CustomAppBarState extends State<CustomAppBar> {
-  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +24,31 @@ class _CustomAppBarState extends State<CustomAppBar> {
               },
               icon: const Icon(Icons.arrow_back)),
           Text(
-            widget.title,
+            title,
             style: Styels.textStyle24_600(context),
           ),
           Row(
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).push(AppRoutes.kNotification);
+                    GoRouter.of(context).push(AppRoutes.kHistory);
                   },
-                  child: SvgPicture.asset(Assets.kBellIcon)),
+                  child: const Icon(
+                    FontAwesomeIcons.solidFileLines,
+                    size: 30,
+                    color: AppColors.kPrimaryColor,
+                  )),
               const SizedBox(width: 25),
               GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(AppRoutes.kProfile);
-                    isPressed = true;
-                    setState(() {});
-                  },
-                  child: SvgPicture.asset(Assets.kProfileIcon))
+                onTap: () {
+                  GoRouter.of(context).push(AppRoutes.kProfile);
+                },
+                child: const Icon(
+                  FontAwesomeIcons.solidUser,
+                  size: 30,
+                  color: AppColors.kPrimaryColor,
+                ),
+              )
             ],
           )
         ],

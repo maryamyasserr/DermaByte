@@ -12,12 +12,12 @@ class LabInfo extends StatelessWidget {
         children: [
           Text(
             info,
-            style: Styels.textStyle16_400(context)
+            style: Styels.textStyle18_400(context)
                 .copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
             data,
-            style: Styels.textStyle16_400(context),
+            style: Styels.textStyle18_400(context),
           ),
         ],
       ),

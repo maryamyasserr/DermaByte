@@ -146,15 +146,14 @@ class PatientsDay extends StatelessWidget {
                                 diagnose: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
-                                      state.appoinments[index].report![index].id!;
+                                      state.appoinments[index].report![index]
+                                          .id!;
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
                                           .getPatientReport ==
                                       null) {
                                     failedAlert(context, "Some Thing Is Wrong");
                                   } else {
-                                   
-
                                     GoRouter.of(context)
                                         .push(AppRoutes.kPatientView);
                                   }
@@ -162,7 +161,8 @@ class PatientsDay extends StatelessWidget {
                                 onTap: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
-                                       state.appoinments[index].report![index].id!;
+                                      state.appoinments[index].report![index]
+                                          .id!;
 
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)

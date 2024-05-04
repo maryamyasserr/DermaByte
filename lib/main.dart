@@ -95,8 +95,8 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 AddTestResultCubit(getIt.get<PreservationInfoRepoImpl>())),
-
-        BlocProvider(create: (context) => AttachResultCubit(getIt.get<LabRepoImpl>()))      
+        BlocProvider(
+            create: (context) => AttachResultCubit(getIt.get<LabRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

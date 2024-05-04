@@ -4,6 +4,5 @@ class UploadedTestModel {
   final String testName;
   final List<XFile> testsFiles;
 
-
   UploadedTestModel({required this.testName, required this.testsFiles});
 }

@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
@@ -7,14 +9,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 class HistoryCard extends StatelessWidget {
   const HistoryCard(
       {super.key,
-      required this.iconCard,
+      this.imageCard,
       required this.cardTitle,
       required this.cardSubTitle,
       required this.textButton,
       this.onPressed,
-      this.width});
-  final String iconCard, cardTitle, cardSubTitle, textButton;
+      this.width,
+      required this.logo});
+  final String cardTitle, cardSubTitle, textButton;
+  final String? imageCard;
   final void Function()? onPressed;
+  final bool logo;
   final double? width;
   @override
   Widget build(BuildContext context) {
@@ -35,13 +40,22 @@ class HistoryCard extends StatelessWidget {
           children: [
             Expanded(
               child: Row(children: [
-                const SizedBox(width: 16),
                 Expanded(
-                  flex: 2,
-                  child: SvgPicture.asset(
-                    iconCard,
-                  ),
-                ),
+                    flex: 2,
+                    child: imageCard == null
+                        ? SvgPicture.asset(Assets.kDoctorAvatar)
+                        : ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                bottomLeft: Radius.circular(20)),
+                            child: AspectRatio(
+                              aspectRatio: 0.7,
+                              child: CachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl: imageCard!,
+                              ),
+                            ),
+                          )),
                 const SizedBox(width: 16),
                 Expanded(
                   flex: 5,
@@ -53,22 +67,39 @@ class HistoryCard extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: CardText(
-                            titleWidth:
-                                MediaQuery.sizeOf(context).width * 0.645,
+                            titleWidth: MediaQuery.sizeOf(context).width * 0.55,
                             subTitleWidth:
-                                MediaQuery.sizeOf(context).width * 0.4,
+                                MediaQuery.sizeOf(context).width * 0.55,
                             cardTitle: cardTitle,
                             cardSubTitle: cardSubTitle,
                           ),
                         ),
                       ),
-                      Expanded(
+
+                      logo==true?
+                       Expanded(
+                        flex: 2,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 12),
-                          child: CardButton(
-                            textButton: textButton,
-                            onPressed: onPressed,
-                          ),
+                          child: 
+                               Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Image.asset(
+                                    Assets.kLogo,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                             
+                        ),
+                      ):
+                      Expanded(
+                        
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child:  CardButton(
+                                  textButton: textButton,
+                                  onPressed: onPressed,
+                                ),
                         ),
                       ),
                       const SizedBox(height: 8),

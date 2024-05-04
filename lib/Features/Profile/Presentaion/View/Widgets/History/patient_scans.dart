@@ -1,7 +1,6 @@
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
@@ -9,6 +8,7 @@ import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class PatientScans extends StatelessWidget {
   const PatientScans({
@@ -28,10 +28,11 @@ class PatientScans extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: HistoryCard(
-                      iconCard: Assets.kDoctorAvatar,
+                      logo: true,
+                      imageCard: state.scans[index].diseasePhoto,
                       cardTitle: state.scans[index].diseaseName,
                       cardSubTitle:
-                          "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                          "Scans taken on ${DateFormat.yMMMd().format(state.scans[index].scanDate)} at ${DateFormat.jm().format(state.scans[index].scanDate)}",
                       textButton: "View",
                       onPressed: () {
                         BlocProvider.of<ScanCubit>(context).setId =

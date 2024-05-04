@@ -73,7 +73,6 @@ class FollowUpBody extends StatelessWidget {
                             "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
                         textButton: "View",
                         onPressed: () {
-                       
                           BlocProvider.of<AddTestResultCubit>(context)
                               .getLengthTets(report.tests!.length);
 

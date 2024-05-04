@@ -11,7 +11,6 @@ class ItemsListView extends StatelessWidget {
     ProfileItemModel(title: 'Account', route: AppRoutes.kAccount),
     ProfileItemModel(title: 'Address', route: AppRoutes.kAddress),
     ProfileItemModel(title: 'Credit Card', route: AppRoutes.kCreditCard),
-    ProfileItemModel(title: 'History', route: AppRoutes.kHistory),
     ProfileItemModel(title: 'Setting', route: AppRoutes.kSettings),
     ProfileItemModel(title: 'Log Out', route: "")
     // "Help":AppRoutes.kHelp,

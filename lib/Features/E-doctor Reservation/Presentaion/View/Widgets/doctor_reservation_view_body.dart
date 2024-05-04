@@ -150,13 +150,12 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                                         .doctorId,
                                 "scan": BlocProvider.of<DoctorReservationCubit>(
                                         context)
-                                    .scanId
-                                    ,
+                                    .scanId,
                                 "date": BlocProvider.of<FreeTimesCubit>(context)
                                     .selectedDate
                                     ?.toIso8601String(),
                               },
-                              reportData:{
+                              reportData: {
                                 "patient": BlocProvider.of<AuthCubit>(context)
                                     .patient!
                                     .patient
@@ -165,11 +164,9 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                                     BlocProvider.of<DoctorReservationCubit>(
                                             context)
                                         .doctorId,
-                                "scan": 
-                                  BlocProvider.of<DoctorReservationCubit>(
-                                          context)
-                                      .scanId
-                                
+                                "scan": BlocProvider.of<DoctorReservationCubit>(
+                                        context)
+                                    .scanId
                               },
                               token: BlocProvider.of<AuthCubit>(context)
                                   .patient!

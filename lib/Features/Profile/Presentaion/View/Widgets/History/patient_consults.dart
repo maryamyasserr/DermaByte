@@ -1,7 +1,7 @@
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
+
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
@@ -9,6 +9,7 @@ import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class PatientConsults extends StatelessWidget {
   const PatientConsults({
@@ -29,11 +30,10 @@ class PatientConsults extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: HistoryCard(
-                        iconCard: Assets.kDoctorAvatar,
-                        cardTitle:
-                            state.reports[index].dermatologist?.firstName ?? "",
-                        cardSubTitle:
-                            "Scans taken on 11/10/2023 show......Lorem ipsum dolor sit amet,",
+                        logo: false,
+                        imageCard: null,
+                        cardTitle:"Dr ${state.reports[index].dermatologist?.firstName} ${state.reports[index].dermatologist?.lastName}",
+                        cardSubTitle: "with Scan ${state.reports[index].scan![index] .diseaseName}......, on ${DateFormat.yMMMd().format(state.reports[index].createdAt!)}",
                         textButton: "View",
                         onPressed: () {
                           BlocProvider.of<ReportCubit>(context)

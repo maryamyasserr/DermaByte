@@ -18,7 +18,7 @@ class Report {
   });
 
   factory Report.fromJson(Map<String, dynamic> json) => Report(
-         scan: (json['scan'] as List<dynamic>?)!
+        scan: (json['scan'] as List<dynamic>?)!
             .map((e) => Scan.fromJson(e as Map<String, dynamic>))
             .toList(),
         patient: json['patient'] == null

@@ -9,10 +9,8 @@ abstract class LabRepo {
   Future<Either<Failures, List<LabReservations>>> getLabRequests(
       {required String token});
 
-  Future<Either<Failures, String>> deleteLabRequest({
-    required String token,
-    required String id
-  });
+  Future<Either<Failures, String>> deleteLabRequest(
+      {required String token, required String id});
 
   Future<Either<Failures, String>> addService(
       {required String token,

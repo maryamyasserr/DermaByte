@@ -26,7 +26,6 @@ class _HomeBodyState extends State<HomeBody> {
     super.initState();
     BlocProvider.of<LabReservationsCubit>(context).getLabRequests(
         token: BlocProvider.of<AuthCubit>(context).labModel!.token);
-    
   }
 
   @override

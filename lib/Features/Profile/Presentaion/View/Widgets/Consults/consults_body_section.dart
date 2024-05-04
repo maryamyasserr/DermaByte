@@ -26,7 +26,7 @@ class ConsultsBodySection extends StatelessWidget {
               ? const SizedBox()
               : const Medications(),
           const SizedBox(height: 16),
-          consultaion.treatmentPlan == null
+          consultaion.treatmentPlan!.isEmpty
               ? const SizedBox()
               : const TreatmentPlan(),
           const SizedBox(height: 16),

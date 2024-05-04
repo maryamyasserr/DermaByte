@@ -64,7 +64,6 @@ class RequestedTestsBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            
                               report.tests![index].testName!
                                   .join(',')
                                   .toString(),
@@ -100,9 +99,6 @@ class RequestedTestsBody extends StatelessWidget {
                       ),
                     );
                   }),
-            
-            
-            
               const SizedBox(height: 30),
               Center(
                 child: AddTestButton(

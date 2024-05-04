@@ -65,7 +65,8 @@ class Uploaded extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   BlocProvider.of<LabHelperCubit>(context)
-                                      .removeTestResult(testResult.testsFiles,e);
+                                      .removeTestResult(
+                                          testResult.testsFiles, e);
                                 },
                                 child: const Icon(
                                   Icons.cancel,

@@ -4,8 +4,7 @@ import 'report.dart';
 import 'scan.dart';
 
 class MyReservaionModel {
-
-   String? id;
+  String? id;
   DateTime? date;
   String? dayName;
   List<dynamic>? uploadedTest;
@@ -71,7 +70,7 @@ class MyReservaionModel {
       );
 
   Map<String, dynamic> toJson() => {
-       'date': date?.toIso8601String(),
+        'date': date?.toIso8601String(),
         'dayName': dayName,
         'uploadedTest': uploadedTest,
         'reviewed': reviewed,

@@ -42,7 +42,7 @@ class ProfileBody extends StatelessWidget {
             ),
             CarddItem(
               bottomText: '',
-              imageCard: Assets.kDoctorAvatar,
+              imageCard: null,
               title: "Dr. Luka Modrich",
               subTitle:
                   "An eye doctor to spread magic, creativity and happiness to us",

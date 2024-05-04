@@ -111,8 +111,9 @@ class _PatientViewState extends State<PatientView> {
                                     "medicine": [
                                       (PatientView.diagnosesController.text)
                                     ],
-                                    'treatmentPlan':[(PatientView.treatmentPlanController.text)]
-                                      
+                                    'treatmentPlan': [
+                                      (PatientView.treatmentPlanController.text)
+                                    ]
                                   },
                                   context: context);
                         }

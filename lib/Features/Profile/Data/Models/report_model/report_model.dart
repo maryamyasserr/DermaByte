@@ -7,7 +7,7 @@ import 'test_result.dart';
 class ReportModel {
   List<Scan>? scan;
   List<dynamic>? medicine;
-   List<dynamic>? treatmentPlan;
+  List<dynamic>? treatmentPlan;
   dynamic diagnoses;
   Patient? patient;
   Dermatologist? dermatologist;
@@ -36,7 +36,7 @@ class ReportModel {
             .map((e) => Scan.fromJson(e as Map<String, dynamic>))
             .toList(),
         medicine: json['medicine'] as List<dynamic>?,
-        treatmentPlan: json['treatmentPlan'] as  List<dynamic>?,
+        treatmentPlan: json['treatmentPlan'] as List<dynamic>?,
         diagnoses: json['diagnoses'] as dynamic,
         patient: json['patient'] == null
             ? null
