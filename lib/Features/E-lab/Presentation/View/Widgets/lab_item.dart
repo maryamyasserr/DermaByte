@@ -71,7 +71,7 @@ class LabItem extends StatelessWidget {
                             titleWidth:
                                 MediaQuery.sizeOf(context).width * 0.645,
                             subTitleWidth:
-                                MediaQuery.sizeOf(context).width * 0.4,
+                                MediaQuery.sizeOf(context).width * 0.6,
                             cardTitle: labTitle,
                             cardSubTitle: labSubTitle,
                           ),

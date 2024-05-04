@@ -5,10 +5,8 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
-
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/patient_info.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/uploaded.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/patient_photo.dart';
@@ -19,26 +17,27 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:image_picker/image_picker.dart';
 
 class RequestBody extends StatefulWidget {
   const RequestBody({super.key});
-
-  static List<UploadedTestModel> allTestResults = [];
 
   @override
   State<RequestBody> createState() => _RequestBodyState();
 }
 
 class _RequestBodyState extends State<RequestBody> {
-  bool isExist(String name) {
-    return RequestBody.allTestResults.any((test) => test.testName == name);
+  @override
+  void initState() {
+    BlocProvider.of<LabHelperCubit>(context).results = [];
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     LabReservations reservation =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
+    List<UploadedTestModel> allResults =
+        BlocProvider.of<LabHelperCubit>(context).allResutls;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -68,74 +67,13 @@ class _RequestBodyState extends State<RequestBody> {
                   thickness: 0.3,
                   color: Colors.black,
                 ),
-                Column(
-                  children: reservation.test!.map((e) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          e.name!,
-                          style: Styels.textStyle20_300(context),
-                        ),
-                        const SizedBox(height: 16),
-                        isExist(e.name!) == true
-                            ? Uploaded(
-                                tests: RequestBody.allTestResults,
-                                onTap: () {
-                                  setState(() {});
-                                  print(RequestBody.allTestResults);
-                                },
-                              )
-                            : GestureDetector(
-                                onTap: () async {
-                                  final List<XFile> pickedFile =
-                                      await ImagePicker().pickMultiImage();
-                                  UploadedTestModel test = UploadedTestModel(
-                                      testName: e.name!,
-                                      testsFiles: pickedFile);
-                                  RequestBody.allTestResults.add(test);
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.95,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.07,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: AppColors.kCardColor,
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          offset: Offset(0.0, 2.6),
-                                          blurRadius: 6.0,
-                                        )
-                                      ]),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Attach Test Result",
-                                          style:
-                                              Styels.textStyle16_400(context),
-                                        ),
-                                        const Icon(
-                                          Icons.add,
-                                          size: 35,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                      ],
-                    );
-                  }).toList(),
+                Text(
+                  "Requested tests",
+                  style: Styels.textStyle24_600(context).copyWith(
+                      fontSize: 28, decoration: TextDecoration.underline),
                 ),
+                const SizedBox(height: 12),
+                const Uploaded(),
                 const SizedBox(height: 50),
                 BlocConsumer<AttachResultCubit, AttachResultState>(
                   listener: (context, state) {
@@ -151,31 +89,22 @@ class _RequestBodyState extends State<RequestBody> {
                       isLoading:
                           BlocProvider.of<AttachResultCubit>(context).isLoading,
                       onPressed: () async {
-                        BlocProvider.of<LabHelperCubit>(context)
-                            .allTest(reservation.test!);
+                        BlocProvider.of<LabHelperCubit>(context).configData();
                         if (BlocProvider.of<LabHelperCubit>(context)
-                                .allTests
-                                .isEmpty ||
-                            BlocProvider.of<LabHelperCubit>(context)
-                                .allUploadedTests
-                                .isEmpty) {
+                            .allResutls
+                            .isEmpty) {
                           failedAlert(context, "Attach Test Result");
                         } else {
                           FormData formData = FormData();
-                          for (int i = 0;
-                              i < RequestBody.allTestResults.length;
-                              i++) {
+                          for (int i = 0; i < allResults.length; i++) {
                             for (int j = 0;
-                                j <
-                                    RequestBody
-                                        .allTestResults[i].testsFiles.length;
+                                j < allResults[i].testsFiles.length;
                                 j++) {
                               formData.files.add(
                                 MapEntry(
-                                  RequestBody.allTestResults[i].testName,
+                                  allResults[i].testName,
                                   await MultipartFile.fromFile(
-                                    RequestBody
-                                        .allTestResults[i].testsFiles[j].path,
+                                    allResults[i].testsFiles[j].path,
                                     filename: 'test Results$i.jpg',
                                     contentType: MediaType('image', 'jpeg'),
                                   ),
@@ -183,20 +112,21 @@ class _RequestBodyState extends State<RequestBody> {
                               );
                             }
                             formData.fields.add(
-                              MapEntry("patient", reservation.patient!.id!)
-                            );
+                                MapEntry("patient", reservation.patient!.id!));
                           }
-
-                          print(formData.fields);
-                          // print(formData.files);
                           await BlocProvider.of<AttachResultCubit>(context)
                               .attachResult(
                                   context: context,
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .labModel!
                                       .token,
-                                  body: formData
-                                  );
+                                  body: formData);
+                          await BlocProvider.of<LabReservationsCubit>(context)
+                              .deleteRequest(
+                                  id: reservation.id!,
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .labModel!
+                                      .token);
                         }
                       },
                     );

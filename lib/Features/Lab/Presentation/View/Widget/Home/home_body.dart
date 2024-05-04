@@ -7,7 +7,6 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Home/request_card.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,9 +96,6 @@ class _HomeBodyState extends State<HomeBody> {
                                     null) {
                                   failedAlert(context, "Something is wrong");
                                 } else {
-                                   BlocProvider.of<LabHelperCubit>(context)
-                                      .getLengthTets(state
-                                          .labRequests[index].test!.length);
                                   GoRouter.of(context)
                                       .push(AppRoutes.kRequestBody);
                                 }

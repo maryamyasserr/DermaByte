@@ -1,6 +1,4 @@
-import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/test.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
@@ -10,58 +8,45 @@ part 'lab_helper_state.dart';
 class LabHelperCubit extends Cubit<LabHelperState> {
   LabHelperCubit() : super(LabHelperInitial());
 
-  List<String> allTests = [];
+  List<UploadedTestModel> results = [];
+  List<UploadedTestModel> allResutls = [];
 
-  List<UploadedTestModel> allUploadedResults = [];
-
-    Future<void> uploadExternalTests(index) async {
-    final List<XFile> pickedFile = await ImagePicker().pickMultiImage();
-    if (allUploadedTests[index].isEmpty) {
-      allUploadedTests[index] = pickedFile;
-      emit(LabHelperSuccess());
-    } else {
-      for (var e in pickedFile) {
-        bool exists = allUploadedTests[index]
-            .any((existingFile) => existingFile.name == e.name);
-        if (!exists) {
-          allUploadedTests[index].add(e);
+  void addTestResult(UploadedTestModel uploadedTestModel) {
+    int existingIndex = results
+        .indexWhere((test) => test.testName == uploadedTestModel.testName);
+    if (existingIndex != -1) {
+      UploadedTestModel existingTest = results[existingIndex];
+      List<XFile> updatedFiles = [...existingTest.testsFiles];
+      for (XFile file in uploadedTestModel.testsFiles) {
+        String filePath = file.name;
+        if (!updatedFiles
+            .any((existingFile) => existingFile.name == filePath)) {
+          updatedFiles.add(file);
         }
       }
+      UploadedTestModel updatedTest = UploadedTestModel(
+        testName: uploadedTestModel.testName,
+        testsFiles: updatedFiles,
+      );
+      results[existingIndex] = updatedTest;
+      emit(LabHelperSuccess());
+    } else {
+      results.add(uploadedTestModel);
       emit(LabHelperSuccess());
     }
   }
 
-  List<List<XFile>> allUploadedTests = [];
-
-  void getLengthTets(int count) {
-    allUploadedTests.clear();
-    for (int i = 0; i < count; i++) {
-      allUploadedTests.add([]);
-    }
-  }
-
-  void removeTest(index, XFile test) {
-    allUploadedTests[index].remove(test);
-   emit(LabHelperSuccess());
-  }
-
-
-
-
-
-
-  List<String> allTest(List<Test> patientTest) {
-    // String tests = '';
-    for (var item in patientTest) {
-      if (allTests.contains(item.name)) {
+  configData() {
+    for (var e in results) {
+      if (e.testsFiles.isEmpty) {
       } else {
-        allTests.add(item.name!);
+        allResutls.add(e);
       }
     }
-    // tests = allTests.join(',');
-    return allTests;
   }
 
-
-
+  void removeTestResult(List<XFile> tests, XFile test) {
+    tests.remove(test);
+    emit(LabHelperSuccess());
+  }
 }

@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
-import 'package:dermabyte/Features/Lab/Data/Models/result_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/service_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Repos/lab_repo.dart';
 import 'package:dio/dio.dart';
@@ -76,10 +75,25 @@ class LabRepoImpl implements LabRepo {
       required body,
       required BuildContext context}) async {
     try {
-       await apiService.postWithMultiForm(
+      await apiService.postWithMultiForm(
           endPoint: "results", data: body, token: token);
       GoRouter.of(context).pop();
       return right("Done");
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, String>> deleteLabRequest(
+      {required String token, required String id}) async {
+    try {
+      await apiService.delete(
+          endPoint: 'laboratories-reservations/$id', id: id, token: token);
+      return right('dnoe');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
