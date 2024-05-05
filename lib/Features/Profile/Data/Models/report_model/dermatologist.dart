@@ -1,17 +1,21 @@
 class Dermatologist {
   String? firstName;
   String? lastName;
+  String? profilePic;
+
   String? id;
 
   Dermatologist({
     this.id,
     this.firstName,
     this.lastName,
+    this.profilePic
   });
 
   factory Dermatologist.fromJson(Map<String, dynamic> json) => Dermatologist(
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
+        profilePic: json['profilePic'] as String?,
         id: json['id'] as String?,
       );
 
@@ -19,5 +23,6 @@ class Dermatologist {
         'firstName': firstName,
         'lastName': lastName,
         'id': id,
+        'profilePic':profilePic
       };
 }

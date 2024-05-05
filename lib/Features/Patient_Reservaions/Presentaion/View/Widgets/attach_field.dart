@@ -10,8 +10,9 @@ class AttachedField extends StatelessWidget {
       {super.key,
       required this.title,
       required this.onTap,
-      required this.index});
-  final String title;
+      required this.index,
+      required this.testName});
+  final String title, testName;
   final int index;
   final void Function() onTap;
   @override
@@ -82,7 +83,7 @@ class AttachedField extends StatelessWidget {
                                     onTap: () {
                                       BlocProvider.of<AddTestResultCubit>(
                                               context)
-                                          .removeLicense(index, e);
+                                          .removeTestResult(testName,uploadedTests, e);
                                     },
                                     child: const Icon(
                                       Icons.cancel,

@@ -12,6 +12,14 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
   String? _id;
   List<PreservationModel> reservations = [];
 
+
+   List<String> testId = [];
+  List<int> indices = [];
+  List<String> testName = [];
+
+  List<String> testsids = [];
+  List<String> tests = [];
+
   Future<void> getPatientReservationInfo({required String token}) async {
     emit(PreservationInfoLoading());
     var result = await preservationInfoRepo.getPatientReservation(token: token);
@@ -52,4 +60,33 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       return false;
     }
   }
+
+
+   void selectTest(List<String> ids, List<String> name) {
+    testId = ids;
+    testName = name;
+    if (testId.isEmpty || testName.isEmpty) {
+      emit(SelecttestFailuar());
+    } else {
+      emit(SelecttestSuccess(tests: [testName, testId]));
+    }
+  }
+
+   void deleteTest(String name, String id, index) {
+    testName.remove(name);
+    testId.remove(id);
+    indices.remove(index);
+    if (testName.isEmpty || testId.isEmpty) {
+      emit(SelecttestFailuar());
+    } else {
+      emit(SelecttestSuccess(tests: [testName, testId]));
+    }
+  }
+
+  void deleteAllTests() {
+    testId = [];
+    testName = [];
+    emit(SelecttestFailuar());
+  }
+
 }

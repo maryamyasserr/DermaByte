@@ -114,6 +114,7 @@ class _RequestBodyState extends State<RequestBody> {
                             formData.fields.add(
                                 MapEntry("patient", reservation.patient!.id!));
                           }
+                       
                           await BlocProvider.of<AttachResultCubit>(context)
                               .attachResult(
                                   context: context,

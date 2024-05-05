@@ -45,8 +45,11 @@ class LabHelperCubit extends Cubit<LabHelperState> {
     }
   }
 
-  void removeTestResult(List<XFile> tests, XFile test) {
-    tests.remove(test);
+ void removeTestResult(UploadedTestModel uploadedTestModel, XFile test) {
+    uploadedTestModel.testsFiles.remove(test);
+    if (uploadedTestModel.testsFiles.isEmpty) {
+      allResutls.remove(uploadedTestModel);
+    }
     emit(LabHelperSuccess());
   }
 }

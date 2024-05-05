@@ -4,7 +4,6 @@ import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservat
 import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -66,11 +65,12 @@ class Uploaded extends StatelessWidget {
                                 onTap: () {
                                   BlocProvider.of<LabHelperCubit>(context)
                                       .removeTestResult(
-                                          testResult.testsFiles, e);
+                                        testResult,
+                                            e);
                                 },
                                 child: const Icon(
                                   Icons.cancel,
-                                  color: Colors.red,
+                                  color: Colors.red, 
                                   size: 27,
                                 ),
                               ),

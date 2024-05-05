@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
@@ -10,6 +11,8 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
   PreservationInfoRepo preservationInfoRepo;
 
   bool isLoading = false;
+
+  List<UploadedTestModel> allTestResults = [];
 
   Future<void> addTestResult(
       {required String id, token, required dynamic body}) async {
@@ -42,6 +45,42 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
       emit(AddTestResultSuccess());
     }
   }
+
+  
+  void addAllResults(UploadedTestModel uploadedTestModel) {
+    int existingIndex = allTestResults
+        .indexWhere((test) => test.testName == uploadedTestModel.testName);
+    if (existingIndex != -1) {
+      UploadedTestModel existingTest = allTestResults[existingIndex];
+      List<XFile> updatedFiles = [...existingTest.testsFiles];
+      for (XFile file in uploadedTestModel.testsFiles) {
+        String filePath = file.name;
+        if (!updatedFiles
+            .any((existingFile) => existingFile.name == filePath)) {
+          updatedFiles.add(file);
+        }
+      }
+      UploadedTestModel updatedTest = UploadedTestModel(
+        testName: uploadedTestModel.testName,
+        testsFiles: updatedFiles,
+      );
+      allTestResults[existingIndex] = updatedTest;
+      emit(AddTestResultSuccess());
+    } else {
+      allTestResults.add(uploadedTestModel);
+      emit(AddTestResultSuccess());
+    }
+  }
+
+
+ void removeTestResult(String name,List<XFile> tests, XFile test) {
+    tests.remove(test);
+    if(tests.isEmpty){
+       allTestResults.removeWhere((uploadedTestModel) => uploadedTestModel.testName == name);
+    }
+    emit(AddTestResultSuccess());
+  }
+
 
   List<List<XFile>> allUploadedTests = [];
 
