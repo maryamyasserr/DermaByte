@@ -3,8 +3,10 @@ import 'patient.dart';
 import 'scan.dart';
 import 'test.dart';
 import 'test_result.dart';
+import 'uploaded_test.dart';
 
 class ReportModel {
+  String? id;
   List<Scan>? scan;
   List<dynamic>? medicine;
   List<dynamic>? treatmentPlan;
@@ -15,9 +17,11 @@ class ReportModel {
   List<Test>? tests;
   DateTime? createdAt;
   DateTime? updatedAt;
-  String? id;
+  List<UploadedTest>? uploadedTest;
+
 
   ReportModel({
+    this.id,
     this.scan,
     this.medicine,
     this.treatmentPlan,
@@ -28,12 +32,14 @@ class ReportModel {
     this.tests,
     this.createdAt,
     this.updatedAt,
-    this.id,
+    this.uploadedTest,
+    
   });
 
   factory ReportModel.fromJson(Map<String, dynamic> json) => ReportModel(
-        scan: (json['scan'] as List<dynamic>?)!
-            .map((e) => Scan.fromJson(e as Map<String, dynamic>))
+       
+        scan: (json['scan'] as List<dynamic>?)
+            ?.map((e) => Scan.fromJson(e as Map<String, dynamic>))
             .toList(),
         medicine: json['medicine'] as List<dynamic>?,
         treatmentPlan: json['treatmentPlan'] as List<dynamic>?,
@@ -57,11 +63,14 @@ class ReportModel {
         updatedAt: json['updatedAt'] == null
             ? null
             : DateTime.parse(json['updatedAt'] as String),
+        uploadedTest: (json['uploadedTest'] as List<dynamic>?)
+            ?.map((e) => UploadedTest.fromJson(e as Map<String, dynamic>))
+            .toList(),
         id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
-        'scan': scan!.map((e) => e.toJson()).toList(),
+        'scan': scan?.map((e) => e.toJson()).toList(),
         'medicine': medicine,
         'treatmentPlan': treatmentPlan,
         'diagnoses': diagnoses,
@@ -71,6 +80,7 @@ class ReportModel {
         'tests': tests?.map((e) => e.toJson()).toList(),
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),
+        'uploadedTest': uploadedTest?.map((e) => e.toJson()).toList(),
         'id': id,
       };
 }

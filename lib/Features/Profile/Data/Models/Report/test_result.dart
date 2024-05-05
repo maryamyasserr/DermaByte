@@ -1,17 +1,12 @@
 import 'lab.dart';
 
 class TestResult {
+  String? id;
   String? testName;
   List<dynamic>? testResult;
   Lab? lab;
-  String? id;
 
-  TestResult({
-    this.id,
-    this.testName,
-    this.testResult,
-    this.lab,
-  });
+  TestResult({this.id, this.testName, this.testResult, this.lab});
 
   factory TestResult.fromJson(Map<String, dynamic> json) => TestResult(
         testName: json['testName'] as String?,
@@ -23,7 +18,6 @@ class TestResult {
       );
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
         'testName': testName,
         'testResult': testResult,
         'lab': lab?.toJson(),

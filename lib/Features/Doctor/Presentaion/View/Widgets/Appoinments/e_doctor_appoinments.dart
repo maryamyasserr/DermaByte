@@ -18,7 +18,8 @@ class _EdoctorAppoinmentsState extends State<EdoctorAppoinments> {
   void initState() {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token,
-        reviwed: 'true');
+        reviwed: 'true',
+        completed: 'false');
     BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     super.initState();

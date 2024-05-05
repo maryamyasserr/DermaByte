@@ -75,33 +75,28 @@ class HistoryCard extends StatelessWidget {
                           ),
                         ),
                       ),
-
-                      logo==true?
-                       Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: 
-                               Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Image.asset(
-                                    Assets.kLogo,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                             
-                        ),
-                      ):
-                      Expanded(
-                        
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child:  CardButton(
+                      logo == true
+                          ? Expanded(
+                              flex: 2,
+                              child: Padding(
+                                  padding: const EdgeInsets.only(right: 12),
+                                  child: Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Image.asset(
+                                      Assets.kLogo,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
+                            )
+                          : Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: CardButton(
                                   textButton: textButton,
                                   onPressed: onPressed,
                                 ),
-                        ),
-                      ),
+                              ),
+                            ),
                       const SizedBox(height: 8),
                     ],
                   ),

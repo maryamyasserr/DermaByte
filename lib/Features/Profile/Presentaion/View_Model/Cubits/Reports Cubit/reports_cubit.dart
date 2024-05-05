@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
 import 'package:meta/meta.dart';
 

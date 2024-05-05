@@ -1,27 +1,27 @@
-class Patient {
+class Dermatologist {
+  String? id;
   String? firstName;
   String? lastName;
-  int? age;
-  String? id;
+  String? profilePic;
 
-  Patient({
+  Dermatologist({
     this.id,
     this.firstName,
     this.lastName,
-    this.age,
+    this.profilePic,
   });
 
-  factory Patient.fromJson(Map<String, dynamic> json) => Patient(
+  factory Dermatologist.fromJson(Map<String, dynamic> json) => Dermatologist(
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
-        age: json['age'] as int?,
+        profilePic: json['profilePic'] as String?,
         id: json['id'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
         'firstName': firstName,
         'lastName': lastName,
-        'age': age,
+        'profilePic': profilePic,
         'id': id,
       };
 }

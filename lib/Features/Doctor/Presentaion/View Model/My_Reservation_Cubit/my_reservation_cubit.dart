@@ -12,11 +12,15 @@ class MyReservationCubit extends Cubit<MyReservationState> {
   List<DateTime> myDates = [];
   DateTime? selectedDate;
 
+  String? reservationid;
+
   Future<void> getMyReservations(
-      {required String token, required String reviwed}) async {
+      {required String token,
+      required String reviwed,
+      required String completed}) async {
     emit(MyReservationLoading());
-    var response =
-        await doctorRepo.getMyReservation(token: token, reviewd: reviwed);
+    var response = await doctorRepo.getMyReservation(
+        token: token, reviewd: reviwed, completed: completed);
     response.fold(
         (failure) => emit(MyReservationFailure(errMessage: failure.errMessage)),
         (data) {
@@ -27,7 +31,6 @@ class MyReservationCubit extends Cubit<MyReservationState> {
             date.year == e.date!.year &&
             date.month == e.date!.month &&
             date.day == e.date!.day)) {
-          print(e.date);
         } else {
           myDates.add(DateTime(e.date!.year, e.date!.month, e.date!.day));
         }
@@ -36,15 +39,21 @@ class MyReservationCubit extends Cubit<MyReservationState> {
     });
   }
 
-  Future<void> viewPatient(
+  Future<void> completePatient(
       {required String id,
       required String token,
       required dynamic body}) async {
     var response =
         await doctorRepo.reviewdPatient(id: id, token: token, body: body);
-    response.fold(
-        (failure) => emit(MyReservationFailure(errMessage: failure.errMessage)),
-        (data) => emit(ViewPatientState()));
+    response.fold((l) => emit(MyReservationFailure(errMessage: l.errMessage)),
+        (r) => emit(MyReservationSuccess()));
+  }
+
+  Future<void> viewPatient(
+      {required String id,
+      required String token,
+      required dynamic body}) async {
+    await doctorRepo.reviewdPatient(id: id, token: token, body: body);
   }
 
   set setDate(DateTime date) {

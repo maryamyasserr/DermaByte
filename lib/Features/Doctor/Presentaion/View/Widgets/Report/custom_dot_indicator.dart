@@ -1,8 +1,8 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomDotIndicator extends StatelessWidget {
-  const CustomDotIndicator({super.key, required this.isActive});
+class CustomDotIndicatorDoctor extends StatelessWidget {
+  const CustomDotIndicatorDoctor({super.key, required this.isActive});
   final bool isActive;
   @override
   Widget build(BuildContext context) {

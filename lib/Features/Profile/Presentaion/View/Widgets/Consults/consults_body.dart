@@ -1,12 +1,11 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/consults_body_section.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/consults_header_section.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/dots_indicator.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConsultsBody extends StatefulWidget {
@@ -32,7 +31,7 @@ class _ConsultsBodyState extends State<ConsultsBody> {
 
   @override
   Widget build(BuildContext context) {
-        ReportModel consultaion =
+    ReportModel consultaion =
         BlocProvider.of<ReportCubit>(context).currentConsultation!;
     return Container(
       decoration: const BoxDecoration(
@@ -49,20 +48,20 @@ class _ConsultsBodyState extends State<ConsultsBody> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.01,
             ),
-             ConsutlsHeaderSection(
-              pageController:pageController,
+            ConsutlsHeaderSection(
+              pageController: pageController,
             ),
             DotsIndicator(
               currentPageIndex: currentIndex,
               count: consultaion.scan!.length,
-              ),
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.014,
             ),
-               const Divider(
-          thickness: 0.7,
-          color: Colors.black,
-        ),
+            const Divider(
+              thickness: 0.7,
+              color: Colors.black,
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.014,
             ),

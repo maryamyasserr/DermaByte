@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +28,7 @@ class ConsutlsHeaderSection extends StatelessWidget {
         SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.17,
           child: PageView.builder(
-            controller: pageController,
+              controller: pageController,
               scrollDirection: Axis.horizontal,
               itemCount: consultaion.scan!.length,
               itemBuilder: (context, index) {
@@ -79,7 +79,6 @@ class ConsutlsHeaderSection extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.03,
         ),
-       
       ],
     );
   }

@@ -4,10 +4,11 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/patient_text_filed_report.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -116,6 +117,15 @@ class _PatientViewState extends State<PatientView> {
                                     ]
                                   },
                                   context: context);
+                          await BlocProvider.of<MyReservationCubit>(context)
+                              .completePatient(
+                                  id: BlocProvider.of<MyReservationCubit>(
+                                          context)
+                                      .reservationid!,
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .doctorModel!
+                                      .token,
+                                  body: {'completed': 'true'});
                         }
                       },
                     ),

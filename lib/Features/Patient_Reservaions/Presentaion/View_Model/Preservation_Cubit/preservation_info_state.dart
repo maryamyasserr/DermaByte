@@ -19,12 +19,3 @@ final class PreservationInfoFailure extends PreservationInfoState {
 }
 
 final class PreservationInfoEmpty extends PreservationInfoState {}
-
-
-final class SelecttestSuccess extends PreservationInfoState {
-  final List<List<String>> tests;
-
-  SelecttestSuccess({required this.tests});
-}
-
-final class SelecttestFailuar extends PreservationInfoState {}

@@ -1,12 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Features/Doctor/Data/Models/p_reservation/p_reservation.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class DoctorRepo {
   Future<Either<Failures, List<MyReservaionModel>>> getMyReservation(
-      {required String token, required String reviewd});
+      {required String token,
+      required String reviewd,
+      required String completed});
 
   Future<Either<Failures, List<ReportModel>>> getMyPatientsReports(
       {required String token});

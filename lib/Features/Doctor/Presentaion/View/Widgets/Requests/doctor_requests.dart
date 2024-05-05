@@ -9,7 +9,6 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +26,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
   void initState() {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
         reviwed: 'false',
+        completed: 'false',
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
     BlocProvider.of<MyPatientReportCubit>(context).getMyPatientsReport(
         token: BlocProvider.of<AuthCubit>(context).doctorModel!.token);
@@ -97,8 +97,17 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                                     context)
                                                 .doctorModel!
                                                 .token,
-                                            body: FormData.fromMap(
-                                                {'reviewed': 'true'}));
+                                            body: {'reviewed': 'true'});
+
+                                    await BlocProvider.of<MyReservationCubit>(
+                                            context)
+                                        .getMyReservations(
+                                            reviwed: 'false',
+                                            completed: 'false',
+                                            token: BlocProvider.of<AuthCubit>(
+                                                    context)
+                                                .doctorModel!
+                                                .token);
                                   }
                                 },
                                 onTap: () {},
@@ -114,6 +123,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                               BlocProvider.of<MyReservationCubit>(context)
                                   .getMyReservations(
                                       reviwed: 'false',
+                                      completed: 'false',
                                       token: BlocProvider.of<AuthCubit>(context)
                                           .doctorModel!
                                           .token);

@@ -83,7 +83,8 @@ class AttachedField extends StatelessWidget {
                                     onTap: () {
                                       BlocProvider.of<AddTestResultCubit>(
                                               context)
-                                          .removeTestResult(testName,uploadedTests, e);
+                                          .removeTestResult(
+                                              testName, uploadedTests, e);
                                     },
                                     child: const Icon(
                                       Icons.cancel,

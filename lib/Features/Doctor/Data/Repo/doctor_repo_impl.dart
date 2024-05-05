@@ -3,7 +3,8 @@ import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Doctor/Data/Models/p_reservation/p_reservation.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -68,11 +69,13 @@ class DoctorRepoImpl implements DoctorRepo {
 
   @override
   Future<Either<Failures, List<MyReservaionModel>>> getMyReservation(
-      {required String token, required String reviewd}) async {
+      {required String token,
+      required String reviewd,
+      required String completed}) async {
     try {
       var response = await apiService.get(
           endPoint:
-              'dermatologists/Dermatologist-reservation?reviewed=$reviewd',
+              'dermatologists/Dermatologist-reservation?reviewed=$reviewd&completed=$completed',
           token: token);
       List<MyReservaionModel> myReservations = [];
       for (var element in response['data']) {
@@ -98,7 +101,7 @@ class DoctorRepoImpl implements DoctorRepo {
   Future<Either<Failures, String>> reviewdPatient(
       {required String id, required String token, required body}) async {
     try {
-      await apiService.updateWithMultipart(
+      await apiService.update(
           endPoint: "Dermatologist-reservation/$id", data: body, token: token);
       return right("Done");
     } catch (e) {

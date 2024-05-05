@@ -4,7 +4,7 @@ import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Models/free_time_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class EdoctorRepoImpl implements EdoctorRepo {
   @override
   Future<Either<Failures, String>> createReservaionAndPatientReport(
       {required dynamic reservationData,
-      required reportData,
+      // required reportData,
       required BuildContext context,
       required String token}) async {
     try {
@@ -41,8 +41,8 @@ class EdoctorRepoImpl implements EdoctorRepo {
           endPoint: "bookings/checkout-session",
           body: reservationData,
           token: token);
-      await apiService.post(
-          endPoint: "reports", data: reportData, token: token);
+      // await apiService.post(
+      //     endPoint: "reports", data: reportData, token: token);
 
       // GoRouter.of(context).pop();
       return right(reservationResponse['session']['url']);

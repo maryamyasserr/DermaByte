@@ -19,7 +19,7 @@ class AddTestButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.sizeOf(context).width * 0.3, vertical: 15),
+            horizontal: MediaQuery.sizeOf(context).width * 0.33, vertical: 15),
         backgroundColor: AppColors.kPrimaryColor,
       ),
       onPressed: onPressed,

@@ -88,7 +88,6 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 12),
                                       child: CustomCard(
-                                       
                                         antoherButton: true,
                                         onDelete: () async {
                                           await BlocProvider.of<

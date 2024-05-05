@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/medication.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_requsted.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_result.dart';

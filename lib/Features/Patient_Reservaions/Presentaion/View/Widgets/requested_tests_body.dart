@@ -10,8 +10,7 @@ import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/attach_field.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +30,10 @@ class RequestedTestsBody extends StatefulWidget {
 class _RequestedTestsBodyState extends State<RequestedTestsBody> {
   @override
   void initState() {
-    BlocProvider.of<PreservationInfoCubit>(context).deleteAllTests();
-    BlocProvider.of<PreservationInfoCubit>(context).indices = [];
-    BlocProvider.of<PreservationInfoCubit>(context).testsids = [];
-    BlocProvider.of<PreservationInfoCubit>(context).tests = [];
+    BlocProvider.of<AddTestResultCubit>(context).deleteAllTests();
+    BlocProvider.of<AddTestResultCubit>(context).indices = [];
+    BlocProvider.of<AddTestResultCubit>(context).testsids = [];
+    BlocProvider.of<AddTestResultCubit>(context).tests = [];
     BlocProvider.of<AddTestResultCubit>(context).allTestResults = [];
 
     super.initState();
@@ -51,7 +50,6 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
           showSnackBar(context, state.errMessage);
         } else if (state is DoneState) {
           GoRouter.of(context).pop();
-          
         }
       },
       builder: (context, state) {
@@ -149,64 +147,67 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
               ),
               const SizedBox(height: 50),
               Center(
-                child: AddTestButton(
-                    text: 'Confirm',
-                    onPressed: () async {
-                      print(BlocProvider.of<AddTestResultCubit>(context)
-                          .allTestResults);
-                      if (BlocProvider.of<PreservationInfoCubit>(context)
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: AddTestButton(
+                      text: 'Confirm',
+                      onPressed: () async {
+                        print(BlocProvider.of<AddTestResultCubit>(context)
+                            .allTestResults);
+                        if (BlocProvider.of<AddTestResultCubit>(context)
+                                .testId
+                                .isEmpty &&
+                            allTestResults.isEmpty) {
+                          failedAlert(context, "Attach Your Result");
+                        } else {
+                          if (BlocProvider.of<AddTestResultCubit>(context)
                               .testId
-                              .isEmpty &&
-                          allTestResults.isEmpty) {
-                        failedAlert(context, "Attach Your Result");
-                      } else {
-                        if (BlocProvider.of<PreservationInfoCubit>(context)
-                            .testId
-                            .isNotEmpty) {
-                          await BlocProvider.of<AddTestResultCubit>(context)
-                              .addTestResult(
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .patient!
-                                      .token,
-                                  id: report.id!,
-                                  body: {
-                                "testResult":
-                                    BlocProvider.of<PreservationInfoCubit>(
-                                            context)
-                                        .testId
-                              });
-                        }
-
-                        if (allTestResults.isNotEmpty) {
-                          FormData formData = FormData();
-                          for (int i = 0; i < allTestResults.length; i++) {
-                            for (int j = 0;
-                                j < allTestResults[i].testsFiles.length;
-                                j++) {
-                              formData.files.add(
-                                MapEntry(
-                                  allTestResults[i].testName,
-                                  await MultipartFile.fromFile(
-                                    allTestResults[i].testsFiles[j].path,
-                                    filename: 'test Results$i.jpg',
-                                    contentType: MediaType('image', 'jpeg'),
-                                  ),
-                                ),
-                              );
-                            }
+                              .isNotEmpty) {
+                            await BlocProvider.of<AddTestResultCubit>(context)
+                                .addTestResult(
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .patient!
+                                        .token,
+                                    id: report.id!,
+                                    body: {
+                                  "testResult":
+                                      BlocProvider.of<AddTestResultCubit>(
+                                              context)
+                                          .testId
+                                });
                           }
-                          await BlocProvider.of<AddTestResultCubit>(context)
-                              .uploadTestResultstoDataBase(
-                                  id: report.id!,
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .patient!
-                                      .token,
-                                  body: formData);
+
+                          if (allTestResults.isNotEmpty) {
+                            FormData formData = FormData();
+                            for (int i = 0; i < allTestResults.length; i++) {
+                              for (int j = 0;
+                                  j < allTestResults[i].testsFiles.length;
+                                  j++) {
+                                formData.files.add(
+                                  MapEntry(
+                                    allTestResults[i].testName,
+                                    await MultipartFile.fromFile(
+                                      allTestResults[i].testsFiles[j].path,
+                                      filename: 'test Results$i.jpg',
+                                      contentType: MediaType('image', 'jpeg'),
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                            await BlocProvider.of<AddTestResultCubit>(context)
+                                .uploadTestResultstoDataBase(
+                                    id: report.id!,
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .patient!
+                                        .token,
+                                    body: formData);
+                          }
                         }
-                      }
-                    },
-                    isLoading:
-                        BlocProvider.of<AddTestResultCubit>(context).isLoading),
+                      },
+                      isLoading: BlocProvider.of<AddTestResultCubit>(context)
+                          .isLoading),
+                ),
               ),
               const SizedBox(height: 20),
             ],

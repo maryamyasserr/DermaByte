@@ -10,7 +10,7 @@ abstract class LabRepo {
       {required String token});
 
   Future<Either<Failures, String>> deleteLabRequest(
-      {required String token, required String id});
+      {required String token, required String id,required dynamic body});
 
   Future<Either<Failures, String>> addService(
       {required String token,

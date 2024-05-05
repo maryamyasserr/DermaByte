@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +32,12 @@ class PatientConsults extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: HistoryCard(
                         logo: false,
-                        imageCard: state.reports[index].dermatologist!.profilePic,
-                        cardTitle:"Dr ${state.reports[index].dermatologist?.firstName} ${state.reports[index].dermatologist?.lastName}",
-                        cardSubTitle: "with Scan ${state.reports[index].scan![index] .diseaseName}......, on ${DateFormat.yMMMd().format(state.reports[index].createdAt!)}",
+                        imageCard:
+                            state.reports[index].dermatologist!.profilePic,
+                        cardTitle:
+                            "Dr ${state.reports[index].dermatologist?.firstName} ${state.reports[index].dermatologist?.lastName}",
+                        cardSubTitle:
+                            "with Scan ${state.reports[index].scan![index].diseaseName}......, on ${DateFormat.yMMMd().format(state.reports[index].createdAt!)}",
                         textButton: "View",
                         onPressed: () {
                           BlocProvider.of<ReportCubit>(context)
@@ -53,7 +57,13 @@ class PatientConsults extends StatelessWidget {
                 );
               });
         } else if (state is ReportFailure) {
-          return ErrWidget(errMessage: state.errMessage);
+          return ErrWidget(
+            onTap:()async{
+           
+   await BlocProvider.of<ReportCubit>(context).getPatientConults(
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
+            } ,
+            errMessage: state.errMessage);
         } else {
           return const LoadingIndicator(color: AppColors.kPrimaryColor);
         }

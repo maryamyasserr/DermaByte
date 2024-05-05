@@ -3,11 +3,7 @@ class Test {
   DateTime? requestedAt;
   String? id;
 
-  Test({
-    this.testName,
-    this.requestedAt,
-    this.id,
-  });
+  Test({this.testName, this.requestedAt, this.id,});
 
   factory Test.fromJson(Map<String, dynamic> json) => Test(
         testName: json['testName'] as List<dynamic>?,

@@ -14,6 +14,13 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
 
   List<UploadedTestModel> allTestResults = [];
 
+  List<String> testId = [];
+  List<int> indices = [];
+  List<String> testsNames = [];
+
+  List<String> testsids = [];
+  List<String> tests = [];
+
   Future<void> addTestResult(
       {required String id, token, required dynamic body}) async {
     emit(AddTestResultLoading());
@@ -109,5 +116,33 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
   void removeLicense(index, XFile test) {
     allUploadedTests[index].remove(test);
     emit(AddTestResultSuccess());
+  }
+
+  void selectTest(List<String> ids, List<String> name) {
+    testId = ids;
+    testsNames = name;
+    if (testId.isEmpty || testsNames.isEmpty) {
+      emit(SelecttestFailuar());
+    } else {
+      emit(SelecttestSuccess(tests: [testsNames, testId]));
+    }
+  }
+
+  void deleteTest(String name, String id, index) {
+    testsNames.remove(name);
+    testId.remove(id);
+    indices.remove(index);
+    if (testsNames.isEmpty || testId.isEmpty || indices.isEmpty) {
+      emit(SelecttestSuccess(tests: [testsNames, testId]));
+      emit(SelecttestFailuar());
+    } else {
+      emit(SelecttestSuccess(tests: [testsNames, testId]));
+    }
+  }
+
+  void deleteAllTests() {
+    testId = [];
+    testsNames = [];
+    emit(SelecttestFailuar());
   }
 }

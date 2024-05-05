@@ -3,6 +3,7 @@ import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/utils/url_launcher.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/patient_card.dart';
@@ -50,8 +51,18 @@ class PatientsDay extends StatelessWidget {
                                       child:
                                           Text(DateFormat.yMMMd().format(e)));
                                 }).toList(),
-                                onChanged: (value) {
-                                  BlocProvider.of<MyReservationCubit>(context)
+                                onChanged: (value) async {
+                                  await BlocProvider.of<MyReservationCubit>(
+                                          context)
+                                      .getMyReservations(
+                                          completed: 'false',
+                                          reviwed: 'true',
+                                          token: BlocProvider.of<AuthCubit>(
+                                                  context)
+                                              .doctorModel!
+                                              .token);
+                                  await BlocProvider.of<MyReservationCubit>(
+                                          context)
                                       .getSelectedDate(value!);
                                 }),
                           ],
@@ -98,7 +109,16 @@ class PatientsDay extends StatelessWidget {
                                     value: e,
                                     child: Text(DateFormat.yMMMd().format(e)));
                               }).toList(),
-                              onChanged: (value) {
+                              onChanged: (value) async {
+                                await BlocProvider.of<MyReservationCubit>(
+                                        context)
+                                    .getMyReservations(
+                                        completed: 'false',
+                                        reviwed: 'true',
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .doctorModel!
+                                                .token);
                                 BlocProvider.of<MyReservationCubit>(context)
                                     .getSelectedDate(value!);
                               }),
@@ -154,6 +174,9 @@ class PatientsDay extends StatelessWidget {
                                       null) {
                                     failedAlert(context, "Some Thing Is Wrong");
                                   } else {
+                                    BlocProvider.of<MyReservationCubit>(context)
+                                            .reservationid =
+                                        state.appoinments[index].id;
                                     GoRouter.of(context)
                                         .push(AppRoutes.kPatientView);
                                   }
@@ -163,7 +186,9 @@ class PatientsDay extends StatelessWidget {
                                           .setId =
                                       state.appoinments[index].report![index]
                                           .id!;
-
+                                  print(BlocProvider.of<MyPatientReportCubit>(
+                                          context)
+                                      .getPatientReport);
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
                                           .getPatientReport ==
@@ -204,7 +229,14 @@ class PatientsDay extends StatelessWidget {
                               value: e,
                               child: Text(DateFormat.yMMMd().format(e)));
                         }).toList(),
-                        onChanged: (value) {
+                        onChanged: (value) async {
+                          await BlocProvider.of<MyReservationCubit>(context)
+                              .getMyReservations(
+                                  completed: 'false',
+                                  reviwed: 'true',
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .doctorModel!
+                                      .token);
                           BlocProvider.of<MyReservationCubit>(context)
                               .getSelectedDate(value!);
                         }),

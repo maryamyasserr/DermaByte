@@ -29,7 +29,7 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
 
   @override
   Future<Either<Failures, String>> addTestResult(
-      {required String id, required String  token, required body}) async {
+      {required String id, required String token, required body}) async {
     try {
       await apiService.update(
           endPoint: "reports/$id", data: body, token: token);
@@ -60,7 +60,7 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
 
   @override
   Future<Either<Failures, String>> uploadTestResult(
-      {required String id,required String  token, required body}) async {
+      {required String id, required String token, required body}) async {
     try {
       await apiService.updateWithMultipart(
           endPoint: 'reports/$id/uploadTestResult', data: body, token: token);

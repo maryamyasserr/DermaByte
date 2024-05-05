@@ -7,20 +7,40 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/add_test_body.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/disease_report.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/dots_indicator.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_medication.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_test_requestd.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_test_results.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/patient_treatment_plane.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/personal_info_section.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/uploaded_test.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ReportView extends StatelessWidget {
+class ReportView extends StatefulWidget {
   const ReportView({super.key});
   static TextEditingController testName = TextEditingController();
   static List<String> allTestsRequested = [];
+
+  @override
+  State<ReportView> createState() => _ReportViewState();
+}
+
+class _ReportViewState extends State<ReportView> {
+  late PageController pageController;
+  int currentIndex = 0;
+
+  @override
+  void initState() {
+    pageController = PageController();
+    pageController.addListener(() {
+      currentIndex = pageController.page!.round();
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +79,13 @@ class ReportView extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       DiseaseReport(
+                        pageController: pageController,
                         diseaseName: report.scan?[0].diseaseName ?? "",
+                      ),
+                      const SizedBox(height: 16),
+                      DotsIndicatorDoctor(
+                        currentPageIndex: currentIndex,
+                        count: report.scan!.length,
                       ),
                       const SizedBox(height: 32),
                       report.tests!.isEmpty
@@ -69,7 +95,10 @@ class ReportView extends StatelessWidget {
                       report.testResult!.isEmpty
                           ? const SizedBox()
                           : const PatientTestResult(),
-                      const SizedBox(height: 24),
+                      report.uploadedTest!.isEmpty?
+                      
+                        const SizedBox()
+                          : const UploadedTestReport(),
                       report.medicine!.isEmpty
                           ? const SizedBox()
                           : const PatientMedications(),

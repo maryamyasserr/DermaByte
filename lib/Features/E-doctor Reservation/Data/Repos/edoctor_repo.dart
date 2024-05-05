@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Models/free_time_model.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class EdoctorRepo {
@@ -10,7 +10,7 @@ abstract class EdoctorRepo {
       {required String token});
   Future<Either<Failures, String>> createReservaionAndPatientReport(
       {required dynamic reservationData,
-      required dynamic reportData,
+      // required dynamic reportData,
       required BuildContext context,
       required String token});
 

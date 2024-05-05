@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,13 @@ class PatientTests extends StatelessWidget {
                 );
               });
         } else if (state is TestsFailure) {
-          return ErrWidget(errMessage: state.errMessage);
+          return ErrWidget(
+            onTap: ()async{
+                   await  BlocProvider.of<TestsCubit>(context).getPatientTests(
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
+
+            },
+            errMessage: state.errMessage);
         } else {
           return const LoadingIndicator(color: AppColors.kPrimaryColor);
         }

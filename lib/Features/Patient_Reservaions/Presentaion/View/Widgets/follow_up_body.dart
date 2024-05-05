@@ -6,7 +6,7 @@ import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,6 @@ class FollowUpBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: CustomCard(
-                      
                       iconCard: Assets.kFollowUpIcon,
                       cardTitle:
                           "Dr. ${patientReservation.dermatologist.firstName}'s appointment",
@@ -67,7 +66,6 @@ class FollowUpBody extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(bottom: 24, right: 4, left: 4),
                     child: CustomCard(
-                      
                         iconCard: Assets.kAppoinments,
                         cardTitle:
                             'Dr. ${report.dermatologist?.firstName ?? "The Doctor"} requested tests.',

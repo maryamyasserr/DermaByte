@@ -4,7 +4,7 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/selected_tests.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,9 +29,9 @@ class _AllPatientScansState extends State<AllPatientTest> {
 
   @override
   Widget build(BuildContext context) {
-    List<int> indices = BlocProvider.of<PreservationInfoCubit>(context).indices;
-    List<String> ids = BlocProvider.of<PreservationInfoCubit>(context).testsids;
-    List<String> tests = BlocProvider.of<PreservationInfoCubit>(context).tests;
+    List<int> indices = BlocProvider.of<AddTestResultCubit>(context).indices;
+    List<String> ids = BlocProvider.of<AddTestResultCubit>(context).testsids;
+    List<String> tests = BlocProvider.of<AddTestResultCubit>(context).tests;
     return BlocBuilder<TestsCubit, TestsState>(builder: (context, state) {
       if (state is TestsSuccess) {
         return Container(
@@ -92,17 +92,15 @@ class _AllPatientScansState extends State<AllPatientTest> {
                                       indices.remove(index);
                                       ids.remove(state.tests[index].id);
                                       tests.remove(state.tests[index].testName);
-                                      print(indices);  
+                                      print(indices);
                                     } else {
                                       indices.add(index);
                                       ids.add(state.tests[index].id!);
                                       tests.add(state.tests[index].testName!);
                                       print(indices);
-
                                     }
                                   });
-                                  BlocProvider.of<PreservationInfoCubit>(
-                                          context)
+                                  BlocProvider.of<AddTestResultCubit>(context)
                                       .selectTest(ids, tests);
                                 },
                               ),
@@ -148,8 +146,6 @@ class _AllPatientScansState extends State<AllPatientTest> {
   }
 }
 
-
-
 // import 'package:dermabyte/Core/Widgets/err_widget.dart';
 // import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 // import 'package:dermabyte/Core/utils/assets.dart';
@@ -160,7 +156,6 @@ class _AllPatientScansState extends State<AllPatientTest> {
 // import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 // class AllPatientTest extends StatelessWidget {
 //   const AllPatientTest({

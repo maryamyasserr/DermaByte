@@ -6,8 +6,8 @@ abstract class PreservationInfoRepo {
   Future<Either<Failures, List<PreservationModel>>> getPatientReservation(
       {required String token});
   Future<Either<Failures, String>> addTestResult(
-      {required String id, required String  token, required dynamic body});
-    Future<Either<Failures, String>> uploadTestResult(
+      {required String id, required String token, required dynamic body});
+  Future<Either<Failures, String>> uploadTestResult(
       {required String id, required String token, required dynamic body});
 
   Future<Either<Failures, String>> deleteReservation(

@@ -19,7 +19,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
   List<String> scans = [];
   Future<void> createReservationAndPatientReport(
       {required dynamic reservationData,
-      required dynamic reportData,
+      // required dynamic reportData,
       required BuildContext context,
       required String token}) async {
     emit(DoctorReservationLoading());
@@ -27,7 +27,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
     isLoading = true;
     var reservation = await edoctorRepo.createReservaionAndPatientReport(
         context: context,
-        reportData: reportData,
+        // reportData: reportData,
         reservationData: reservationData,
         token: token);
     reservation.fold((failure) {

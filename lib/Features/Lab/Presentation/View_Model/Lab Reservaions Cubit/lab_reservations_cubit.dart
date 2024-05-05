@@ -24,8 +24,8 @@ class LabReservationsCubit extends Cubit<LabReservationsState> {
   }
 
   Future<void> deleteRequest(
-      {required String id, required String token}) async {
-    labRequestsRepo.deleteLabRequest(token: token, id: id);
+      {required String id, required String token,required dynamic body}) async {
+    labRequestsRepo.deleteLabRequest(token: token, id: id,body: body);
   }
 
   set setId(String id) {

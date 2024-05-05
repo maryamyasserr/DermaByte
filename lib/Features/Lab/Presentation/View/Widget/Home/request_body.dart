@@ -114,7 +114,7 @@ class _RequestBodyState extends State<RequestBody> {
                             formData.fields.add(
                                 MapEntry("patient", reservation.patient!.id!));
                           }
-                       
+
                           await BlocProvider.of<AttachResultCubit>(context)
                               .attachResult(
                                   context: context,
@@ -125,6 +125,13 @@ class _RequestBodyState extends State<RequestBody> {
                           await BlocProvider.of<LabReservationsCubit>(context)
                               .deleteRequest(
                                   id: reservation.id!,
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .labModel!
+                                      .token,
+                                  body: {"completed": "true"});
+
+                          await BlocProvider.of<LabReservationsCubit>(context)
+                              .getLabRequests(
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .labModel!
                                       .token);

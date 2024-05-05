@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
+import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:meta/meta.dart';
 
 part 'my_patient_report_state.dart';
@@ -9,7 +9,7 @@ class MyPatientReportCubit extends Cubit<MyPatientReportState> {
   MyPatientReportCubit(this.doctortRepo) : super(MyPatientReportInitial());
   DoctorRepo doctortRepo;
   List<ReportModel> _myPatientsReport = [];
-  String? _id;
+  String? reportid;
 
   Future<void> getMyPatientsReport({required String token}) async {
     emit(MyPatientReportLoading());
@@ -26,12 +26,12 @@ class MyPatientReportCubit extends Cubit<MyPatientReportState> {
   }
 
   set setId(String id) {
-    _id = id;
+    reportid = id;
   }
 
   ReportModel? get getPatientReport {
     try {
-      return _myPatientsReport.firstWhere((element) => element.id == _id);
+      return _myPatientsReport.firstWhere((element) => element.id == reportid);
     } catch (e) {
       return null;
     }

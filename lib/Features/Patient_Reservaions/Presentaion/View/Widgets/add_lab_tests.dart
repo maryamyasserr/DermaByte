@@ -2,7 +2,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/all_patient_tests.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +23,7 @@ class AddTestResultField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
+    return BlocBuilder<AddTestResultCubit, AddTestResultState>(
         builder: (context, state) {
       if (state is SelecttestSuccess) {
         if (state.tests.isEmpty) {
@@ -128,11 +128,10 @@ class AddTestResultField extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  BlocProvider.of<PreservationInfoCubit>(
-                                          context)
+                                  BlocProvider.of<AddTestResultCubit>(context)
                                       .deleteTest(state.tests[0][index],
-                                          state.tests[1][index],index);
-                                  print(BlocProvider.of<PreservationInfoCubit>(
+                                          state.tests[1][index], index);
+                                  print(BlocProvider.of<AddTestResultCubit>(
                                           context)
                                       .indices);
                                 },

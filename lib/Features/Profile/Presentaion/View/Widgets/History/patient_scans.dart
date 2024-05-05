@@ -3,6 +3,7 @@ import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/History/history_card.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,10 @@ class PatientScans extends StatelessWidget {
             });
       } else if (state is ScanFailure) {
         return ErrWidget(
+          onTap: ()async{
+               await BlocProvider.of<ScanCubit>(context).getPatientScan(
+        token: BlocProvider.of<AuthCubit>(context).patient!.token);
+          },
           errMessage: state.errMessage,
         );
       } else {
