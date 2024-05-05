@@ -9,7 +9,6 @@ class TestsCubit extends Cubit<TestsState> {
   TestsCubit(this.historyRepo) : super(TestsInitial());
   HistoryRepo historyRepo;
   List<TestModel> pTests = [];
-  String? testId;
   String? _id;
   set setId(String id) {
     _id = id;

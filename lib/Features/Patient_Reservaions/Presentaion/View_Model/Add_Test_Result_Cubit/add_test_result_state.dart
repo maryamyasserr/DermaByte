@@ -8,6 +8,7 @@ final class AddTestResultInitial extends AddTestResultState {}
 final class AddTestResultLoading extends AddTestResultState {}
 
 final class AddTestResultSuccess extends AddTestResultState {}
+final class DoneState extends AddTestResultState {}
 
 final class AddTestResultFailure extends AddTestResultState {
   final String errMessage;

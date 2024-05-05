@@ -3,7 +3,6 @@ import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo.dart';
-import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dio/dio.dart';
 
 class PreservationInfoRepoImpl implements PreservationInfoRepo {
@@ -29,13 +28,13 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
   }
 
   @override
-  Future<Either<Failures, ReportModel>> addTestResult(
-      {required String id, token, required body}) async {
+  Future<Either<Failures, String>> addTestResult(
+      {required String id, required String  token, required body}) async {
     try {
-      var response = await apiService.update(
+      await apiService.update(
           endPoint: "reports/$id", data: body, token: token);
-      ReportModel report = ReportModel.fromJson(response['data']);
-      return right(report);
+
+      return right('done');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
@@ -51,6 +50,21 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
       await apiService.delete(
           endPoint: "Dermatologist-reservation/", id: id, token: token);
       return right("Done");
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, String>> uploadTestResult(
+      {required String id,required String  token, required body}) async {
+    try {
+      await apiService.updateWithMultipart(
+          endPoint: 'reports/$id/uploadTestResult', data: body, token: token);
+      return right('done');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

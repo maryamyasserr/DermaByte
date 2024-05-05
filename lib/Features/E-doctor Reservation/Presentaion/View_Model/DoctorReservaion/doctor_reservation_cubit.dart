@@ -57,6 +57,7 @@ class DoctorReservationCubit extends Cubit<DoctorReservationState> {
     scanId.remove(id);
     indices.remove(index);
     if (scanName.isEmpty || scanId.isEmpty) {
+      emit(SelectScanSuccess(scans: [scanName, scanId]));
       emit(SelectScanFailuar());
     } else {
       emit(SelectScanSuccess(scans: [scanName, scanId]));

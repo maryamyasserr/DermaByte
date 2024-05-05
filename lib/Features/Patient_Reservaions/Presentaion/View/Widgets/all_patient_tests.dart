@@ -3,7 +3,6 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/selected_tests.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
@@ -30,8 +29,7 @@ class _AllPatientScansState extends State<AllPatientTest> {
 
   @override
   Widget build(BuildContext context) {
-    List<int> indices =
-        BlocProvider.of<DoctorReservationCubit>(context).indices;
+    List<int> indices = BlocProvider.of<PreservationInfoCubit>(context).indices;
     List<String> ids = BlocProvider.of<PreservationInfoCubit>(context).testsids;
     List<String> tests = BlocProvider.of<PreservationInfoCubit>(context).tests;
     return BlocBuilder<TestsCubit, TestsState>(builder: (context, state) {
@@ -93,12 +91,14 @@ class _AllPatientScansState extends State<AllPatientTest> {
                                     if (isSelectd) {
                                       indices.remove(index);
                                       ids.remove(state.tests[index].id);
-                                      tests.remove(
-                                          state.tests[index].testName);
+                                      tests.remove(state.tests[index].testName);
+                                      print(indices);  
                                     } else {
                                       indices.add(index);
                                       ids.add(state.tests[index].id!);
                                       tests.add(state.tests[index].testName!);
+                                      print(indices);
+
                                     }
                                   });
                                   BlocProvider.of<PreservationInfoCubit>(
@@ -130,8 +130,9 @@ class _AllPatientScansState extends State<AllPatientTest> {
               const SizedBox(height: 8),
               ElevatedButton(
                   onPressed: () {
-                     BlocProvider.of<TestsCubit>(context).getPatientTests(
-        token: BlocProvider.of<AuthCubit>(context).patient!.token);
+                    BlocProvider.of<TestsCubit>(context).getPatientTests(
+                        token:
+                            BlocProvider.of<AuthCubit>(context).patient!.token);
                   },
                   child: Text(
                     "Refresh",

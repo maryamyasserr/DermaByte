@@ -24,7 +24,24 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
       emit(AddTestResultFailure(errMessage: failure.errMessage));
       isLoading = false;
     }, (data) {
-      emit(AddTestResultSuccess());
+      emit(DoneState());
+      isLoading = false;
+    });
+  }
+
+  Future<void> uploadTestResultstoDataBase(
+      {required String id,
+      required String token,
+      required dynamic body}) async {
+    emit(AddTestResultLoading());
+    isLoading = true;
+    var response = await preservationInfoRepo.uploadTestResult(
+        id: id, body: body, token: token);
+    response.fold((failure) {
+      emit(AddTestResultFailure(errMessage: failure.errMessage));
+      isLoading = false;
+    }, (data) {
+      emit(DoneState());
       isLoading = false;
     });
   }
@@ -46,7 +63,6 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
     }
   }
 
-  
   void addAllResults(UploadedTestModel uploadedTestModel) {
     int existingIndex = allTestResults
         .indexWhere((test) => test.testName == uploadedTestModel.testName);
@@ -72,15 +88,14 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
     }
   }
 
-
- void removeTestResult(String name,List<XFile> tests, XFile test) {
+  void removeTestResult(String name, List<XFile> tests, XFile test) {
     tests.remove(test);
-    if(tests.isEmpty){
-       allTestResults.removeWhere((uploadedTestModel) => uploadedTestModel.testName == name);
+    if (tests.isEmpty) {
+      allTestResults.removeWhere(
+          (uploadedTestModel) => uploadedTestModel.testName == name);
     }
     emit(AddTestResultSuccess());
   }
-
 
   List<List<XFile>> allUploadedTests = [];
 

@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -12,9 +13,11 @@ import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Ad
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/report_model/report_model.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:http_parser/http_parser.dart';
 
 class RequestedTestsBody extends StatefulWidget {
   const RequestedTestsBody({
@@ -32,20 +35,23 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
     BlocProvider.of<PreservationInfoCubit>(context).indices = [];
     BlocProvider.of<PreservationInfoCubit>(context).testsids = [];
     BlocProvider.of<PreservationInfoCubit>(context).tests = [];
-    BlocProvider.of<AddTestResultCubit>(context). allTestResults= [];
-    
+    BlocProvider.of<AddTestResultCubit>(context).allTestResults = [];
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     ReportModel report = BlocProvider.of<ReportCubit>(context).patientReport!;
+    List<UploadedTestModel> allTestResults =
+        BlocProvider.of<AddTestResultCubit>(context).allTestResults;
     return BlocConsumer<AddTestResultCubit, AddTestResultState>(
       listener: (context, state) {
         if (state is AddTestResultFailure) {
           showSnackBar(context, state.errMessage);
-        } else if (state is AddTestResultSuccess) {
-          // showSnackBar(context, "Done");
+        } else if (state is DoneState) {
+          GoRouter.of(context).pop();
+          
         }
       },
       builder: (context, state) {
@@ -89,17 +95,8 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
                               style: Styels.textStyle24_600(context)
                                   .copyWith(fontWeight: FontWeight.bold)),
                           const SizedBox(height: 16),
-                          const AddTestResultField(
-                              isrequired: true,
-                              padding: EdgeInsets.only(right: 15, bottom: 10)),
-                          const SizedBox(height: 16),
-                          Text(
-                            'or',
-                            style: Styels.textStyle20_300(context),
-                          ),
-                          const SizedBox(height: 16),
                           AttachedField(
-                            testName:  report.tests![index].testName![0],
+                            testName: report.tests![index].testName![0],
                             index: index,
                             title: "Upload External Tests",
                             onTap: () async {
@@ -119,24 +116,94 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
                       ),
                     );
                   }),
-              const SizedBox(height: 30),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: Row(
+                  children: [
+                    const Expanded(
+                        child: Divider(
+                      color: Colors.black,
+                      thickness: 0.5,
+                    )),
+                    const SizedBox(width: 8),
+                    Text(
+                      "or",
+                      style: Styels.textStyle20_300(context),
+                    ),
+                    const SizedBox(width: 8),
+                    const Expanded(
+                        child: Divider(
+                      color: Colors.black,
+                      thickness: 0.5,
+                    )),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14),
+                child: AddTestResultField(
+                    isrequired: true,
+                    padding: EdgeInsets.only(right: 15, bottom: 10)),
+              ),
+              const SizedBox(height: 50),
               Center(
                 child: AddTestButton(
                     text: 'Confirm',
                     onPressed: () async {
                       print(BlocProvider.of<AddTestResultCubit>(context)
                           .allTestResults);
-                      await BlocProvider.of<AddTestResultCubit>(context)
-                          .addTestResult(
-                              token: BlocProvider.of<AuthCubit>(context)
-                                  .patient!
-                                  .token,
-                              id: report.id!,
-                              body: {
-                            "testResult": [
-                              "${BlocProvider.of<TestsCubit>(context).testId}"
-                            ]
-                          });
+                      if (BlocProvider.of<PreservationInfoCubit>(context)
+                              .testId
+                              .isEmpty &&
+                          allTestResults.isEmpty) {
+                        failedAlert(context, "Attach Your Result");
+                      } else {
+                        if (BlocProvider.of<PreservationInfoCubit>(context)
+                            .testId
+                            .isNotEmpty) {
+                          await BlocProvider.of<AddTestResultCubit>(context)
+                              .addTestResult(
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .patient!
+                                      .token,
+                                  id: report.id!,
+                                  body: {
+                                "testResult":
+                                    BlocProvider.of<PreservationInfoCubit>(
+                                            context)
+                                        .testId
+                              });
+                        }
+
+                        if (allTestResults.isNotEmpty) {
+                          FormData formData = FormData();
+                          for (int i = 0; i < allTestResults.length; i++) {
+                            for (int j = 0;
+                                j < allTestResults[i].testsFiles.length;
+                                j++) {
+                              formData.files.add(
+                                MapEntry(
+                                  allTestResults[i].testName,
+                                  await MultipartFile.fromFile(
+                                    allTestResults[i].testsFiles[j].path,
+                                    filename: 'test Results$i.jpg',
+                                    contentType: MediaType('image', 'jpeg'),
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                          await BlocProvider.of<AddTestResultCubit>(context)
+                              .uploadTestResultstoDataBase(
+                                  id: report.id!,
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .patient!
+                                      .token,
+                                  body: formData);
+                        }
+                      }
                     },
                     isLoading:
                         BlocProvider.of<AddTestResultCubit>(context).isLoading),

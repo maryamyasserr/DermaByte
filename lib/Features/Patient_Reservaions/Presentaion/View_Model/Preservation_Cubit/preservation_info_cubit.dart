@@ -12,10 +12,9 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
   String? _id;
   List<PreservationModel> reservations = [];
 
-
-   List<String> testId = [];
+  List<String> testId = [];
   List<int> indices = [];
-  List<String> testName = [];
+  List<String> testsNames = [];
 
   List<String> testsids = [];
   List<String> tests = [];
@@ -61,32 +60,31 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     }
   }
 
-
-   void selectTest(List<String> ids, List<String> name) {
+  void selectTest(List<String> ids, List<String> name) {
     testId = ids;
-    testName = name;
-    if (testId.isEmpty || testName.isEmpty) {
+    testsNames = name;
+    if (testId.isEmpty || testsNames.isEmpty) {
       emit(SelecttestFailuar());
     } else {
-      emit(SelecttestSuccess(tests: [testName, testId]));
+      emit(SelecttestSuccess(tests: [testsNames, testId]));
     }
   }
 
-   void deleteTest(String name, String id, index) {
-    testName.remove(name);
+  void deleteTest(String name, String id, index) {
+    testsNames.remove(name);
     testId.remove(id);
     indices.remove(index);
-    if (testName.isEmpty || testId.isEmpty) {
+    if (testsNames.isEmpty || testId.isEmpty||indices.isEmpty) {
+      emit(SelecttestSuccess(tests: [testsNames, testId]));
       emit(SelecttestFailuar());
     } else {
-      emit(SelecttestSuccess(tests: [testName, testId]));
+      emit(SelecttestSuccess(tests: [testsNames, testId]));
     }
   }
 
   void deleteAllTests() {
     testId = [];
-    testName = [];
+    testsNames = [];
     emit(SelecttestFailuar());
   }
-
 }

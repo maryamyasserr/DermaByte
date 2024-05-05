@@ -81,7 +81,6 @@ class AddTestResultField extends StatelessWidget {
             )
           ]);
         } else {
-          print(state.tests[0]);
           return Column(
             children: [
               ListView.builder(
@@ -132,7 +131,10 @@ class AddTestResultField extends StatelessWidget {
                                   BlocProvider.of<PreservationInfoCubit>(
                                           context)
                                       .deleteTest(state.tests[0][index],
-                                          state.tests[1][index], index);
+                                          state.tests[1][index],index);
+                                  print(BlocProvider.of<PreservationInfoCubit>(
+                                          context)
+                                      .indices);
                                 },
                                 child: const Icon(
                                   Icons.cancel,

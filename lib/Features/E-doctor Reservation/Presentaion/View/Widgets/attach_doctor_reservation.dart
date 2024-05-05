@@ -81,7 +81,6 @@ class AttachDocotorReservaionField extends StatelessWidget {
             )
           ]);
         } else {
-          print(state.scans[0]);
           return Column(
             children: [
               ListView.builder(
