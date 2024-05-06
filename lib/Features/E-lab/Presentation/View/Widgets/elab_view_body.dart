@@ -37,81 +37,80 @@ class _ElabViewBodyState extends State<ElabViewBody> {
           image: AssetImage(Assets.kBackground),
           fit: BoxFit.cover,
         ),
+     
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomAppBar(title: 'Laboratories'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'A list of the best laboratories in your era.',
-                style: Styels.textStyle15_300(context),
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const CustomAppBar(title: 'Laboratories'),
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'A list of the best laboratories in your era.',
+              style: Styels.textStyle15_300(context),
             ),
-            BlocBuilder<ELabCubit, LabState>(builder: (context, state) {
-              if (state is LabFailure) {
-                return Expanded(
-                    child: ErrWidget(
-                        onTap: () {
-                          BlocProvider.of<ELabCubit>(context).getAllLabs(
-                              token: BlocProvider.of<AuthCubit>(context)
-                                  .patient!
-                                  .token);
-                        },
-                        errMessage: state.errMessage));
-              } else if (state is LabSuccess) {
-                if (state.labs.isEmpty) {
-                  return const EmptyWidget(
-                      text: "There are no Labs available now");
-                } else {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: state.labs.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 24.0),
-                          child: LabItem(
-                            imageCard: state.labs[index].profilePic,
-                            labTitle: state.labs[index].firstName ?? "",
-                            labSubTitle:
-                                '${state.labs[index].firstName} laboratory in Giza that provides ${state.labs[index].services!.length} services',
-                            onTap: () {
-                              BlocProvider.of<ELabCubit>(context).setId =
-                                  state.labs[index].id!;
-                              GoRouter.of(context).push(AppRoutes.kLabDetails);
-                            },
-                            onButtonPressed: () {
-                              BlocProvider.of<ELabCubit>(context).setId =
-                                  state.labs[index].id!;
-                              if (BlocProvider.of<ELabCubit>(context)
-                                      .currentLab ==
-                                  null) {
-                                failedAlert(context,
-                                    "Something is Wrong Reserve With Another Lab");
-                              } else {
-                                GoRouter.of(context)
-                                    .push(AppRoutes.kLabReservationView);
-                              }
-                            },
-                            textButton: 'Reserve',
-                          ),
-                        );
+          ),
+          BlocBuilder<ELabCubit, LabState>(builder: (context, state) {
+            if (state is LabFailure) {
+              return Expanded(
+                  child: ErrWidget(
+                      onTap: () {
+                        BlocProvider.of<ELabCubit>(context).getAllLabs(
+                            token: BlocProvider.of<AuthCubit>(context)
+                                .patient!
+                                .token);
                       },
-                    ),
-                  );
-                }
+                      errMessage: state.errMessage));
+            } else if (state is LabSuccess) {
+              if (state.labs.isEmpty) {
+                return const EmptyWidget(
+                    text: "There are no Labs available now");
               } else {
-                return const Expanded(
-                    child: Center(
-                        child:
-                            LoadingIndicator(color: AppColors.kPrimaryColor)));
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: state.labs.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 10),
+                        child: LabItem(
+                          imageCard: state.labs[index].profilePic,
+                          labTitle: state.labs[index].firstName ?? "",
+                          labSubTitle:
+                              '${state.labs[index].firstName} laboratory in Giza that provides ${state.labs[index].services!.length} services',
+                          onTap: () {
+                            BlocProvider.of<ELabCubit>(context).setId =
+                                state.labs[index].id!;
+                            GoRouter.of(context).push(AppRoutes.kLabDetails);
+                          },
+                          onButtonPressed: () {
+                            BlocProvider.of<ELabCubit>(context).setId =
+                                state.labs[index].id!;
+                            if (BlocProvider.of<ELabCubit>(context)
+                                    .currentLab ==
+                                null) {
+                              failedAlert(context,
+                                  "Something is Wrong Reserve With Another Lab");
+                            } else {
+                              GoRouter.of(context)
+                                  .push(AppRoutes.kLabReservationView);
+                            }
+                          },
+                          textButton: 'Reserve',
+                        ),
+                      );
+                    },
+                  ),
+                );
               }
-            })
-          ],
-        ),
+            } else {
+              return const Expanded(
+                  child: Center(
+                      child:
+                          LoadingIndicator(color: AppColors.kPrimaryColor)));
+            }
+          })
+        ],
       ),
     );
   }

@@ -27,21 +27,25 @@ class _EdoctorAppoinmentsState extends State<EdoctorAppoinments> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 70,
-        right: 6,
-        left: 6,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text('My Schedule',
-              style: Styels.textStyle24_600(context).copyWith(fontSize: 28)),
-          const SizedBox(height: 24),
-          const Expanded(child: PatientsDay()),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: double.infinity,
+          height: MediaQuery.sizeOf(context).height*0.08,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight:Radius.circular(25)
+             )
+          ),
+          child: Center(
+            child: Text('My Schedule',
+                style: Styels.textStyle24_600(context).copyWith(fontSize: 28)),
+          ),
+        ),
+        const SizedBox(height: 24),
+        const Expanded(child: PatientsDay()),
+      ],
     );
   }
 }

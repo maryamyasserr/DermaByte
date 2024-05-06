@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class HistoryCard extends StatelessWidget {
       aspectRatio: 330 / 130,
       child: Container(
         decoration: BoxDecoration(
-            color: AppColors.kCardColor,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
             boxShadow: const [
               BoxShadow(

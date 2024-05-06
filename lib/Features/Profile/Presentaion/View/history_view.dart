@@ -7,8 +7,10 @@ class HistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-      child: Scaffold(
-        body: HistoryBody(),
+      child: SafeArea(
+        child: Scaffold(
+          body: HistoryBody(),
+        ),
       ),
     );
   }

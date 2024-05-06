@@ -45,62 +45,64 @@ class _CustomScreenState extends State<CustomScreen> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    return Scaffold(
-      floatingActionButton: Container(
-        height: mediaQuery.height * 0.2,
-        width: mediaQuery.width * 0.20,
-        decoration:
-            const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-        padding: const EdgeInsets.all(8),
-        child: FloatingActionButton(
-          shape: const CircleBorder(),
-          onPressed: () {
-            GoRouter.of(context).push(AppRoutes.kScanWaysView);
-          },
-          // ignore: sort_child_properties_last
-          child: Text(
-            'Scan',
-            style: Styels.textStylee20_700(context),
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: Container(
+          height: mediaQuery.height * 0.2,
+          width: mediaQuery.width * 0.20,
+          decoration:
+              const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+          padding: const EdgeInsets.all(8),
+          child: FloatingActionButton(
+            shape: const CircleBorder(),
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kScanWaysView);
+            },
+            // ignore: sort_child_properties_last
+            child: Text(
+              'Scan',
+              style: Styels.textStylee20_700(context),
+            ),
+            backgroundColor: AppColors.kScanButton,
           ),
-          backgroundColor: AppColors.kScanButton,
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        body: pages[selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: selectedIndex,
+            onTap: (value) {
+              setState(() {
+                selectedIndex = value;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  selectedIndex == 0 ? selectedIcons[0] : unselectedIcons[0],
+                ),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  selectedIndex == 1 ? selectedIcons[1] : unselectedIcons[1],
+                ),
+                label: 'Appointments',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  selectedIndex == 2 ? selectedIcons[2] : unselectedIcons[2],
+                ),
+                label: 'E-Lab',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  selectedIndex == 3 ? selectedIcons[3] : unselectedIcons[3],
+                ),
+                label: 'E-Doctor',
+              ),
+            ]),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: pages[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: selectedIndex,
-          onTap: (value) {
-            setState(() {
-              selectedIndex = value;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                selectedIndex == 0 ? selectedIcons[0] : unselectedIcons[0],
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                selectedIndex == 1 ? selectedIcons[1] : unselectedIcons[1],
-              ),
-              label: 'Appointments',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                selectedIndex == 2 ? selectedIcons[2] : unselectedIcons[2],
-              ),
-              label: 'E-Lab',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                selectedIndex == 3 ? selectedIcons[3] : unselectedIcons[3],
-              ),
-              label: 'E-Doctor',
-            ),
-          ]),
     );
   }
 }

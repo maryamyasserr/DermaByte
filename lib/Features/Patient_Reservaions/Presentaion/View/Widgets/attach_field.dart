@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class AttachedField extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.07,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: AppColors.kCardColor,
+                  color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
@@ -102,7 +101,7 @@ class AttachedField extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.07,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: AppColors.kCardColor,
+                      color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.grey,

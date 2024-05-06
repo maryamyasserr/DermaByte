@@ -38,132 +38,131 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-        child: Column(
-          children: [
-            const CustomAppBar(title: 'Reservations'),
-            const SizedBox(height: 12),
-            const HeaderText(
-                text: "Follow up with your ongoing and future appointments."),
-            const SizedBox(height: 16),
-            BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
-              builder: (context, state) {
-                if (state is PreservationInfoFailure) {
-                  return Expanded(
-                      child: ErrWidget(
-                          onTap: () async {
-                            await BlocProvider.of<PreservationInfoCubit>(
-                                    context)
-                                .getPatientReservationInfo(
-                                    token: BlocProvider.of<AuthCubit>(context)
-                                        .patient!
-                                        .token);
-                            await BlocProvider.of<ReportCubit>(context)
-                                .getPatientConults(
-                                    token: BlocProvider.of<AuthCubit>(context)
-                                        .patient!
-                                        .token);
-                          },
-                          errMessage: state.errMessage));
-                } else if (state is PreservationInfoSuccess) {
-                  if (state.pReservationInfo.isEmpty) {
-                    return const Expanded(
-                      child: Center(
-                          child: EmptyWidget(
-                              text: "There are no Reservations yet")),
-                    );
-                  } else {
-                    return Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                              flex: 10,
-                              child: ListView.builder(
-                                  itemCount: state.pReservationInfo.length,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12),
-                                      child: CustomCard(
-                                        antoherButton: true,
-                                        onDelete: () async {
-                                          await BlocProvider.of<
-                                                      DeleteReservationCubit>(
-                                                  context)
-                                              .deleteReservation(
-                                                  id: state
-                                                      .pReservationInfo[index]
-                                                      .id!,
-                                                  token: BlocProvider.of<
-                                                          AuthCubit>(context)
-                                                      .patient!
-                                                      .token);
-                                          await BlocProvider.of<
-                                                      PreservationInfoCubit>(
-                                                  context)
-                                              .getPatientReservationInfo(
-                                                  token: BlocProvider.of<
-                                                          AuthCubit>(context)
-                                                      .patient!
-                                                      .token);
-                                        },
-                                        textButton2: 'Delete',
-                                        iconCard: Assets.kFollowUpIcon,
-                                        cardTitle: "Follow Up",
-                                        cardSubTitle:
-                                            "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on ${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${state.pReservationInfo[index].date.hour}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')}  ",
-                                        onPressed: () {
-                                          BlocProvider.of<PreservationInfoCubit>(
-                                                      context)
-                                                  .setId =
-                                              state.pReservationInfo[index].id!;
-                                          BlocProvider.of<ReportCubit>(context)
-                                                  .setReporId =
-                                              state.pReservationInfo[index]
-                                                  .dermatologist.id!;
-                                          if (BlocProvider.of<ReportCubit>(
-                                                          context)
-                                                      .patientReport ==
-                                                  null ||
-                                              BlocProvider.of<PreservationInfoCubit>(
-                                                          context)
-                                                      .currentReservation ==
-                                                  null) {
-                                            failedAlert(context,
-                                                "Something is wrong ,Delete this reservation and try again");
-                                          } else {
-                                            GoRouter.of(context).push(
-                                                AppRoutes.kFollowUp,
-                                                extra: state
-                                                    .pReservationInfo[index]
-                                                    .id);
-                                          }
-                                        },
-                                        textButton: "View",
-                                      ),
-                                    );
-                                  })),
-                          const Expanded(child: SizedBox())
-                        ],
-                      ),
-                    );
-                  }
-                } else {
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
+       
+          ),
+      child: Column(
+        children: [
+          const CustomAppBar(title: 'Reservations'),
+          const SizedBox(height: 12),
+          const HeaderText(
+              text: "Follow up with your ongoing and future appointments."),
+          const SizedBox(height: 16),
+          BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
+            builder: (context, state) {
+              if (state is PreservationInfoFailure) {
+                return Expanded(
+                    child: ErrWidget(
+                        onTap: () async {
+                          await BlocProvider.of<PreservationInfoCubit>(
+                                  context)
+                              .getPatientReservationInfo(
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .patient!
+                                      .token);
+                          await BlocProvider.of<ReportCubit>(context)
+                              .getPatientConults(
+                                  token: BlocProvider.of<AuthCubit>(context)
+                                      .patient!
+                                      .token);
+                        },
+                        errMessage: state.errMessage));
+              } else if (state is PreservationInfoSuccess) {
+                if (state.pReservationInfo.isEmpty) {
                   return const Expanded(
                     child: Center(
-                      child: LoadingIndicator(
-                        color: AppColors.kPrimaryColor,
-                      ),
+                        child: EmptyWidget(
+                            text: "There are no Reservations yet")),
+                  );
+                } else {
+                  return Expanded(
+                    child: Column(
+                      children: [
+                        Expanded(
+                            flex: 10,
+                            child: ListView.builder(
+                                itemCount: state.pReservationInfo.length,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12,horizontal: 8),
+                                    child: CustomCard(
+                                      antoherButton: true,
+                                      onDelete: () async {
+                                        await BlocProvider.of<
+                                                    DeleteReservationCubit>(
+                                                context)
+                                            .deleteReservation(
+                                                id: state
+                                                    .pReservationInfo[index]
+                                                    .id!,
+                                                token: BlocProvider.of<
+                                                        AuthCubit>(context)
+                                                    .patient!
+                                                    .token);
+                                        await BlocProvider.of<
+                                                    PreservationInfoCubit>(
+                                                context)
+                                            .getPatientReservationInfo(
+                                                token: BlocProvider.of<
+                                                        AuthCubit>(context)
+                                                    .patient!
+                                                    .token);
+                                      },
+                                      textButton2: 'Delete',
+                                      iconCard: Assets.kFollowUpIcon,
+                                      cardTitle: "Follow Up",
+                                      cardSubTitle:
+                                          "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on ${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${state.pReservationInfo[index].date.hour}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')}  ",
+                                      onPressed: () {
+                                        BlocProvider.of<PreservationInfoCubit>(
+                                                    context)
+                                                .setId =
+                                            state.pReservationInfo[index].id!;
+                                        BlocProvider.of<ReportCubit>(context)
+                                                .setReporId =
+                                            state.pReservationInfo[index]
+                                                .dermatologist.id!;
+                                        if (BlocProvider.of<ReportCubit>(
+                                                        context)
+                                                    .patientReport ==
+                                                null ||
+                                            BlocProvider.of<PreservationInfoCubit>(
+                                                        context)
+                                                    .currentReservation ==
+                                                null) {
+                                          failedAlert(context,
+                                              "Something is wrong ,Delete this reservation and try again");
+                                        } else {
+                                          GoRouter.of(context).push(
+                                              AppRoutes.kFollowUp,
+                                              extra: state
+                                                  .pReservationInfo[index]
+                                                  .id);
+                                        }
+                                      },
+                                      textButton: "View",
+                                    ),
+                                  );
+                                })),
+                        const Expanded(child: SizedBox())
+                      ],
                     ),
                   );
                 }
-              },
-            )
-          ],
-        ),
+              } else {
+                return const Expanded(
+                  child: Center(
+                    child: LoadingIndicator(
+                      color: AppColors.kPrimaryColor,
+                    ),
+                  ),
+                );
+              }
+            },
+          )
+        ],
       ),
     );
   }

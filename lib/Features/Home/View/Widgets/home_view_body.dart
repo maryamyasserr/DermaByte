@@ -19,15 +19,15 @@ class HomeViewBody extends StatelessWidget {
         image: DecorationImage(
             image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
+      child: Column(
+        children: [
+                const CustomAppBar(title: 'Home'),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomAppBar(title: ''),
                   const Flexible(child: SizedBox(height: 24)),
                   Text(
                     'Hi ${patient.firstName} !',
@@ -45,8 +45,8 @@ class HomeViewBody extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

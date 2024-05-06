@@ -30,7 +30,7 @@ class _TimeState extends State<TimeWidget> {
             borderRadius: BorderRadius.circular(15),
             color: widget.isSelected
                 ? AppColors.kPrimaryColor
-                : AppColors.kCardColor,
+                : Colors.white,
             boxShadow: const [
               BoxShadow(
                 color: Colors.grey,

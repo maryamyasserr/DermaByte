@@ -35,98 +35,95 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
+         
         image: DecorationImage(
           image: AssetImage(Assets.kBackground),
           fit: BoxFit.cover,
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomAppBar(title: 'Doctors'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Widest selection from the best\ncertified doctors.',
-                style: Styels.textStyle15_300(context),
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const CustomAppBar(title: 'Doctors'),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+            child: Text(
+              'Widest selection from the best\ncertified doctors.',
+              style: Styels.textStyle16_400(context),
             ),
-            BlocBuilder<EdoctorCubit, EdoctorState>(builder: (context, state) {
-              if (state is EdoctorFailure) {
-                return Expanded(
-                  child: ErrWidget(
-                      onTap: () {
-                        BlocProvider.of<EdoctorCubit>(context).getAllDoctors(
-                            token: BlocProvider.of<AuthCubit>(context)
-                                .patient!
-                                .token);
-                      },
-                      errMessage: state.errMessage),
-                );
-              } else if (state is EdoctorSuccess) {
-                if (state.doctors.isEmpty) {
-                  return const Expanded(
-                    child:
-                        EmptyWidget(text: "There are no doctors available now"),
-                  );
-                } else {
-                  return Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: state.doctors.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 24),
-                          child: CarddItem(
-                            imageCard: state.doctors[index].profilePic!,
-                            bottomText:
-                                "${state.doctors[index].schedules![index].sessionCost!}"
-                                r"$",
-                            title:
-                                "Dr ${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",
-                            subTitle: state.doctors[index].about!,
-                            onPressed: () async {
-                              BlocProvider.of<DoctorReservationCubit>(context)
-                                  .doctorId = state.doctors[index].id;
-
-                              if (BlocProvider.of<DoctorReservationCubit>(
-                                          context)
-                                      .doctorId ==
-                                  null) {
-                                failedAlert(context,
-                                    "try to reserve with another doctor");
-                              } else {
-                                GoRouter.of(context)
-                                    .push(AppRoutes.kDoctorReservationView);
-                                await BlocProvider.of<FreeTimesCubit>(context)
-                                    .getFreeTimes(
-                                        token:
-                                            BlocProvider.of<AuthCubit>(context)
-                                                .patient!
-                                                .token,
-                                        body: {
-                                      "dermatologist": state.doctors[index].id
-                                    });
-                                BlocProvider.of<FreeTimesCubit>(context)
-                                    .setDay = DateTime.now();
-                              }
-                            },
-                            textButton: 'Reserve',
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                }
-              } else {
+          ),
+          BlocBuilder<EdoctorCubit, EdoctorState>(builder: (context, state) {
+            if (state is EdoctorFailure) {
+              return Expanded(
+                child: ErrWidget(
+                    onTap: () {
+                      BlocProvider.of<EdoctorCubit>(context).getAllDoctors(
+                          token: BlocProvider.of<AuthCubit>(context)
+                              .patient!
+                              .token);
+                    },
+                    errMessage: state.errMessage),
+              );
+            } else if (state is EdoctorSuccess) {
+              if (state.doctors.isEmpty) {
                 return const Expanded(
-                    child: LoadingIndicator(color: AppColors.kPrimaryColor));
+                  child:
+                      EmptyWidget(text: "There are no doctors available now"),
+                );
+              } else {
+                return Expanded(
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: state.doctors.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                        child: CarddItem(
+                          imageCard: state.doctors[index].profilePic!,
+                          bottomText:
+                              // "${state.doctors[index].schedules?[index].sessionCost??"0"}"
+                              r"$",
+                          title:
+                              "Dr ${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",
+                          subTitle: state.doctors[index].about!,
+                          onPressed: () async {
+                            BlocProvider.of<DoctorReservationCubit>(context)
+                                .doctorId = state.doctors[index].id;
+                            if (BlocProvider.of<DoctorReservationCubit>(
+                                        context)
+                                    .doctorId ==
+                                null) {
+                              failedAlert(context,
+                                  "try to reserve with another doctor");
+                            } else {
+                              GoRouter.of(context)
+                                  .push(AppRoutes.kDoctorReservationView);
+                              await BlocProvider.of<FreeTimesCubit>(context)
+                                  .getFreeTimes(
+                                      token:
+                                          BlocProvider.of<AuthCubit>(context)
+                                              .patient!
+                                              .token,
+                                      body: {
+                                    "dermatologist": state.doctors[index].id
+                                  });
+                              BlocProvider.of<FreeTimesCubit>(context)
+                                  .setDay = DateTime.now();
+                            }
+                          },
+                          textButton: 'Reserve',
+                        ),
+                      );
+                    },
+                  ),
+                );
               }
-            }),
-          ],
-        ),
+            } else {
+              return const Expanded(
+                  child: LoadingIndicator(color: AppColors.kPrimaryColor));
+            }
+          }),
+        ],
       ),
     );
   }

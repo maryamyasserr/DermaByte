@@ -29,7 +29,7 @@ class PatientConsults extends StatelessWidget {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
+                      padding: const EdgeInsets.only(bottom: 12,left: 10,right: 10),
                       child: HistoryCard(
                         logo: false,
                         imageCard:

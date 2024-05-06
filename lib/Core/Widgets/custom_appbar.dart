@@ -3,6 +3,7 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,18 +12,26 @@ class CustomAppBar extends StatelessWidget {
 
   final String title;
 
+  // padding: const EdgeInsets.only(top: 50, left: 9, right: 10),
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 9, right: 10),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration:  const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25))),
+      width: double.infinity,
+      height: 65,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-              onPressed: () {
+          GestureDetector(
+              onTap: () {
                 GoRouter.of(context).pop();
               },
-              icon: const Icon(Icons.arrow_back)),
+              child: const Icon(Icons.arrow_back)),
           Text(
             title,
             style: Styels.textStyle24_600(context),

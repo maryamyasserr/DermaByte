@@ -27,7 +27,7 @@ class PatientScans extends StatelessWidget {
               return Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.only(bottom: 12,right: 10,left: 10),
                     child: HistoryCard(
                       logo: true,
                       imageCard: state.scans[index].diseasePhoto,

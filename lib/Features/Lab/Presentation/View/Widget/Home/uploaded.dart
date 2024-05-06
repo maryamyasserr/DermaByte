@@ -1,4 +1,3 @@
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab_reservations.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
@@ -93,7 +92,7 @@ class Uploaded extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.07,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: AppColors.kCardColor,
+                        color: Colors.white,
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.grey,

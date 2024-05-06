@@ -6,8 +6,10 @@ class DoctorReservationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: DoctorReservationViewBody(),
+    return const SafeArea(
+      child: Scaffold(
+        body: DoctorReservationViewBody(),
+      ),
     );
   }
 }

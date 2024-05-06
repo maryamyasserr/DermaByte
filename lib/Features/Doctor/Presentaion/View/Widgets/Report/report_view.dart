@@ -51,7 +51,9 @@ class _ReportViewState extends State<ReportView> {
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
+                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
+                     
+                  ),
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.03),

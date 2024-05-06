@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,7 +26,7 @@ class CarddItem extends StatelessWidget {
       aspectRatio: aspectRatio == null ? 330 / 125 : aspectRatio!,
       child: Container(
         decoration: BoxDecoration(
-            color: AppColors.kCardColor,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
             boxShadow: const [
               BoxShadow(

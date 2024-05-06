@@ -1,6 +1,7 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CustomArticlesWidget extends StatelessWidget {
   const CustomArticlesWidget({super.key});
@@ -15,17 +16,20 @@ class CustomArticlesWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'articles&news',
-                style: Styels.textStyle18_300(context).copyWith(fontSize: 16),
-              ),
-              Text('view all',
-                  style:
-                      Styels.textStyle20_700(context).copyWith(fontSize: 16)),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 8,right: 8,top: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'articles&news',
+                  style: Styels.textStyle18_300(context).copyWith(fontSize: 16),
+                ),
+                Text('view all',
+                    style:
+                        Styels.textStyle20_700(context).copyWith(fontSize: 16)),
+              ],
+            ),
           ),
           const SizedBox(height: 12),
           Expanded(

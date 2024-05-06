@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/utils/colors.dart';
+
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class ServiceItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
-            color: AppColors.kCardColor,
+            color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(20)),
             boxShadow: [
               BoxShadow(

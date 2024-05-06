@@ -42,7 +42,7 @@ class CustomTextField extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: AppColors.kCardColor,
+                color: Colors.white,
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.grey,

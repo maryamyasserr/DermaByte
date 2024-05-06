@@ -16,6 +16,7 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -91,49 +92,59 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
               image: AssetImage(Assets.kBackground),
               fit: BoxFit.cover,
             ),
+             color: Color(0xffE7E0E0)
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-            child: Column(children: [
-              const CustomAppBar(title: 'Reservation'),
-              Padding(
-                padding: const EdgeInsets.only(left: 0),
+          child: Column(children: [
+            const CustomAppBar(title: 'Reservation'),
+            
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16,top: 14),
                 child: Text(
                   'Book a consultation with your\ndoctor.',
                   style: Styels.textStyle15_300(context),
                   textAlign: TextAlign.left,
                 ),
               ),
-              const SizedBox(height: 25),
-              SizedBox(
-                child: WeekCalender(onChangedSelectedDate: (date) {
-                  setState(() {
-                    BlocProvider.of<FreeTimesCubit>(context).setDay = date;
-                  });
-                  // BlocProvider.of<FreeTimesCubit>(context).sendState();
-                }),
-              ),
-              const SizedBox(height: 30),
-              Expanded(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    isVisible
-                        ? Visibility(visible: isVisible, child: AllFreeTime())
-                        : const Center(
-                            child: LoadingIndicator(
-                                color: AppColors.kPrimaryColor)),
-                    const SizedBox(height: 30),
-                    AttachTextFieldDoctorRes(
+            ),
+            const SizedBox(height: 25),
+            SizedBox(
+              child: WeekCalender(onChangedSelectedDate: (date) {
+                setState(() {
+                  BlocProvider.of<FreeTimesCubit>(context).setDay = date;
+                  // print(BlocProvider.of<FreeTimesCubit>(context)
+                  //     .currentFreeTime!.day);
+                });
+                // BlocProvider.of<FreeTimesCubit>(context).sendState();
+              }),
+            ),
+            const SizedBox(height: 30),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  isVisible
+                      ? Visibility(visible: isVisible, child: AllFreeTime())
+                      : const Center(
+                          child: LoadingIndicator(
+                              color: AppColors.kPrimaryColor)),
+                  const SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: AttachTextFieldDoctorRes(
                       controller: controller,
                     ),
-                    const SizedBox(height: 30),
-                    const AttachDocotorReservaionField(
-                      isrequired: true,
-                      padding: EdgeInsets.only(right: 15, bottom: 10),
-                    ),
-                    const SizedBox(height: 36),
-                    DoctorButton(
+                  ),
+                  const SizedBox(height: 30),
+                  const AttachDocotorReservaionField(
+                    isrequired: true,
+                    padding: EdgeInsets.only(right: 15, bottom: 10),
+                  ),
+                  const SizedBox(height: 36),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: DoctorButton(
                         horizontal: 0,
                         textButton: "Confirm",
                         onPressed: () async {
@@ -153,48 +164,47 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                             await BlocProvider.of<DoctorReservationCubit>(
                                     context)
                                 .createReservationAndPatientReport(
-                              context: context,
-                              reservationData: {
-                                "dermatologist":
-                                    BlocProvider.of<DoctorReservationCubit>(
-                                            context)
-                                        .doctorId,
-                                "scan": BlocProvider.of<DoctorReservationCubit>(
-                                        context)
-                                    .scanId,
-                                "date": BlocProvider.of<FreeTimesCubit>(context)
-                                    .selectedDate
-                                    ?.toIso8601String(),
-                                'symptoms': controller.text
-                              },
-                              // reportData: {
-                              //   "patient":
-                              //       BlocProvider.of<AuthCubit>(context)
-                              //           .patient!
-                              //           .patient
-                              //           .id,
-                              //   "dermatologist": BlocProvider.of<
-                              //           DoctorReservationCubit>(context)
-                              //       .doctorId,
-                              //   "scan": BlocProvider.of<
-                              //           DoctorReservationCubit>(context)
-                              //       .scanId
-                              // },
-                              token: BlocProvider.of<AuthCubit>(context)
-                                  .patient!
-                                  .token
-                            );
+                                    context: context,
+                                    reservationData: {
+                                      "dermatologist": BlocProvider.of<
+                                              DoctorReservationCubit>(context)
+                                          .doctorId,
+                                      "scan": BlocProvider.of<
+                                              DoctorReservationCubit>(context)
+                                          .scanId,
+                                      "date": BlocProvider.of<FreeTimesCubit>(
+                                              context)
+                                          .selectedDate
+                                          ?.toIso8601String(),
+                                      'symptoms': controller.text
+                                    },
+                                    // reportData: {
+                                    //   "patient":
+                                    //       BlocProvider.of<AuthCubit>(context)
+                                    //           .patient!
+                                    //           .patient
+                                    //           .id,
+                                    //   "dermatologist": BlocProvider.of<
+                                    //           DoctorReservationCubit>(context)
+                                    //       .doctorId,
+                                    //   "scan": BlocProvider.of<
+                                    //           DoctorReservationCubit>(context)
+                                    //       .scanId
+                                    // },
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .patient!
+                                        .token);
                           }
                         },
                         isLoading:
                             BlocProvider.of<DoctorReservationCubit>(context)
                                 .isLoading),
-                    const SizedBox(height: 16),
-                  ],
-                ),
-              )
-            ]),
-          ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
+            )
+          ]),
         );
       },
     );

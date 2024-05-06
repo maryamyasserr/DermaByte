@@ -27,63 +27,62 @@ class FollowUpBody extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  const CustomAppBar(title: "Follow Up!"),
-                  const HeaderText(
-                      text:
-                          "Follow up with your ongoing and future appointments."),
-                  const SizedBox(height: 32),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: CustomCard(
-                      iconCard: Assets.kFollowUpIcon,
-                      cardTitle:
-                          "Dr. ${patientReservation.dermatologist.firstName}'s appointment",
-                      cardSubTitle:
-                          'When your appointment comes,click here to start the session  ',
-                      textButton: 'Start',
-                      onPressed: () {
-                        GoRouter.of(context).push(AppRoutes.kUpcoming);
-                      },
-                    ),
-                  ),
-                ],
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
+            
               ),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                const CustomAppBar(title: "Follow Up!"),
+                const HeaderText(
+                    text:
+                        "Follow up with your ongoing and future appointments."),
+                const SizedBox(height: 32),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: CustomCard(
+                    iconCard: Assets.kFollowUpIcon,
+                    cardTitle:
+                        "Dr. ${patientReservation.dermatologist.firstName}'s appointment",
+                    cardSubTitle:
+                        'When your appointment comes,click here to start the session  ',
+                    textButton: 'Start',
+                    onPressed: () {
+                      GoRouter.of(context).push(AppRoutes.kUpcoming);
+                    },
+                  ),
+                ),
+              ],
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-            SliverList.builder(
-                itemCount: report.tests!.isEmpty ? 0 : 1,
-                // itemCount: 1,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 24, right: 4, left: 4),
-                    child: CustomCard(
-                        iconCard: Assets.kAppoinments,
-                        cardTitle:
-                            'Dr. ${report.dermatologist?.firstName ?? "The Doctor"} requested tests.',
-                        cardSubTitle:
-                            "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
-                        textButton: "View",
-                        onPressed: () {
-                          BlocProvider.of<AddTestResultCubit>(context)
-                              .getLengthTets(report.tests!.length);
-
-                          GoRouter.of(context).push(
-                            AppRoutes.kRequestedTest,
-                          );
-                        }),
-                  );
-                }),
-          ],
-        ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 24)),
+          SliverList.builder(
+              itemCount: report.tests!.isEmpty ? 0 : 1,
+              // itemCount: 1,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 24, right: 8, left: 8),
+                  child: CustomCard(
+                      iconCard: Assets.kAppoinments,
+                      cardTitle:
+                          'Dr. ${report.dermatologist?.firstName ?? "The Doctor"} requested tests.',
+                      cardSubTitle:
+                          "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
+                      textButton: "View",
+                      onPressed: () {
+                        BlocProvider.of<AddTestResultCubit>(context)
+                            .getLengthTets(report.tests!.length);
+      
+                        GoRouter.of(context).push(
+                          AppRoutes.kRequestedTest,
+                        );
+                      }),
+                );
+              }),
+        ],
       ),
     );
   }

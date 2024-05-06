@@ -1,5 +1,4 @@
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/all_patient_tests.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
@@ -53,7 +52,7 @@ class AddTestResultField extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.075,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: AppColors.kCardColor,
+                    color: Colors.white,
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
@@ -95,7 +94,7 @@ class AddTestResultField extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.075,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: AppColors.kCardColor,
+                            color: Colors.white,
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.grey,
@@ -160,7 +159,7 @@ class AddTestResultField extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.075,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: AppColors.kCardColor,
+                      color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.grey,
@@ -216,7 +215,7 @@ class AddTestResultField extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.075,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: AppColors.kCardColor,
+                  color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,

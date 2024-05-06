@@ -1,4 +1,4 @@
-import 'package:dermabyte/Core/utils/colors.dart';
+
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class ServiceWidget extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: AppColors.kCardColor,
+          color: Colors.white,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,

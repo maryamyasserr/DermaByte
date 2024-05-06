@@ -1,5 +1,4 @@
 import 'package:dermabyte/Core/utils/assets.dart';
-import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/all_patient_scans.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
@@ -53,7 +52,9 @@ class AttachDocotorReservaionField extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.075,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: AppColors.kCardColor,
+                    
+                    color: Colors.white,
+                    
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
@@ -95,7 +96,7 @@ class AttachDocotorReservaionField extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.075,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: AppColors.kCardColor,
+                            color: Colors.white,
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.grey,
@@ -158,7 +159,7 @@ class AttachDocotorReservaionField extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.075,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: AppColors.kCardColor,
+                      color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.grey,
@@ -214,7 +215,7 @@ class AttachDocotorReservaionField extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.075,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: AppColors.kCardColor,
+                  color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
