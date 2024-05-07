@@ -34,6 +34,8 @@ import 'package:dermabyte/Features/Scan/Presentaion/View%20Model/Create%20Scan%2
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+
 void main() {
   runApp(const DermaByte());
   Bloc.observer = DermaByteBlocOpserver();
@@ -114,19 +116,7 @@ class DermaByte extends StatelessWidget {
   }
 }
 
-// import 'package:dermabyte/Core/utils/colors.dart';
-// import 'package:dermabyte/Core/utils/routes.dart';
-// import 'package:flutter/material.dart';
-// import 'package:device_preview/device_preview.dart';
 
-// void main() {
-//   runApp(
-//     DevicePreview(
-//       enabled: true,
-//       builder: (context) => const DermaByte(),
-//     ),
-//   );
-// }
 
 // class DermaByte extends StatelessWidget {
 //   const DermaByte({super.key});

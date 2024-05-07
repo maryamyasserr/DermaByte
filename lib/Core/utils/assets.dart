@@ -44,4 +44,10 @@ class Assets {
   static const kAppoinments = 'assets/images/Appoinments.svg';
   static const test = 'assets/images/ismail_Aljazari.png';
   static const kErrorIcon = 'assets/images/Error_Icon.svg';
+  static const kDashLogo = 'assets/images/dash_logo.svg';
+  static const kDashPatient = 'assets/images/dash_patient.svg';
+  static const kDashDoctor = 'assets/images/dash_doctor.svg';
+  static const kDashLab = 'assets/images/dash_lab.svg';
+  static const kDashSetting = 'assets/images/dash_settings.svg';
+  static const kDashLogout = 'assets/images/dash_logout.svg';
 }

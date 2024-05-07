@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/Widgets/custom_screen.dart';
+import 'package:dermabyte/Features/Admin/Presentaion/View/admin_view.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_as_view.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_doctor.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_in.dart';
@@ -77,9 +78,10 @@ abstract class AppRoutes {
   static String kTestView = '/testView';
   static String kRequestedTest = '/requestedTests';
   static String kScanProgress = '/scanProgress';
+  static String kAdminView = '/adminView';
   static final router = GoRouter(routes: [
-    GoRoute(path: '/', builder: (context, state) => const SplashView()),
-    // GoRoute(path: '/', builder: (context, state) => const DoctorView()),
+    // GoRoute(path: '/', builder: (context, state) => const SplashView()),
+    GoRoute(path: '/', builder: (context, state) => const AdminView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),
