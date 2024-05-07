@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/custom_drawer.dart';
+import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/Drawer/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
 class AdminViewBody extends StatelessWidget {
