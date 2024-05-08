@@ -52,9 +52,7 @@ class _DoctorBodyState extends State<DoctorBody> {
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
-              
-                    ),
+                    image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
             child: PageView(
               controller: _pageController,
               onPageChanged: (page) {},

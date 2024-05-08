@@ -44,21 +44,22 @@ class _ScheduleBodyState extends State<ScheduleBody> {
         return Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
-                  ),
+                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
           child: ListView(
             children: [
-              Container(  width: double.infinity,
-          height: MediaQuery.sizeOf(context).height*0.08,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight:Radius.circular(25)
-             )
-          ),
+              Container(
+                width: double.infinity,
+                height: MediaQuery.sizeOf(context).height * 0.08,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25))),
                 child: Center(
                   child: Text(
                     "Schedule",
-                    style: Styels.textStyle24_600(context).copyWith(fontSize: 30),
+                    style:
+                        Styels.textStyle24_600(context).copyWith(fontSize: 30),
                   ),
                 ),
               ),

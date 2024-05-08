@@ -17,7 +17,7 @@ class CustomArticlesWidget extends StatelessWidget {
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: const EdgeInsets.only(left: 8,right: 8,top: 8),
+            padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

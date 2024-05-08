@@ -53,8 +53,7 @@ class _PatientViewState extends State<PatientView> {
             body: Container(
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(Assets.kBackground), fit: BoxFit.fill)
-                      ),
+                      image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 50, horizontal: 10),

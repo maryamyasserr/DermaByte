@@ -52,15 +52,13 @@ class UploadedTestReport extends StatelessWidget {
                                     aspectRatio: 1.2,
                                     child: CachedNetworkImage(
                                       fit: BoxFit.fill,
-                                      imageUrl: consultaion
-                                          .uploadedTest![index]
+                                      imageUrl: consultaion.uploadedTest![index]
                                           .testResult![indexX],
                                     ),
                                   ),
                                 ),
                               );
                             }),
-                   
                   ],
                 ),
               );

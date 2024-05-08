@@ -80,8 +80,8 @@ abstract class AppRoutes {
   static String kScanProgress = '/scanProgress';
   static String kAdminView = '/adminView';
   static final router = GoRouter(routes: [
-    // GoRoute(path: '/', builder: (context, state) => const SplashView()),
-    GoRoute(path: '/', builder: (context, state) => const AdminView()),
+    GoRoute(path: '/', builder: (context, state) => const SplashView()),
+    GoRoute(path: kAdminView, builder: (context, state) => const AdminView()),
     GoRoute(path: kFollowUp, builder: (context, state) => const FollowUpView()),
     GoRoute(path: kUpcoming, builder: (context, state) => const UpComingView()),
     GoRoute(path: kProfile, builder: (context, state) => const ProfileView()),

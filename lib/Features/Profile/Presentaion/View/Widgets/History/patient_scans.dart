@@ -27,7 +27,8 @@ class PatientScans extends StatelessWidget {
               return Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 12,right: 10,left: 10),
+                    padding:
+                        const EdgeInsets.only(bottom: 12, right: 10, left: 10),
                     child: HistoryCard(
                       logo: true,
                       imageCard: state.scans[index].diseasePhoto,
@@ -52,9 +53,9 @@ class PatientScans extends StatelessWidget {
             });
       } else if (state is ScanFailure) {
         return ErrWidget(
-          onTap: ()async{
-               await BlocProvider.of<ScanCubit>(context).getPatientScan(
-        token: BlocProvider.of<AuthCubit>(context).patient!.token);
+          onTap: () async {
+            await BlocProvider.of<ScanCubit>(context).getPatientScan(
+                token: BlocProvider.of<AuthCubit>(context).patient!.token);
           },
           errMessage: state.errMessage,
         );

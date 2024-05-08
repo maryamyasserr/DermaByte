@@ -50,10 +50,9 @@ class _ReportViewState extends State<ReportView> {
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
-                     
-                  ),
+            image: DecorationImage(
+                image: AssetImage(Assets.kBackground), fit: BoxFit.cover),
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.03),
@@ -97,9 +96,8 @@ class _ReportViewState extends State<ReportView> {
                       report.testResult!.isEmpty
                           ? const SizedBox()
                           : const PatientTestResult(),
-                      report.uploadedTest!.isEmpty?
-                      
-                        const SizedBox()
+                      report.uploadedTest!.isEmpty
+                          ? const SizedBox()
                           : const UploadedTestReport(),
                       report.medicine!.isEmpty
                           ? const SizedBox()

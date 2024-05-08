@@ -10,9 +10,7 @@ class HistoryBody extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
-       
-              ),
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Column(
         children: [
           const CustomAppBar(title: "History"),

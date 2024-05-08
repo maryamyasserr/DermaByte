@@ -4,7 +4,12 @@ class Lab {
   String? profilePic;
   String? location;
 
-  Lab({this.id, this.firstName, this.profilePic, this.location,});
+  Lab({
+    this.id,
+    this.firstName,
+    this.profilePic,
+    this.location,
+  });
 
   factory Lab.fromJson(Map<String, dynamic> json) => Lab(
         firstName: json['firstName'] as String?,

@@ -28,9 +28,7 @@ class _TimeState extends State<TimeWidget> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: widget.isSelected
-                ? AppColors.kPrimaryColor
-                : Colors.white,
+            color: widget.isSelected ? AppColors.kPrimaryColor : Colors.white,
             boxShadow: const [
               BoxShadow(
                 color: Colors.grey,

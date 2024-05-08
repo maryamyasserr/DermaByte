@@ -29,7 +29,8 @@ class PatientConsults extends StatelessWidget {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 12,left: 10,right: 10),
+                      padding: const EdgeInsets.only(
+                          bottom: 12, left: 10, right: 10),
                       child: HistoryCard(
                         logo: false,
                         imageCard:
@@ -58,12 +59,11 @@ class PatientConsults extends StatelessWidget {
               });
         } else if (state is ReportFailure) {
           return ErrWidget(
-            onTap:()async{
-           
-   await BlocProvider.of<ReportCubit>(context).getPatientConults(
-        token: BlocProvider.of<AuthCubit>(context).patient!.token);
-            } ,
-            errMessage: state.errMessage);
+              onTap: () async {
+                await BlocProvider.of<ReportCubit>(context).getPatientConults(
+                    token: BlocProvider.of<AuthCubit>(context).patient!.token);
+              },
+              errMessage: state.errMessage);
         } else {
           return const LoadingIndicator(color: AppColors.kPrimaryColor);
         }

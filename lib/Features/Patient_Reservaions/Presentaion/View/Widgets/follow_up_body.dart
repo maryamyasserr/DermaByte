@@ -27,9 +27,7 @@ class FollowUpBody extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
-            
-              ),
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -63,8 +61,7 @@ class FollowUpBody extends StatelessWidget {
               // itemCount: 1,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 24, right: 8, left: 8),
+                  padding: const EdgeInsets.only(bottom: 24, right: 8, left: 8),
                   child: CustomCard(
                       iconCard: Assets.kAppoinments,
                       cardTitle:
@@ -75,7 +72,7 @@ class FollowUpBody extends StatelessWidget {
                       onPressed: () {
                         BlocProvider.of<AddTestResultCubit>(context)
                             .getLengthTets(report.tests!.length);
-      
+
                         GoRouter.of(context).push(
                           AppRoutes.kRequestedTest,
                         );

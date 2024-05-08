@@ -21,7 +21,7 @@ class HomeViewBody extends StatelessWidget {
       ),
       child: Column(
         children: [
-                const CustomAppBar(title: 'Home'),
+          const CustomAppBar(title: 'Home'),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),

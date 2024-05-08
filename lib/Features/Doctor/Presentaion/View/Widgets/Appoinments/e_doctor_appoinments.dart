@@ -32,12 +32,12 @@ class _EdoctorAppoinmentsState extends State<EdoctorAppoinments> {
       children: [
         Container(
           width: double.infinity,
-          height: MediaQuery.sizeOf(context).height*0.08,
+          height: MediaQuery.sizeOf(context).height * 0.08,
           decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight:Radius.circular(25)
-             )
-          ),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25))),
           child: Center(
             child: Text('My Schedule',
                 style: Styels.textStyle24_600(context).copyWith(fontSize: 28)),

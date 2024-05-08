@@ -1,4 +1,3 @@
-
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +21,10 @@ class AttachTextFieldDoctorRes extends StatelessWidget {
               )
             ]),
         child: TextField(
-          
           controller: controller,
           decoration: InputDecoration(
-            border: InputBorder.none,
-            enabledBorder: InputBorder.none,
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               hintText: 'Do you feel any symptoms?',
               hintStyle: Styels.textStyle18_300(context)),

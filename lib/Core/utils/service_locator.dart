@@ -1,4 +1,5 @@
 import 'package:dermabyte/Core/utils/api_service.dart';
+import 'package:dermabyte/Features/Admin/Data/Repo/admin_repo_impl.dart';
 import 'package:dermabyte/Features/Authentication/Data/Repo/auth_repo_impl.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/doctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
@@ -49,4 +50,6 @@ void setupServiceLocator() {
       DoctorRepoImpl(getIt.get<ApiService>()));
 
   getIt.registerSingleton<ScanRepoImpl>(ScanRepoImpl(getIt.get<ApiService>()));
+  getIt
+      .registerSingleton<AdminRepoImpl>(AdminRepoImpl(getIt.get<ApiService>()));
 }

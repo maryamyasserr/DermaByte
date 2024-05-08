@@ -38,9 +38,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)
-       
-          ),
+              image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Column(
         children: [
           const CustomAppBar(title: 'Reservations'),
@@ -54,8 +52,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                 return Expanded(
                     child: ErrWidget(
                         onTap: () async {
-                          await BlocProvider.of<PreservationInfoCubit>(
-                                  context)
+                          await BlocProvider.of<PreservationInfoCubit>(context)
                               .getPatientReservationInfo(
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .patient!
@@ -71,8 +68,8 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                 if (state.pReservationInfo.isEmpty) {
                   return const Expanded(
                     child: Center(
-                        child: EmptyWidget(
-                            text: "There are no Reservations yet")),
+                        child:
+                            EmptyWidget(text: "There are no Reservations yet")),
                   );
                 } else {
                   return Expanded(
@@ -86,29 +83,29 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                 itemBuilder: (context, index) {
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 12,horizontal: 8),
+                                        vertical: 12, horizontal: 8),
                                     child: CustomCard(
                                       antoherButton: true,
                                       onDelete: () async {
                                         await BlocProvider.of<
-                                                    DeleteReservationCubit>(
-                                                context)
+                                                DeleteReservationCubit>(context)
                                             .deleteReservation(
                                                 id: state
                                                     .pReservationInfo[index]
                                                     .id!,
-                                                token: BlocProvider.of<
-                                                        AuthCubit>(context)
-                                                    .patient!
-                                                    .token);
+                                                token:
+                                                    BlocProvider.of<AuthCubit>(
+                                                            context)
+                                                        .patient!
+                                                        .token);
                                         await BlocProvider.of<
-                                                    PreservationInfoCubit>(
-                                                context)
+                                                PreservationInfoCubit>(context)
                                             .getPatientReservationInfo(
-                                                token: BlocProvider.of<
-                                                        AuthCubit>(context)
-                                                    .patient!
-                                                    .token);
+                                                token:
+                                                    BlocProvider.of<AuthCubit>(
+                                                            context)
+                                                        .patient!
+                                                        .token);
                                       },
                                       textButton2: 'Delete',
                                       iconCard: Assets.kFollowUpIcon,
@@ -138,8 +135,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                           GoRouter.of(context).push(
                                               AppRoutes.kFollowUp,
                                               extra: state
-                                                  .pReservationInfo[index]
-                                                  .id);
+                                                  .pReservationInfo[index].id);
                                         }
                                       },
                                       textButton: "View",

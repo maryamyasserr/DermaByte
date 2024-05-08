@@ -88,19 +88,17 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
       builder: (context, state) {
         return Container(
           decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(Assets.kBackground),
-              fit: BoxFit.cover,
-            ),
-             color: Color(0xffE7E0E0)
-          ),
+              image: DecorationImage(
+                image: AssetImage(Assets.kBackground),
+                fit: BoxFit.cover,
+              ),
+              color: Color(0xffE7E0E0)),
           child: Column(children: [
             const CustomAppBar(title: 'Reservation'),
-            
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.only(left: 16,top: 14),
+                padding: const EdgeInsets.only(left: 16, top: 14),
                 child: Text(
                   'Book a consultation with your\ndoctor.',
                   style: Styels.textStyle15_300(context),
@@ -127,8 +125,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   isVisible
                       ? Visibility(visible: isVisible, child: AllFreeTime())
                       : const Center(
-                          child: LoadingIndicator(
-                              color: AppColors.kPrimaryColor)),
+                          child:
+                              LoadingIndicator(color: AppColors.kPrimaryColor)),
                   const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),

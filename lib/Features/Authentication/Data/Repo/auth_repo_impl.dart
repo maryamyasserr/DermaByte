@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/admin_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/doctor_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/lab_token.dart';
 import 'package:dermabyte/Features/Authentication/Data/Models/patient_token.dart';
@@ -145,6 +146,10 @@ class AuthRepoImpl implements AuthRepo {
       } else if (response['data']['role'] == 'lab') {
         LabToken lab = LabToken.fromJson(response);
         GoRouter.of(context).push(AppRoutes.kLabHome);
+        return right(lab);
+      } else if (response['data']['role'] == 'admin') {
+        AdminToken lab = AdminToken.fromJson(response);
+        GoRouter.of(context).push(AppRoutes.kAdminView);
         return right(lab);
       } else {
         throw Exception("Unsupported type");

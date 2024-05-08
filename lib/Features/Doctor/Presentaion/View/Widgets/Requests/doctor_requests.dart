@@ -41,13 +41,14 @@ class _DoctorRequestsState extends State<DoctorRequests> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Container(  width: double.infinity,
-        height: MediaQuery.sizeOf(context).height*0.08,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight:Radius.circular(25)
-           )
-        ),
+        Container(
+          width: double.infinity,
+          height: MediaQuery.sizeOf(context).height * 0.08,
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25))),
           child: Center(
             child: Text(
               "Patients Requests",
@@ -74,8 +75,8 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                               show: false,
                               date: DateFormat.yMMMd()
                                   .format(state.reservation![index].date!),
-                              imageCard: state.reservation![index]
-                                  .scan?[index].diseasePhoto,
+                              imageCard: state.reservation![index].scan?[index]
+                                  .diseasePhoto,
                               cardTitle:
                                   "${state.reservation![index].patient?.firstName ?? ""}'s report",
                               cardSubTitle:
@@ -85,8 +86,8 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                               onPressed: () async {
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
-                                    state.reservation![index].report![index]
-                                        .id!;
+                                    state
+                                        .reservation![index].report![index].id!;
                                 ;
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)
@@ -105,7 +106,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                               .doctorModel!
                                               .token,
                                           body: {'reviewed': 'true'});
-    
+
                                   await BlocProvider.of<MyReservationCubit>(
                                           context)
                                       .getMyReservations(

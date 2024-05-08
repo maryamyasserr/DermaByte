@@ -17,7 +17,8 @@ class LabRepoImpl implements LabRepo {
       {required String token}) async {
     try {
       var response = await apiService.get(
-          endPoint: "labs/laboratory-reservation?completed=false", token: token);
+          endPoint: "labs/laboratory-reservation?completed=false",
+          token: token);
       List<LabReservations> labs = [];
       for (var lab in response['data']) {
         labs.add(LabReservations.fromJson(lab));
@@ -89,10 +90,12 @@ class LabRepoImpl implements LabRepo {
 
   @override
   Future<Either<Failures, String>> deleteLabRequest(
-      {required String token, required String id,required dynamic body}) async {
+      {required String token,
+      required String id,
+      required dynamic body}) async {
     try {
       await apiService.update(
-          endPoint: 'laboratories-reservations/$id', token: token, data:body);
+          endPoint: 'laboratories-reservations/$id', token: token, data: body);
       return right('dnoe');
     } catch (e) {
       if (e is DioException) {

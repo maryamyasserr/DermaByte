@@ -52,9 +52,7 @@ class AttachDocotorReservaionField extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.075,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    
                     color: Colors.white,
-                    
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,

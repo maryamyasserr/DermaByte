@@ -35,7 +35,6 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-         
         image: DecorationImage(
           image: AssetImage(Assets.kBackground),
           fit: BoxFit.cover,
@@ -46,7 +45,7 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
         children: [
           const CustomAppBar(title: 'Doctors'),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(
               'Widest selection from the best\ncertified doctors.',
               style: Styels.textStyle16_400(context),
@@ -77,7 +76,8 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                     itemCount: state.doctors.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 8),
                         child: CarddItem(
                           imageCard: state.doctors[index].profilePic!,
                           bottomText:
@@ -89,8 +89,7 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                           onPressed: () async {
                             BlocProvider.of<DoctorReservationCubit>(context)
                                 .doctorId = state.doctors[index].id;
-                            if (BlocProvider.of<DoctorReservationCubit>(
-                                        context)
+                            if (BlocProvider.of<DoctorReservationCubit>(context)
                                     .doctorId ==
                                 null) {
                               failedAlert(context,
@@ -100,15 +99,14 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                                   .push(AppRoutes.kDoctorReservationView);
                               await BlocProvider.of<FreeTimesCubit>(context)
                                   .getFreeTimes(
-                                      token:
-                                          BlocProvider.of<AuthCubit>(context)
-                                              .patient!
-                                              .token,
+                                      token: BlocProvider.of<AuthCubit>(context)
+                                          .patient!
+                                          .token,
                                       body: {
                                     "dermatologist": state.doctors[index].id
                                   });
-                              BlocProvider.of<FreeTimesCubit>(context)
-                                  .setDay = DateTime.now();
+                              BlocProvider.of<FreeTimesCubit>(context).setDay =
+                                  DateTime.now();
                             }
                           },
                           textButton: 'Reserve',

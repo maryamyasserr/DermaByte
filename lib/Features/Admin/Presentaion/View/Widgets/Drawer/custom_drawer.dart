@@ -2,9 +2,12 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Admin/Data/Models/drawer_item.dart';
+import 'package:dermabyte/Features/Admin/Presentaion/View%20Model/cubit/admin_cubit.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/Drawer/active_drawer_item.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/Drawer/in_active_drawer_itme.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -34,18 +37,25 @@ class _CustomDrawerState extends State<CustomDrawer> {
           const Expanded(child: SizedBox()),
           Expanded(
             flex: 2,
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  Assets.kDashLogo,
-                  fit: BoxFit.fill,
-                ),
-                Text(
-                  'DermaByte',
-                  style: Styels.textStyle24_600(context)
-                      .copyWith(color: Colors.white),
-                )
-              ],
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    Assets.kDashPatient,
+                    fit: BoxFit.fill,
+                  ),
+                  const SizedBox(width: 3),
+                  Text(
+                    'DermaByte',
+                    style: Styels.textStyle24_600(context)
+                        .copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(
+                    width: 30,
+                  )
+                ],
+              ),
             ),
           ),
           const Expanded(flex: 6, child: SizedBox()),
@@ -64,14 +74,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       : InDrawerActiveItem(
                           title: item.title,
                           icon: item.icon,
-                          onTap: () {
+                          onTap: () async {
                             switch (index) {
                               case 0:
                                 {
-                                  print('patinet');
                                   setState(() {
                                     currentIndex = index;
                                   });
+                                  await BlocProvider.of<AdminCubit>(context)
+                                      .getAllPatientsDash(
+                                          token:
+                                              BlocProvider.of<AuthCubit>(context).adminModel!.token);
                                   break;
                                 }
                               case 1:
@@ -79,13 +92,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                 setState(() {
                                   currentIndex = index;
                                 });
-
+                                await BlocProvider.of<AdminCubit>(context)
+                                    .getAllDashDoctor(
+                                        token:
+                                           BlocProvider.of<AuthCubit>(context).adminModel!.token);
                                 break;
                               case 2:
                                 print('lab');
                                 setState(() {
                                   currentIndex = index;
                                 });
+                                await BlocProvider.of<AdminCubit>(context)
+                                    .getAllDashLabs(
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context).adminModel!.token);
 
                                 break;
                               case 3:
@@ -101,7 +121,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         );
                 },
               )),
-          Expanded(flex: 4, child: Text("Seift470@gmail.com   ",style: Styels.textStyle14_300(context).copyWith(color: Colors.grey),))
+          Expanded(
+              flex: 4,
+              child: Text(
+                "Seift470@gmail.com   ",
+                style: Styels.textStyle14_300(context)
+                    .copyWith(color: Colors.grey),
+              ))
         ],
       ),
     );

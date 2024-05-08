@@ -19,7 +19,6 @@ class ReportModel {
   DateTime? updatedAt;
   List<UploadedTest>? uploadedTest;
 
-
   ReportModel({
     this.id,
     this.scan,
@@ -33,11 +32,9 @@ class ReportModel {
     this.createdAt,
     this.updatedAt,
     this.uploadedTest,
-    
   });
 
   factory ReportModel.fromJson(Map<String, dynamic> json) => ReportModel(
-       
         scan: (json['scan'] as List<dynamic>?)
             ?.map((e) => Scan.fromJson(e as Map<String, dynamic>))
             .toList(),

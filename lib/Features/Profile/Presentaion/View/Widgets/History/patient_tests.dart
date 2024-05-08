@@ -29,7 +29,8 @@ class PatientTests extends StatelessWidget {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 16,left: 10,right: 10),
+                      padding: const EdgeInsets.only(
+                          bottom: 16, left: 10, right: 10),
                       child: HistoryCard(
                         logo: false,
                         imageCard: state.tests[index].lab.profilePic,
@@ -56,12 +57,11 @@ class PatientTests extends StatelessWidget {
               });
         } else if (state is TestsFailure) {
           return ErrWidget(
-            onTap: ()async{
-                   await  BlocProvider.of<TestsCubit>(context).getPatientTests(
-        token: BlocProvider.of<AuthCubit>(context).patient!.token);
-
-            },
-            errMessage: state.errMessage);
+              onTap: () async {
+                await BlocProvider.of<TestsCubit>(context).getPatientTests(
+                    token: BlocProvider.of<AuthCubit>(context).patient!.token);
+              },
+              errMessage: state.errMessage);
         } else {
           return const LoadingIndicator(color: AppColors.kPrimaryColor);
         }

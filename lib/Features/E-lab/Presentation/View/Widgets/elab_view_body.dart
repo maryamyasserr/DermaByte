@@ -37,7 +37,6 @@ class _ElabViewBodyState extends State<ElabViewBody> {
           image: AssetImage(Assets.kBackground),
           fit: BoxFit.cover,
         ),
-     
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +71,8 @@ class _ElabViewBodyState extends State<ElabViewBody> {
                     itemCount: state.labs.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 10),
                         child: LabItem(
                           imageCard: state.labs[index].profilePic,
                           labTitle: state.labs[index].firstName ?? "",
@@ -106,8 +106,7 @@ class _ElabViewBodyState extends State<ElabViewBody> {
             } else {
               return const Expanded(
                   child: Center(
-                      child:
-                          LoadingIndicator(color: AppColors.kPrimaryColor)));
+                      child: LoadingIndicator(color: AppColors.kPrimaryColor)));
             }
           })
         ],

@@ -66,8 +66,6 @@ class PatientTestResult extends StatelessWidget {
                                     ),
                                   );
                                 }),
-
-                       
                       ],
                     ),
                   );
