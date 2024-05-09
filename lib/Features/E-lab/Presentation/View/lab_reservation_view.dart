@@ -10,10 +10,12 @@ class LabReservationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => LabReservaionCubit(getIt.get<ElabRepoImpl>()),
-        child: const LabReservationViewBody(),
+    return SafeArea(
+      child: Scaffold(
+        body: BlocProvider(
+          create: (context) => LabReservaionCubit(getIt.get<ElabRepoImpl>()),
+          child: const LabReservationViewBody(),
+        ),
       ),
     );
   }

@@ -48,7 +48,7 @@ class AdminCubit extends Cubit<AdminState> {
         await adminRepo.getAllDoctorsDash(token: token, state: 'true');
     response.fold(
       (l) {
-        print(l.errMessage);
+       
         emit(AdminFailure(errMessage: l.errMessage));
       },
       (r) {
@@ -65,7 +65,7 @@ class AdminCubit extends Cubit<AdminState> {
     var response = await adminRepo.getAllLabsDash(token: token, state: 'true');
     response.fold(
       (l) {
-        print(l.errMessage);
+        
         emit(AdminFailure(errMessage: l.errMessage));
       },
       (r) {

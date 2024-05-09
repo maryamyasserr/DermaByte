@@ -188,7 +188,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                                 startHour);
                           }
                           if (ScheduleBody.endTimePeriod == 'PM') {
-                            int endHour = int.parse(ScheduleBody.start.text);
+                            int endHour = int.parse(ScheduleBody.end.text);
                             endHour += 12;
                             ScheduleBody.endTime = DateTime(
                                 ScheduleBody.calenderTime!.year,
@@ -206,6 +206,9 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               ScheduleBody.calenderTime!.month,
                               ScheduleBody.calenderTime!.day,
                               int.parse(ScheduleBody.end.text));
+
+                         
+
                           await BlocProvider.of<SetScheduleCubit>(context)
                               .setSchedule(
                                   body: {

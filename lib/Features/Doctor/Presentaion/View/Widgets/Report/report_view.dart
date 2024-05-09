@@ -116,6 +116,7 @@ class _ReportViewState extends State<ReportView> {
                             textButton: "Request a test",
                             onPressed: () {
                               showModalBottomSheet(
+                                isScrollControlled: true,
                                   context: context,
                                   builder: (context) {
                                     return const AddTestBody();

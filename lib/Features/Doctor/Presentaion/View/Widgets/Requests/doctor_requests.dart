@@ -70,13 +70,12 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                         itemCount: state.reservation!.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 7),
+                            padding: const EdgeInsets.symmetric(vertical: 7,horizontal: 12),
                             child: PatientCard(
                               show: false,
                               date: DateFormat.yMMMd()
                                   .format(state.reservation![index].date!),
-                              imageCard: state.reservation![index].scan?[index]
-                                  .diseasePhoto,
+                              imageCard: state.reservation![index].patient!.profilePic,
                               cardTitle:
                                   "${state.reservation![index].patient?.firstName ?? ""}'s report",
                               cardSubTitle:

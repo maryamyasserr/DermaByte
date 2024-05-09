@@ -135,9 +135,12 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  const AttachDocotorReservaionField(
-                    isrequired: true,
-                    padding: EdgeInsets.only(right: 15, bottom: 10),
+                  const Padding(
+                     padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: AttachDocotorReservaionField(
+                      isrequired: true,
+                      padding: EdgeInsets.only(right: 15, bottom: 10),
+                    ),
                   ),
                   const SizedBox(height: 36),
                   Padding(

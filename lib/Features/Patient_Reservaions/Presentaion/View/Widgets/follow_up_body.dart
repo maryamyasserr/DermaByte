@@ -34,6 +34,7 @@ class FollowUpBody extends StatelessWidget {
             child: Column(
               children: [
                 const CustomAppBar(title: "Follow Up!"),
+                const SizedBox(height: 12),
                 const HeaderText(
                     text:
                         "Follow up with your ongoing and future appointments."),
@@ -67,7 +68,7 @@ class FollowUpBody extends StatelessWidget {
                       cardTitle:
                           'Dr. ${report.dermatologist?.firstName ?? "The Doctor"} requested tests.',
                       cardSubTitle:
-                          "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like she’ll need more tests to conduct her diagnosing process.",
+                          "Dr. ${report.dermatologist?.firstName ?? "The Doctor"} reviewed your scans and it seems like he’ll need more tests to conduct her diagnosing process.",
                       textButton: "View",
                       onPressed: () {
                         BlocProvider.of<AddTestResultCubit>(context)

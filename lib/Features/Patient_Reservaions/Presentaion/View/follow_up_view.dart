@@ -8,8 +8,10 @@ class FollowUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: FollowUpBody(),
+    return const SafeArea(
+      child: Scaffold(
+        body: FollowUpBody(),
+      ),
     );
   }
 }

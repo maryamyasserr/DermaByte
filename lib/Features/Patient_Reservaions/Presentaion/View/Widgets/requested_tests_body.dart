@@ -30,7 +30,7 @@ class RequestedTestsBody extends StatefulWidget {
 class _RequestedTestsBodyState extends State<RequestedTestsBody> {
   @override
   void initState() {
-    BlocProvider.of<AddTestResultCubit>(context).deleteAllTests();
+    // BlocProvider.of<AddTestResultCubit>(context).deleteAllTests();
     BlocProvider.of<AddTestResultCubit>(context).indices = [];
     BlocProvider.of<AddTestResultCubit>(context).testsids = [];
     BlocProvider.of<AddTestResultCubit>(context).tests = [];
@@ -156,9 +156,9 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
                             .allTestResults);
                         if (BlocProvider.of<AddTestResultCubit>(context)
                                 .testId
-                                .isEmpty &&
-                            allTestResults.isEmpty) {
-                          failedAlert(context, "Attach Your Result");
+                                .length+allTestResults.length !=report.tests!.length 
+                            ) {
+                          failedAlert(context, "Attach Your All Result");
                         } else {
                           if (BlocProvider.of<AddTestResultCubit>(context)
                               .testId

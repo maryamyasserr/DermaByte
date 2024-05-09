@@ -58,7 +58,7 @@ class UploadLicense extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 8),
                                   const Icon(
-                                    Icons.cloud_done_rounded,
+                                    Icons.download_done,
                                     color: Colors.green,
                                     size: 27,
                                   )

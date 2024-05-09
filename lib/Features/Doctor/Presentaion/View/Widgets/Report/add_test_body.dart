@@ -8,7 +8,9 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/button.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AddTestBody extends StatefulWidget {
   const AddTestBody({super.key});
@@ -66,11 +68,16 @@ class _AddTestBodyState extends State<AddTestBody> {
         final formKey = GlobalKey<FormState>();
         return Material(
           child: Container(
+            height: MediaQuery.sizeOf(context).height * 0.8,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
             child: Padding(
-              padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+              padding: const EdgeInsets.only(
+                right: 16,
+                left: 16,
+                top: 16,
+              ),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -97,7 +104,7 @@ class _AddTestBodyState extends State<AddTestBody> {
                                 )),
                           ],
                         )),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     Expanded(
                       flex: 11,
                       child: ListView.builder(
@@ -153,11 +160,8 @@ class _AddTestBodyState extends State<AddTestBody> {
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .doctorModel!
                                       .token);
-                          // await BlocProvider.of<MyPatientReportCubit>(context)
-                          //     .getMyPatientsReport(
-                          //         token: BlocProvider.of<AuthCubit>(context)
-                          //             .doctorModel!
-                          //             .token);
+                          GoRouter.of(context).pop();
+                      
                         }
                       },
                     ),

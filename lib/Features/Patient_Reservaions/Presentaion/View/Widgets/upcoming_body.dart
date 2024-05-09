@@ -22,7 +22,6 @@ class UpComingBody extends StatelessWidget {
               image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
       child: Column(
         children: [
-          const SizedBox(height: 20),
           const CustomAppBar(title: "Upcoming"),
           const SizedBox(height: 64),
           Padding(

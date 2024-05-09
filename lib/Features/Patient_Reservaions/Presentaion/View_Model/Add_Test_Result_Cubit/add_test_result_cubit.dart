@@ -89,9 +89,11 @@ class AddTestResultCubit extends Cubit<AddTestResultState> {
       );
       allTestResults[existingIndex] = updatedTest;
       emit(AddTestResultSuccess());
+       emit(SelecttestSuccess(tests: [testsNames, testId]));
     } else {
       allTestResults.add(uploadedTestModel);
       emit(AddTestResultSuccess());
+       emit(SelecttestSuccess(tests: [testsNames, testId]));
     }
   }
 

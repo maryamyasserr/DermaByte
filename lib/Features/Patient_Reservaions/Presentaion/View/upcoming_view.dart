@@ -7,7 +7,9 @@ class UpComingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-      child: Scaffold(body: UpComingBody()),
+      child: SafeArea(
+        child: Scaffold(body: UpComingBody()),
+      ),
     );
   }
 }

@@ -88,7 +88,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                   break;
                                 }
                               case 1:
-                                print('doctor');
+                               
                                 setState(() {
                                   currentIndex = index;
                                 });
@@ -98,7 +98,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                            BlocProvider.of<AuthCubit>(context).adminModel!.token);
                                 break;
                               case 2:
-                                print('lab');
+                            
                                 setState(() {
                                   currentIndex = index;
                                 });
@@ -109,12 +109,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
                                 break;
                               case 3:
-                                print("logout");
+                                
                                 setState(() {
                                   currentIndex = index;
                                 });
                               default:
-                                print("nothing");
+                              
                                 break;
                             }
                           },
@@ -124,7 +124,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Expanded(
               flex: 4,
               child: Text(
-                "Seift470@gmail.com   ",
+                "   ${BlocProvider.of<AuthCubit>(context).adminModel!.adminModel.email}   ",
                 style: Styels.textStyle14_300(context)
                     .copyWith(color: Colors.grey),
               ))
