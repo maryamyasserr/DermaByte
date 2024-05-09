@@ -20,8 +20,9 @@ class UploadedTestReport extends StatelessWidget {
     return consultaion == null
         ? const ErrWidget(errMessage: "Something is wrong")
         : ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          
             itemCount: consultaion.uploadedTest!.length,
             itemBuilder: (context, index) {
               return Padding(
@@ -38,27 +39,29 @@ class UploadedTestReport extends StatelessWidget {
                     const SizedBox(height: 16),
                     consultaion.uploadedTest![index].testResult!.isEmpty
                         ? const SizedBox()
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: consultaion
-                                .uploadedTest![index].testResult!.length,
-                            itemBuilder: (context, indexX) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 20),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: AspectRatio(
-                                    aspectRatio: 1.2,
-                                    child: CachedNetworkImage(
-                                      fit: BoxFit.fill,
-                                      imageUrl: consultaion.uploadedTest![index]
-                                          .testResult![indexX],
+                        : SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.5,
+                          child: PageView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: consultaion
+                                  .uploadedTest![index].testResult!.length,
+                              itemBuilder: (context, indexX) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: AspectRatio(
+                                      aspectRatio: 1.2,
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.fill,
+                                        imageUrl: consultaion.uploadedTest![index]
+                                            .testResult![indexX],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
+                                );
+                              }),
+                        ),
                   ],
                 ),
               );

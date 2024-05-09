@@ -152,11 +152,10 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
                   child: AddTestButton(
                       text: 'Confirm',
                       onPressed: () async {
-                        print(BlocProvider.of<AddTestResultCubit>(context)
-                            .allTestResults);
+                        
                         if (BlocProvider.of<AddTestResultCubit>(context)
                                 .testId
-                                .length+allTestResults.length !=report.tests!.length 
+                                .length+allTestResults.length <report.tests!.length 
                             ) {
                           failedAlert(context, "Attach Your All Result");
                         } else {

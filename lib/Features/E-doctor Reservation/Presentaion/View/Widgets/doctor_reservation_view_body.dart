@@ -123,7 +123,10 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                 shrinkWrap: true,
                 children: [
                   isVisible
-                      ? Visibility(visible: isVisible, child: AllFreeTime())
+                      ? Visibility(visible: isVisible, child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: AllFreeTime(),
+                      ))
                       : const Center(
                           child:
                               LoadingIndicator(color: AppColors.kPrimaryColor)),

@@ -207,8 +207,8 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               ScheduleBody.calenderTime!.day,
                               int.parse(ScheduleBody.end.text));
 
-                         
-
+                          print(ScheduleBody.startTime);
+                          print(ScheduleBody.endTime);
                           await BlocProvider.of<SetScheduleCubit>(context)
                               .setSchedule(
                                   body: {

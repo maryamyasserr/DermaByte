@@ -87,7 +87,7 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                         .setId =
                                     state
                                         .reservation![index].report![index].id!;
-                                ;
+                                
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)
                                         .getPatientReport ==

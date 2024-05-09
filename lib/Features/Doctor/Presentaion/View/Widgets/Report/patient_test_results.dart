@@ -11,7 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PatientTestResult extends StatelessWidget {
   const PatientTestResult({
     super.key,
+    required this.pageController,
   });
+
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +47,34 @@ class PatientTestResult extends StatelessWidget {
                         const SizedBox(height: 16),
                         consultaion.testResult![index].testResult!.isEmpty
                             ? const SizedBox()
-                            : ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: consultaion
-                                    .testResult![index].testResult!.length,
-                                itemBuilder: (context, indexX) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(bottom: 20),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: AspectRatio(
-                                        aspectRatio: 1.2,
-                                        child: CachedNetworkImage(
-                                          fit: BoxFit.fill,
-                                          imageUrl: consultaion
-                                              .testResult![index]
-                                              .testResult![indexX],
+                            : SizedBox(
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.5,
+                                child: PageView.builder(
+                                    controller: pageController,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: consultaion
+                                        .testResult![index].testResult!.length,
+                                    itemBuilder: (context, indexX) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 20),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          child: AspectRatio(
+                                            aspectRatio: 1.2,
+                                            child: CachedNetworkImage(
+                                              fit: BoxFit.fill,
+                                              imageUrl: consultaion
+                                                  .testResult![index]
+                                                  .testResult![indexX],
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  );
-                                }),
+                                      );
+                                    }),
+                              ),
                       ],
                     ),
                   );

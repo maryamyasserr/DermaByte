@@ -14,7 +14,13 @@ class EdoctorCubit extends Cubit<EdoctorState> {
     response.fold((failure) {
       emit(EdoctorFailure(errMessage: failure.errMessage));
     }, (doctors) {
-      emit(EdoctorSuccess(doctors: doctors));
+      List<DoctorModel> allDoctors = [];
+      for (var d in doctors) {
+        if (d.schedules!.isNotEmpty) {
+          allDoctors.add(d);
+        }
+      }
+      emit(EdoctorSuccess(doctors: allDoctors));
     });
   }
 }

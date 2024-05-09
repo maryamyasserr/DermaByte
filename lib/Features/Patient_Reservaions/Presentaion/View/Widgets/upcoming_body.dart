@@ -42,14 +42,17 @@ class UpComingBody extends StatelessWidget {
           const SizedBox(height: 74),
           ElevatedButton(
               onPressed: () async {
-                if (BlocProvider.of<PreservationInfoCubit>(context)
-                        .compareDates(DateTime.now(), reservation.date) ==
-                    true) {
-                  await cUrlLauncher(
+                
+                // if (BlocProvider.of<PreservationInfoCubit>(context)
+                //         .compareDates(DateTime.now(), reservation.date) ==
+                //     true) {
+                //   await cUrlLauncher(
+                //       context: context, url: reservation.meetingUrl);
+                // } else {
+                //   failedAlert(context, "Your appointment has not come yet");
+                // }
+                    await cUrlLauncher(
                       context: context, url: reservation.meetingUrl);
-                } else {
-                  failedAlert(context, "Your appointment has not come yet");
-                }
               },
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(

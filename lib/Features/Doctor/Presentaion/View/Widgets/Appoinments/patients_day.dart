@@ -1,5 +1,8 @@
 import 'package:dermabyte/Core/Widgets/empty.dart';
+import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
+import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/utils/url_launcher.dart';
@@ -19,8 +22,8 @@ class PatientsDay extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MyReservationCubit, MyReservationState>(
       builder: (context, state) {
-        if (state is MyAppoinmentsSuccess) {
-          if (state.appoinments.isEmpty) {
+        if (state is MyReservationSuccess) {
+          if (state.reservation == null || state.reservation!.isEmpty) {
             return Column(
               children: [
                 Expanded(
@@ -92,7 +95,7 @@ class PatientsDay extends StatelessWidget {
                         children: [
                           Text(
                               DateFormat.yMMMd()
-                                  .format(state.appoinments[0].date!),
+                                  .format(state.reservation![0].date!),
                               style: Styels.textStyle24_600(context).copyWith(
                                   decoration: TextDecoration.underline)),
                           DropdownButton<DateTime>(
@@ -129,44 +132,50 @@ class PatientsDay extends StatelessWidget {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                   Expanded(
                       child: ListView.builder(
-                          itemCount: state.appoinments.length,
+                          itemCount: state.reservation!.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal:
-                                      MediaQuery.of(context).size.width * 0.01,
+                                      MediaQuery.of(context).size.width * 0.02,
                                   vertical: MediaQuery.of(context).size.height *
                                       0.01),
                               child: PatientCard(
                                 show: true,
-                                hour: state.appoinments[index].date!.hour,
-                                minutes: state.appoinments[index].date!.minute,
+                                hour: state.reservation![index].date!.hour,
+                                minutes: state.reservation![index].date!.minute,
                                 textButton: 'Start',
                                 cardTitle:
-                                    "${state.appoinments[index].patient!.firstName} ${state.appoinments[index].patient!.lastName}",
+                                    "${state.reservation![index].patient!.firstName} ${state.reservation![index].patient!.lastName}",
                                 cardSubTitle:
-                                    "${state.appoinments[index].patient?.firstName ?? ""} had an scan and the result was ${state.appoinments[index].scan?[index].diseaseName ?? ""}",
+                                    "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?[0].diseaseName ?? ""}......",
                                 imageCard: state
-                                    .appoinments[index].patient?.profilePic,
+                                    .reservation![index].patient?.profilePic,
                                 onPressed: () async {
-                                  if (BlocProvider.of<MyReservationCubit>(
-                                              context)
-                                          .compareDates(DateTime.now(),
-                                              state.appoinments[index].date!) ==
-                                      true) {
-                                    await cUrlLauncher(
+                                  // if (BlocProvider.of<MyReservationCubit>(
+                                  //             context)
+                                  //         .compareDates(
+                                  //             DateTime.now(),
+                                  //             state
+                                  //                 .reservation![index].date!) ==
+                                  //     true) {
+                                  //   await cUrlLauncher(
+                                  //       context: context,
+                                  //       url: state
+                                  //           .reservation![index].meetingUrl);
+                                  // } else {
+                                  //   failedAlert(context,
+                                  //       "appointment has not come yet");
+                                  // }
+                                   await cUrlLauncher(
                                         context: context,
                                         url: state
-                                            .appoinments[index].meetingUrl);
-                                  } else {
-                                    failedAlert(context,
-                                        "appointment has not come yet");
-                                  }
+                                            .reservation![index].meetingUrl);
                                 },
                                 diagnose: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
-                                      state.appoinments[index].report![index]
+                                      state.reservation![index].report![index]
                                           .id!;
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
@@ -176,7 +185,7 @@ class PatientsDay extends StatelessWidget {
                                   } else {
                                     BlocProvider.of<MyReservationCubit>(context)
                                             .reservationid =
-                                        state.appoinments[index].id;
+                                        state.reservation![index].id;
                                     GoRouter.of(context)
                                         .push(AppRoutes.kPatientView);
                                   }
@@ -184,17 +193,20 @@ class PatientsDay extends StatelessWidget {
                                 onTap: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
-                                      state.appoinments[index].report![index]
+                                      state.reservation![index].report![index]
                                           .id!;
-                                  print(BlocProvider.of<MyPatientReportCubit>(
-                                          context)
-                                      .getPatientReport);
+                                  print(state
+                                      .reservation![index].report![index].id!);
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
                                           .getPatientReport ==
                                       null) {
                                     failedAlert(context, 'Something is Wrong');
                                   } else {
+                                    print(BlocProvider.of<MyPatientReportCubit>(
+                                            context)
+                                        .getPatientReport!
+                                        .id);
                                     GoRouter.of(context)
                                         .push(AppRoutes.kReportView);
                                   }
@@ -204,46 +216,24 @@ class PatientsDay extends StatelessWidget {
                           }))
                 ]);
           }
+        } else if (state is MyReservationFailure) {
+          return ErrWidget(
+              onTap: () async {
+                BlocProvider.of<MyReservationCubit>(context).getMyReservations(
+                    token:
+                        BlocProvider.of<AuthCubit>(context).doctorModel!.token,
+                    reviwed: 'true',
+                    completed: 'false');
+                BlocProvider.of<MyPatientReportCubit>(context)
+                    .getMyPatientsReport(
+                        token: BlocProvider.of<AuthCubit>(context)
+                            .doctorModel!
+                            .token);
+              },
+              errMessage: state.errMessage);
         } else {
-          return Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Choose Date",
-                        style: Styels.textStyle24_600(context)
-                            .copyWith(decoration: TextDecoration.underline)),
-                    DropdownButton<DateTime>(
-                        icon: const Icon(Icons.filter_list_alt),
-                        dropdownColor: const Color.fromARGB(144, 206, 241, 236),
-                        elevation: 0,
-                        underline: const SizedBox(),
-                        items: BlocProvider.of<MyReservationCubit>(context)
-                            .myDates
-                            .map((e) {
-                          return DropdownMenuItem(
-                              value: e,
-                              child: Text(DateFormat.yMMMd().format(e)));
-                        }).toList(),
-                        onChanged: (value) async {
-                          await BlocProvider.of<MyReservationCubit>(context)
-                              .getMyReservations(
-                                  completed: 'false',
-                                  reviwed: 'true',
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .doctorModel!
-                                      .token);
-                          BlocProvider.of<MyReservationCubit>(context)
-                              .getSelectedDate(value!);
-                        }),
-                  ],
-                ),
-              ),
-            ),
+          return const Center(
+            child: LoadingIndicator(color: AppColors.kPrimaryColor),
           );
         }
       },

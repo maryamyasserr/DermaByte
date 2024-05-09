@@ -31,10 +31,14 @@ class ReportView extends StatefulWidget {
 class _ReportViewState extends State<ReportView> {
   late PageController pageController;
   int currentIndex = 0;
+  late PageController testPageController;
+  int testCurrentIndex = 0;
 
   @override
   void initState() {
     pageController = PageController();
+    testPageController = PageController();
+
     pageController.addListener(() {
       currentIndex = pageController.page!.round();
       setState(() {});
@@ -95,7 +99,9 @@ class _ReportViewState extends State<ReportView> {
                       const SizedBox(height: 24),
                       report.testResult!.isEmpty
                           ? const SizedBox()
-                          : const PatientTestResult(),
+                          :  PatientTestResult(
+                            pageController: testPageController,
+                          ),
                       report.uploadedTest!.isEmpty
                           ? const SizedBox()
                           : const UploadedTestReport(),
@@ -116,7 +122,7 @@ class _ReportViewState extends State<ReportView> {
                             textButton: "Request a test",
                             onPressed: () {
                               showModalBottomSheet(
-                                isScrollControlled: true,
+                                  isScrollControlled: true,
                                   context: context,
                                   builder: (context) {
                                     return const AddTestBody();

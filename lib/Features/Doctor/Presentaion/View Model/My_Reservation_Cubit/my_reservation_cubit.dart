@@ -60,16 +60,20 @@ class MyReservationCubit extends Cubit<MyReservationState> {
     selectedDate = date;
   }
 
+  // List<MyReservaionModel> selectedAppoinments = [];
+
   getSelectedDate(DateTime date) {
+    emit(MyReservationLoading());
     List<MyReservaionModel> selectedAppoinments = [];
-    for (var e in allAppoinments) {
+    for (var e in   allAppoinments) {
       if (date.year == e.date!.year &&
           date.month == e.date!.month &&
           date.day == e.date!.day) {
         selectedAppoinments.add(e);
+       
       } else {}
     }
-    emit(MyAppoinmentsSuccess(appoinments: selectedAppoinments));
+    emit(MyReservationSuccess(reservation: selectedAppoinments));
   }
 
   bool compareDates(DateTime date1, DateTime date2) {
