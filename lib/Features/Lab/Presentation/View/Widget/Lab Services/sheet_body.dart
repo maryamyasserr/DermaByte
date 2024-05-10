@@ -1,5 +1,6 @@
+import 'package:dermabyte/Core/Widgets/done_alert.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -22,9 +23,9 @@ class SheetBody extends StatelessWidget {
     return BlocConsumer<AddServiceCubit, AddServiceState>(
       listener: (context, state) {
         if (state is AddServiceFailure) {
-          showSnackBar(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         } else if (state is AddServiceSuccess) {
-          showSnackBar(context, "Done");
+          showDoneAlert(context);
         }
       },
       builder: (context, state) {

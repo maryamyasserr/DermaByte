@@ -1,6 +1,6 @@
+import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -78,10 +78,10 @@ class _RequestBodyState extends State<RequestBody> {
                 BlocConsumer<AttachResultCubit, AttachResultState>(
                   listener: (context, state) {
                     if (state is AttachResultSuccess) {
-                      showSnackBar(context, "Done");
+                      showDoneAlert(context);
                     } else if (state is AttachResultFailure) {
                       failedAlert(context, state.errMessage);
-                      print(state.errMessage);
+                    
                     }
                   },
                   builder: (context, state) {

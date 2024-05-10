@@ -1,5 +1,6 @@
+import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -40,10 +41,9 @@ class _PatientViewState extends State<PatientView> {
     return BlocConsumer<UpdateReportCubit, UpdateReportState>(
       listener: (context, state) {
         if (state is UpdatePatientReportStateSuccess) {
-          showSnackBar(context, "Done");
+          showDoneAlert(context);
         } else if (state is UpdatePatientReportStateFailure) {
-          print(state.errMessage);
-          showSnackBar(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         }
       },
       builder: (context, state) {

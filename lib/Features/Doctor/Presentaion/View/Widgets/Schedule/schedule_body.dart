@@ -1,5 +1,5 @@
+import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -35,7 +35,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
     return BlocConsumer<SetScheduleCubit, SetScheduleState>(
       listener: (context, state) {
         if (state is SetScheduleSuccess) {
-          showSnackBar(context, state.successMessage);
+          showDoneAlert(context);
         } else if (state is SetScheduleFailure) {
           failedAlert(context, state.errMessage);
         }

@@ -1,4 +1,5 @@
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+import 'package:dermabyte/Core/Widgets/done_alert.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
@@ -8,7 +9,7 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/button.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -58,10 +59,10 @@ class _AddTestBodyState extends State<AddTestBody> {
     return BlocConsumer<UpdateReportCubit, UpdateReportState>(
       listener: (context, state) {
         if (state is UpdatePatientReportStateSuccess) {
-          showSnackBar(context, "Done");
+          showDoneAlert(context);
         } else if (state is UpdatePatientReportStateFailure) {
-          // showSnackBar(context, state.errMessage);
-          print(state.errMessage);
+          failedAlert(context, state.errMessage);
+       
         }
       },
       builder: (context, state) {

@@ -1,6 +1,6 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
-import 'package:dermabyte/Core/Widgets/snack_bar.dart';
+
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
@@ -47,7 +47,7 @@ class _RequestedTestsBodyState extends State<RequestedTestsBody> {
     return BlocConsumer<AddTestResultCubit, AddTestResultState>(
       listener: (context, state) {
         if (state is AddTestResultFailure) {
-          showSnackBar(context, state.errMessage);
+          failedAlert(context, state.errMessage);
         } else if (state is DoneState) {
           GoRouter.of(context).pop();
         }
