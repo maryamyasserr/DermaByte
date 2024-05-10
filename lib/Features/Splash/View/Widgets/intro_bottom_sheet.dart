@@ -20,7 +20,7 @@ class IntroBottomSheet extends StatelessWidget {
       ),
       child: ListView(children: [
         Text(
-          'Detect skin cancer \n with 95% accuracy',
+          'Detect skin cancer \n with 98% accuracy',
           textAlign: TextAlign.center,
           style: Styels.textStyle18_600(context).copyWith(fontSize: 28),
         ),
