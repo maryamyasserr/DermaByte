@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Admin/Data/Models/patient_dash.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View%20Model/cubit/admin_cubit.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/red_button.dart';
@@ -23,10 +24,7 @@ class PatientDashBoardBody extends StatelessWidget {
       child: Column(
         children: [
           const DashBoardHeader(
-            title: 'Seif Tariq',
-            subTitle: '01027870171',
             headerTitle: 'Patients',
-            photo: Assets.kBackground,
           ),
           BlocBuilder<AdminCubit, AdminState>(
             builder: (context, state) {
@@ -37,6 +35,10 @@ class PatientDashBoardBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                        Text(
+                        "All Patients : ${patients.length}",
+                        style: Styels.textStyle16_400(context),
+                      ),
                       const SizedBox(height: 20),
                       AspectRatio(
                         aspectRatio: 1086 / 500,

@@ -1,12 +1,12 @@
 import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
-import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Admin/Data/Models/lab_dash/lab_dash.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View%20Model/cubit/admin_cubit.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/green_button.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/header_dashboard.dart';
 import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/red_button.dart';
+import 'package:dermabyte/Features/Admin/Presentaion/View/Widgets/show_licesnse_widget.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +23,9 @@ class LabDashBoardBody extends StatelessWidget {
       child: Column(
         children: [
           const DashBoardHeader(
-            title: 'Seif Tariq',
-            subTitle: '01027870171',
+       
             headerTitle: "Labs",
-            photo: Assets.kBackground,
+           
           ),
           BlocBuilder<AdminCubit, AdminState>(
             builder: (context, state) {
@@ -38,7 +37,7 @@ class LabDashBoardBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "All Labs",
+                        "All Labs : ${labs.length}",
                         style: Styels.textStyle16_400(context),
                       ),
                       const SizedBox(height: 10),
@@ -73,14 +72,21 @@ class LabDashBoardBody extends StatelessWidget {
                                       DataCell(
                                           Text("${labs[index].firstName} ")),
                                       DataCell(Text(labs[index].email!)),
-                                      DataCell(
-                                        labs[index].license != null
-                                            ? CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    labs[index].license![0]),
-                                              )
-                                            : const Icon(Icons.error),
-                                      ),
+                                       DataCell(
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                  padding: EdgeInsets.zero
+                                                ),
+                                                onPressed: () {
+                                                  showLicenseImagesDialog(
+                                                      context,
+                                                      labs[index].license);
+                                                },
+                                                child:
+                                                    const Text('View Licenses'),
+                                              ),
+                                            ),
+                                    
                                       DataCell(Text(labs[index].location!)),
                                       DataCell(RedButton(
                                           title: 'Delete',
@@ -107,7 +113,7 @@ class LabDashBoardBody extends StatelessWidget {
                       SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.03),
                       Text(
-                        "Labs Requets",
+                        "Labs Requests : ${requests.length}",
                         style: Styels.textStyle16_400(context),
                       ),
                       const SizedBox(height: 10),
@@ -119,7 +125,7 @@ class LabDashBoardBody extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20)),
                             child: requests.isEmpty
                                 ? const EmptyWidget(
-                                    text: "No Doctores Requests")
+                                    text: "No Labs Requests")
                                 : SingleChildScrollView(
                                     child: DataTable(
                                       columns: const [
@@ -149,16 +155,21 @@ class LabDashBoardBody extends StatelessWidget {
                                                 "${requests[index].firstName} ")),
                                             DataCell(
                                                 Text(requests[index].email!)),
-                                            DataCell(
-                                              requests[index].license != null
-                                                  ? CircleAvatar(
-                                                      backgroundImage:
-                                                          NetworkImage(
-                                                              requests[index]
-                                                                  .license![0]),
-                                                    )
-                                                  : const Icon(Icons.error),
+                                             DataCell(
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                  padding: EdgeInsets.zero
+                                                ),
+                                                onPressed: () {
+                                                  showLicenseImagesDialog(
+                                                      context,
+                                                      requests[index].license);
+                                                },
+                                                child:
+                                                    const Text('View Licenses'),
+                                              ),
                                             ),
+                                          
                                             DataCell(Text(
                                                 requests[index].location!)),
                                             DataCell(GreenButton(

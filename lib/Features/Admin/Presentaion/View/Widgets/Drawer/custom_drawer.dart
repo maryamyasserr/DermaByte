@@ -124,7 +124,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Expanded(
               flex: 4,
               child: Text(
-                "   ${BlocProvider.of<AuthCubit>(context).adminModel!.adminModel.email}   ",
+                "  ${BlocProvider.of<AuthCubit>(context).adminModel!.adminModel.email}   ",
                 style: Styels.textStyle14_300(context)
                     .copyWith(color: Colors.grey),
               ))
