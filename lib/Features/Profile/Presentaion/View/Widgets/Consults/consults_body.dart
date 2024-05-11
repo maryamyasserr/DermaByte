@@ -40,35 +40,44 @@ class _ConsultsBodyState extends State<ConsultsBody> {
                 Assets.kBackground,
               ),
               fit: BoxFit.fill)),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          children: [
-            const CustomAppBar(title: "History"),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
-            ),
-            ConsutlsHeaderSection(
+      child: ListView(
+        children: [
+          const CustomAppBar(title: "History"),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ConsutlsHeaderSection(
               pageController: pageController,
             ),
-            DotsIndicator(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: DotsIndicator(
               currentPageIndex: currentIndex,
               count: consultaion.scan!.length,
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.014,
-            ),
-            const Divider(
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.014,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Divider(
               thickness: 0.7,
               color: Colors.black,
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.014,
-            ),
-            const ConsultsBodySection(),
-            const SizedBox(height: 8),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.014,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: ConsultsBodySection(),
+          ),
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }
