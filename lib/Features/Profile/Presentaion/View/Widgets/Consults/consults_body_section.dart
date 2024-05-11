@@ -3,6 +3,7 @@ import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/med
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_requsted.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/test_result.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/treatment_plan.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/uploaded_test.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -32,7 +33,10 @@ class ConsultsBodySection extends StatelessWidget {
           const SizedBox(height: 16),
           consultaion.testResult!.isEmpty
               ? const SizedBox()
-              : const TestResult()
+              : const TestResult(),
+          consultaion.uploadedTest!.isEmpty
+              ? const SizedBox()
+              : const UploadedTestReportPatient(),
         ],
       ),
     );
