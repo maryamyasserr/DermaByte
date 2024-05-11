@@ -195,8 +195,6 @@ class PatientsDay extends StatelessWidget {
                                           .setId =
                                       state.reservation![index].report![index]
                                           .id!;
-                                  print(state
-                                      .reservation![index].report![index].id!);
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
                                           .getPatientReport ==

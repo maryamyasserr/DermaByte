@@ -35,41 +35,45 @@ class SheetBody extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 20),
               child: Form(
                 key: formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextFormField(
-                      controller: testName,
-                      validator: (testName) {
-                        if (testName == null || testName.isEmpty) {
-                          return "Test Name is required";
-                        } else {
-                          return null;
-                        }
-                      },
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.next,
-                      decoration:
-                          const InputDecoration(label: Text("Test Name")),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: cost,
-                      validator: (cost) {
-                        if (cost == null || cost.isEmpty) {
-                          return "Cost is required";
-                        } else {
-                          return null;
-                        }
-                      },
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(label: Text("Cost")),
+                    Column(
+                      children: [
+                        TextFormField(
+                          controller: testName,
+                          validator: (testName) {
+                            if (testName == null || testName.isEmpty) {
+                              return "Test Name is required";
+                            } else {
+                              return null;
+                            }
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.next,
+                          decoration:
+                              const InputDecoration(label: Text("Test Name")),
+                        ),
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          controller: cost,
+                          validator: (cost) {
+                            if (cost == null || cost.isEmpty) {
+                              return "Cost is required";
+                            } else {
+                              return null;  
+                            }
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          decoration: const InputDecoration(label: Text("Cost")),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 42),
                     ElevatedButton(

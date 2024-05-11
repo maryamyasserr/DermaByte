@@ -23,7 +23,7 @@ class TreatmentPlan extends StatelessWidget {
               Text("Treatment plan", style: Styels.textStyle24_600(context)),
               const SizedBox(height: 10),
               Text(
-                "- ${consultaion.treatmentPlan}",
+                "- ${consultaion.treatmentPlan!.join()}",
                 style: Styels.textStyle18_400(context),
               ),
             ],
