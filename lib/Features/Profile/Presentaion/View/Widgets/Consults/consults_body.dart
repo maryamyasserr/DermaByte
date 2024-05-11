@@ -42,7 +42,7 @@ class _ConsultsBodyState extends State<ConsultsBody> {
               fit: BoxFit.fill)),
       child: ListView(
         children: [
-          const CustomAppBar(title: "History"),
+          const CustomAppBar(title: "Consulation"),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
