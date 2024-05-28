@@ -1,5 +1,7 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
+
 import 'package:flutter/material.dart';
+
 
 // ignore: must_be_immutable
 class ServiceItem extends StatelessWidget {
@@ -7,8 +9,10 @@ class ServiceItem extends StatelessWidget {
     super.key,
     required this.testName,
     required this.cost,
+    this.deleteTest,
   });
   final String testName, cost;
+ final void Function()? deleteTest;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,11 +46,25 @@ class ServiceItem extends StatelessWidget {
                 style: Styels.textStyle18_600(context),
               ),
               const SizedBox(
-                height: 4,
+                height: 8,
               ),
-              Text(
-                cost,
-                style: Styels.textStyle15_400(context),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    cost,
+                    style: Styels.textStyle15_400(context),
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                          onTap: () {}, child: const Icon(Icons.edit)),
+                      const SizedBox(width: 12),
+                      GestureDetector(
+                          onTap: deleteTest, child: const Icon(Icons.delete))
+                    ],
+                  )
+                ],
               )
             ],
           ),

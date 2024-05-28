@@ -7,6 +7,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/service_item.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/sheet_body.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Get%20Lab%20Services/get_lab_services_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Services/lab_services_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,6 +72,21 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                         itemCount: state.services.length,
                         itemBuilder: (context, index) {
                           return ServiceItem(
+                              deleteTest: () async {
+                                 BlocProvider.of<LabServiceCubit>(context)
+                                    .deleteTest(
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .labModel!
+                                                .token,
+                                        id: state.services[index].id!);
+                               await BlocProvider.of<GetLabServicesCubit>(context)
+                                    .getMyServices(
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .labModel!
+                                                .token);
+                              },
                               testName: state.services[index].name ?? "",
                               cost: state.services[index].cost.toString());
                         },

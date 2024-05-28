@@ -104,4 +104,18 @@ class LabRepoImpl implements LabRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, String>> deleteTest(
+      {required String token, required String id}) async {
+    try {
+      await apiService.delete(endPoint: 'testServices/', id: id, token: token);
+      return right("Done");
+    }  catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

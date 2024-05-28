@@ -5,7 +5,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/Lab/Presentation/View_Model/Add%20Lab%20Services/add_lab_services_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Services/lab_services_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Get%20Lab%20Services/get_lab_services_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,11 +20,11 @@ class SheetBody extends StatelessWidget {
     final TextEditingController testName = TextEditingController();
     final TextEditingController cost = TextEditingController();
     final formKey = GlobalKey<FormState>();
-    return BlocConsumer<AddServiceCubit, AddServiceState>(
+    return BlocConsumer<LabServiceCubit, ServiceState>(
       listener: (context, state) {
-        if (state is AddServiceFailure) {
+        if (state is ServiceFailure) {
           failedAlert(context, state.errMessage);
-        } else if (state is AddServiceSuccess) {
+        } else if (state is ServiceSuccess) {
           showDoneAlert(context);
         }
       },
@@ -35,7 +35,7 @@ class SheetBody extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.fill)),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -65,13 +65,14 @@ class SheetBody extends StatelessWidget {
                             if (cost == null || cost.isEmpty) {
                               return "Cost is required";
                             } else {
-                              return null;  
+                              return null;
                             }
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
-                          decoration: const InputDecoration(label: Text("Cost")),
+                          decoration:
+                              const InputDecoration(label: Text("Cost")),
                         ),
                       ],
                     ),
@@ -83,7 +84,7 @@ class SheetBody extends StatelessWidget {
                             backgroundColor: AppColors.kPrimaryColor),
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            await BlocProvider.of<AddServiceCubit>(context)
+                            await BlocProvider.of<LabServiceCubit>(context)
                                 .addService(
                                     context: context,
                                     token: BlocProvider.of<AuthCubit>(context)
@@ -103,7 +104,7 @@ class SheetBody extends StatelessWidget {
                           }
                         },
                         child:
-                            BlocProvider.of<AddServiceCubit>(context).isLoading
+                            BlocProvider.of<LabServiceCubit>(context).isLoading
                                 ? const LoadingIndicator(color: Colors.white)
                                 : Text(
                                     "Add",

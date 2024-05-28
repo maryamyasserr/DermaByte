@@ -24,4 +24,8 @@ abstract class LabRepo {
       {required String token,
       required dynamic body,
       required BuildContext context});
+  Future<Either<Failures, String>> deleteTest({
+    required String token,
+    required String id
+  });
 }
