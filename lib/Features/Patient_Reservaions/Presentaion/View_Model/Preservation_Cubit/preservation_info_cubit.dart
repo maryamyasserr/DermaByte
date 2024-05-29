@@ -28,6 +28,18 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     });
   }
 
+  Future<void> updatePatinetReservation(
+      {required String token,
+      required String id,
+      required dynamic body}) async {
+    emit(UpdateSLoading());
+    var response = await preservationInfoRepo.updateSessionDate(
+        token: token, id: id, body: body);
+    response.fold(
+        (fail) => emit(PreservationInfoFailure(errMessage: fail.errMessage)),
+        (done) => emit(PreservationInfoSuccess(pReservationInfo: const [])));
+  }
+
   set setId(String id) {
     _id = id;
   }
@@ -40,7 +52,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     }
   }
 
-  bool compareDates(DateTime date1, DateTime  date2) {
+  bool compareDates(DateTime date1, DateTime date2) {
     if (date1.year == date2.year &&
         date1.month == date2.month &&
         date1.day == date2.day &&

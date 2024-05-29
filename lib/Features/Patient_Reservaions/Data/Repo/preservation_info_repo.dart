@@ -12,4 +12,6 @@ abstract class PreservationInfoRepo {
 
   Future<Either<Failures, String>> deleteReservation(
       {required String token, required String id});
+  Future<Either<Failures, String>> updateSessionDate(
+      {required String token, required String id, required dynamic body});
 }

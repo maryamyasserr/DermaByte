@@ -12,9 +12,9 @@ class SignUpPatient extends StatelessWidget {
     return Scaffold(
         body: BlocListener<AuthCubit, AuthState>(
             listener: (context, state) {
-              if (state is AuthFailure) {
-                failedAlert(context, state.errMessage);
-              }
+              // if (state is AuthFailure) {
+              //   failedAlert(context, state.errMessage);
+              // }
             },
             child: const SignUpPatientBody()));
   }

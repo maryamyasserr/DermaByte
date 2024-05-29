@@ -72,4 +72,22 @@ class PreservationInfoRepoImpl implements PreservationInfoRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, String>> updateSessionDate(
+      {required String token, required String id, required body}) async {
+    try {
+      await apiService.updateWithId(
+          endPoint: 'Dermatologist-reservation/',
+          data: body,
+          id: id,
+          token: token);
+      return right("Done");
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

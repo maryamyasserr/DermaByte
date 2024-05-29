@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: must_be_immutable
 class AllFreeTime extends StatefulWidget {
   AllFreeTime({Key? key}) : super(key: key);
-  void Function()? onTap;
   @override
   State<AllFreeTime> createState() => _AllFreeTimeState();
 }
@@ -53,7 +52,6 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                     childAspectRatio: 2 / 1.1),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: widget.onTap,
                     child: TimeWidget(
                       title:
                           "${freetimes.freeTime![index].hour.toString()}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}",

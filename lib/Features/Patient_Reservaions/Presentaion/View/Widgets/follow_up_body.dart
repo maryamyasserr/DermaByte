@@ -1,6 +1,8 @@
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
+import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
@@ -48,7 +50,15 @@ class FollowUpBody extends StatelessWidget {
                     cardSubTitle:
                         'When your appointment comes,click here to start the session  ',
                     textButton: 'Start',
-                    onPressed: () {
+                    onPressed: () async{
+                           BlocProvider.of<FreeTimesCubit>(context)
+                                  .getFreeTimes(
+                                      token: BlocProvider.of<AuthCubit>(context)
+                                          .patient!
+                                          .token,
+                                      body: {
+                                    "dermatologist": patientReservation.dermatologist.id
+                                  });
                       GoRouter.of(context).push(AppRoutes.kUpcoming);
                     },
                   ),

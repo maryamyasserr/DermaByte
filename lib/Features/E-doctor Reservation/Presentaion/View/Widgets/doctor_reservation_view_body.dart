@@ -16,24 +16,9 @@ import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-// static String? imgPath;
-// Future<void> uploadPicture(BuildContext context) async {
-//   final picker = ImagePicker();
-//   final XFile? pickedFile =
-//       await picker.pickImage(source: ImageSource.gallery);
-
-//   if (pickedFile != null) {
-//     imgPath = pickedFile.path;
-//     // print('Selected image path: ${imgPath!}');
-//   }
-// }
-
-// static String mimeType = lookupMimeType(imgPath!)!;
 
 class DoctorReservationViewBody extends StatefulWidget {
   const DoctorReservationViewBody({
@@ -62,6 +47,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
     BlocProvider.of<DoctorReservationCubit>(context).indices = [];
     BlocProvider.of<DoctorReservationCubit>(context).ids = [];
     BlocProvider.of<DoctorReservationCubit>(context).scans = [];
+    
   }
 
   @override

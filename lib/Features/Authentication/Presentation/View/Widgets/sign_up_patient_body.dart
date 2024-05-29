@@ -35,8 +35,7 @@ class _SignUpPatientBodyState extends State<SignUpPatientBody> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     final formKey = GlobalKey<FormState>();
-    return BlocConsumer<AuthHelperCubit, AuthHeplerState>(
-      listener: (context, state) {},
+    return BlocBuilder<AuthHelperCubit, AuthHeplerState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(15.0),

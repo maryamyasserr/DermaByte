@@ -6,6 +6,7 @@ sealed class PreservationInfoState {}
 final class PreservationInfoInitial extends PreservationInfoState {}
 
 final class PreservationInfoLoading extends PreservationInfoState {}
+final class UpdateSLoading extends PreservationInfoState {}
 
 final class PreservationInfoSuccess extends PreservationInfoState {
   final List<PreservationModel> pReservationInfo;
