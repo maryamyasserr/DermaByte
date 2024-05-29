@@ -8,7 +8,6 @@ part 'get_lab_services_state.dart';
 class GetLabServicesCubit extends Cubit<GetLabServicesState> {
   GetLabServicesCubit(this.labRepo) : super(GetLabServicesInitial());
   LabRepo labRepo;
-
   Future<void> getMyServices({required String token}) async {
     emit(GetLabServicesLoadign());
     var response = await labRepo.getMyServices(token: token);

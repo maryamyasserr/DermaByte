@@ -10,9 +10,10 @@ class ServiceItem extends StatelessWidget {
     required this.testName,
     required this.cost,
     this.deleteTest,
+    this.updateTest
   });
   final String testName, cost;
- final void Function()? deleteTest;
+ final void Function()? deleteTest,updateTest;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,6 +45,8 @@ class ServiceItem extends StatelessWidget {
               Text(
                 testName,
                 style: Styels.textStyle18_600(context),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(
                 height: 8,
@@ -58,7 +61,7 @@ class ServiceItem extends StatelessWidget {
                   Row(
                     children: [
                       GestureDetector(
-                          onTap: () {}, child: const Icon(Icons.edit)),
+                          onTap: updateTest, child: const Icon(Icons.edit)),
                       const SizedBox(width: 12),
                       GestureDetector(
                           onTap: deleteTest, child: const Icon(Icons.delete))

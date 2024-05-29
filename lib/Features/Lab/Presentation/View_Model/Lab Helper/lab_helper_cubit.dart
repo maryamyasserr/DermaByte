@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dermabyte/Features/Lab/Data/Models/service_model.dart';
 import 'package:dermabyte/Features/Lab/Data/Models/uploadedTestModel.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
@@ -10,6 +11,7 @@ class LabHelperCubit extends Cubit<LabHelperState> {
 
   List<UploadedTestModel> results = [];
   List<UploadedTestModel> allResutls = [];
+    ServiceModel? test;
 
   void addTestResult(UploadedTestModel uploadedTestModel) {
     int existingIndex = results

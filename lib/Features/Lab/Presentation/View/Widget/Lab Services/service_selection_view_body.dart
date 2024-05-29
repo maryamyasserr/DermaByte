@@ -6,7 +6,9 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/service_item.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/sheet_body.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View/Widget/Lab%20Services/update_test_body.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Get%20Lab%20Services/get_lab_services_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Services/lab_services_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,19 +75,29 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                         itemBuilder: (context, index) {
                           return ServiceItem(
                               deleteTest: () async {
-                                 BlocProvider.of<LabServiceCubit>(context)
+                                BlocProvider.of<LabServiceCubit>(context)
                                     .deleteTest(
                                         token:
                                             BlocProvider.of<AuthCubit>(context)
                                                 .labModel!
                                                 .token,
                                         id: state.services[index].id!);
-                               await BlocProvider.of<GetLabServicesCubit>(context)
+                                await BlocProvider.of<GetLabServicesCubit>(
+                                        context)
                                     .getMyServices(
                                         token:
                                             BlocProvider.of<AuthCubit>(context)
                                                 .labModel!
                                                 .token);
+                              },
+                              updateTest: () async {
+                                BlocProvider.of<LabHelperCubit>(context).test =
+                                    state.services[index];
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return  UpdateLabTest();
+                                    });
                               },
                               testName: state.services[index].name ?? "",
                               cost: state.services[index].cost.toString());

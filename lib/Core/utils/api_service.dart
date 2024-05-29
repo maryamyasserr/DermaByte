@@ -86,6 +86,20 @@ class ApiService {
     return response.data;
   }
 
+   Future<Map<String, dynamic>> updateWithId(
+      {required String endPoint,
+      required dynamic data,
+      required String id,
+      @required String? token}) async {
+    if (token != null) {
+      _dio.options.headers['Authorization'] = "Bearer $token";
+      _dio.options.headers['Content-Type'] = "application/json";
+    } else {
+      _dio.options.headers.remove('Authorization');
+    }
+    Response response = await _dio.put('$_baseUlr$endPoint$id', data: data);
+    return response.data;
+  }
   Future<Map<String, dynamic>> updateWithMultipart(
       {required String endPoint,
       required dynamic data,
