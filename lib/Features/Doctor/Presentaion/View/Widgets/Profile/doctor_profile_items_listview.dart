@@ -1,17 +1,17 @@
+import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/doctor_profile_item.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/profile_item_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DoctorProfileItems extends StatelessWidget {
   DoctorProfileItems({super.key});
 
   final List<ProfileItemModel> items = [
-    ProfileItemModel(title: 'Address', route: ""),
     ProfileItemModel(title: 'Account', route: ""),
     ProfileItemModel(title: 'Address', route: ""),
-    ProfileItemModel(title: 'Credit Card', route: ""),
-    ProfileItemModel(title: 'History', route: ""),
+    ProfileItemModel(title: 'My Schedule', route: AppRoutes.kMySchedule),
     ProfileItemModel(title: 'Setting', route: ""),
     ProfileItemModel(title: 'Log Out', route: "")
     // "Help":AppRoutes.kHelp,
@@ -24,6 +24,9 @@ class DoctorProfileItems extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: DoctorProfileItem(
             profileItemModel: e,
+            onTap: () {
+              GoRouter.of(context).push(e.route);
+            },
           ),
         );
       }).toList(),

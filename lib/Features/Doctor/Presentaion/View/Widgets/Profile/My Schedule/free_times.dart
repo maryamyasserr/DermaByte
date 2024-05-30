@@ -7,13 +7,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
-class AllFreeTime extends StatefulWidget {
-  const AllFreeTime({Key? key}) : super(key: key);
+class MyFreeTimes extends StatefulWidget {
+  const MyFreeTimes({Key? key}) : super(key: key);
   @override
-  State<AllFreeTime> createState() => _AllFreeTimeState();
+  State<MyFreeTimes> createState() => _AllFreeTimeState();
 }
 
-class _AllFreeTimeState extends State<AllFreeTime> {
+class _AllFreeTimeState extends State<MyFreeTimes> {
   String? selectedTime;
 
   void selectTime(String time) {
@@ -51,24 +51,12 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                     mainAxisSpacing: 24,
                     childAspectRatio: 2 / 1.1),
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    child: TimeWidget(
-                      title:
-                          "${freetimes.freeTime![index].hour.toString()}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}",
-                      isSelected:
-                          selectedTime == freetimes.freeTime![index].toString(),
-                      onSelect: () {
-                        selectTime(freetimes.freeTime![index].toString());
-                        if (selectedTime ==
-                            freetimes.freeTime![index].toString()) {
-                          BlocProvider.of<FreeTimesCubit>(context)
-                              .selectedDate = freetimes.freeTime?[index];
-                        } else {
-                          BlocProvider.of<FreeTimesCubit>(context)
-                              .selectedDate = null;
-                        }
-                      },
-                    ),
+                  return TimeWidget(
+                    title:
+                        "${freetimes.freeTime![index].hour.toString()}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}",
+                    isSelected:
+                     false,
+                   onSelect: (){},
                   );
                 });
           }
