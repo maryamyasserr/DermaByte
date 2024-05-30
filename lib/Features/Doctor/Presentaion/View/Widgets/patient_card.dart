@@ -87,7 +87,7 @@ class PatientCard extends StatelessWidget {
                                         MediaQuery.sizeOf(context).width *
                                             0.645,
                                     subTitleWidth:
-                                        MediaQuery.sizeOf(context).width * 0.64,
+                                        MediaQuery.sizeOf(context).width * 0.63,
                                     cardTitle: cardTitle,
                                     cardSubTitle: cardSubTitle,
                                   ),

@@ -36,7 +36,8 @@ class PatientsDay extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Choose Date",
+                            Text(DateFormat.yMMMd().format(BlocProvider.of<MyReservationCubit>(context)
+                                        .myDates[0]),
                                 style: Styels.textStyle24_600(context).copyWith(
                                     decoration: TextDecoration.underline)),
                             DropdownButton<DateTime>(

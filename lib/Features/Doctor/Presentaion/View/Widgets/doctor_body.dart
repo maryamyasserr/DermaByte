@@ -39,10 +39,10 @@ class _DoctorBodyState extends State<DoctorBody> {
             currentIndex: selectedIndex,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
+                  icon: Icon(Icons.call_received), label: "Requetsts"),
+              BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.calendarCheck),
                   label: "Appoinments"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.call_received), label: "Requetsts"),
               BottomNavigationBarItem(
                   icon: Icon(Icons.schedule), label: "Schedule"),
               BottomNavigationBarItem(
@@ -58,8 +58,8 @@ class _DoctorBodyState extends State<DoctorBody> {
               onPageChanged: (page) {},
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                const EdoctorAppoinments(),
                 const DoctorRequests(),
+                const EdoctorAppoinments(),
                 const ScheduleView(),
                 EdoctorProfile()
               ],

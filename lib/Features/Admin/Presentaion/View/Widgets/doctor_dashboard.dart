@@ -19,229 +19,226 @@ class DoctorDashBoardBody extends StatelessWidget {
     List<DoctorDash> requests =
         BlocProvider.of<AdminCubit>(context).doctorsRequests;
     List<DoctorDash> doctors = BlocProvider.of<AdminCubit>(context).allDoctors;
-    return Container(
-      color: const Color(0xffE7E0E0),
-      child: Column(
-        children: [
-          const DashBoardHeader(   
-            headerTitle: "Doctors",
-          ),
-          BlocBuilder<AdminCubit, AdminState>(
-            builder: (context, state) {
-              if (state is AdminSuccess) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "All Doctors : ${doctors.length}",
-                        style: Styels.textStyle16_400(context),
-                      ),
-                      const SizedBox(height: 10),
-                      AspectRatio(
-                        aspectRatio: 1086 / 250,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: SingleChildScrollView(
-                              child: DataTable(
-                                columns: const [
-                                  DataColumn(label: Text("Photo")),
-                                  DataColumn(label: Text("Name")),
-                                  DataColumn(label: Text("Email")),
-                                  DataColumn(label: Text("License")),
-                                  DataColumn(label: Text("Mobile")),
-                                  // DataColumn(label: Text("Working days")),
-
-                                  DataColumn(label: Text("")),
-                                ],
-                                rows: List<DataRow>.generate(
-                                  doctors.length,
-                                  (index) => DataRow(
-                                    cells: <DataCell>[
-                                      DataCell(
-                                        doctors[index].profilePic != null
-                                            ? CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    doctors[index].profilePic!),
-                                              )
-                                            : const Icon(Icons.error),
-                                      ),
-                                      DataCell(
-                                          Text("${doctors[index].firstName} "
-                                              "${doctors[index].lastName}")),
-                                      DataCell(Text(doctors[index].email!)),
-                                      DataCell(
-                                        TextButton(
-                                          style: TextButton.styleFrom(
-                                            padding: EdgeInsets.zero
-                                          ),
-                                          onPressed: () {
-                                            showLicenseImagesDialog(context,
-                                                doctors[index].license);
-                                          },
-                                          child: const Text('View Licenses'),
+    return Column(
+      children: [
+        const DashBoardHeader(   
+          headerTitle: "Doctors",
+        ),
+        BlocBuilder<AdminCubit, AdminState>(
+          builder: (context, state) {
+            if (state is AdminSuccess) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "All Doctors : ${doctors.length}",
+                      style: Styels.textStyle16_400(context),
+                    ),
+                    const SizedBox(height: 10),
+                    AspectRatio(
+                      aspectRatio: 1086 / 250,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: SingleChildScrollView(
+                            child: DataTable(
+                              columns: const [
+                                DataColumn(label: Text("Photo")),
+                                DataColumn(label: Text("Name")),
+                                DataColumn(label: Text("Email")),
+                                DataColumn(label: Text("License")),
+                                DataColumn(label: Text("Mobile")),
+                                // DataColumn(label: Text("Working days")),
+    
+                                DataColumn(label: Text("")),
+                              ],
+                              rows: List<DataRow>.generate(
+                                doctors.length,
+                                (index) => DataRow(
+                                  cells: <DataCell>[
+                                    DataCell(
+                                      doctors[index].profilePic != null
+                                          ? CircleAvatar(
+                                              backgroundImage: NetworkImage(
+                                                  doctors[index].profilePic!),
+                                            )
+                                          : const Icon(Icons.error),
+                                    ),
+                                    DataCell(
+                                        Text("${doctors[index].firstName} "
+                                            "${doctors[index].lastName}")),
+                                    DataCell(Text(doctors[index].email!)),
+                                    DataCell(
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                          padding: EdgeInsets.zero
                                         ),
-                                      ),
-
-                                      DataCell(Text(doctors[index].phone!)),
-                                      // DataCell(Text(requests[index]
-                                      //       .schedules!
-                                      //       .length
-                                      //       .toString())),
-                                      DataCell(RedButton(
-                                          title: 'Delete',
-                                          onPressed: () async {
-                                            await BlocProvider.of<AdminCubit>(
-                                                    context)
-                                                .deleteDoctor(
-                                                    id: doctors[index].id!,
-                                                    token: BlocProvider.of<
-                                                            AuthCubit>(context)
-                                                        .adminModel!
-                                                        .token);
-
-                                            await BlocProvider.of<AdminCubit>(
-                                                    context)
-                                                .getAllDashDoctor(
-                                                    token: BlocProvider.of<
-                                                            AuthCubit>(context)
-                                                        .adminModel!
-                                                        .token);
-                                          }))
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.03),
-                      Text(
-                        "Doctors Requests : ${requests.length}",
-                        style: Styels.textStyle16_400(context),
-                      ),
-                      const SizedBox(height: 10),
-                      AspectRatio(
-                        aspectRatio: 1086 / 250,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: requests.isEmpty
-                                ? const EmptyWidget(
-                                    text: "No Doctores Requests")
-                                : SingleChildScrollView(
-                                    child: DataTable(
-                                      columns: const [
-                                        DataColumn(label: Text("Photo")),
-                                        DataColumn(label: Text("Name")),
-                                        DataColumn(label: Text("Email")),
-                                        DataColumn(label: Text("License")),
-                                        DataColumn(label: Text("")),
-                                        DataColumn(label: Text("")),
-                                        DataColumn(label: Text("")),
-                                      ],
-                                      rows: List<DataRow>.generate(
-                                        requests.length,
-                                        (index) => DataRow(
-                                          cells: <DataCell>[
-                                            DataCell(
-                                              requests[index].profilePic != null
-                                                  ? CircleAvatar(
-                                                      backgroundImage:
-                                                          NetworkImage(
-                                                              requests[index]
-                                                                  .profilePic!),
-                                                    )
-                                                  : const Icon(Icons.error),
-                                            ),
-                                            DataCell(Text(
-                                                "${requests[index].firstName} "
-                                                "${requests[index].lastName}")),
-                                            DataCell(
-                                                Text(requests[index].email!)),
-                                            DataCell(
-                                              TextButton(
-                                                style: TextButton.styleFrom(
-                                                  padding: EdgeInsets.zero
-                                                ),
-                                                onPressed: () {
-                                                  showLicenseImagesDialog(
-                                                      context,
-                                                      requests[index].license);
-                                                },
-                                                child:
-                                                    const Text('View Licenses'),
-                                              ),
-                                            ),
-                                            DataCell(
-                                                Text(requests[index].phone!)),
-                                            DataCell(GreenButton(
-                                                title: 'Approve',
-                                                onPressed: () async {
-                                                  await BlocProvider.of<
-                                                          AdminCubit>(context)
-                                                      .approve(
-                                                          token: BlocProvider
-                                                                  .of<AuthCubit>(
-                                                                      context)
-                                                              .adminModel!
-                                                              .token,
-                                                          body: {
-                                                        "id": requests[index].id
-                                                      });
-                                                  await BlocProvider.of<
-                                                          AdminCubit>(context)
-                                                      .getAllDashDoctor(
-                                                          token: BlocProvider
-                                                                  .of<AuthCubit>(
-                                                                      context)
-                                                              .adminModel!
-                                                              .token);
-                                                })),
-                                            DataCell(RedButton(
-                                                title: 'Decline',
-                                                onPressed: () async {
-                                                  await BlocProvider.of<
-                                                          AdminCubit>(context)
-                                                      .dcline(
-                                                          token: BlocProvider
-                                                                  .of<AuthCubit>(
-                                                                      context)
-                                                              .adminModel!
-                                                              .token,
-                                                          body: {
-                                                        "id": requests[index].id
-                                                      });
-                                                  await BlocProvider.of<
-                                                          AdminCubit>(context)
-                                                      .getAllDashDoctor(
-                                                          token: BlocProvider
-                                                                  .of<AuthCubit>(
-                                                                      context)
-                                                              .adminModel!
-                                                              .token);
-                                                })),
-                                          ],
-                                        ),
+                                        onPressed: () {
+                                          showLicenseImagesDialog(context,
+                                              doctors[index].license);
+                                        },
+                                        child: const Text('View Licenses'),
                                       ),
                                     ),
-                                  )),
-                      )
-                    ],
-                  ),
-                );
-              } else {
-                return const ErrWidget(errMessage: 'tap to retry');
-              }
-            },
-          )
-        ],
-      ),
+    
+                                    DataCell(Text(doctors[index].phone!)),
+                                    // DataCell(Text(requests[index]
+                                    //       .schedules!
+                                    //       .length
+                                    //       .toString())),
+                                    DataCell(RedButton(
+                                        title: 'Delete',
+                                        onPressed: () async {
+                                          await BlocProvider.of<AdminCubit>(
+                                                  context)
+                                              .deleteDoctor(
+                                                  id: doctors[index].id!,
+                                                  token: BlocProvider.of<
+                                                          AuthCubit>(context)
+                                                      .adminModel!
+                                                      .token);
+    
+                                          await BlocProvider.of<AdminCubit>(
+                                                  context)
+                                              .getAllDashDoctor(
+                                                  token: BlocProvider.of<
+                                                          AuthCubit>(context)
+                                                      .adminModel!
+                                                      .token);
+                                        }))
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
+                    SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.03),
+                    Text(
+                      "Doctors Requests : ${requests.length}",
+                      style: Styels.textStyle16_400(context),
+                    ),
+                    const SizedBox(height: 10),
+                    AspectRatio(
+                      aspectRatio: 1086 / 250,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: requests.isEmpty
+                              ? const EmptyWidget(
+                                  text: "No Doctores Requests")
+                              : SingleChildScrollView(
+                                  child: DataTable(
+                                    columns: const [
+                                      DataColumn(label: Text("Photo")),
+                                      DataColumn(label: Text("Name")),
+                                      DataColumn(label: Text("Email")),
+                                      DataColumn(label: Text("License")),
+                                      DataColumn(label: Text("")),
+                                      DataColumn(label: Text("")),
+                                      DataColumn(label: Text("")),
+                                    ],
+                                    rows: List<DataRow>.generate(
+                                      requests.length,
+                                      (index) => DataRow(
+                                        cells: <DataCell>[
+                                          DataCell(
+                                            requests[index].profilePic != null
+                                                ? CircleAvatar(
+                                                    backgroundImage:
+                                                        NetworkImage(
+                                                            requests[index]
+                                                                .profilePic!),
+                                                  )
+                                                : const Icon(Icons.error),
+                                          ),
+                                          DataCell(Text(
+                                              "${requests[index].firstName} "
+                                              "${requests[index].lastName}")),
+                                          DataCell(
+                                              Text(requests[index].email!)),
+                                          DataCell(
+                                            TextButton(
+                                              style: TextButton.styleFrom(
+                                                padding: EdgeInsets.zero
+                                              ),
+                                              onPressed: () {
+                                                showLicenseImagesDialog(
+                                                    context,
+                                                    requests[index].license);
+                                              },
+                                              child:
+                                                  const Text('View Licenses'),
+                                            ),
+                                          ),
+                                          DataCell(
+                                              Text(requests[index].phone!)),
+                                          DataCell(GreenButton(
+                                              title: 'Approve',
+                                              onPressed: () async {
+                                                await BlocProvider.of<
+                                                        AdminCubit>(context)
+                                                    .approve(
+                                                        token: BlocProvider
+                                                                .of<AuthCubit>(
+                                                                    context)
+                                                            .adminModel!
+                                                            .token,
+                                                        body: {
+                                                      "id": requests[index].id
+                                                    });
+                                                await BlocProvider.of<
+                                                        AdminCubit>(context)
+                                                    .getAllDashDoctor(
+                                                        token: BlocProvider
+                                                                .of<AuthCubit>(
+                                                                    context)
+                                                            .adminModel!
+                                                            .token);
+                                              })),
+                                          DataCell(RedButton(
+                                              title: 'Decline',
+                                              onPressed: () async {
+                                                await BlocProvider.of<
+                                                        AdminCubit>(context)
+                                                    .dcline(
+                                                        token: BlocProvider
+                                                                .of<AuthCubit>(
+                                                                    context)
+                                                            .adminModel!
+                                                            .token,
+                                                        body: {
+                                                      "id": requests[index].id
+                                                    });
+                                                await BlocProvider.of<
+                                                        AdminCubit>(context)
+                                                    .getAllDashDoctor(
+                                                        token: BlocProvider
+                                                                .of<AuthCubit>(
+                                                                    context)
+                                                            .adminModel!
+                                                            .token);
+                                              })),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                    )
+                  ],
+                ),
+              );
+            } else {
+              return const ErrWidget(errMessage: 'tap to retry');
+            }
+          },
+        )
+      ],
     );
   }
 }
