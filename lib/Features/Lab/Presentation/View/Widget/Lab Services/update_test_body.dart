@@ -60,7 +60,7 @@ class UpdateLabTest extends StatelessWidget {
                 if (testName.text.isEmpty && testCost.text.isEmpty) {
                   GoRouter.of(context).pop();
                 } else if (testName.text.isNotEmpty && testCost.text.isEmpty) {
-                   BlocProvider.of<LabServiceCubit>(context).updateTest(
+                  BlocProvider.of<LabServiceCubit>(context).updateTest(
                       token: token,
                       id: test.id!,
                       body: {'name': testName.text});
@@ -68,7 +68,7 @@ class UpdateLabTest extends StatelessWidget {
                   await BlocProvider.of<GetLabServicesCubit>(context)
                       .getMyServices(token: token);
                 } else if (testCost.text.isNotEmpty && testName.text.isEmpty) {
-                   BlocProvider.of<LabServiceCubit>(context).updateTest(
+                  BlocProvider.of<LabServiceCubit>(context).updateTest(
                       token: token,
                       id: test.id!,
                       body: {'cost': testCost.text});
@@ -76,7 +76,7 @@ class UpdateLabTest extends StatelessWidget {
                   await BlocProvider.of<GetLabServicesCubit>(context)
                       .getMyServices(token: token);
                 } else {
-                   BlocProvider.of<LabServiceCubit>(context).updateTest(
+                  BlocProvider.of<LabServiceCubit>(context).updateTest(
                       token: token,
                       id: test.id!,
                       body: {'name': testName.text, 'cost': testCost.text});

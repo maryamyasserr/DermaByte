@@ -83,38 +83,40 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                   });
                                   await BlocProvider.of<AdminCubit>(context)
                                       .getAllPatientsDash(
-                                          token:
-                                              BlocProvider.of<AuthCubit>(context).adminModel!.token);
+                                          token: BlocProvider.of<AuthCubit>(
+                                                  context)
+                                              .adminModel!
+                                              .token);
                                   break;
                                 }
                               case 1:
-                               
                                 setState(() {
                                   currentIndex = index;
                                 });
                                 await BlocProvider.of<AdminCubit>(context)
                                     .getAllDashDoctor(
                                         token:
-                                           BlocProvider.of<AuthCubit>(context).adminModel!.token);
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .adminModel!
+                                                .token);
                                 break;
                               case 2:
-                            
                                 setState(() {
                                   currentIndex = index;
                                 });
                                 await BlocProvider.of<AdminCubit>(context)
                                     .getAllDashLabs(
                                         token:
-                                            BlocProvider.of<AuthCubit>(context).adminModel!.token);
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .adminModel!
+                                                .token);
 
                                 break;
                               case 3:
-                                
                                 setState(() {
                                   currentIndex = index;
                                 });
                               default:
-                              
                                 break;
                             }
                           },

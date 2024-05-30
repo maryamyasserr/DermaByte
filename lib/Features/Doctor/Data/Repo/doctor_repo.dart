@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
+import 'package:dermabyte/Features/Doctor/Data/Models/my_free_time_model.dart';
 import 'package:dermabyte/Features/Doctor/Data/Models/p_reservation/p_reservation.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
@@ -25,4 +26,7 @@ abstract class DoctorRepo {
 
   Future<Either<Failures, String>> setSchedule(
       {required dynamic body, required String token});
+  Future<Either<Failures, List<MyFreeTimeModel>>> getMySchedule({
+    required String token
+  });
 }

@@ -49,9 +49,12 @@ class _AdminViewBodyState extends State<AdminViewBody> {
                         child: BlocBuilder<AdminCubit, AdminState>(
                           builder: (context, state) {
                             if (state is AdminSuccess) {
-                              if (BlocProvider.of<AdminCubit>(context).role == 'p') {
+                              if (BlocProvider.of<AdminCubit>(context).role ==
+                                  'p') {
                                 return const PatientDashBoardBody();
-                              } else if (BlocProvider.of<AdminCubit>(context).role == 'd') {
+                              } else if (BlocProvider.of<AdminCubit>(context)
+                                      .role ==
+                                  'd') {
                                 return const DoctorDashBoardBody();
                               } else {
                                 return const LabDashBoardBody();
@@ -60,22 +63,28 @@ class _AdminViewBodyState extends State<AdminViewBody> {
                               return ErrWidget(
                                 errMessage: state.errMessage,
                                 onTap: () async {
-                                  if (BlocProvider.of<AdminCubit>(context).role == 'p') {
+                                  if (BlocProvider.of<AdminCubit>(context)
+                                          .role ==
+                                      'p') {
                                     await BlocProvider.of<AdminCubit>(context)
                                         .getAllPatientsDash(token: token);
-                                  } else if (BlocProvider.of<AdminCubit>(context).role == 'd') {
-                                    await BlocProvider.of<AdminCubit>(context).getAllDashDoctor(
-                                        token: token);
+                                  } else if (BlocProvider.of<AdminCubit>(
+                                              context)
+                                          .role ==
+                                      'd') {
+                                    await BlocProvider.of<AdminCubit>(context)
+                                        .getAllDashDoctor(token: token);
                                   } else {
-                                    await BlocProvider.of<AdminCubit>(context).getAllDashLabs(
-                                        token: token);
+                                    await BlocProvider.of<AdminCubit>(context)
+                                        .getAllDashLabs(token: token);
                                   }
                                 },
                               );
                             } else {
                               return const Padding(
-                                padding: EdgeInsets.only(top: 400),
-                                child: LoadingIndicator(color: AppColors.kPrimaryColor));
+                                  padding: EdgeInsets.only(top: 400),
+                                  child: LoadingIndicator(
+                                      color: AppColors.kPrimaryColor));
                             }
                           },
                         ),
@@ -91,7 +100,6 @@ class _AdminViewBodyState extends State<AdminViewBody> {
     );
   }
 }
-
 
 // import 'package:dermabyte/Core/Widgets/err_widget.dart';
 // import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -173,8 +181,7 @@ class _AdminViewBodyState extends State<AdminViewBody> {
 //                     },
 //                   ),
 //                 )),
-     
-          
+
 //           ],
 //         ),
 //       ],

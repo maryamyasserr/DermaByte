@@ -96,7 +96,7 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return  UpdateLabTest();
+                                      return UpdateLabTest();
                                     });
                               },
                               testName: state.services[index].name ?? "",

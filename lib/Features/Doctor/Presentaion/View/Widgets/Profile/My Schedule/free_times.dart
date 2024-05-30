@@ -54,9 +54,8 @@ class _AllFreeTimeState extends State<MyFreeTimes> {
                   return TimeWidget(
                     title:
                         "${freetimes.freeTime![index].hour.toString()}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}",
-                    isSelected:
-                     false,
-                   onSelect: (){},
+                    isSelected: false,
+                    onSelect: () {},
                   );
                 });
           }

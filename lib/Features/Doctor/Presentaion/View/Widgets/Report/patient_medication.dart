@@ -16,7 +16,7 @@ class PatientMedications extends StatelessWidget {
         BlocProvider.of<MyPatientReportCubit>(context).getPatientReport;
     return report == null
         ? const ErrWidget(errMessage: "Something is wrong")
-        : Column( 
+        : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(

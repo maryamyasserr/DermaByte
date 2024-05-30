@@ -10,7 +10,6 @@ void showLoadingDialog(BuildContext context) {
         child: Container(
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-            
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: const Column(

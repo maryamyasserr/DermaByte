@@ -3,15 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-waitAlert({required BuildContext context,required String text}) {
+waitAlert({required BuildContext context, required String text}) {
   return showDialog(
       context: context,
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(
             "Waiting",
-            style: Styels.textStyle18_400(context).copyWith(
-                color:  Colors.yellow[700], fontSize: 19),
+            style: Styels.textStyle18_400(context)
+                .copyWith(color: Colors.yellow[700], fontSize: 19),
           ),
           content: Text(
             text,

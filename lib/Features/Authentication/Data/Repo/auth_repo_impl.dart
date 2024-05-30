@@ -56,7 +56,7 @@ class AuthRepoImpl implements AuthRepo {
         var response = await apiService.postWithMultiForm(
             endPoint: endPoint, data: data, token: null);
         LabToken lab = LabToken.fromJson(response);
-         GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
+        GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
         return right(lab);
       } catch (e) {
         if (e is DioException) {

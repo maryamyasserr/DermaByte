@@ -8,7 +8,8 @@ class UpcomingButton extends StatelessWidget {
     super.key,
     required this.reservation,
     required this.text,
-    required this.onPressed, required this.isLoading,
+    required this.onPressed,
+    required this.isLoading,
   });
 
   final PreservationModel reservation;
@@ -28,18 +29,18 @@ class UpcomingButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: AppColors.kPrimaryColor,
       ),
-      child:
-      isLoading?
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 28),
-        child: CircularProgressIndicator(
-          color: Colors.white,
-        ),
-      ):
-       Text(
-        text,
-        style: Styels.textStyle20_700(context).copyWith(color: Colors.white),
-      ),
+      child: isLoading
+          ? const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 28),
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            )
+          : Text(
+              text,
+              style:
+                  Styels.textStyle20_700(context).copyWith(color: Colors.white),
+            ),
     );
   }
 }

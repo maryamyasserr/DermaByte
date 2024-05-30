@@ -81,7 +81,6 @@ class _RequestBodyState extends State<RequestBody> {
                       showDoneAlert(context);
                     } else if (state is AttachResultFailure) {
                       failedAlert(context, state.errMessage);
-                    
                     }
                   },
                   builder: (context, state) {

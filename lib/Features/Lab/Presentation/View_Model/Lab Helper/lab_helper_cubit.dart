@@ -11,7 +11,7 @@ class LabHelperCubit extends Cubit<LabHelperState> {
 
   List<UploadedTestModel> results = [];
   List<UploadedTestModel> allResutls = [];
-    ServiceModel? test;
+  ServiceModel? test;
 
   void addTestResult(UploadedTestModel uploadedTestModel) {
     int existingIndex = results

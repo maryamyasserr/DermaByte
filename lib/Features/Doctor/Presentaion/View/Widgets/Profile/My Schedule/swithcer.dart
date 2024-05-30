@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Swithcer extends StatelessWidget {
-  const Swithcer({super.key, required this.back, required this.next});
+  const Swithcer({super.key, required this.back, required this.next, required this.date});
 
   final void Function() back, next;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class Swithcer extends StatelessWidget {
               size: 40,
               color: AppColors.kPrimaryColor,
             )),
-        Text(DateFormat.yMMMd().format(DateTime.now()),
+        Text(DateFormat.yMMMd().format(date),
             style: Styels.textStyle24_600(context)),
         IconButton(
             onPressed: next,

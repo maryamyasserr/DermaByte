@@ -50,15 +50,14 @@ class FollowUpBody extends StatelessWidget {
                     cardSubTitle:
                         'When your appointment comes,click here to start the session  ',
                     textButton: 'Start',
-                    onPressed: () async{
-                           BlocProvider.of<FreeTimesCubit>(context)
-                                  .getFreeTimes(
-                                      token: BlocProvider.of<AuthCubit>(context)
-                                          .patient!
-                                          .token,
-                                      body: {
-                                    "dermatologist": patientReservation.dermatologist.id
-                                  });
+                    onPressed: () async {
+                      BlocProvider.of<FreeTimesCubit>(context).getFreeTimes(
+                          token: BlocProvider.of<AuthCubit>(context)
+                              .patient!
+                              .token,
+                          body: {
+                            "dermatologist": patientReservation.dermatologist.id
+                          });
                       GoRouter.of(context).push(AppRoutes.kUpcoming);
                     },
                   ),

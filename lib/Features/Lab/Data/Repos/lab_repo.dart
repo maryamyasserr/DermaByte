@@ -28,10 +28,5 @@ abstract class LabRepo {
       {required String token, required String id});
 
   Future<Either<Failures, String>> updateTest(
-    {
-      required String token,
-      required String id,
-      required dynamic body
-    }
-  );
+      {required String token, required String id, required dynamic body});
 }

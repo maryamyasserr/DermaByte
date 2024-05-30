@@ -86,7 +86,7 @@ class ApiService {
     return response.data;
   }
 
-   Future<Map<String, dynamic>> updateWithId(
+  Future<Map<String, dynamic>> updateWithId(
       {required String endPoint,
       required dynamic data,
       required String id,
@@ -100,6 +100,7 @@ class ApiService {
     Response response = await _dio.put('$_baseUlr$endPoint$id', data: data);
     return response.data;
   }
+
   Future<Map<String, dynamic>> updateWithMultipart(
       {required String endPoint,
       required dynamic data,

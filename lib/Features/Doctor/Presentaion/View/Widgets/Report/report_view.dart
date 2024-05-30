@@ -99,9 +99,9 @@ class _ReportViewState extends State<ReportView> {
                       const SizedBox(height: 24),
                       report.testResult!.isEmpty
                           ? const SizedBox()
-                          :  PatientTestResult(
-                            pageController: testPageController,
-                          ),
+                          : PatientTestResult(
+                              pageController: testPageController,
+                            ),
                       report.uploadedTest!.isEmpty
                           ? const SizedBox()
                           : const UploadedTestReport(),

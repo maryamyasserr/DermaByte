@@ -21,9 +21,7 @@ class LabDashBoardBody extends StatelessWidget {
     return Column(
       children: [
         const DashBoardHeader(
-     
           headerTitle: "Labs",
-         
         ),
         BlocBuilder<AdminCubit, AdminState>(
           builder: (context, state) {
@@ -67,24 +65,19 @@ class LabDashBoardBody extends StatelessWidget {
                                             )
                                           : const Icon(Icons.error),
                                     ),
-                                    DataCell(
-                                        Text("${labs[index].firstName} ")),
+                                    DataCell(Text("${labs[index].firstName} ")),
                                     DataCell(Text(labs[index].email!)),
-                                     DataCell(
-                                            TextButton(
-                                              style: TextButton.styleFrom(
-                                                padding: EdgeInsets.zero
-                                              ),
-                                              onPressed: () {
-                                                showLicenseImagesDialog(
-                                                    context,
-                                                    labs[index].license);
-                                              },
-                                              child:
-                                                  const Text('View Licenses'),
-                                            ),
-                                          ),
-                                  
+                                    DataCell(
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            padding: EdgeInsets.zero),
+                                        onPressed: () {
+                                          showLicenseImagesDialog(
+                                              context, labs[index].license);
+                                        },
+                                        child: const Text('View Licenses'),
+                                      ),
+                                    ),
                                     DataCell(Text(labs[index].location!)),
                                     DataCell(RedButton(
                                         title: 'Delete',
@@ -93,14 +86,18 @@ class LabDashBoardBody extends StatelessWidget {
                                                   context)
                                               .deleteLab(
                                                   id: labs[index].id!,
-                                                  token:
-                                                      BlocProvider.of<AuthCubit>(context).adminModel!.token);
-    
+                                                  token: BlocProvider.of<
+                                                          AuthCubit>(context)
+                                                      .adminModel!
+                                                      .token);
+
                                           await BlocProvider.of<AdminCubit>(
                                                   context)
                                               .getAllDashLabs(
-                                                  token:
-                                                      BlocProvider.of<AuthCubit>(context).adminModel!.token);
+                                                  token: BlocProvider.of<
+                                                          AuthCubit>(context)
+                                                      .adminModel!
+                                                      .token);
                                         }))
                                   ],
                                 ),
@@ -108,8 +105,7 @@ class LabDashBoardBody extends StatelessWidget {
                             ),
                           )),
                     ),
-                    SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.03),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
                     Text(
                       "Labs Requests : ${requests.length}",
                       style: Styels.textStyle16_400(context),
@@ -122,8 +118,7 @@ class LabDashBoardBody extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           child: requests.isEmpty
-                              ? const EmptyWidget(
-                                  text: "No Labs Requests")
+                              ? const EmptyWidget(text: "No Labs Requests")
                               : SingleChildScrollView(
                                   child: DataTable(
                                     columns: const [
@@ -153,39 +148,42 @@ class LabDashBoardBody extends StatelessWidget {
                                               "${requests[index].firstName} ")),
                                           DataCell(
                                               Text(requests[index].email!)),
-                                           DataCell(
+                                          DataCell(
                                             TextButton(
                                               style: TextButton.styleFrom(
-                                                padding: EdgeInsets.zero
-                                              ),
+                                                  padding: EdgeInsets.zero),
                                               onPressed: () {
-                                                showLicenseImagesDialog(
-                                                    context,
+                                                showLicenseImagesDialog(context,
                                                     requests[index].license);
                                               },
                                               child:
                                                   const Text('View Licenses'),
                                             ),
                                           ),
-                                        
-                                          DataCell(Text(
-                                              requests[index].location!)),
+                                          DataCell(
+                                              Text(requests[index].location!)),
                                           DataCell(GreenButton(
                                               title: 'Approve',
                                               onPressed: () async {
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .approve(
-                                                        token:
-                                                            BlocProvider.of<AuthCubit>(context).adminModel!.token,
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
+                                                            .adminModel!
+                                                            .token,
                                                         body: {
                                                       "id": requests[index].id
                                                     });
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .getAllDashLabs(
-                                                        token:
-                                                            BlocProvider.of<AuthCubit>(context).adminModel!.token);
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
+                                                            .adminModel!
+                                                            .token);
                                               })),
                                           DataCell(RedButton(
                                               title: 'Decline',
@@ -193,16 +191,22 @@ class LabDashBoardBody extends StatelessWidget {
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .dcline(
-                                                        token:
-                                                            BlocProvider.of<AuthCubit>(context).adminModel!.token,
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
+                                                            .adminModel!
+                                                            .token,
                                                         body: {
                                                       "id": requests[index].id
                                                     });
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .getAllDashLabs(
-                                                        token:
-                                                            BlocProvider.of<AuthCubit>(context).adminModel!.token);
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
+                                                            .adminModel!
+                                                            .token);
                                               })),
                                         ],
                                       ),

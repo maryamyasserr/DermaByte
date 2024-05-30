@@ -47,7 +47,6 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
     BlocProvider.of<DoctorReservationCubit>(context).indices = [];
     BlocProvider.of<DoctorReservationCubit>(context).ids = [];
     BlocProvider.of<DoctorReservationCubit>(context).scans = [];
-    
   }
 
   @override
@@ -109,10 +108,12 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                 shrinkWrap: true,
                 children: [
                   isVisible
-                      ? Visibility(visible: isVisible, child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AllFreeTime(),
-                      ))
+                      ? Visibility(
+                          visible: isVisible,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AllFreeTime(),
+                          ))
                       : const Center(
                           child:
                               LoadingIndicator(color: AppColors.kPrimaryColor)),
@@ -125,7 +126,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   ),
                   const SizedBox(height: 30),
                   const Padding(
-                     padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     child: AttachDocotorReservaionField(
                       isrequired: true,
                       padding: EdgeInsets.only(right: 15, bottom: 10),

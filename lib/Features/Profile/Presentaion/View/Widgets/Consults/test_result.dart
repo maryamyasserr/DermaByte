@@ -16,7 +16,7 @@ class TestResult extends StatelessWidget {
   Widget build(BuildContext context) {
     ReportModel? consultaion =
         BlocProvider.of<ReportCubit>(context).currentConsultation;
-    return  consultaion == null
+    return consultaion == null
         ? const ErrWidget(errMessage: "Something is wrong")
         : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
@@ -44,8 +44,7 @@ class TestResult extends StatelessWidget {
                         consultaion.testResult![index].testResult!.isEmpty
                             ? const SizedBox()
                             : SizedBox(
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.5,
+                                height: MediaQuery.sizeOf(context).height * 0.5,
                                 child: PageView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: consultaion
@@ -75,7 +74,7 @@ class TestResult extends StatelessWidget {
                   );
                 }),
           ]);
-    
+
     // Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     //   Text(
     //     "Test Results.",

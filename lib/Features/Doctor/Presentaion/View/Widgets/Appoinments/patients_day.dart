@@ -36,7 +36,9 @@ class PatientsDay extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(DateFormat.yMMMd().format(BlocProvider.of<MyReservationCubit>(context)
+                            Text(
+                                DateFormat.yMMMd().format(
+                                    BlocProvider.of<MyReservationCubit>(context)
                                         .myDates[0]),
                                 style: Styels.textStyle24_600(context).copyWith(
                                     decoration: TextDecoration.underline)),
@@ -168,10 +170,10 @@ class PatientsDay extends StatelessWidget {
                                   //   failedAlert(context,
                                   //       "appointment has not come yet");
                                   // }
-                                   await cUrlLauncher(
-                                        context: context,
-                                        url: state
-                                            .reservation![index].meetingUrl);
+                                  await cUrlLauncher(
+                                      context: context,
+                                      url:
+                                          state.reservation![index].meetingUrl);
                                 },
                                 diagnose: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)

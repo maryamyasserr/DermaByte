@@ -48,8 +48,7 @@ class PatientTestResult extends StatelessWidget {
                         consultaion.testResult![index].testResult!.isEmpty
                             ? const SizedBox()
                             : SizedBox(
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.5,
+                                height: MediaQuery.sizeOf(context).height * 0.5,
                                 child: PageView.builder(
                                     controller: pageController,
                                     scrollDirection: Axis.horizontal,

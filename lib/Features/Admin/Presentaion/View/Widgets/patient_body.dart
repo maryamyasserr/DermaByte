@@ -33,7 +33,7 @@ class PatientDashBoardBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                      Text(
+                    Text(
                       "All Patients : ${patients.length}",
                       style: Styels.textStyle16_400(context),
                     ),
@@ -62,8 +62,7 @@ class PatientDashBoardBody extends StatelessWidget {
                                       patients[index].profilePic != null
                                           ? CircleAvatar(
                                               backgroundImage: NetworkImage(
-                                                  patients[index]
-                                                      .profilePic!),
+                                                  patients[index].profilePic!),
                                             )
                                           : SvgPicture.asset(
                                               Assets.kProfileIcon),
@@ -80,13 +79,18 @@ class PatientDashBoardBody extends StatelessWidget {
                                                 context)
                                             .deletePatinet(
                                                 token:
-                                                    BlocProvider.of<AuthCubit>(context).adminModel!.token,
+                                                    BlocProvider.of<AuthCubit>(
+                                                            context)
+                                                        .adminModel!
+                                                        .token,
                                                 id: patients[index].id!);
                                         await BlocProvider.of<AdminCubit>(
                                                 context)
                                             .getAllPatientsDash(
-                                          token:
-                                              BlocProvider.of<AuthCubit>(context).adminModel!.token,
+                                          token: BlocProvider.of<AuthCubit>(
+                                                  context)
+                                              .adminModel!
+                                              .token,
                                         );
                                       },
                                     ))

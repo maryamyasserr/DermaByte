@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 class DashBoardHeader extends StatelessWidget {
   const DashBoardHeader({
     super.key,
-
     required this.headerTitle,
   });
 
-  final String  headerTitle;
+  final String headerTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class DashBoardHeader extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height * 0.09,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Text(
           headerTitle,
           style: Styels.textStyle24_600(context),

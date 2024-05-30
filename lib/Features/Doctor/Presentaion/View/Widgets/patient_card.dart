@@ -51,14 +51,12 @@ class PatientCard extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: imageCard == null
-                              ? 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(
+                              ? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(
                                     Assets.kAvatar,
-                                   
                                   ),
-                              )
+                                )
                               : ClipRRect(
                                   borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(20),

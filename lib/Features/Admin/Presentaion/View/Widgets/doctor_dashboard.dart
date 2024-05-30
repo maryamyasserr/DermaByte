@@ -21,7 +21,7 @@ class DoctorDashBoardBody extends StatelessWidget {
     List<DoctorDash> doctors = BlocProvider.of<AdminCubit>(context).allDoctors;
     return Column(
       children: [
-        const DashBoardHeader(   
+        const DashBoardHeader(
           headerTitle: "Doctors",
         ),
         BlocBuilder<AdminCubit, AdminState>(
@@ -53,7 +53,7 @@ class DoctorDashBoardBody extends StatelessWidget {
                                 DataColumn(label: Text("License")),
                                 DataColumn(label: Text("Mobile")),
                                 // DataColumn(label: Text("Working days")),
-    
+
                                 DataColumn(label: Text("")),
                               ],
                               rows: List<DataRow>.generate(
@@ -68,23 +68,21 @@ class DoctorDashBoardBody extends StatelessWidget {
                                             )
                                           : const Icon(Icons.error),
                                     ),
-                                    DataCell(
-                                        Text("${doctors[index].firstName} "
-                                            "${doctors[index].lastName}")),
+                                    DataCell(Text("${doctors[index].firstName} "
+                                        "${doctors[index].lastName}")),
                                     DataCell(Text(doctors[index].email!)),
                                     DataCell(
                                       TextButton(
                                         style: TextButton.styleFrom(
-                                          padding: EdgeInsets.zero
-                                        ),
+                                            padding: EdgeInsets.zero),
                                         onPressed: () {
-                                          showLicenseImagesDialog(context,
-                                              doctors[index].license);
+                                          showLicenseImagesDialog(
+                                              context, doctors[index].license);
                                         },
                                         child: const Text('View Licenses'),
                                       ),
                                     ),
-    
+
                                     DataCell(Text(doctors[index].phone!)),
                                     // DataCell(Text(requests[index]
                                     //       .schedules!
@@ -101,7 +99,7 @@ class DoctorDashBoardBody extends StatelessWidget {
                                                           AuthCubit>(context)
                                                       .adminModel!
                                                       .token);
-    
+
                                           await BlocProvider.of<AdminCubit>(
                                                   context)
                                               .getAllDashDoctor(
@@ -116,8 +114,7 @@ class DoctorDashBoardBody extends StatelessWidget {
                             ),
                           )),
                     ),
-                    SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.03),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
                     Text(
                       "Doctors Requests : ${requests.length}",
                       style: Styels.textStyle16_400(context),
@@ -130,8 +127,7 @@ class DoctorDashBoardBody extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           child: requests.isEmpty
-                              ? const EmptyWidget(
-                                  text: "No Doctores Requests")
+                              ? const EmptyWidget(text: "No Doctores Requests")
                               : SingleChildScrollView(
                                   child: DataTable(
                                     columns: const [
@@ -165,11 +161,9 @@ class DoctorDashBoardBody extends StatelessWidget {
                                           DataCell(
                                             TextButton(
                                               style: TextButton.styleFrom(
-                                                padding: EdgeInsets.zero
-                                              ),
+                                                  padding: EdgeInsets.zero),
                                               onPressed: () {
-                                                showLicenseImagesDialog(
-                                                    context,
+                                                showLicenseImagesDialog(context,
                                                     requests[index].license);
                                               },
                                               child:
@@ -184,9 +178,9 @@ class DoctorDashBoardBody extends StatelessWidget {
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .approve(
-                                                        token: BlocProvider
-                                                                .of<AuthCubit>(
-                                                                    context)
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
                                                             .adminModel!
                                                             .token,
                                                         body: {
@@ -195,9 +189,9 @@ class DoctorDashBoardBody extends StatelessWidget {
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .getAllDashDoctor(
-                                                        token: BlocProvider
-                                                                .of<AuthCubit>(
-                                                                    context)
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
                                                             .adminModel!
                                                             .token);
                                               })),
@@ -207,9 +201,9 @@ class DoctorDashBoardBody extends StatelessWidget {
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .dcline(
-                                                        token: BlocProvider
-                                                                .of<AuthCubit>(
-                                                                    context)
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
                                                             .adminModel!
                                                             .token,
                                                         body: {
@@ -218,9 +212,9 @@ class DoctorDashBoardBody extends StatelessWidget {
                                                 await BlocProvider.of<
                                                         AdminCubit>(context)
                                                     .getAllDashDoctor(
-                                                        token: BlocProvider
-                                                                .of<AuthCubit>(
-                                                                    context)
+                                                        token: BlocProvider.of<
+                                                                    AuthCubit>(
+                                                                context)
                                                             .adminModel!
                                                             .token);
                                               })),

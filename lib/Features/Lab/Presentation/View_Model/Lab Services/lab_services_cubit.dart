@@ -40,7 +40,7 @@ class LabServiceCubit extends Cubit<ServiceState> {
       required dynamic body}) async {
     emit(ServiceLoading());
     var response = await labRepo.updateTest(token: token, id: id, body: body);
-     response.fold((failure) {
+    response.fold((failure) {
       emit(ServiceFailure(errMessage: failure.errMessage));
     }, (done) => emit(ServiceSuccess()));
   }

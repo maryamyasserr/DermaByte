@@ -62,7 +62,6 @@ class _AddTestBodyState extends State<AddTestBody> {
           showDoneAlert(context);
         } else if (state is UpdatePatientReportStateFailure) {
           failedAlert(context, state.errMessage);
-       
         }
       },
       builder: (context, state) {
@@ -162,7 +161,6 @@ class _AddTestBodyState extends State<AddTestBody> {
                                       .doctorModel!
                                       .token);
                           GoRouter.of(context).pop();
-                      
                         }
                       },
                     ),

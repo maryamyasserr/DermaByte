@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class MySechduleInfo extends StatelessWidget {
   const MySechduleInfo({
-    super.key, required this.title, required this.subTitle,
+    super.key,
+    required this.title,
+    required this.subTitle,
   });
 
   final String title, subTitle;

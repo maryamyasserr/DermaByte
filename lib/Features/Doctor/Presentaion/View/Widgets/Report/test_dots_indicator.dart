@@ -1,7 +1,7 @@
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Consults/custom_dot_indicator.dart';
 import 'package:flutter/material.dart';
 
-class  TestDotsIndicatorDoctor extends StatelessWidget {
+class TestDotsIndicatorDoctor extends StatelessWidget {
   const TestDotsIndicatorDoctor(
       {super.key, required this.currentPageIndex, required this.count});
   final int currentPageIndex;

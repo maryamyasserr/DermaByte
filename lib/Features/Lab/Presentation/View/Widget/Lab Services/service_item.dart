@@ -2,18 +2,16 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 
 import 'package:flutter/material.dart';
 
-
 // ignore: must_be_immutable
 class ServiceItem extends StatelessWidget {
-  const ServiceItem({
-    super.key,
-    required this.testName,
-    required this.cost,
-    this.deleteTest,
-    this.updateTest
-  });
+  const ServiceItem(
+      {super.key,
+      required this.testName,
+      required this.cost,
+      this.deleteTest,
+      this.updateTest});
   final String testName, cost;
- final void Function()? deleteTest,updateTest;
+  final void Function()? deleteTest, updateTest;
   @override
   Widget build(BuildContext context) {
     return Padding(
