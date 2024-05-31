@@ -4,7 +4,7 @@ import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Get%20My%20Schedule/get_my_schedule_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Get%20My%20FreeTimes/get_my_freetimes_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/my_schedule_button.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/schedule_indo.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/swithcer.dart';
@@ -27,13 +27,13 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _currentPage);
-    BlocProvider.of<GetMyScheduleCubit>(context).getMySchedule(
+    BlocProvider.of<GetMyFreeTimesDCubit>(context).getMySchedule(
       token: BlocProvider.of<AuthCubit>(context).doctorModel!.token,
     );
   }
 
   void _nextPage() {
-    final state = BlocProvider.of<GetMyScheduleCubit>(context).state;
+    final state = BlocProvider.of<GetMyFreeTimesDCubit>(context).state;
     if (state is GetMyScheduleSuccess &&
         _currentPage < state.freeTimes.length - 1) {
       _currentPage++;
@@ -79,13 +79,13 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: BlocBuilder<GetMyScheduleCubit, GetMyScheduleState>(
+        child: BlocBuilder<GetMyFreeTimesDCubit, GetMyFreeTimesDState>(
           builder: (context, state) {
             if (state is GetMyScheduleFailure) {
               return Center(
                 child: ErrWidget(
                   onTap: () async {
-                    await BlocProvider.of<GetMyScheduleCubit>(context)
+                    await BlocProvider.of<GetMyFreeTimesDCubit>(context)
                         .getMySchedule(
                       token: BlocProvider.of<AuthCubit>(context)
                           .doctorModel!
@@ -208,10 +208,6 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
   }
 }
 
-
-
-
-
 // import 'package:dermabyte/Core/Widgets/err_widget.dart';
 // import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 // import 'package:dermabyte/Core/utils/assets.dart';
@@ -264,7 +260,7 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
 //                     errMessage: 'SomeThing is Wrong, try again'),
 //               );
 //             } else if (state is GetMyScheduleSuccess) {
-//               return 
+//               return
 //               ListView(
 //                 children: <Widget>[
 //                   const SizedBox(height: 70),

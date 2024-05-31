@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
+import 'package:dermabyte/Features/Doctor/Data/Models/doctor_schedule_model.dart';
 import 'package:dermabyte/Features/Doctor/Data/Models/my_free_time_model.dart';
 import 'package:dermabyte/Features/Doctor/Data/Models/p_reservation/p_reservation.dart';
 import 'package:dermabyte/Features/Doctor/Data/Repo/Doctor_repo.dart';
@@ -114,7 +115,7 @@ class DoctorRepoImpl implements DoctorRepo {
   }
 
   @override
-  Future<Either<Failures, List<MyFreeTimeModel>>> getMySchedule(
+  Future<Either<Failures, List<MyFreeTimeModel>>> getMyFreeTimesD(
       {required String token}) async {
     try {
       var response = await apiService.get(
@@ -138,6 +139,25 @@ class DoctorRepoImpl implements DoctorRepo {
     try {
       await apiService.delete(endPoint: 'schedules/', id: id, token: token);
       return right('Done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, List<DoctorScheduleModel>>> getMySchedule(
+      {required String token}) async {
+    try {
+      var response = await apiService.get(
+          endPoint: 'dermatologists/schedules', token: token);
+      List<DoctorScheduleModel> schedules = [];
+      for (var e in response['data']) {
+        schedules.add(DoctorScheduleModel.fromJson(e));
+      }
+      return right(schedules);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

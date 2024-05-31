@@ -182,6 +182,6 @@ abstract class AppRoutes {
         builder: (context, state) => const ScanProgressView()),
     GoRoute(
         path: kMyFreeTimes, builder: (context, state) => const MyFreeTimes()),
-    GoRoute(path:kMySchedule,builder: (context,state)=>const MySchedule())
+    GoRoute(path: kMySchedule, builder: (context, state) => const MySchedule())
   ]);
 }

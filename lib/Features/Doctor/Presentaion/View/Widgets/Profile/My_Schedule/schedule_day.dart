@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 
 class ScheduleDay extends StatelessWidget {
   const ScheduleDay({
-    super.key, required this.day, required this.startTime, required this.endTime, required this.updateStartTime, required this.updateEndTime, required this.deleteDay,
+    super.key,
+    required this.day,
+    required this.startTime,
+    required this.endTime,
+    required this.updateStartTime,
+    required this.updateEndTime,
+    required this.deleteDay,
   });
   final String day, startTime, endTime;
   final void Function() updateStartTime, updateEndTime, deleteDay;
@@ -26,9 +32,10 @@ class ScheduleDay extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Start Time : $startTime", style: Styels.textStyle18_300(context)),
+            Text("Start Time : $startTime",
+                style: Styels.textStyle18_300(context)),
             IconButton(
-                onPressed:updateStartTime,
+                onPressed: updateStartTime,
                 icon: const Icon(Icons.edit,
                     color: AppColors.kPrimaryColor, size: 24))
           ],

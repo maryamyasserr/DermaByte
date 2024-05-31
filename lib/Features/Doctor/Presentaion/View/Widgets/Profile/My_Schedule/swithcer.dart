@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Swithcer extends StatelessWidget {
-  const Swithcer({super.key, required this.back, required this.next, required this.date});
+  const Swithcer(
+      {super.key, required this.back, required this.next, required this.date});
 
   final void Function() back, next;
   final DateTime date;

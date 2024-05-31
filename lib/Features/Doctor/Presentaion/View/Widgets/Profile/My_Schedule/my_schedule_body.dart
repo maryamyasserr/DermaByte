@@ -38,12 +38,11 @@ class MyScheduleBody extends StatelessWidget {
             ),
             ScheduleDay(
               day: 'Friday',
-              deleteDay: (){},
+              deleteDay: () {},
               startTime: '10 Am',
               endTime: '4 pm',
-              updateStartTime: (){},
-              updateEndTime: (){},
-
+              updateStartTime: () {},
+              updateEndTime: () {},
             )
           ],
         ),
@@ -51,5 +50,3 @@ class MyScheduleBody extends StatelessWidget {
     );
   }
 }
-
-
