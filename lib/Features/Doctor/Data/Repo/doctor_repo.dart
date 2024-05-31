@@ -33,4 +33,6 @@ abstract class DoctorRepo {
       {required String token, required String id});
   Future<Either<Failures, List<DoctorScheduleModel>>> getMySchedule(
       {required String token});
+  Future<Either<Failures, String>> updateSchedule(
+      {required String token, required String id, required dynamic body});
 }

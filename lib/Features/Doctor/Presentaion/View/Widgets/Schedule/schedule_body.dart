@@ -207,8 +207,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               ScheduleBody.calenderTime!.day,
                               int.parse(ScheduleBody.end.text));
 
-                          print(ScheduleBody.startTime);
-                          print(ScheduleBody.endTime);
+                          
                           await BlocProvider.of<SetScheduleCubit>(context)
                               .setSchedule(
                                   body: {
@@ -228,7 +227,6 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                             ScheduleBody.start.clear();
                             ScheduleBody.end.clear();
                             ScheduleBody.session.clear();
-                            ScheduleBody.sessionPrice.clear();
                             setState(() {});
                           }
                         }

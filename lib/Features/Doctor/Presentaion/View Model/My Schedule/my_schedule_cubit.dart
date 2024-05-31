@@ -15,9 +15,7 @@ class MyScheduleCubit extends Cubit<MyScheduleState> {
     var response = await doctorRepo.getMySchedule(token: token);
     response.fold((failure) => emit(MyScheduleFailure()), (data) {
       schedule = data;
-      emit(MyScheduleSuccess(
-         data
-      ));
+      emit(MyScheduleSuccess(data));
     });
   }
 
@@ -25,5 +23,13 @@ class MyScheduleCubit extends Cubit<MyScheduleState> {
       {required String id, required String token}) async {
     emit(MyScheduleLoading());
     await doctorRepo.deleteScheduleDay(token: token, id: id);
+  }
+
+  Future<void> updateSchedule(
+      {required String id,
+      required String token,
+      required dynamic body}) async {
+    emit(MyScheduleLoading());
+    await doctorRepo.updateSchedule(token: token, id: id, body: body);
   }
 }

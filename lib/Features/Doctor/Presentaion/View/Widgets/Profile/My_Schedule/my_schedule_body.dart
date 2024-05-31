@@ -6,6 +6,7 @@ import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My%20Schedule/my_schedule_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/schedule_day.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -86,11 +87,13 @@ class _MyScheduleBodyState extends State<MyScheduleBody> {
                       itemCount: state.schedule.length,
                       itemBuilder: (context, index) {
                         return ScheduleDay(
-                          day: DateFormat.EEEE().format(state.schedule[index].day!),
+                          day: DateFormat.EEEE()
+                              .format(state.schedule[index].day!),
                           deleteDay: () async {
                             await _myScheduleCubit.deleteScheduleDay(
                                 id: state.schedule[index].id!, token: token);
-                            await _myScheduleCubit.getMySchedulesD(token: token);
+                            await _myScheduleCubit.getMySchedulesD(
+                                token: token);
                           },
                           startTime: state.schedule[index].startTime!.hour > 12
                               ? '${state.schedule[index].startTime!.hour - 12} pm'
@@ -98,8 +101,22 @@ class _MyScheduleBodyState extends State<MyScheduleBody> {
                           endTime: state.schedule[index].endTime!.hour > 12
                               ? '${state.schedule[index].endTime!.hour - 12} pm'
                               : '${state.schedule[index].endTime!.hour} Am',
-                          updateStartTime: () {},
-                          updateEndTime: () {},
+                          updateStartTime: () {
+                            showScheduleDialog(
+                                context: context,
+                                title: 'New Start Time',
+                                hintText: state.schedule[index].startTime!.hour
+                                    .toString(),
+                                update: () {});
+                          },
+                          updateEndTime: () {
+                              showScheduleDialog(
+                                context: context,
+                                title: 'New End Time',
+                                hintText: state.schedule[index].endTime!.hour
+                                    .toString(),
+                                update: () {});
+                          },
                         );
                       },
                     )
@@ -124,6 +141,8 @@ class _MyScheduleBodyState extends State<MyScheduleBody> {
     );
   }
 }
+
+
 
 // class MyScheduleBody extends StatefulWidget {
 //   const MyScheduleBody({super.key});
