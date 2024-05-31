@@ -26,7 +26,12 @@ abstract class DoctorRepo {
 
   Future<Either<Failures, String>> setSchedule(
       {required dynamic body, required String token});
-  Future<Either<Failures, List<MyFreeTimeModel>>> getMySchedule({
-    required String token
-  });
+  Future<Either<Failures, List<MyFreeTimeModel>>> getMySchedule(
+      {required String token});
+  Future<Either<Failures, String>> deleteScheduleDay(
+    {
+      required String token,
+      required String id
+    }
+  );
 }

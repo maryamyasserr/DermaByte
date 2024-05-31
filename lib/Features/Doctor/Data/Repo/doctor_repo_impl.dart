@@ -124,12 +124,25 @@ class DoctorRepoImpl implements DoctorRepo {
         freeTimes.add(MyFreeTimeModel.fromJson(e));
       }
       return right(freeTimes);
-    }catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errMessage: e.toString()));
-    } 
     }
   }
 
+  @override
+  Future<Either<Failures, String>> deleteScheduleDay(
+      {required String token, required String id}) async {
+    try {
+      await apiService.delete(endPoint: 'schedules/', id: id, token: token);
+      return right('Done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+}

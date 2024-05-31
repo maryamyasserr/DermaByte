@@ -14,4 +14,9 @@ class GetMyScheduleCubit extends Cubit<GetMyScheduleState> {
     response.fold((failure) => emit(GetMyScheduleFailure()),
         (data) => emit(GetMyScheduleSuccess(data)));
   }
+
+  Future<void> deleteScheduleDay(
+      {required String id, required String token}) async {
+     await doctorRepo.deleteScheduleDay(token: token, id: id);
+  }
 }
