@@ -6,17 +6,12 @@ import 'package:meta/meta.dart';
 part 'get_my_freetimes_state.dart';
 
 class GetMyFreeTimesDCubit extends Cubit<GetMyFreeTimesDState> {
-  GetMyFreeTimesDCubit(this.doctorRepo) : super(GetMyScheduleInitial());
+  GetMyFreeTimesDCubit(this.doctorRepo) : super(GetMyFreeTimesInitial());
   DoctorRepo doctorRepo;
   Future<void> getMySchedule({required String token}) async {
-    emit(GetMyScheduleLoading());
+    emit(GetMyFreeTiemsLoading());
     var response = await doctorRepo.getMyFreeTimesD(token: token);
-    response.fold((failure) => emit(GetMyScheduleFailure()),
-        (data) => emit(GetMyScheduleSuccess(data)));
-  }
-
-  Future<void> deleteScheduleDay(
-      {required String id, required String token}) async {
-    await doctorRepo.deleteScheduleDay(token: token, id: id);
+    response.fold((failure) => emit(GetMyFreeTimesFailure()),
+        (data) => emit(GetMyFreeTimesSuccess(data)));
   }
 }
