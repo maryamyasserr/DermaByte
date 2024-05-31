@@ -5,21 +5,21 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Get%20My%20Schedule/get_my_schedule_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My%20Schedule/my_schedule_button.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My%20Schedule/schedule_indo.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My%20Schedule/swithcer.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/my_schedule_button.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/schedule_indo.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/swithcer.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/time_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyScheduleBody extends StatefulWidget {
-  const MyScheduleBody({super.key});
+class MyFreeTimesBody extends StatefulWidget {
+  const MyFreeTimesBody({super.key});
 
   @override
-  State<MyScheduleBody> createState() => _MyScheduleBodyState();
+  State<MyFreeTimesBody> createState() => _MyFreeTimesBodyState();
 }
 
-class _MyScheduleBodyState extends State<MyScheduleBody> {
+class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
   late PageController _pageController;
   int _currentPage = 0;
 
@@ -168,7 +168,7 @@ class _MyScheduleBodyState extends State<MyScheduleBody> {
                                     context: context,
                                     builder: (context) {
                                       return Container();
-                                    }); 
+                                    });
                               },
                               isLoading: false,
                             ),

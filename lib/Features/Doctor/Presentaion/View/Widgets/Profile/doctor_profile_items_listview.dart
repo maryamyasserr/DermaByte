@@ -10,11 +10,10 @@ class DoctorProfileItems extends StatelessWidget {
 
   final List<ProfileItemModel> items = [
     ProfileItemModel(title: 'Account', route: ""),
-    ProfileItemModel(title: 'Address', route: ""),
     ProfileItemModel(title: 'My Schedule', route: AppRoutes.kMySchedule),
+    ProfileItemModel(title: 'My Free Times', route: AppRoutes.kMyFreeTimes),
     ProfileItemModel(title: 'Setting', route: ""),
     ProfileItemModel(title: 'Log Out', route: "")
-    // "Help":AppRoutes.kHelp,
   ];
   @override
   Widget build(BuildContext context) {
