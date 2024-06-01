@@ -6,13 +6,13 @@ import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/text_form.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Set%20Schedule/set_schedule_cubit.dart';
 import 'package:dermabyte/Core/Widgets/calender.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Schedule/timing.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Set%20Schedule/timing.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ScheduleBody extends StatefulWidget {
-  const ScheduleBody({super.key});
+class SetScheduleBody extends StatefulWidget {
+  const SetScheduleBody({super.key});
   static TextEditingController start = TextEditingController();
   static TextEditingController end = TextEditingController();
   static TextEditingController session = TextEditingController();
@@ -25,10 +25,10 @@ class ScheduleBody extends StatefulWidget {
   static String? endTimePeriod;
 
   @override
-  State<ScheduleBody> createState() => _ScheduleBodyState();
+  State<SetScheduleBody> createState() => _SetScheduleBodyState();
 }
 
-class _ScheduleBodyState extends State<ScheduleBody> {
+class _SetScheduleBodyState extends State<SetScheduleBody> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -68,7 +68,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                 height: 150,
                 child: WeekCalender(
                   onChangedSelectedDate: (date) {
-                    ScheduleBody.calenderTime = date;
+                    SetScheduleBody.calenderTime = date;
                   },
                 ),
               ),
@@ -83,7 +83,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                           children: [
                             TextForm(
                               label: "Start-Time",
-                              controller: ScheduleBody.start,
+                              controller: SetScheduleBody.start,
                               enable: true,
                               keyboardType: TextInputType.number,
                               validator: (s) {
@@ -99,10 +99,10 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                             Timing(
                                 onChanged: (value) {
                                   setState(() {
-                                    ScheduleBody.startTimePeriod = value;
+                                    SetScheduleBody.startTimePeriod = value;
                                   });
                                 },
-                                title: ScheduleBody.startTimePeriod)
+                                title: SetScheduleBody.startTimePeriod)
                           ],
                         ),
                         const SizedBox(height: 24),
@@ -110,7 +110,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                           children: [
                             TextForm(
                               label: "End-Time",
-                              controller: ScheduleBody.end,
+                              controller: SetScheduleBody.end,
                               enable: true,
                               keyboardType: TextInputType.number,
                               validator: (e) {
@@ -126,10 +126,10 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                             Timing(
                                 onChanged: (value) {
                                   setState(() {
-                                    ScheduleBody.endTimePeriod = value;
+                                    SetScheduleBody.endTimePeriod = value;
                                   });
                                 },
-                                title: ScheduleBody.endTimePeriod)
+                                title: SetScheduleBody.endTimePeriod)
                           ],
                         ),
                         const SizedBox(height: 24),
@@ -143,7 +143,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               return null;
                             }
                           },
-                          controller: ScheduleBody.session,
+                          controller: SetScheduleBody.session,
                           label: "Session-Time",
                         ),
                         const SizedBox(height: 24),
@@ -157,66 +157,66 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                               return null;
                             }
                           },
-                          controller: ScheduleBody.sessionPrice,
+                          controller: SetScheduleBody.sessionPrice,
                           label: "Session-Price",
                         ),
                       ],
                     )),
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 80),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: MyButton(
                     horizontal: 0,
                     textButton: "Save",
                     onPressed: () async {
-                      if (ScheduleBody.calenderTime == null) {
+                      if (SetScheduleBody.calenderTime == null) {
                         failedAlert(context, "No Date Selected");
-                      } else if (ScheduleBody.startTimePeriod == null ||
-                          ScheduleBody.endTimePeriod == null) {
+                      } else if (SetScheduleBody.startTimePeriod == null ||
+                          SetScheduleBody.endTimePeriod == null) {
                         failedAlert(
                             context, 'You must choose the time AM or PM');
                       } else {
                         if (formKey.currentState!.validate()) {
-                          if (ScheduleBody.startTimePeriod == 'PM') {
-                            int startHour = int.parse(ScheduleBody.start.text);
+                          int startHour = int.parse(SetScheduleBody.start.text);
+                          int endHour = int.parse(SetScheduleBody.end.text);
+                          if (SetScheduleBody.startTimePeriod == 'PM' &&
+                              startHour != 12) {
                             startHour += 12;
-                            ScheduleBody.startTime = DateTime(
-                                ScheduleBody.calenderTime!.year,
-                                ScheduleBody.calenderTime!.month,
-                                ScheduleBody.calenderTime!.day,
-                                startHour);
+                          } else if (SetScheduleBody.startTimePeriod == 'AM' &&
+                              startHour == 12) {
+                            startHour = 0;
                           }
-                          if (ScheduleBody.endTimePeriod == 'PM') {
-                            int endHour = int.parse(ScheduleBody.end.text);
+                          if (SetScheduleBody.endTimePeriod == 'PM' &&
+                              endHour != 12) {
                             endHour += 12;
-                            ScheduleBody.endTime = DateTime(
-                                ScheduleBody.calenderTime!.year,
-                                ScheduleBody.calenderTime!.month,
-                                ScheduleBody.calenderTime!.day,
-                                endHour);
+                          } else if (SetScheduleBody.endTimePeriod == 'AM' &&
+                              endHour == 12) {
+                            endHour = 0;
                           }
-                          ScheduleBody.startTime = DateTime(
-                              ScheduleBody.calenderTime!.year,
-                              ScheduleBody.calenderTime!.month,
-                              ScheduleBody.calenderTime!.day,
-                              int.parse(ScheduleBody.start.text));
-                          ScheduleBody.endTime = DateTime(
-                              ScheduleBody.calenderTime!.year,
-                              ScheduleBody.calenderTime!.month,
-                              ScheduleBody.calenderTime!.day,
-                              int.parse(ScheduleBody.end.text));
+                          SetScheduleBody.startTime = DateTime(
+                            SetScheduleBody.calenderTime!.year,
+                            SetScheduleBody.calenderTime!.month,
+                            SetScheduleBody.calenderTime!.day,
+                            startHour,
+                          );
+                          SetScheduleBody.endTime = DateTime(
+                            SetScheduleBody.calenderTime!.year,
+                            SetScheduleBody.calenderTime!.month,
+                            SetScheduleBody.calenderTime!.day,
+                            endHour,
+                          );
 
-                          
                           await BlocProvider.of<SetScheduleCubit>(context)
                               .setSchedule(
                                   body: {
-                                "day": ScheduleBody.calenderTime!.toString(),
+                                "day": SetScheduleBody.calenderTime!.toString(),
                                 // 'day': DateTime.now().day,
-                                "startTime": ScheduleBody.startTime.toString(),
-                                "endTime": ScheduleBody.endTime.toString(),
-                                "sessionTime": ScheduleBody.session.text,
-                                'sessionCost': ScheduleBody.sessionPrice.text
+                                "startTime":
+                                    SetScheduleBody.startTime.toString(),
+                                "endTime": SetScheduleBody.endTime.toString(),
+                                "sessionTime": SetScheduleBody.session.text,
+                                'sessionCost': SetScheduleBody.sessionPrice.text
                               },
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .doctorModel!
@@ -224,9 +224,9 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                           if (BlocProvider.of<SetScheduleCubit>(context)
                                   .success ==
                               true) {
-                            ScheduleBody.start.clear();
-                            ScheduleBody.end.clear();
-                            ScheduleBody.session.clear();
+                            SetScheduleBody.start.clear();
+                            SetScheduleBody.end.clear();
+                            SetScheduleBody.session.clear();
                             setState(() {});
                           }
                         }

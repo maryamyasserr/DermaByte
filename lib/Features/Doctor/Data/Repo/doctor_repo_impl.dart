@@ -180,4 +180,20 @@ class DoctorRepoImpl implements DoctorRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, String>> deletePatinetReservation(
+      {required String token, required String id}) async {
+    try {
+      await apiService.delete(
+          endPoint: 'Dermatologist-reservation/', id: id, token: token);
+      return right("Done");
+    } catch (e) {
+      if (e is DioException) {
+        print(e);
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

@@ -204,10 +204,7 @@ class PatientsDay extends StatelessWidget {
                                       null) {
                                     failedAlert(context, 'Something is Wrong');
                                   } else {
-                                    print(BlocProvider.of<MyPatientReportCubit>(
-                                            context)
-                                        .getPatientReport!
-                                        .id);
+                               
                                     GoRouter.of(context)
                                         .push(AppRoutes.kReportView);
                                   }

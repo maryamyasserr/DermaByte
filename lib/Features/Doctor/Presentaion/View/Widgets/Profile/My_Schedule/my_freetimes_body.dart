@@ -5,7 +5,6 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Get%20My%20FreeTimes/get_my_freetimes_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/my_schedule_button.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/schedule_info.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/swithcer.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/time_widget.dart';
@@ -169,25 +168,7 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
                                 },
                               ),
                               const SizedBox(height: 32),
-                              ScheduleButton(
-                                text: 'Update',
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                      context: context,
-                                      builder: (context) {
-                                        return Container();
-                                      });
-                                },
-                                isLoading: false,
-                              ),
-                              const SizedBox(height: 16),
-                              ScheduleButton(
-                                text: 'Delete',
-                                onPressed: () async {
-                                  //  BlocProvider.of<GetMyScheduleCubit>(context).deleteScheduleDay(id: state.freeTimes, token: token)
-                                },
-                                isLoading: false,
-                              ),
+                            
                               const SizedBox(height: 16),
                             ],
                           );

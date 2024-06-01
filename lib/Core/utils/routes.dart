@@ -5,7 +5,7 @@ import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_doct
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_in.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_lab.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/sign_up_patient.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/patient_view.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Diagnose/patient_view.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/my_freetims_view.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/My_Schedule/my_schedule_view.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Report/report_view.dart';

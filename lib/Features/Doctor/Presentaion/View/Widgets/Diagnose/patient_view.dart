@@ -1,17 +1,18 @@
+import 'package:dermabyte/Core/Widgets/confirmation_alert.dart';
 import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
-
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Home/patient_text_filed_report.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Diagnose/patient_text_filed_report.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/button.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class PatientView extends StatefulWidget {
   const PatientView({
@@ -80,55 +81,58 @@ class _PatientViewState extends State<PatientView> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    // AspectRatio(
-                    //   aspectRatio: 342 / 135,
-                    //   child: PatientTextFieldReport(
-                    //     controller: TextEditingController(text: ''),
-                    //     maxLines: 2,
-                    //     hintText: "Test Requested",
-                    //   ),
-                    // ),
                     const Expanded(child: SizedBox()),
                     // Buttons(),
                     MyButton(
-                      isLoading:
-                          BlocProvider.of<UpdateReportCubit>(context).isLoading,
-                      horizontal: 100,
-                      textButton: "Send Report",
-                      onPressed: () async {
-                        if (PatientView.diagnosesController.text.isEmpty) {
-                          failedAlert(context, "No Diagnoses Provided");
-                        } else if (PatientView
-                            .treatmentPlanController.text.isEmpty) {
-                          failedAlert(context, "No Treatment Plan Provided");
-                        } else {
-                          await BlocProvider.of<UpdateReportCubit>(context)
-                              .updateReport(
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .doctorModel!
-                                      .token,
-                                  id: report.id!,
-                                  body: {
-                                    "medicine": [
-                                      (PatientView.diagnosesController.text)
-                                    ],
-                                    'treatmentPlan': [
-                                      (PatientView.treatmentPlanController.text)
-                                    ]
-                                  },
-                                  context: context);
-                          await BlocProvider.of<MyReservationCubit>(context)
-                              .completePatient(
-                                  id: BlocProvider.of<MyReservationCubit>(
+                        isLoading: BlocProvider.of<UpdateReportCubit>(context)
+                            .isLoading,
+                        horizontal: 100,
+                        textButton: "Send Report",
+                        onPressed: () {
+                          if (PatientView.diagnosesController.text.isEmpty) {
+                            failedAlert(context, "No Diagnoses Provided");
+                          } else if (PatientView
+                              .treatmentPlanController.text.isEmpty) {
+                            failedAlert(context, "No Treatment Plan Provided");
+                          } else {
+                            confirmationDialog(
+                                context: context,
+                                onPressed: () async {
+                                  FocusScope.of(context).unfocus();
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
+                                  GoRouter.of(context).pop();
+                                  await BlocProvider.of<UpdateReportCubit>(
                                           context)
-                                      .reservationid!,
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .doctorModel!
-                                      .token,
-                                  body: {'completed': 'true'});
-                        }
-                      },
-                    ),
+                                      .updateReport(
+                                          token: BlocProvider.of<AuthCubit>(
+                                                  context)
+                                              .doctorModel!
+                                              .token,
+                                          id: report.id!,
+                                          body: {
+                                            "medicine": [
+                                              (PatientView
+                                                  .diagnosesController.text)
+                                            ],
+                                            'treatmentPlan': [
+                                              (PatientView
+                                                  .treatmentPlanController.text)
+                                            ]
+                                          },
+                                          context: context);
+                                  await BlocProvider.of<MyReservationCubit>(context)
+                                      .deletePatientReservation(
+                                          id: BlocProvider.of<MyReservationCubit>(
+                                                  context)
+                                              .reservationid!,
+                                          token: BlocProvider.of<AuthCubit>(context)
+                                              .doctorModel!
+                                              .token,
+                                        );
+                                });
+                          }
+                        }),
                   ],
                 ),
               ),

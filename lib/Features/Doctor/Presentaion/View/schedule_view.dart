@@ -1,4 +1,4 @@
-import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Schedule/schedule_body.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Set%20Schedule/schedule_body.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleView extends StatelessWidget {
@@ -8,7 +8,7 @@ class ScheduleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
-        body: ScheduleBody(),
+        body: SetScheduleBody(),
       ),
     );
   }

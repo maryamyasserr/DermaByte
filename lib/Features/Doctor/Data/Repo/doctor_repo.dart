@@ -35,4 +35,6 @@ abstract class DoctorRepo {
       {required String token});
   Future<Either<Failures, String>> updateSchedule(
       {required String token, required String id, required dynamic body});
+  Future<Either<Failures, String>> deletePatinetReservation(
+      {required String token, required String id});
 }

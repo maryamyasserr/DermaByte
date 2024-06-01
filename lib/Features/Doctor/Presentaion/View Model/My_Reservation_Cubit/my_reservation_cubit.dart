@@ -56,6 +56,11 @@ class MyReservationCubit extends Cubit<MyReservationState> {
     await doctorRepo.reviewdPatient(id: id, token: token, body: body);
   }
 
+  Future<void> deletePatientReservation(
+      {required String token, required String id}) async {
+    await doctorRepo.deletePatinetReservation(token: token, id: id);
+  }
+
   set setDate(DateTime date) {
     selectedDate = date;
   }
