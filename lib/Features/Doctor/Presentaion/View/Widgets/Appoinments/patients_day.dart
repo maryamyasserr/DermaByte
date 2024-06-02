@@ -23,68 +23,71 @@ class PatientsDay extends StatelessWidget {
     return BlocBuilder<MyReservationCubit, MyReservationState>(
       builder: (context, state) {
         if (state is MyReservationSuccess) {
-          if (state.reservation == null || state.reservation!.isEmpty) {
-            return Column(
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                                DateFormat.yMMMd().format(
-                                    BlocProvider.of<MyReservationCubit>(context)
-                                        .myDates[0]),
-                                style: Styels.textStyle24_600(context).copyWith(
-                                    decoration: TextDecoration.underline)),
-                            DropdownButton<DateTime>(
-                                icon: const Icon(Icons.filter_list_alt),
-                                dropdownColor:
-                                    const Color.fromARGB(144, 206, 241, 236),
-                                elevation: 0,
-                                underline: const SizedBox(),
-                                items:
-                                    BlocProvider.of<MyReservationCubit>(context)
-                                        .myDates
-                                        .map((e) {
-                                  return DropdownMenuItem(
-                                      value: e,
-                                      child:
-                                          Text(DateFormat.yMMMd().format(e)));
-                                }).toList(),
-                                onChanged: (value) async {
-                                  await BlocProvider.of<MyReservationCubit>(
-                                          context)
-                                      .getMyReservations(
-                                          completed: 'false',
-                                          reviwed: 'true',
-                                          token: BlocProvider.of<AuthCubit>(
-                                                  context)
-                                              .doctorModel!
-                                              .token);
-                                  await BlocProvider.of<MyReservationCubit>(
-                                          context)
-                                      .getSelectedDate(value!);
-                                }),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const Expanded(
-                  flex: 10,
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: EmptyWidget(text: "no Appoinments for this day")),
-                ),
-              ],
-            );
+          if (state.reservation == null ||
+              state.reservation!.isEmpty ||
+              BlocProvider.of<MyReservationCubit>(context).myDates.isEmpty) {
+            return const EmptyWidget(text: 'No Appoinents Yey');
+            // return Column(
+            //   children: [
+            //     Expanded(
+            //       child: Align(
+            //         alignment: Alignment.topCenter,
+            //         child: Padding(
+            //           padding: const EdgeInsets.only(left: 10),
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(right: 10),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Text(
+            //                     DateFormat.yMMMd().format(
+            //                         BlocProvider.of<MyReservationCubit>(context)
+            //                             .myDates[0]),
+            //                     style: Styels.textStyle24_600(context).copyWith(
+            //                         decoration: TextDecoration.underline)),
+            //                 DropdownButton<DateTime>(
+            //                     icon: const Icon(Icons.filter_list_alt),
+            //                     dropdownColor:
+            //                         const Color.fromARGB(144, 206, 241, 236),
+            //                     elevation: 0,
+            //                     underline: const SizedBox(),
+            //                     items:
+            //                         BlocProvider.of<MyReservationCubit>(context)
+            //                             .myDates
+            //                             .map((e) {
+            //                       return DropdownMenuItem(
+            //                           value: e,
+            //                           child:
+            //                               Text(DateFormat.yMMMd().format(e)));
+            //                     }).toList(),
+            //                     onChanged: (value) async {
+            //                       await BlocProvider.of<MyReservationCubit>(
+            //                               context)
+            //                           .getMyReservations(
+            //                               completed: 'false',
+            //                               reviwed: 'true',
+            //                               token: BlocProvider.of<AuthCubit>(
+            //                                       context)
+            //                                   .doctorModel!
+            //                                   .token);
+            //                       await BlocProvider.of<MyReservationCubit>(
+            //                               context)
+            //                           .getSelectedDate(value!);
+            //                     }),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //     const Expanded(
+            //       flex: 10,
+            //       child: Align(
+            //           alignment: Alignment.center,
+            //           child: EmptyWidget(text: "no Appoinments for this day")),
+            //     ),
+            //   ],
+            // );
           } else {
             return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,6 +119,7 @@ class PatientsDay extends StatelessWidget {
                                     child: Text(DateFormat.yMMMd().format(e)));
                               }).toList(),
                               onChanged: (value) async {
+                            
                                 await BlocProvider.of<MyReservationCubit>(
                                         context)
                                     .getMyReservations(
@@ -204,7 +208,6 @@ class PatientsDay extends StatelessWidget {
                                       null) {
                                     failedAlert(context, 'Something is Wrong');
                                   } else {
-                               
                                     GoRouter.of(context)
                                         .push(AppRoutes.kReportView);
                                   }

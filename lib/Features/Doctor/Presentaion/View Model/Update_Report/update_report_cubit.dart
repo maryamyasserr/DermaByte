@@ -15,7 +15,7 @@ class UpdateReportCubit extends Cubit<UpdateReportState> {
 
   Future<void> updateReport(
       {required String id,
-      token,
+      required String token,
       required dynamic body,
       required BuildContext context}) async {
     emit(UpdatePatientReportStateLoading());
@@ -26,10 +26,12 @@ class UpdateReportCubit extends Cubit<UpdateReportState> {
     response.fold((failure) {
       emit(UpdatePatientReportStateFailure(errMessage: failure.errMessage));
       isLoading = false;
-    }, (reportData) {
+    }, (reportData) async {
       emit(UpdatePatientReportStateSuccess());
       report = reportData;
       isLoading = false;
     });
   }
+
+  
 }

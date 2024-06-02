@@ -92,10 +92,10 @@ class LabRepoImpl implements LabRepo {
   Future<Either<Failures, String>> deleteLabRequest(
       {required String token,
       required String id,
-      required dynamic body}) async {
+      }) async {
     try {
-      await apiService.update(
-          endPoint: 'laboratories-reservations/$id', token: token, data: body);
+      await apiService.delete(
+          endPoint: 'laboratories-reservations/',id: id,  token: token,);
       return right('dnoe');
     } catch (e) {
       if (e is DioException) {

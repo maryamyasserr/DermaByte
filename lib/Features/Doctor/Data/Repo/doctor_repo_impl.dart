@@ -190,7 +190,6 @@ class DoctorRepoImpl implements DoctorRepo {
       return right("Done");
     } catch (e) {
       if (e is DioException) {
-        print(e);
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errMessage: e.toString()));

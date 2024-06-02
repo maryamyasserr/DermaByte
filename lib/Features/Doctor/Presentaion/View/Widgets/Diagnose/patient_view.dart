@@ -98,10 +98,10 @@ class _PatientViewState extends State<PatientView> {
                             confirmationDialog(
                                 context: context,
                                 onPressed: () async {
+                                  GoRouter.of(context).pop();
                                   FocusScope.of(context).unfocus();
                                   FocusScope.of(context)
                                       .requestFocus(FocusNode());
-                                  GoRouter.of(context).pop();
                                   await BlocProvider.of<UpdateReportCubit>(
                                           context)
                                       .updateReport(
@@ -121,15 +121,25 @@ class _PatientViewState extends State<PatientView> {
                                             ]
                                           },
                                           context: context);
-                                  await BlocProvider.of<MyReservationCubit>(context)
+
+                                  BlocProvider.of<MyReservationCubit>(context)
                                       .deletePatientReservation(
-                                          id: BlocProvider.of<MyReservationCubit>(
+                                    id: BlocProvider.of<MyReservationCubit>(
+                                            context)
+                                        .reservationid!,
+                                    token: BlocProvider.of<AuthCubit>(context)
+                                        .doctorModel!
+                                        .token,
+                                  );
+                                  await BlocProvider.of<MyReservationCubit>(
+                                          context)
+                                      .getMyReservations(
+                                          token: BlocProvider.of<AuthCubit>(
                                                   context)
-                                              .reservationid!,
-                                          token: BlocProvider.of<AuthCubit>(context)
                                               .doctorModel!
                                               .token,
-                                        );
+                                          reviwed: "true",
+                                          completed: "false");
                                 });
                           }
                         }),

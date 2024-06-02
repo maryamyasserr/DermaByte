@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/confirmation_alert.dart';
 import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
@@ -16,6 +17,7 @@ import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http_parser/http_parser.dart';
 
 class RequestBody extends StatefulWidget {
@@ -90,50 +92,65 @@ class _RequestBodyState extends State<RequestBody> {
                       onPressed: () async {
                         BlocProvider.of<LabHelperCubit>(context).configData();
                         if (BlocProvider.of<LabHelperCubit>(context)
-                            .allResutls
-                            .isEmpty) {
+                                .allResutls
+                                .isEmpty ||
+                            reservation.test!.length >
+                                BlocProvider.of<LabHelperCubit>(context)
+                                    .allResutls
+                                    .length) {
                           failedAlert(context, "Attach Test Result");
                         } else {
-                          FormData formData = FormData();
-                          for (int i = 0; i < allResults.length; i++) {
-                            for (int j = 0;
-                                j < allResults[i].testsFiles.length;
-                                j++) {
-                              formData.files.add(
-                                MapEntry(
-                                  allResults[i].testName,
-                                  await MultipartFile.fromFile(
-                                    allResults[i].testsFiles[j].path,
-                                    filename: 'test Results$i.jpg',
-                                    contentType: MediaType('image', 'jpeg'),
-                                  ),
-                                ),
-                              );
-                            }
-                            formData.fields.add(
-                                MapEntry("patient", reservation.patient!.id!));
-                          }
+                          confirmationDialog(
+                              context: context,
+                              onPressed: () async {
+                                GoRouter.of(context).pop();
+                                FormData formData = FormData();
+                                for (int i = 0; i < allResults.length; i++) {
+                                  for (int j = 0;
+                                      j < allResults[i].testsFiles.length;
+                                      j++) {
+                                    formData.files.add(
+                                      MapEntry(
+                                        allResults[i].testName,
+                                        await MultipartFile.fromFile(
+                                          allResults[i].testsFiles[j].path,
+                                          filename: 'test Results$i.jpg',
+                                          contentType:
+                                              MediaType('image', 'jpeg'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  formData.fields.add(MapEntry(
+                                      "patient", reservation.patient!.id!));
+                                }
 
-                          await BlocProvider.of<AttachResultCubit>(context)
-                              .attachResult(
-                                  context: context,
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .labModel!
-                                      .token,
-                                  body: formData);
-                          await BlocProvider.of<LabReservationsCubit>(context)
-                              .deleteRequest(
+                                await BlocProvider.of<AttachResultCubit>(
+                                        context)
+                                    .attachResult(
+                                        context: context,
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .labModel!
+                                                .token,
+                                        body: formData);
+                                await BlocProvider.of<LabReservationsCubit>(
+                                        context)
+                                    .deleteRequest(
                                   id: reservation.id!,
                                   token: BlocProvider.of<AuthCubit>(context)
                                       .labModel!
                                       .token,
-                                  body: {"completed": "true"});
+                                );
 
-                          await BlocProvider.of<LabReservationsCubit>(context)
-                              .getLabRequests(
-                                  token: BlocProvider.of<AuthCubit>(context)
-                                      .labModel!
-                                      .token);
+                                await BlocProvider.of<LabReservationsCubit>(
+                                        context)
+                                    .getLabRequests(
+                                        token:
+                                            BlocProvider.of<AuthCubit>(context)
+                                                .labModel!
+                                                .token);
+                              });
                         }
                       },
                     );

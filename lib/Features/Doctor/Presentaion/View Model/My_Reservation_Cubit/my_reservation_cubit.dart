@@ -19,6 +19,7 @@ class MyReservationCubit extends Cubit<MyReservationState> {
       required String reviwed,
       required String completed}) async {
     emit(MyReservationLoading());
+    myDates.clear();
     var response = await doctorRepo.getMyReservation(
         token: token, reviewd: reviwed, completed: completed);
     response.fold(

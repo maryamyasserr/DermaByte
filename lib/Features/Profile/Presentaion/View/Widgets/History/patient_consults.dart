@@ -22,6 +22,7 @@ class PatientConsults extends StatelessWidget {
     return BlocBuilder<ReportCubit, ReportState>(
       builder: (context, state) {
         if (state is ReportSuccess) {
+          print(state.reports.length);
           return ListView.builder(
               itemCount: state.reports.length,
               physics: const BouncingScrollPhysics(),
@@ -36,9 +37,9 @@ class PatientConsults extends StatelessWidget {
                         imageCard:
                             state.reports[index].dermatologist!.profilePic,
                         cardTitle:
-                            "Dr ${state.reports[index].dermatologist?.firstName} ${state.reports[index].dermatologist?.lastName}",
+                            "Dr ${state.reports[index].dermatologist?.firstName??""} ${state.reports[index].dermatologist?.lastName??""}",
                         cardSubTitle:
-                            "with Scan ${state.reports[index].scan![index].diseaseName}......, on ${DateFormat.yMMMd().format(state.reports[index].createdAt!)}",
+                            "with Scan ${state.reports[index].scan?[0].diseaseName??""}......, on ${DateFormat.yMMMd().format(state.reports[index].createdAt??DateTime.now())}",
                         textButton: "View",
                         onPressed: () {
                           BlocProvider.of<ReportCubit>(context)
