@@ -1,5 +1,6 @@
 class ProfileItemModel {
-  final String title, route;
+  final String title;
+  final void Function() onTap;
 
-  ProfileItemModel({required this.title, required this.route});
+  ProfileItemModel({required this.title, required this.onTap});
 }

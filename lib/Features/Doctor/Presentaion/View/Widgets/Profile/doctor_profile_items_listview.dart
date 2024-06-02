@@ -6,26 +6,30 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class DoctorProfileItems extends StatelessWidget {
-  DoctorProfileItems({super.key});
+  const DoctorProfileItems({super.key});
 
-  final List<ProfileItemModel> items = [
-    ProfileItemModel(title: 'Account', route: ""),
-    ProfileItemModel(title: 'My Schedule', route: AppRoutes.kMySchedule),
-    ProfileItemModel(title: 'My Free Times', route: AppRoutes.kMyFreeTimes),
-    ProfileItemModel(title: 'Setting', route: ""),
-    ProfileItemModel(title: 'Log Out', route: "")
-  ];
   @override
   Widget build(BuildContext context) {
+  final List<ProfileItemModel> items = [
+    ProfileItemModel(title: 'Account', onTap: (){}),
+    ProfileItemModel(title: 'My Schedule',
+     onTap:() {
+              GoRouter.of(context).push(AppRoutes.kMySchedule);
+            }
+       ),
+    ProfileItemModel(title: 'My Free Times', onTap: () {
+              GoRouter.of(context).push(AppRoutes.kMyFreeTimes);
+            }),
+    ProfileItemModel(title: 'Setting', onTap: (){}),
+    ProfileItemModel(title: 'Log Out', onTap: (){})
+  ];
     return Column(
       children: items.map((e) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: DoctorProfileItem(
             profileItemModel: e,
-            onTap: () {
-              GoRouter.of(context).push(e.route);
-            },
+            onTap: e.onTap,
           ),
         );
       }).toList(),

@@ -2,20 +2,27 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/lab_profile/e_lab_profile_item.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/profile_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ElabItemsListView extends StatelessWidget {
   const ElabItemsListView({super.key});
 
-  static List<ProfileItemModel> items = [
-    ProfileItemModel(title: 'Address', route: AppRoutes.kAddress),
-    ProfileItemModel(title: 'Email', route: AppRoutes.kAccount),
-    ProfileItemModel(title: 'Add More Service', route: AppRoutes.kAddress),
-    ProfileItemModel(title: 'Help', route: AppRoutes.kHistory),
-    ProfileItemModel(title: 'Setting', route: AppRoutes.kSettings),
-    ProfileItemModel(title: 'Log Out', route: ""),
-  ];
+
   @override
   Widget build(BuildContext context) {
+     final List<ProfileItemModel> items = [
+    ProfileItemModel(title: 'Account', onTap: (){}),
+    ProfileItemModel(title: 'My Schedule',
+     onTap:() {
+              GoRouter.of(context).push(AppRoutes.kMySchedule);
+            }
+       ),
+    ProfileItemModel(title: 'My Free Times', onTap: () {
+              GoRouter.of(context).push(AppRoutes.kMyFreeTimes);
+            }),
+    ProfileItemModel(title: 'Setting', onTap: (){}),
+    ProfileItemModel(title: 'Log Out', onTap: (){})
+  ];
     return Column(
       children: items.map((e) => ElabProfileItem(profileItemModel: e)).toList(),
     );
