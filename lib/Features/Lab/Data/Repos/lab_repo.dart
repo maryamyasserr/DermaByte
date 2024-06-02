@@ -29,4 +29,10 @@ abstract class LabRepo {
 
   Future<Either<Failures, String>> updateTest(
       {required String token, required String id, required dynamic body});
+   Future<Either<Failures, String>> updateLabProfile(
+      {required String token, required dynamic body});
+    Future<Either<Failures, String>> changeLabPassword({
+    required String token,
+    required dynamic body
+  });
 }

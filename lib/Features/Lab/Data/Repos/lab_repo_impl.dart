@@ -133,4 +133,37 @@ class LabRepoImpl implements LabRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failures, String>> changeLabPassword({required String token, required body}) async{
+     try {
+      await apiService.update(
+          endPoint: 'labs/changeMyPassword',
+          data: body,
+          token: token);
+      return right('done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+       return left(ServerFailure(errMessage: e.toString()));
+    }
+    
+   
+  }
+  
+  @override
+  Future<Either<Failures, String>> updateLabProfile({required String token, required body})async {
+  
+    try {
+      await apiService.update(
+          endPoint: 'labs/updateMe', data: body, token: token);
+      return right('done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

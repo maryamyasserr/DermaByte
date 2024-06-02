@@ -27,6 +27,7 @@ import 'package:dermabyte/Features/Lab/Presentation/View_Model/Attach%20Result/a
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Get%20Lab%20Services/get_lab_services_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Helper/lab_helper_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions%20Cubit/lab_reservations_cubit.dart';
+import 'package:dermabyte/Features/Lab/Presentation/View_Model/Update%20Lab%20Profile/update_lab_profile_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
@@ -113,7 +114,8 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 UpdateDoctorProfileCubit(getIt.get<DoctorRepoImpl>())),
-        BlocProvider(create: (context)=>UpdatePatientProfileCubit(getIt.get<PofileRepoImpl>()),)
+        BlocProvider(create: (context)=>UpdatePatientProfileCubit(getIt.get<PofileRepoImpl>())),
+        BlocProvider(create: (context) => UpdateLabProfileCubit(getIt.get<LabRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

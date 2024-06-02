@@ -23,13 +23,10 @@ import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/appoinme
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/follow_up_view.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/requested_tests_view.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/upcoming_view.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View/account_view.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View/address_view.dart';
+
 import 'package:dermabyte/Features/Profile/Presentaion/View/consults_view.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View/credit_card_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/disease_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/edit_profile.dart';
-import 'package:dermabyte/Features/Profile/Presentaion/View/help_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/history_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/profile_view.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/settings_view.dart';
@@ -133,12 +130,9 @@ abstract class AppRoutes {
     GoRoute(path: kSignUpAs, builder: (context, state) => const SignUpAsView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
-    GoRoute(
-        path: kCreditCard, builder: (context, state) => const CreditCardView()),
+
     GoRoute(path: kSettings, builder: (context, state) => const SettingsView()),
-    GoRoute(path: kAccount, builder: (context, state) => const AccountView()),
-    GoRoute(path: kAddress, builder: (context, state) => const AddressView()),
-    GoRoute(path: kHelp, builder: (context, state) => const HelpView()),
+ 
     GoRoute(
         path: kEditProfile, builder: (context, state) => const EditProfile()),
     GoRoute(
@@ -152,12 +146,9 @@ abstract class AppRoutes {
     GoRoute(path: kHistory, builder: (context, state) => const HistoryView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
-    GoRoute(
-        path: kCreditCard, builder: (context, state) => const CreditCardView()),
+
     GoRoute(path: kSettings, builder: (context, state) => const SettingsView()),
-    GoRoute(path: kAccount, builder: (context, state) => const AccountView()),
-    GoRoute(path: kAddress, builder: (context, state) => const AddressView()),
-    GoRoute(path: kHelp, builder: (context, state) => const HelpView()),
+   
     GoRoute(
         path: kEditProfile, builder: (context, state) => const EditProfile()),
     GoRoute(

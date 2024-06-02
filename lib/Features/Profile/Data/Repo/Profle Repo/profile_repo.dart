@@ -13,7 +13,7 @@ abstract class ProfileRepo {
       {required String token});
   Future<Either<Failures, String>> updatePatientProfile(
       {required String token, required dynamic body});
-    Future<Either<Failures, String>> changePatientPassword({
+ Future<Either<Failures, String>> changePatientPassword({
     required String token,
     required dynamic body
   });
