@@ -17,7 +17,7 @@ class DoctorProfileHeader extends StatelessWidget {
       children: [
         Row(
           children: [
-             ProfilePhoto(
+            ProfilePhoto(
               radius: 35,
               photo: doctor.profilePic,
             ),
@@ -28,7 +28,7 @@ class DoctorProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ahmed Mohamed",
+                  "${doctor.firstName} " "${doctor.firstName}",
                   style: Styels.textStyle20_700(context),
                 ),
                 Text(
@@ -39,15 +39,6 @@ class DoctorProfileHeader extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.edit_outlined,
-                size: 30,
-              )),
-        )
       ],
     );
   }

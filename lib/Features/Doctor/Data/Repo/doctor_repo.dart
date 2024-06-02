@@ -39,4 +39,8 @@ abstract class DoctorRepo {
       {required String token, required String id});
   Future<Either<Failures, String>> updateDoctorProfile(
       {required String token, required dynamic body});
+  Future<Either<Failures, String>> changeDoctorPassword({
+    required String token,
+    required dynamic body
+  });
 }

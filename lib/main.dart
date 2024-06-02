@@ -13,6 +13,7 @@ import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My%20Schedule
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Patinets_Reports/my_patient_report_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/My_Reservation_Cubit/my_reservation_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Set%20Schedule/set_schedule_cubit.dart';
+import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update%20Doctor%20Profile/update_doctor_profile_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update_Report/update_report_cubit.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Repos/edoctor_repo_impl.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/DoctorReservaion/doctor_reservation_cubit.dart';
@@ -106,7 +107,8 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 GetMyFreeTimesDCubit(getIt.get<DoctorRepoImpl>())),
-        BlocProvider(create: (context)=>MyScheduleCubit(getIt.get<DoctorRepoImpl>()))
+        BlocProvider(create: (context)=>MyScheduleCubit(getIt.get<DoctorRepoImpl>())),
+        BlocProvider(create: (context)=>UpdateDoctorProfileCubit(getIt.get<DoctorRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

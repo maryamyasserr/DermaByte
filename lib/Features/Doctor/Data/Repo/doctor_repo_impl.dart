@@ -203,11 +203,28 @@ class DoctorRepoImpl implements DoctorRepo {
       await apiService.updateWithMultipart(
           endPoint: 'dermatologists/updateMe', data: body, token: token);
       return right('done');
-    }  catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, String>> changeDoctorPassword(
+      {required String token, required body}) async {
+    try {
+      await apiService.update(
+          endPoint: 'dermatologists/changeMyPassword',
+          data: body,
+          token: token);
+      return right('done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+       return left(ServerFailure(errMessage: e.toString()));
     }
   }
 }
