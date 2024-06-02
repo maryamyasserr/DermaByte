@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
+import 'package:dermabyte/Features/Profile/Data/Repo/Profle%20Repo/profile_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/scan.dart';
 import 'package:meta/meta.dart';
 
@@ -7,7 +7,7 @@ part 'scan_state.dart';
 
 class ScanCubit extends Cubit<ScanState> {
   ScanCubit(this.scanRepo) : super(ScanInitial());
-  HistoryRepo scanRepo;
+  ProfileRepo scanRepo;
   String? _id;
 
   List<ScanModel> patientScans = [];

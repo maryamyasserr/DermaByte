@@ -30,10 +30,11 @@ import 'package:dermabyte/Features/Lab/Presentation/View_Model/Lab%20Reservaions
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo_impl.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Add_Test_Result_Cubit/add_test_result_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
-import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo_impl.dart';
+import 'package:dermabyte/Features/Profile/Data/Repo/Profle%20Repo/profile_repo_impl.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Scan%20Cubit/scan_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Tests%20Cubit/tests_cubit.dart';
+import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Update%20Patient%20Profile/update_patient_profile_cubit.dart';
 import 'package:dermabyte/Features/Scan/Data/Repo/scan_repo_impl.dart';
 import 'package:dermabyte/Features/Scan/Presentaion/View%20Model/Create%20Scan%20Cubit/create_scan_cubit.dart';
 import 'package:flutter/material.dart';
@@ -56,15 +57,15 @@ class DermaByte extends StatelessWidget {
             create: (context) =>
                 PreservationInfoCubit(getIt.get<PreservationInfoRepoImpl>())),
         BlocProvider(
-            create: (context) => ScanCubit(getIt.get<HistoryRepoImpl>())
+            create: (context) => ScanCubit(getIt.get<PofileRepoImpl>())
               ..getPatientScan(
                   token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(
-            create: (context) => TestsCubit(getIt.get<HistoryRepoImpl>())
+            create: (context) => TestsCubit(getIt.get<PofileRepoImpl>())
               ..getPatientTests(
                   token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(
-            create: (context) => ReportCubit(getIt.get<HistoryRepoImpl>())
+            create: (context) => ReportCubit(getIt.get<PofileRepoImpl>())
               ..getPatientConults(
                   token: BlocProvider.of<AuthCubit>(context).patient!.token)),
         BlocProvider(create: (context) => ELabCubit(getIt.get<ElabRepoImpl>())),
@@ -107,8 +108,12 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 GetMyFreeTimesDCubit(getIt.get<DoctorRepoImpl>())),
-        BlocProvider(create: (context)=>MyScheduleCubit(getIt.get<DoctorRepoImpl>())),
-        BlocProvider(create: (context)=>UpdateDoctorProfileCubit(getIt.get<DoctorRepoImpl>()))
+        BlocProvider(
+            create: (context) => MyScheduleCubit(getIt.get<DoctorRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                UpdateDoctorProfileCubit(getIt.get<DoctorRepoImpl>())),
+        BlocProvider(create: (context)=>UpdatePatientProfileCubit(getIt.get<PofileRepoImpl>()),)
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

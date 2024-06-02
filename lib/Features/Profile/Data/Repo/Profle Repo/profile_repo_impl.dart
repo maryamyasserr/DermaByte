@@ -3,13 +3,13 @@ import 'package:dermabyte/Core/errors/failures.dart';
 import 'package:dermabyte/Core/utils/api_service.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/test_model/test_model.dart';
-import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
+import 'package:dermabyte/Features/Profile/Data/Repo/Profle%20Repo/profile_repo.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/scan.dart';
 import 'package:dio/dio.dart';
 
-class HistoryRepoImpl implements HistoryRepo {
+class PofileRepoImpl implements ProfileRepo {
   ApiService apiService;
-  HistoryRepoImpl(this.apiService);
+  PofileRepoImpl(this.apiService);
   @override
   Future<Either<Failures, List<ScanModel>>> getPatientScans(
       {required String token}) async {
@@ -66,4 +66,37 @@ class HistoryRepoImpl implements HistoryRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, String>> updatePatientProfile(
+      {required String token, required body}) async {
+    try {
+      await apiService.update(
+          endPoint: 'patients/updateMe', data: body, token: token);
+      return right('done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failures, String>> changePatientPassword({required String token, required body})async {
+ try {
+      await apiService.update(
+          endPoint: 'patients/changeMyPassword',
+          data: body,
+          token: token);
+      return right('done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+       return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+
 }

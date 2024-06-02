@@ -1,22 +1,24 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Core/Widgets/profile_photo.dart';
+import 'package:dermabyte/Features/Authentication/Data/Models/patient.dart';
+import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileHeaderSection extends StatelessWidget {
   const ProfileHeaderSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    PatientModel patient= BlocProvider.of<AuthCubit>(context).patient!.patient;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            const ProfilePhoto(
+             ProfilePhoto(
               radius: 40,
-              photo: null,
+              photo: patient.profilePic,
             ),
             const SizedBox(
               width: 20,
@@ -25,7 +27,7 @@ class ProfileHeaderSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ahmed Mohamed",
+                  "${patient.firstName} " "${patient.lastName}",
                   style: Styels.textStyle20_700(context),
                 ),
                 Text(
@@ -36,17 +38,6 @@ class ProfileHeaderSection extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRoutes.kEditProfile);
-              },
-              icon: const Icon(
-                Icons.edit_outlined,
-                size: 30,
-              )),
-        )
       ],
     );
   }

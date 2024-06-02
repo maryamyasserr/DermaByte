@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Profile/Data/Models/Report/report_model.dart';
-import 'package:dermabyte/Features/Profile/Data/Repo/History%20Repo/history_repo.dart';
+import 'package:dermabyte/Features/Profile/Data/Repo/Profle%20Repo/profile_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'reports_state.dart';
 
 class ReportCubit extends Cubit<ReportState> {
   ReportCubit(this.historyRepo) : super(ReportInitial());
-  HistoryRepo historyRepo;
+  ProfileRepo historyRepo;
   List<ReportModel> patientConsults = [];
   String? _reportId;
   String? _consulationId;

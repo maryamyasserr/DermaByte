@@ -16,7 +16,7 @@ class ProfileItem extends StatelessWidget {
         children: [
           Text(
             profileItemModel.title,
-            style: Styels.textStyle18_400(context),
+            style: Styels.textStyle20_700(context),
           ),
           const Icon(Icons.arrow_forward_ios_outlined)
         ],
