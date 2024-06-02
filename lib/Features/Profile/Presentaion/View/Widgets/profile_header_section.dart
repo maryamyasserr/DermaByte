@@ -14,6 +14,7 @@ class ProfileHeaderSection extends StatelessWidget {
           children: [
             const ProfilePhoto(
               radius: 40,
+              photo: null,
             ),
             const SizedBox(
               width: 20,

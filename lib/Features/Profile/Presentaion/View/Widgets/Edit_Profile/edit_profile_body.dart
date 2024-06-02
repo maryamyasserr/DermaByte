@@ -31,6 +31,7 @@ class EditProfileBody extends StatelessWidget {
               children: [
                 const ProfilePhoto(
                   radius: 50,
+                  photo: null,
                 ),
                 Positioned(
                     bottom: 0,
