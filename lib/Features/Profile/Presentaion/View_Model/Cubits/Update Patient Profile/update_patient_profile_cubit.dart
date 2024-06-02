@@ -28,6 +28,6 @@ class UpdatePatientProfileCubit extends Cubit<UpdatePatientProfileState> {
     response.fold(
         (failure) =>
             emit(UpdatePatientProfileFailure(errMessage: failure.errMessage)),
-        (success) => emit(UpdatePatientPasswordSuccess()));
+        (success) => emit(UpdatePatientProfileSuccess()));
   }
 }

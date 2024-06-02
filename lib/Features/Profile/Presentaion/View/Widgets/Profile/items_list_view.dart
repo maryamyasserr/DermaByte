@@ -161,19 +161,18 @@ class ItemsListView extends StatelessWidget {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         GoRouter.of(context).pop();
-                        FormData formData = FormData();
-                        formData.fields.addAll([
-                          MapEntry(
-                              'currentPassword', oldPasswordController.text),
-                          MapEntry('passwordConfirm',
-                              confirmPasswordController.text),
-                          MapEntry('password', newPasswordController.text),
-                        ]);
+                       
+                       
 
                         await BlocProvider.of<UpdatePatientProfileCubit>(
                                 context)
                             .changePatientPassword(
-                                token: patientToken, body: formData);
+                                token: patientToken,  body: {
+                               'currentPassword': oldPasswordController.text,
+                               'passwordConfirm':
+                              confirmPasswordController.text,
+                              'password': newPasswordController.text
+                            });
                       }
                     },
                   );

@@ -9,8 +9,6 @@ final class UpdateLabProfileLoading extends UpdateLabProfileState {}
 
 final class UpdateLabProfileSuccess extends UpdateLabProfileState {}
 
-final class UpdateLabPasswordSuccess extends UpdateLabProfileState {}
-
 final class UpdateLabProfileFailure extends UpdateLabProfileState {
   final String errMessage;
 

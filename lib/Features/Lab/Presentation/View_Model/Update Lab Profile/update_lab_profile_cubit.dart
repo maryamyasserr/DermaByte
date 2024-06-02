@@ -26,6 +26,6 @@ class UpdateLabProfileCubit extends Cubit<UpdateLabProfileState> {
     response.fold(
         (failure) =>
             emit(UpdateLabProfileFailure(errMessage: failure.errMessage)),
-        (success) => emit(UpdateLabPasswordSuccess()));
+        (success) => emit(UpdateLabProfileSuccess()));
   }
 }

@@ -89,13 +89,16 @@ class LabRepoImpl implements LabRepo {
   }
 
   @override
-  Future<Either<Failures, String>> deleteLabRequest(
-      {required String token,
-      required String id,
-      }) async {
+  Future<Either<Failures, String>> deleteLabRequest({
+    required String token,
+    required String id,
+  }) async {
     try {
       await apiService.delete(
-          endPoint: 'laboratories-reservations/',id: id,  token: token,);
+        endPoint: 'laboratories-reservations/',
+        id: id,
+        token: token,
+      );
       return right('dnoe');
     } catch (e) {
       if (e is DioException) {
@@ -133,28 +136,26 @@ class LabRepoImpl implements LabRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failures, String>> changeLabPassword({required String token, required body}) async{
-     try {
+  Future<Either<Failures, String>> changeLabPassword(
+      {required String token, required body}) async {
+    try {
       await apiService.update(
-          endPoint: 'labs/changeMyPassword',
-          data: body,
-          token: token);
+          endPoint: 'labs/changeMyPassword', data: body, token: token);
       return right('done');
     } catch (e) {
       if (e is DioException) {
+        print(e);
         return left(ServerFailure.fromDioException(e));
       }
-       return left(ServerFailure(errMessage: e.toString()));
+      return left(ServerFailure(errMessage: e.toString()));
     }
-    
-   
   }
-  
+
   @override
-  Future<Either<Failures, String>> updateLabProfile({required String token, required body})async {
-  
+  Future<Either<Failures, String>> updateLabProfile(
+      {required String token, required body}) async {
     try {
       await apiService.update(
           endPoint: 'labs/updateMe', data: body, token: token);
