@@ -82,14 +82,14 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                               cardTitle:
                                   "${state.reservation![index].patient?.firstName ?? ""}'s report",
                               cardSubTitle:
-                                  "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?[index].diseaseName ?? ""}",
+                                  "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?[0].diseaseName ?? ""}"".....",
                               diagnose: () {},
                               textButton: 'View',
                               onPressed: () async {
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
                                     state
-                                        .reservation![index].report![index].id!;
+                                        .reservation![index].report![0].id!;
 
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)

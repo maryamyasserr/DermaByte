@@ -30,7 +30,7 @@ class AuthRepoImpl implements AuthRepo {
         var response = await apiService.postWithMultiForm(
             endPoint: endPoint, data: data, token: null);
         PatientTokenModel patient = PatientTokenModel.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+        GoRouter.of(context).go(AppRoutes.kCustomScreen);
         return right(patient);
       } catch (e) {
         if (e is DioException) {
@@ -43,7 +43,7 @@ class AuthRepoImpl implements AuthRepo {
         var response = await apiService.postWithMultiForm(
             endPoint: endPoint, data: data, token: null);
         DoctorToken doctor = DoctorToken.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
+        GoRouter.of(context).go(AppRoutes.kSignIn);
         return right(doctor);
       } catch (e) {
         if (e is DioException) {
@@ -56,7 +56,7 @@ class AuthRepoImpl implements AuthRepo {
         var response = await apiService.postWithMultiForm(
             endPoint: endPoint, data: data, token: null);
         LabToken lab = LabToken.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
+        GoRouter.of(context).go(AppRoutes.kSignIn);
         return right(lab);
       } catch (e) {
         if (e is DioException) {
@@ -79,19 +79,19 @@ class AuthRepoImpl implements AuthRepo {
           await apiService.post(endPoint: 'auth/login', data: body, token: '');
       if (response['data']['role'] == 'patient') {
         PatientTokenModel patient = PatientTokenModel.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
+        GoRouter.of(context).go(AppRoutes.kCustomScreen);
         return right(patient);
       } else if (response['data']['role'] == 'dermatologist') {
         DoctorToken doctor = DoctorToken.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
+        GoRouter.of(context).go(AppRoutes.kDoctorView);
         return right(doctor);
       } else if (response['data']['role'] == 'lab') {
         LabToken lab = LabToken.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kLabHome);
+        GoRouter.of(context).go(AppRoutes.kLabHome);
         return right(lab);
       } else if (response['data']['role'] == 'admin') {
         AdminToken lab = AdminToken.fromJson(response);
-        GoRouter.of(context).pushReplacement(AppRoutes.kAdminView);
+        GoRouter.of(context).go(AppRoutes.kAdminView);
         return right(lab);
       } else {
         throw Exception("Unsupported type");

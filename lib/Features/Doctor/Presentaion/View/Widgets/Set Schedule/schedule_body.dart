@@ -163,6 +163,11 @@ class _SetScheduleBodyState extends State<SetScheduleBody> {
                       ],
                     )),
               ),
+              const SizedBox(height: 12),
+              const Padding(
+                padding: EdgeInsets.only(left:20),
+                child: Text("This price is fixed for all appointments"),
+              ),
               const SizedBox(height: 80),
               Padding(
                 padding: const EdgeInsets.all(10.0),

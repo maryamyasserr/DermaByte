@@ -11,8 +11,9 @@ class MyReservationCubit extends Cubit<MyReservationState> {
   List<MyReservaionModel> allAppoinments = [];
   List<DateTime> myDates = [];
   DateTime? selectedDate;
-
   String? reservationid;
+
+  bool allApoinmentsTitle = true;
 
   Future<void> getMyReservations(
       {required String token,
@@ -36,7 +37,6 @@ class MyReservationCubit extends Cubit<MyReservationState> {
           myDates.add(DateTime(e.date!.year, e.date!.month, e.date!.day));
         }
       }
-      print(myDates);
     });
   }
 
@@ -79,6 +79,7 @@ class MyReservationCubit extends Cubit<MyReservationState> {
       } else {}
     }
     emit(MyReservationSuccess(reservation: selectedAppoinments));
+    allApoinmentsTitle = false;
   }
 
   bool compareDates(DateTime date1, DateTime date2) {

@@ -81,7 +81,7 @@ class _EdoctorViewBodyState extends State<EdoctorViewBody> {
                         child: CarddItem(
                           imageCard: state.doctors[index].profilePic!,
                           bottomText:
-                              "${state.doctors[index].schedules?[index].sessionCost ?? "0"}"
+                              "${state.doctors[index].schedules![0].sessionCost}"
                               r"$",
                           title:
                               "Dr ${state.doctors[index].firstName!} ${state.doctors[index].lastName!}",

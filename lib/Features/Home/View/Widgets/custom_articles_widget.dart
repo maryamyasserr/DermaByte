@@ -18,17 +18,9 @@ class CustomArticlesWidget extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
             padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'articles&news',
-                  style: Styels.textStyle18_300(context).copyWith(fontSize: 16),
-                ),
-                Text('view all',
-                    style:
-                        Styels.textStyle20_700(context).copyWith(fontSize: 16)),
-              ],
+            child: Text(
+              'DermaByte',
+              style: Styels.textStyle20_700(context).copyWith(fontSize: 16),
             ),
           ),
           const SizedBox(height: 12),
@@ -51,13 +43,14 @@ class CustomArticlesWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Loren Ipsum',
+                    'What Is DermaByte?',
                     style: Styels.textStyle16_400(context).copyWith(
                       fontSize: 20,
                     ),
                   ),
+                  const SizedBox(height: 6),
                   Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula porttitor eros,',
+                    'DermaByte is a comprehensive healthcare solution designed to improve patient care,',
                     style:
                         Styels.textStyle18_300(context).copyWith(fontSize: 16),
                     maxLines: 3,

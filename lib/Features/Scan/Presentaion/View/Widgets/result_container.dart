@@ -82,6 +82,7 @@ class ResutlContainer extends StatelessWidget {
                             style: Styels.textStyle18_300(context).copyWith(
                                 fontSize: 14, color: AppColors.kWhiteColor),
                           ),
+                          const SizedBox(height: 8),
                         ],
                       ),
                     ),
