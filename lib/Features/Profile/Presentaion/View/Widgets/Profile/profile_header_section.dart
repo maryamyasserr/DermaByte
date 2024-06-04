@@ -10,13 +10,13 @@ class ProfileHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PatientModel patient= BlocProvider.of<AuthCubit>(context).patient!.patient;
+    PatientModel patient = BlocProvider.of<AuthCubit>(context).patient!.patient;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-             ProfilePhoto(
+            ProfilePhoto(
               radius: 40,
               photo: patient.profilePic,
             ),

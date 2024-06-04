@@ -40,10 +40,12 @@ class _TimeState extends State<TimeWidget> {
           child: Center(
             child: Text(
               widget.title,
-              style: Styels.textStyle18_400(context).copyWith(
-                color:
-                    widget.isSelected ? Colors.white : AppColors.kPrimaryColor,
-              ),
+              style: Styels.textStyle16_400(context).copyWith(
+                  color: widget.isSelected
+                      ? Colors.white
+                      : AppColors.kPrimaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
             ),
           ),
         ),

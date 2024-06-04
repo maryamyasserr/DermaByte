@@ -49,12 +49,13 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                     crossAxisCount: 4,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 24,
-                    childAspectRatio: 2 / 1.1),
+                    childAspectRatio: 2.1 / 1.2),
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     child: TimeWidget(
                       title:
-                          "${freetimes.freeTime![index].hour.toString()}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}",
+                          "${timeTitle(freetimes.freeTime![index].hour)}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}"
+                          " ${night(freetimes.freeTime![index].hour)}",
                       isSelected:
                           selectedTime == freetimes.freeTime![index].toString(),
                       onSelect: () {
@@ -82,5 +83,22 @@ class _AllFreeTimeState extends State<AllFreeTime> {
         }
       },
     );
+  }
+}
+
+String timeTitle(int hour) {
+  if (hour > 12) {
+    int newHour = hour - 12;
+    return newHour.toString();
+  } else {
+    return hour.toString();
+  }
+}
+
+String night(int hour) {
+  if (hour >= 12) {
+    return 'PM';
+  } else {
+    return 'AM';
   }
 }

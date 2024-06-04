@@ -31,6 +31,7 @@ class _RequestBodyState extends State<RequestBody> {
   @override
   void initState() {
     BlocProvider.of<LabHelperCubit>(context).results = [];
+    BlocProvider.of<LabHelperCubit>(context).allResutls = [];
     super.initState();
   }
 
@@ -100,6 +101,9 @@ class _RequestBodyState extends State<RequestBody> {
                                     .length) {
                           failedAlert(context, "Attach Test Result");
                         } else {
+                          print(BlocProvider.of<LabHelperCubit>(context)
+                              .allResutls
+                              .length);
                           confirmationDialog(
                               context: context,
                               onPressed: () async {

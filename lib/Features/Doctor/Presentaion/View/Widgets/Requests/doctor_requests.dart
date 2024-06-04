@@ -22,7 +22,6 @@ class DoctorRequests extends StatefulWidget {
 }
 
 class _DoctorRequestsState extends State<DoctorRequests> {
-
   @override
   void initState() {
     BlocProvider.of<MyReservationCubit>(context).getMyReservations(
@@ -82,14 +81,14 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                               cardTitle:
                                   "${state.reservation![index].patient?.firstName ?? ""}'s report",
                               cardSubTitle:
-                                  "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?[0].diseaseName ?? ""}"".....",
+                                  "${state.reservation![index].patient?.firstName ?? ""} had an scan and the result was ${state.reservation![index].scan?[0].diseaseName ?? ""}"
+                                  ".....",
                               diagnose: () {},
                               textButton: 'View',
                               onPressed: () async {
                                 BlocProvider.of<MyPatientReportCubit>(context)
                                         .setId =
-                                    state
-                                        .reservation![index].report![0].id!;
+                                    state.reservation![index].report![0].id!;
 
                                 if (BlocProvider.of<MyPatientReportCubit>(
                                             context)
@@ -109,12 +108,15 @@ class _DoctorRequestsState extends State<DoctorRequests> {
                                               .token,
                                           body: {'reviewed': 'true'});
 
-                                  await BlocProvider.of<MyReservationCubit>(context) .getMyReservations(
-                                      token: BlocProvider.of<AuthCubit>(context)
-                                          .doctorModel!
-                                          .token,
-                                      reviwed: "false",
-                                      completed: "false");
+                                  await BlocProvider.of<MyReservationCubit>(
+                                          context)
+                                      .getMyReservations(
+                                          token: BlocProvider.of<AuthCubit>(
+                                                  context)
+                                              .doctorModel!
+                                              .token,
+                                          reviwed: "false",
+                                          completed: "false");
                                 }
                               },
                               onTap: () {},
@@ -148,7 +150,6 @@ class _DoctorRequestsState extends State<DoctorRequests> {
     );
   }
 }
-
 
 // import 'package:dermabyte/Core/Widgets/empty.dart';
 // import 'package:dermabyte/Core/Widgets/failed_alert.dart';

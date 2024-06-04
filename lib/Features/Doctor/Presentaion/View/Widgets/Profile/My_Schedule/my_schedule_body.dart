@@ -98,8 +98,9 @@ class _MyScheduleBodyState extends State<MyScheduleBody> {
                                 id: state.schedule[0].id!,
                                 token: token,
                                 body: {
-                                  'updateAll':true,
-                                  "sessionCost": costController.text});
+                              'updateAll': true,
+                              "sessionCost": costController.text
+                            });
                         setState(() {
                           editCost = false;
                         });

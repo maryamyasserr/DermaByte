@@ -177,8 +177,7 @@ class _SetScheduleBodyState extends State<SetScheduleBody> {
                     onPressed: () async {
                       if (SetScheduleBody.calenderTime == null) {
                         failedAlert(context, "No Date Selected");
-                      }
-                      else if (SetScheduleBody.startTimePeriod == null ||
+                      } else if (SetScheduleBody.startTimePeriod == null ||
                           SetScheduleBody.endTimePeriod == null) {
                         failedAlert(
                             context, 'You must choose the time AM or PM');
@@ -193,7 +192,7 @@ class _SetScheduleBodyState extends State<SetScheduleBody> {
                               startHour == 12) {
                             startHour = 0;
                           }
-                           if (SetScheduleBody.endTimePeriod == 'PM' &&
+                          if (SetScheduleBody.endTimePeriod == 'PM' &&
                               endHour != 12) {
                             endHour += 12;
                           } else if (SetScheduleBody.endTimePeriod == 'AM' &&
@@ -215,8 +214,7 @@ class _SetScheduleBodyState extends State<SetScheduleBody> {
                           if (SetScheduleBody.calenderTime!
                               .isBefore(DateTime.now())) {
                             failedAlert(context, 'Invaid Date');
-                          }
-                          else if (SetScheduleBody.endTime!
+                          } else if (SetScheduleBody.endTime!
                               .isBefore(SetScheduleBody.startTime!)) {
                             failedAlert(
                                 context, "End Time Can't Be Before Start Time");

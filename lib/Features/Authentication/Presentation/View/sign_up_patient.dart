@@ -1,4 +1,3 @@
-
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View/Widgets/sign_up_patient_body.dart';
 import 'package:flutter/material.dart';

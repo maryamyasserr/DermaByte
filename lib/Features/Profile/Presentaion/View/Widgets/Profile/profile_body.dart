@@ -25,9 +25,8 @@ class ProfileBody extends StatelessWidget {
         }
         if (state is UpdatePatinetPasswordSuccess) {
           GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
-          await BlocProvider.of<UpdatePatientProfileCubit>(context).logOut(
+          await BlocProvider.of<AuthCubit>(context).logOut(
               token: BlocProvider.of<AuthCubit>(context).patient!.token);
-       
         }
         if (state is UpdatePatientProfileFailure) {
           failedAlert(context, state.errMessage);

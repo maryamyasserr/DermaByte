@@ -1,13 +1,19 @@
 class Lab {
-  String? id;
-  String? name;
+  String? firstName;
+  String? profilePic;
+  dynamic id;
 
-  Lab({this.id, this.name});
+  Lab({this.firstName, this.profilePic, this.id});
 
   factory Lab.fromJson(Map<String, dynamic> json) => Lab(
-        id: json['_id'] as String?,
-        name: json['name'] as String?,
+        firstName: json['firstName'] as String?,
+        profilePic: json['profilePic'] as String?,
+        id: json['id'] as dynamic,
       );
 
-  Map<String, dynamic> toJson() => {'_id': id, 'name': name};
+  Map<String, dynamic> toJson() => {
+        'firstName': firstName,
+        'profilePic': profilePic,
+        'id': id,
+      };
 }

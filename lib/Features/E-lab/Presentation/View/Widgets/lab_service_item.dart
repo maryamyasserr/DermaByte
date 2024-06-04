@@ -1,6 +1,7 @@
 import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: must_be_immutable
 class LabServiceItem extends StatelessWidget {
@@ -39,8 +40,9 @@ class LabServiceItem extends StatelessWidget {
                 Row(
                   children: [
                     const Icon(
-                      Icons.file_copy_rounded,
-                      size: 40,
+                      FontAwesomeIcons.prescriptionBottle,
+                      size: 35,
+                      color: AppColors.kPrimaryColor,
                     ),
                     const SizedBox(
                       width: 8,

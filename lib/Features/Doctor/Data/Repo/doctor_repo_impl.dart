@@ -224,7 +224,7 @@ class DoctorRepoImpl implements DoctorRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
-       return left(ServerFailure(errMessage: e.toString()));
+      return left(ServerFailure(errMessage: e.toString()));
     }
   }
 }

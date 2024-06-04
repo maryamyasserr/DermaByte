@@ -23,9 +23,13 @@ class ProfilePhoto extends StatelessWidget {
               )
             : ClipOval(
                 child: SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.25, // Adjust the size as needed
+                    width: MediaQuery.sizeOf(context).width *
+                        0.25, // Adjust the size as needed
                     height: MediaQuery.sizeOf(context).height * 0.12,
-                    child:CachedNetworkImage(imageUrl: photo!,fit: BoxFit.fill,)),
+                    child: CachedNetworkImage(
+                      imageUrl: photo!,
+                      fit: BoxFit.fill,
+                    )),
               ));
   }
 }

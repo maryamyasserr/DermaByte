@@ -30,8 +30,4 @@ class UpdatePatientProfileCubit extends Cubit<UpdatePatientProfileState> {
             emit(UpdatePatientProfileFailure(errMessage: failure.errMessage)),
         (success) => emit(UpdatePatinetPasswordSuccess()));
   }
-
-  Future<void> logOut({required String token}) async {
-    await profileRepo.logOut(token: token);
-  }
 }

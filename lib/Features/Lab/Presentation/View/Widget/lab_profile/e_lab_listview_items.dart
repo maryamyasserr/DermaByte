@@ -20,7 +20,7 @@ class ElabItemsListView extends StatelessWidget {
     LabModel lab = BlocProvider.of<AuthCubit>(context).labModel!.lab;
     String labToken = BlocProvider.of<AuthCubit>(context).labModel!.token;
     final List<ProfileItemModel> items = [
-       ProfileItemModel(
+      ProfileItemModel(
           title: 'Lab Name',
           onTap: () {
             TextEditingController labNameController = TextEditingController();
@@ -127,17 +127,13 @@ class ElabItemsListView extends StatelessWidget {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         GoRouter.of(context).pop();
-                       
+
                         await BlocProvider.of<UpdateLabProfileCubit>(context)
-                            .changeLabPassword(
-                              
-                              token: labToken,
-                               body: {
-                               'currentPassword': oldPasswordController.text,
-                               'passwordConfirm':
-                              confirmPasswordController.text,
-                              'password': newPasswordController.text
-                            });
+                            .changeLabPassword(token: labToken, body: {
+                          'currentPassword': oldPasswordController.text,
+                          'passwordConfirm': confirmPasswordController.text,
+                          'password': newPasswordController.text
+                        });
                       }
                     },
                   );
@@ -147,7 +143,7 @@ class ElabItemsListView extends StatelessWidget {
           title: 'Log Out',
           onTap: () {
             BlocProvider.of<AuthCubit>(context).labModel = null;
-            GoRouter.of(context).go(AppRoutes.kSignIn);            
+            GoRouter.of(context).go(AppRoutes.kSignIn);
           })
     ];
     return Column(

@@ -32,6 +32,4 @@ class UpdateReportCubit extends Cubit<UpdateReportState> {
       isLoading = false;
     });
   }
-
-  
 }

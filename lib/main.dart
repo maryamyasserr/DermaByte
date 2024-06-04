@@ -46,6 +46,7 @@ void main() {
   Bloc.observer = DermaByteBlocOpserver();
   setupServiceLocator();
 }
+
 class DermaByte extends StatelessWidget {
   const DermaByte({super.key});
   @override
@@ -113,8 +114,12 @@ class DermaByte extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 UpdateDoctorProfileCubit(getIt.get<DoctorRepoImpl>())),
-        BlocProvider(create: (context)=>UpdatePatientProfileCubit(getIt.get<PofileRepoImpl>())),
-        BlocProvider(create: (context) => UpdateLabProfileCubit(getIt.get<LabRepoImpl>()))
+        BlocProvider(
+            create: (context) =>
+                UpdatePatientProfileCubit(getIt.get<PofileRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                UpdateLabProfileCubit(getIt.get<LabRepoImpl>()))
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

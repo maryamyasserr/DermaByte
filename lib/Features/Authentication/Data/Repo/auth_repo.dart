@@ -10,22 +10,9 @@ abstract class AuthRepo {
       {required dynamic data,
       required String role,
       required BuildContext context});
-
-  // Future<Either<Failures, PatientTokenModel>> signUpAsPatient(
-  //     {required dynamic data,
-  //     @required String? token,
-  //     required BuildContext context});
-  // Future<Either<Failures, DoctorToken>> signUpAsDsoctor(
-  //     {required dynamic data,
-  //     @required String? token,
-  //     required BuildContext context});
-  // Future<Either<Failures, LabToken>> signUpAsLap(
-  //     {required LabModel data,
-  //     @required String? token,
-  //     required BuildContext context});
-
   Future<Either<Failures, UserModel>> signIn({
     required dynamic body,
     required BuildContext context,
   });
+  Future<Either<Failures, String>> logOut({required String token});
 }

@@ -58,7 +58,6 @@ class UpdateProfileOne extends StatelessWidget {
   }
 }
 
-
 //  import 'package:dermabyte/Core/utils/font_styels.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
@@ -74,7 +73,7 @@ class UpdateProfileOne extends StatelessWidget {
 //     TextEditingController controller = TextEditingController();
 
 //     return showModalBottomSheet<void>(
-//       context: context, 
+//       context: context,
 //       builder: (BuildContext context) {
 //         return Material(
 //           child: CupertinoAlertDialog(

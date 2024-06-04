@@ -7,10 +7,13 @@ class TextFieldEditing extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.onChanged,
-    required this.timingTitle, required this.onTap, required this.controller, required this.labelText,
+    required this.timingTitle,
+    required this.onTap,
+    required this.controller,
+    required this.labelText,
   });
 
-  final String hintText, timingTitle,labelText;
+  final String hintText, timingTitle, labelText;
   final void Function(String? p1) onChanged;
   final void Function() onTap;
   final TextEditingController controller;
@@ -22,12 +25,12 @@ class TextFieldEditing extends StatelessWidget {
         Expanded(
             flex: 3,
             child: TextField(
-              controller:controller ,
+              controller: controller,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 fillColor: AppColors.kFilledTextForm,
                 filled: true,
-                labelText:labelText ,
+                labelText: labelText,
                 hintText: hintText,
                 hintStyle: Styels.textStyle18_400(context).copyWith(
                   color: AppColors.kTextInForm.withOpacity(0.8),

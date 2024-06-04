@@ -30,6 +30,7 @@ class PatientPhoto extends StatelessWidget {
             : CircleAvatar(
                 backgroundColor: const Color(0xffB9EEE8),
                 radius: radius,
-                child: SvgPicture.asset(Assets.kProfileAvatar)));
+                child: SvgPicture.asset(Assets.kProfileAvatar))
+                );
   }
 }

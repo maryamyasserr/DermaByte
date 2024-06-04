@@ -29,7 +29,7 @@ void showScheduleDialog(
                     hintText: hintText,
                     hintStyle: Styels.textStyle18_300(context)),
               )),
-              Timing(onChanged: (value){}, title: time)
+              Timing(onChanged: (value) {}, title: time)
             ],
           ),
           actions: [

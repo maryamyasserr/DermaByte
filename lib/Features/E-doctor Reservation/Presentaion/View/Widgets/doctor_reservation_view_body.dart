@@ -110,8 +110,8 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
                   isVisible
                       ? Visibility(
                           visible: isVisible,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: AllFreeTime(),
                           ))
                       : const Center(

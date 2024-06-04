@@ -1,6 +1,7 @@
+import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:dermabyte/Core/utils/font_styels.dart';
-
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: must_be_immutable
 class ServiceItem extends StatelessWidget {
@@ -34,9 +35,10 @@ class ServiceItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Icon(
-                Icons.medical_information,
-                size: 40,
-              ),
+                      FontAwesomeIcons.prescriptionBottle,
+                      size: 35,
+                      color: AppColors.kPrimaryColor,
+                    ),
               const SizedBox(
                 height: 8,
               ),

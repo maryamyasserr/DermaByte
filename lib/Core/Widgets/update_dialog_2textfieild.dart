@@ -9,7 +9,8 @@ class UpdateProfileTwo extends StatelessWidget {
     required this.title,
     required this.onPressed,
     required this.hintText2,
-    required this.controller1, required this.controller2,
+    required this.controller1,
+    required this.controller2,
   });
 
   final TextEditingController controller1;
@@ -34,15 +35,13 @@ class UpdateProfileTwo extends StatelessWidget {
           TextField(
             controller: controller1,
             decoration: InputDecoration(
-                hintText: hintText,
-                hintStyle: const TextStyle(fontSize: 18)),
+                hintText: hintText, hintStyle: const TextStyle(fontSize: 18)),
           ),
           const SizedBox(height: 5),
           TextField(
             controller: controller2,
             decoration: InputDecoration(
-                hintText: hintText2,
-                hintStyle: const TextStyle(fontSize: 18)),
+                hintText: hintText2, hintStyle: const TextStyle(fontSize: 18)),
           ),
         ],
       ),

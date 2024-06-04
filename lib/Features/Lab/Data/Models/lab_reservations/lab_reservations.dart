@@ -1,3 +1,5 @@
+import 'package:dermabyte/Features/Lab/Data/Models/lab_reservations/lab.dart';
+
 import 'patient.dart';
 import 'test.dart';
 
@@ -5,7 +7,7 @@ class LabReservations {
   String? id;
   DateTime? date;
   Patient? patient;
-  String? lab;
+  Lab? lab; 
   List<Test>? test;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -22,14 +24,16 @@ class LabReservations {
 
   factory LabReservations.fromJson(Map<String, dynamic> json) =>
       LabReservations(
-        id: json['_id'] as String?,
+        id: json['id'] as String?,
         date: json['date'] == null
             ? null
             : DateTime.parse(json['date'] as String),
         patient: json['patient'] == null
             ? null
             : Patient.fromJson(json['patient'] as Map<String, dynamic>),
-        lab: json['lab'] as String?,
+         lab: json['lab'] == null
+            ? null
+            : Lab.fromJson(json['lab'] as Map<String, dynamic>),
         test: (json['test'] as List<dynamic>?)
             ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -42,7 +46,7 @@ class LabReservations {
       );
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
+        'id': id,
         'date': date?.toIso8601String(),
         'patient': patient?.toJson(),
         'lab': lab,

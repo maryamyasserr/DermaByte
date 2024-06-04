@@ -13,7 +13,6 @@ class AuthHelperCubit extends Cubit<AuthHeplerState> {
   XFile? profileLab;
   List<XFile>? docotrLicense;
   List<XFile>? labLicense;
-  
 
   Future<void> uploadPicture({required String role}) async {
     final picker = ImagePicker();

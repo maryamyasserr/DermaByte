@@ -10,9 +10,10 @@ class SessionCost extends StatelessWidget {
       this.enableEditing,
       required this.edit,
       this.update,
-      required this.controller, required this.label});
+      required this.controller,
+      required this.label});
 
-  final String cost, hintText,label;
+  final String cost, hintText, label;
   final bool edit;
   final void Function()? enableEditing, update;
   final TextEditingController controller;

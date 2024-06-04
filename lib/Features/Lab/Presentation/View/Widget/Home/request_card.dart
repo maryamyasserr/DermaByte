@@ -38,9 +38,12 @@ class RequestCard extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: imageCard == null
-                      ? SvgPicture.asset(
-                          Assets.kAvatar,
-                        )
+                      ? Padding(
+                        padding: const EdgeInsets.only(left:8.0,bottom: 10),
+                        child: SvgPicture.asset(
+                            Assets.kAvatar,
+                          ),
+                      )
                       : ClipRRect(
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(20),

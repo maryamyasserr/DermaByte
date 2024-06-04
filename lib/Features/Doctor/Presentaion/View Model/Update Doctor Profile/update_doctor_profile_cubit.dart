@@ -22,7 +22,7 @@ class UpdateDoctorProfileCubit extends Cubit<UpdateDoctorProfileState> {
 
   Future<void> changeDoctorPassword(
       {required String token, required dynamic body}) async {
-            emit(UpdateDoctorProfileLoading());
+    emit(UpdateDoctorProfileLoading());
     var response =
         await doctorRepo.changeDoctorPassword(token: token, body: body);
     response.fold(

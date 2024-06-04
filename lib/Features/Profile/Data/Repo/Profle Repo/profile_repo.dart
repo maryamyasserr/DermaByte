@@ -15,5 +15,4 @@ abstract class ProfileRepo {
       {required String token, required dynamic body});
   Future<Either<Failures, String>> changePatientPassword(
       {required String token, required dynamic body});
-  Future<Either<Failures, String>> logOut({required String token});
 }

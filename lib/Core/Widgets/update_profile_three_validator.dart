@@ -15,7 +15,8 @@ class UpdateProfile3 extends StatelessWidget {
     required this.hintText3,
     this.validator1,
     this.validator2,
-    this.validator3, required this.formKey,
+    this.validator3,
+    required this.formKey,
   });
 
   final TextEditingController controller1;
@@ -26,7 +27,7 @@ class UpdateProfile3 extends StatelessWidget {
 
   final void Function() onPressed;
   final String? Function(String?)? validator1, validator2, validator3;
-  final GlobalKey<FormState> formKey ;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {

@@ -10,8 +10,7 @@ class UpdateLabProfileCubit extends Cubit<UpdateLabProfileState> {
   Future<void> updateLabProfile(
       {required String token, required dynamic body}) async {
     emit(UpdateLabProfileLoading());
-    var response =
-        await labRepo.updateLabProfile(token: token, body: body);
+    var response = await labRepo.updateLabProfile(token: token, body: body);
     response.fold(
         (failure) =>
             emit(UpdateLabProfileFailure(errMessage: failure.errMessage)),
@@ -21,11 +20,10 @@ class UpdateLabProfileCubit extends Cubit<UpdateLabProfileState> {
   Future<void> changeLabPassword(
       {required String token, required dynamic body}) async {
     emit(UpdateLabProfileLoading());
-    var response =
-        await labRepo.changeLabPassword(token: token, body: body);
+    var response = await labRepo.changeLabPassword(token: token, body: body);
     response.fold(
         (failure) =>
             emit(UpdateLabProfileFailure(errMessage: failure.errMessage)),
-        (success) => emit(UpdateLabProfileSuccess()));
+        (success) => emit(UpdateLabPasswordSuccess()));
   }
 }

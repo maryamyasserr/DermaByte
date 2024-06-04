@@ -177,7 +177,7 @@ class ItemsListView extends StatelessWidget {
           title: 'Log Out',
           onTap: () {
             BlocProvider.of<AuthCubit>(context).patient = null;
-            GoRouter.of(context).go(AppRoutes.kSignIn);            
+            GoRouter.of(context).go(AppRoutes.kSignIn);
           })
     ];
     return Column(

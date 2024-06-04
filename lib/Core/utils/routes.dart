@@ -130,9 +130,7 @@ abstract class AppRoutes {
     GoRoute(path: kSignUpAs, builder: (context, state) => const SignUpAsView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
-
     GoRoute(path: kSettings, builder: (context, state) => const SettingsView()),
- 
     GoRoute(
         path: kEditProfile, builder: (context, state) => const EditProfile()),
     GoRoute(
@@ -146,9 +144,7 @@ abstract class AppRoutes {
     GoRoute(path: kHistory, builder: (context, state) => const HistoryView()),
     GoRoute(path: kDisease, builder: (context, state) => const DiseaseView()),
     GoRoute(path: kConsults, builder: (context, state) => const ConsultsView()),
-
     GoRoute(path: kSettings, builder: (context, state) => const SettingsView()),
-   
     GoRoute(
         path: kEditProfile, builder: (context, state) => const EditProfile()),
     GoRoute(

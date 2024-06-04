@@ -53,21 +53,6 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  // Future<void> signIn(
-  //     {required dynamic body, required BuildContext context}) async {
-  //   emit(AuthLoading());
-  //   isLoding = true;
-  //   var response = await authRepo.signInAsPatient(body: body, context: context);
-  //   response.fold((failure) {
-  //     emit(AuthFailure(errMessage: failure.errMessage));
-  //     isLoding = false;
-  //   }, (patientData) {
-  //     emit(AuthSuccess());
-  //     patient = patientData;
-  //     isLoding = false;
-  //   });
-  // }
-
   Future<void> signIn<T>({
     required dynamic body,
     required BuildContext context,
@@ -106,5 +91,9 @@ class AuthCubit extends Cubit<AuthState> {
         isLoding = false;
       }
     });
+  }
+
+  Future<void> logOut({required String token}) async {
+    await authRepo.logOut(token: token);
   }
 }

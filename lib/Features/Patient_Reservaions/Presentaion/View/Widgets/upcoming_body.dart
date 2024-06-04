@@ -61,7 +61,7 @@ class _UpComingBodyState extends State<UpComingBody> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "The doctor has scheduled an online appointment for you on ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${reservation.date.hour}:${reservation.date.minute.toString().padLeft(2, '0')} PM.",
+                          "The doctor has scheduled an online appointment for you on ${reservation.date.day}/ ${reservation.date.month}/ ${reservation.date.year}, at ${timeTitle(reservation.date.hour)}:${reservation.date.minute.toString().padLeft(2, '0')} ${night(reservation.date.hour)}.",
                           style: Styels.textStyle18_400(context),
                         ),
                         const SizedBox(height: 64),
@@ -99,8 +99,8 @@ class _UpComingBodyState extends State<UpComingBody> {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: AllFreeTime(),
                         ),
                         const SizedBox(height: 24),
@@ -167,5 +167,22 @@ class _UpComingBodyState extends State<UpComingBody> {
         );
       },
     );
+  }
+}
+
+String night(int hour) {
+  if (hour >= 12) {
+    return 'PM';
+  } else {
+    return 'AM';
+  }
+}
+
+String timeTitle(int hour) {
+  if (hour > 12) {
+    int newHour = hour - 12;
+    return newHour.toString();
+  } else {
+    return hour.toString();
   }
 }

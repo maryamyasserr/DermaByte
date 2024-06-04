@@ -168,7 +168,6 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
                                 },
                               ),
                               const SizedBox(height: 32),
-                            
                               const SizedBox(height: 16),
                             ],
                           );

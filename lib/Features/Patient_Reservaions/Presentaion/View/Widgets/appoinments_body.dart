@@ -1,3 +1,4 @@
+import 'package:dermabyte/Core/Widgets/confirmation_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
@@ -87,25 +88,33 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                     child: CustomCard(
                                       antoherButton: true,
                                       onDelete: () async {
-                                        await BlocProvider.of<
-                                                DeleteReservationCubit>(context)
-                                            .deleteReservation(
-                                                id: state
-                                                    .pReservationInfo[index]
-                                                    .id!,
-                                                token:
-                                                    BlocProvider.of<AuthCubit>(
-                                                            context)
-                                                        .patient!
-                                                        .token);
-                                        await BlocProvider.of<
-                                                PreservationInfoCubit>(context)
-                                            .getPatientReservationInfo(
-                                                token:
-                                                    BlocProvider.of<AuthCubit>(
-                                                            context)
-                                                        .patient!
-                                                        .token);
+                                        confirmationDialog(
+                                            context: context,
+                                            onPressed: () async {
+                                              GoRouter.of(context).pop();
+                                              await BlocProvider.of<
+                                                          DeleteReservationCubit>(
+                                                      context)
+                                                  .deleteReservation(
+                                                      id: state
+                                                          .pReservationInfo[
+                                                              index]
+                                                          .id!,
+                                                      token: BlocProvider.of<
+                                                                  AuthCubit>(
+                                                              context)
+                                                          .patient!
+                                                          .token);
+                                              await BlocProvider.of<
+                                                          PreservationInfoCubit>(
+                                                      context)
+                                                  .getPatientReservationInfo(
+                                                      token: BlocProvider.of<
+                                                                  AuthCubit>(
+                                                              context)
+                                                          .patient!
+                                                          .token);
+                                            });
                                       },
                                       textButton2: 'Delete',
                                       iconCard: Assets.kFollowUpIcon,

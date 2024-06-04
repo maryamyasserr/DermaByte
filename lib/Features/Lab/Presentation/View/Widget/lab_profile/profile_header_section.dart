@@ -10,13 +10,13 @@ class ElabProfileHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LabModel lab= BlocProvider.of<AuthCubit>(context).labModel!.lab;
+    LabModel lab = BlocProvider.of<AuthCubit>(context).labModel!.lab;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-             ElapPhoto(
+            ElapPhoto(
               photo: lab.profilePic,
             ),
             const SizedBox(
