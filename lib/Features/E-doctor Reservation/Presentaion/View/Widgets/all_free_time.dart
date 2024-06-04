@@ -1,5 +1,4 @@
 import 'package:dermabyte/Core/utils/font_styels.dart';
-import 'package:dermabyte/Features/E-doctor%20Reservation/Data/Models/free_time_model.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View/Widgets/time_widget.dart';
 import 'package:dermabyte/Features/E-doctor%20Reservation/Presentaion/View_Model/FreeTimes/free_times_cubit.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +27,10 @@ class _AllFreeTimeState extends State<AllFreeTime> {
 
   @override
   Widget build(BuildContext context) {
-    FreeTimeModel? freetimes =
-        BlocProvider.of<FreeTimesCubit>(context).currentFreeTime;
     return BlocBuilder<FreeTimesCubit, FreeTimesState>(
       builder: (context, state) {
-        if (state is FreeTimesSuccess || state is FreeTimesLoading) {
-          if (freetimes == null) {
+        if (state is FreeTimesSuccess) {
+          if (state.freeTime == null) {
             return Center(
               child: Text(
                 "No Appoinments for this day",
@@ -44,7 +41,7 @@ class _AllFreeTimeState extends State<AllFreeTime> {
             return GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: freetimes.freeTime!.length,
+                itemCount: state.freeTime!.freeTime!.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     crossAxisSpacing: 12,
@@ -54,16 +51,16 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                   return GestureDetector(
                     child: TimeWidget(
                       title:
-                          "${timeTitle(freetimes.freeTime![index].hour)}:${freetimes.freeTime![index].minute.toString().padLeft(2, '0')}"
-                          " ${night(freetimes.freeTime![index].hour)}",
+                          "${timeTitle(state.freeTime!.freeTime![index].hour)}:${state.freeTime!.freeTime![index].minute.toString().padLeft(2, '0')}"
+                          " ${night(state.freeTime!.freeTime![index].hour)}",
                       isSelected:
-                          selectedTime == freetimes.freeTime![index].toString(),
+                          selectedTime == state.freeTime!.freeTime![index].toString(),
                       onSelect: () {
-                        selectTime(freetimes.freeTime![index].toString());
+                        selectTime(state.freeTime!.freeTime![index].toString());
                         if (selectedTime ==
-                            freetimes.freeTime![index].toString()) {
+                            state.freeTime!.freeTime![index].toString()) {
                           BlocProvider.of<FreeTimesCubit>(context)
-                              .selectedDate = freetimes.freeTime?[index];
+                              .selectedDate = state.freeTime!.freeTime?[index];
                         } else {
                           BlocProvider.of<FreeTimesCubit>(context)
                               .selectedDate = null;
@@ -73,7 +70,16 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                   );
                 });
           }
-        } else {
+        } else if(state is FreeTimesEmpty){
+          return Center(
+              child: Text(
+                "No Appoinments for this day",
+                style: Styels.textStyle20_700(context),
+              ),
+            );
+        }
+        
+        else {
           return Center(
             child: Text(
               "",

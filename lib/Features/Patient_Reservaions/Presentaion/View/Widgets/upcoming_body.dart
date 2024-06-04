@@ -91,10 +91,8 @@ class _UpComingBodyState extends State<UpComingBody> {
                           margin: const EdgeInsets.symmetric(horizontal: 4),
                           child: WeekCalender(
                             onChangedSelectedDate: (date) {
-                              setState(() {
-                                BlocProvider.of<FreeTimesCubit>(context)
-                                    .setDay = date;
-                              });
+                              BlocProvider.of<FreeTimesCubit>(context)
+                                  .currentFreeTime(date);
                             },
                           ),
                         ),

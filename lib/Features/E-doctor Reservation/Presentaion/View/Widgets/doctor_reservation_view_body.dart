@@ -1,5 +1,5 @@
-import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/calender.dart';
+import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/custom_appbar.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/Widgets/payment_alert.dart';
@@ -42,7 +42,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
         isVisible = true;
       });
     });
-    BlocProvider.of<FreeTimesCubit>(context).removeSelectedDate();
+    // BlocProvider.of<FreeTimesCubit>(context).removeSelectedDate();
     BlocProvider.of<DoctorReservationCubit>(context).deleteAllScans();
     BlocProvider.of<DoctorReservationCubit>(context).indices = [];
     BlocProvider.of<DoctorReservationCubit>(context).ids = [];
@@ -94,12 +94,11 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
             const SizedBox(height: 25),
             SizedBox(
               child: WeekCalender(onChangedSelectedDate: (date) {
-                setState(() {
-                  BlocProvider.of<FreeTimesCubit>(context).setDay = date;
-                  // print(BlocProvider.of<FreeTimesCubit>(context)
-                  //     .currentFreeTime!.day);
-                });
-                // BlocProvider.of<FreeTimesCubit>(context).sendState();
+                
+                 BlocProvider.of<FreeTimesCubit>(context).currentFreeTime(date);  
+              
+
+                
               }),
             ),
             const SizedBox(height: 30),

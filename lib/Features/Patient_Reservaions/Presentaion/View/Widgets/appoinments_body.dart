@@ -120,7 +120,7 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
                                       iconCard: Assets.kFollowUpIcon,
                                       cardTitle: "Follow Up",
                                       cardSubTitle:
-                                          "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on ${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${state.pReservationInfo[index].date.hour}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')}  ",
+                                          "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on ${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${timeTitle(state.pReservationInfo[index].date.hour)}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')} ${night(state.pReservationInfo[index].date.hour)}",
                                       onPressed: () {
                                         BlocProvider.of<PreservationInfoCubit>(
                                                     context)
@@ -170,5 +170,23 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
         ],
       ),
     );
+  }
+}
+
+
+String night(int hour) {
+  if (hour >= 12) {
+    return 'PM';
+  } else {
+    return 'AM';
+  }
+}
+
+String timeTitle(int hour) {
+  if (hour > 12) {
+    int newHour = hour - 12;
+    return newHour.toString();
+  } else {
+    return hour.toString();
   }
 }

@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:weekly_calendar/weekly_calendar.dart';
 
+
 class WeekCalender extends StatelessWidget {
   const WeekCalender({
     super.key,
@@ -37,7 +38,7 @@ class WeekCalender extends StatelessWidget {
       isAutoSelect: true,
       onChangedSelectedDate: onChangedSelectedDate,
       onChangedPage: (date, state) {
-        debugPrint("onChangedPage: $date ${state.name}");
+       
       },
     );
   }

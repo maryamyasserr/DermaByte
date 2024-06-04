@@ -54,12 +54,31 @@ class FreeTimesCubit extends Cubit<FreeTimesState> {
     emit(FreeTimesSuccess());
   }
 
-  FreeTimeModel? get currentFreeTime {
+  // FreeTimeModel? get currentFreeTime {
+  //   try {
+  //     return freeTimes.firstWhere((element) =>
+  //         compareDates(element.day!, day ?? DateTime.now()) != null);
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
+
+  void currentFreeTime(DateTime? day) {
     try {
-      return freeTimes.firstWhere((element) =>
+      FreeTimeModel? result;
+      result = freeTimes.firstWhere((element) =>
           compareDates(element.day!, day ?? DateTime.now()) != null);
+
+      emit(FreeTimesSuccess(freeTime: result));
     } catch (e) {
-      return null;
+      emit(FreeTimesEmpty());
     }
+  }
+
+  void freeTime(FreeTimeModel model) {
+    FreeTimeModel result;
+    result = freeTimes.firstWhere((element) =>
+        compareDates(element.day!, model.day ?? DateTime.now()) != null);
+    emit(SelectedFreeTime(freeTime: result));
   }
 }

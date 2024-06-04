@@ -38,7 +38,7 @@ class _MyFreeTimesBodyState extends State<MyFreeTimesBody> {
       _currentPage++;
       _pageController.animateToPage(
         _currentPage,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 150),
         curve: Curves.easeInOut,
       );
       setState(() {});
