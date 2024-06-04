@@ -79,19 +79,19 @@ class AuthRepoImpl implements AuthRepo {
           await apiService.post(endPoint: 'auth/login', data: body, token: '');
       if (response['data']['role'] == 'patient') {
         PatientTokenModel patient = PatientTokenModel.fromJson(response);
-        GoRouter.of(context).push(AppRoutes.kCustomScreen);
+        GoRouter.of(context).pushReplacement(AppRoutes.kCustomScreen);
         return right(patient);
       } else if (response['data']['role'] == 'dermatologist') {
         DoctorToken doctor = DoctorToken.fromJson(response);
-        GoRouter.of(context).push(AppRoutes.kDoctorView);
+        GoRouter.of(context).pushReplacement(AppRoutes.kDoctorView);
         return right(doctor);
       } else if (response['data']['role'] == 'lab') {
         LabToken lab = LabToken.fromJson(response);
-        GoRouter.of(context).push(AppRoutes.kLabHome);
+        GoRouter.of(context).pushReplacement(AppRoutes.kLabHome);
         return right(lab);
       } else if (response['data']['role'] == 'admin') {
         AdminToken lab = AdminToken.fromJson(response);
-        GoRouter.of(context).push(AppRoutes.kAdminView);
+        GoRouter.of(context).pushReplacement(AppRoutes.kAdminView);
         return right(lab);
       } else {
         throw Exception("Unsupported type");

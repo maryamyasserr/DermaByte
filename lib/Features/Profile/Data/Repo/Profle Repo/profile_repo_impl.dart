@@ -81,22 +81,32 @@ class PofileRepoImpl implements ProfileRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failures, String>> changePatientPassword({required String token, required body})async {
- try {
+  Future<Either<Failures, String>> changePatientPassword(
+      {required String token, required body}) async {
+    try {
       await apiService.update(
-          endPoint: 'patients/changeMyPassword',
-          data: body,
-          token: token);
+          endPoint: 'patients/changeMyPassword', data: body, token: token);
       return right('done');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
-       return left(ServerFailure(errMessage: e.toString()));
+      return left(ServerFailure(errMessage: e.toString()));
     }
   }
 
-
+  @override
+  Future<Either<Failures, String>> logOut({required String token}) async {
+    try {
+      await apiService.get(endPoint: 'auth/logout', token: token);
+      return right('done');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

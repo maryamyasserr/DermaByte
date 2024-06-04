@@ -161,18 +161,13 @@ class ItemsListView extends StatelessWidget {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         GoRouter.of(context).pop();
-                       
-                       
-
                         await BlocProvider.of<UpdatePatientProfileCubit>(
                                 context)
-                            .changePatientPassword(
-                                token: patientToken,  body: {
-                               'currentPassword': oldPasswordController.text,
-                               'passwordConfirm':
-                              confirmPasswordController.text,
-                              'password': newPasswordController.text
-                            });
+                            .changePatientPassword(token: patientToken, body: {
+                          'currentPassword': oldPasswordController.text,
+                          'passwordConfirm': confirmPasswordController.text,
+                          'password': newPasswordController.text
+                        });
                       }
                     },
                   );
@@ -182,8 +177,7 @@ class ItemsListView extends StatelessWidget {
           title: 'Log Out',
           onTap: () {
             BlocProvider.of<AuthCubit>(context).patient = null;
-            GoRouter.of(context).pop();
-            GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
+            GoRouter.of(context).go(AppRoutes.kSignIn);            
           })
     ];
     return Column(

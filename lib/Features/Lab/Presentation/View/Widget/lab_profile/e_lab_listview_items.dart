@@ -147,7 +147,7 @@ class ElabItemsListView extends StatelessWidget {
           title: 'Log Out',
           onTap: () {
             BlocProvider.of<AuthCubit>(context).labModel = null;
-            GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
+            GoRouter.of(context).go(AppRoutes.kSignIn);            
           })
     ];
     return Column(

@@ -27,11 +27,12 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-              onTap: () {
-                GoRouter.of(context).pop();
-              },
-              child: const Icon(Icons.arrow_back)),
+          // GestureDetector(
+          //     onTap: () {
+          //       GoRouter.of(context).pop();
+          //     },
+          //     child: const Icon(Icons.arrow_back)),
+          const SizedBox(width: 0),
           Text(
             title,
             style: Styels.textStyle24_600(context),

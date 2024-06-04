@@ -46,7 +46,6 @@ void main() {
   Bloc.observer = DermaByteBlocOpserver();
   setupServiceLocator();
 }
-
 class DermaByte extends StatelessWidget {
   const DermaByte({super.key});
   @override

@@ -20,14 +20,18 @@ class UpdatePatientProfileCubit extends Cubit<UpdatePatientProfileState> {
         (success) => emit(UpdatePatientProfileSuccess()));
   }
 
-    Future<void> changePatientPassword(
+  Future<void> changePatientPassword(
       {required String token, required dynamic body}) async {
-            emit(UpdatePatientProfileLoading());
+    emit(UpdatePatientProfileLoading());
     var response =
         await profileRepo.changePatientPassword(token: token, body: body);
     response.fold(
         (failure) =>
             emit(UpdatePatientProfileFailure(errMessage: failure.errMessage)),
-        (success) => emit(UpdatePatientProfileSuccess()));
+        (success) => emit(UpdatePatinetPasswordSuccess()));
+  }
+
+  Future<void> logOut({required String token}) async {
+    await profileRepo.logOut(token: token);
   }
 }

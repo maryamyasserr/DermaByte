@@ -102,17 +102,13 @@ class DoctorProfileItems extends StatelessWidget {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         GoRouter.of(context).pop();
-                       
-                        
 
                         await BlocProvider.of<UpdateDoctorProfileCubit>(context)
-                            .changeDoctorPassword(
-                                token: doctorToken, body: {
-                               'currentPassword': oldPasswordController.text,
-                               'passwordConfirm':
-                              confirmPasswordController.text,
-                              'password': newPasswordController.text
-                            });
+                            .changeDoctorPassword(token: doctorToken, body: {
+                          'currentPassword': oldPasswordController.text,
+                          'passwordConfirm': confirmPasswordController.text,
+                          'password': newPasswordController.text
+                        });
                       }
                     },
                   );
@@ -132,7 +128,7 @@ class DoctorProfileItems extends StatelessWidget {
           title: 'Log Out',
           onTap: () {
             BlocProvider.of<AuthCubit>(context).doctorModel = null;
-            GoRouter.of(context).pushReplacement(AppRoutes.kSignIn);
+            GoRouter.of(context).go(AppRoutes.kSignIn);
           })
     ];
     return Column(
