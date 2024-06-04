@@ -14,6 +14,7 @@ class LabHelperCubit extends Cubit<LabHelperState> {
   ServiceModel? test;
 
   void addTestResult(UploadedTestModel uploadedTestModel) {
+   
     int existingIndex = results
         .indexWhere((test) => test.testName == uploadedTestModel.testName);
     if (existingIndex != -1) {
@@ -31,9 +32,13 @@ class LabHelperCubit extends Cubit<LabHelperState> {
         testsFiles: updatedFiles,
       );
       results[existingIndex] = updatedTest;
+   
+    
       emit(LabHelperSuccess());
     } else {
       results.add(uploadedTestModel);
+    
+    
       emit(LabHelperSuccess());
     }
   }
@@ -50,8 +55,10 @@ class LabHelperCubit extends Cubit<LabHelperState> {
   void removeTestResult(UploadedTestModel uploadedTestModel, XFile test) {
     uploadedTestModel.testsFiles.remove(test);
     if (uploadedTestModel.testsFiles.isEmpty) {
-      allResutls.remove(uploadedTestModel);
+      results.remove(uploadedTestModel);
     }
+       
+
     emit(LabHelperSuccess());
   }
 }

@@ -40,7 +40,7 @@ class _RequestBodyState extends State<RequestBody> {
     LabReservations reservation =
         BlocProvider.of<LabReservationsCubit>(context).currentReservation!;
     List<UploadedTestModel> allResults =
-        BlocProvider.of<LabHelperCubit>(context).allResutls;
+        BlocProvider.of<LabHelperCubit>(context).results;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -93,17 +93,14 @@ class _RequestBodyState extends State<RequestBody> {
                       onPressed: () async {
                         BlocProvider.of<LabHelperCubit>(context).configData();
                         if (BlocProvider.of<LabHelperCubit>(context)
-                                .allResutls
+                                .results
                                 .isEmpty ||
                             reservation.test!.length >
                                 BlocProvider.of<LabHelperCubit>(context)
-                                    .allResutls
+                                    .results
                                     .length) {
                           failedAlert(context, "Attach Test Result");
                         } else {
-                          print(BlocProvider.of<LabHelperCubit>(context)
-                              .allResutls
-                              .length);
                           confirmationDialog(
                               context: context,
                               onPressed: () async {

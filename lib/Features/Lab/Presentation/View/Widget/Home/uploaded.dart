@@ -42,7 +42,7 @@ class Uploaded extends StatelessWidget {
                     reservation.test![index].name!,
                     style: Styels.textStyle24_600(context),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
                   if (testResult.testsFiles.isNotEmpty)
                     Column(
                       children: testResult.testsFiles.map((e) {
