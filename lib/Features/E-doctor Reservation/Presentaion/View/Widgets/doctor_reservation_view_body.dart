@@ -94,11 +94,7 @@ class _DoctorReservationViewBodyState extends State<DoctorReservationViewBody> {
             const SizedBox(height: 25),
             SizedBox(
               child: WeekCalender(onChangedSelectedDate: (date) {
-                
-                 BlocProvider.of<FreeTimesCubit>(context).currentFreeTime(date);  
-              
-
-                
+                BlocProvider.of<FreeTimesCubit>(context).currentFreeTime(date);
               }),
             ),
             const SizedBox(height: 30),

@@ -44,7 +44,7 @@ class FollowUpBody extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomCard(
-                    iconCard: Assets.kFollowUpIcon,
+                    iconCard: null,
                     cardTitle:
                         "Dr. ${patientReservation.dermatologist.firstName}'s appointment",
                     cardSubTitle:

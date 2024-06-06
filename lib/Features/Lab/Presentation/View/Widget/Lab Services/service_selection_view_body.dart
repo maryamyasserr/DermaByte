@@ -75,7 +75,7 @@ class _ServiceSelectionViewBodyState extends State<ServiceSelectionViewBody> {
                         itemBuilder: (context, index) {
                           return ServiceItem(
                               deleteTest: () async {
-                               await BlocProvider.of<LabServiceCubit>(context)
+                                await BlocProvider.of<LabServiceCubit>(context)
                                     .deleteTest(
                                         token:
                                             BlocProvider.of<AuthCubit>(context)

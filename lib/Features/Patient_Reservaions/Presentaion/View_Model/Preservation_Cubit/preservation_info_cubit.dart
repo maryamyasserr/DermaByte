@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'preservation_info_state.dart';
 
@@ -14,7 +13,8 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
 
   Future<void> getPatientReservationInfo({required String token}) async {
     emit(PreservationInfoLoading());
-    var result = await preservationInfoRepo.getPatientReservation(token: token);
+    var result =
+        await preservationInfoRepo.getPatientDoctorReservation(token: token);
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
     }, (preservationinfo) {

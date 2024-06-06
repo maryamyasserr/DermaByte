@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dermabyte/Core/Widgets/card_button.dart';
 import 'package:dermabyte/Core/Widgets/card_text.dart';
+import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard(
       {super.key,
-      required this.iconCard,
+      this.iconCard,
       required this.cardTitle,
       required this.cardSubTitle,
       required this.textButton,
@@ -14,7 +16,8 @@ class CustomCard extends StatelessWidget {
       this.antoherButton,
       this.onPressed,
       this.onDelete});
-  final String iconCard, cardTitle, cardSubTitle, textButton;
+  final String? iconCard;
+  final String cardTitle, cardSubTitle, textButton;
   final String? textButton2;
   final void Function()? onPressed, onDelete;
 
@@ -36,12 +39,27 @@ class CustomCard extends StatelessWidget {
               )
             ]),
         child: Row(children: [
-          const SizedBox(width: 16),
           Expanded(
             flex: 2,
-            child: SvgPicture.asset(
-              iconCard,
-            ),
+            child: iconCard == null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: SvgPicture.asset(
+                      Assets.kFollowUpIcon,
+                    ),
+                  )
+                : ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomLeft: Radius.circular(20)),
+                    child: AspectRatio(
+                      aspectRatio: 0.5,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: iconCard!,
+                      ),
+                    ),
+                  ),
           ),
           Expanded(
             flex: 6,

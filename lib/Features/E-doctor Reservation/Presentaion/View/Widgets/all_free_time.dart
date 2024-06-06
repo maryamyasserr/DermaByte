@@ -53,8 +53,8 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                       title:
                           "${timeTitle(state.freeTime!.freeTime![index].hour)}:${state.freeTime!.freeTime![index].minute.toString().padLeft(2, '0')}"
                           " ${night(state.freeTime!.freeTime![index].hour)}",
-                      isSelected:
-                          selectedTime == state.freeTime!.freeTime![index].toString(),
+                      isSelected: selectedTime ==
+                          state.freeTime!.freeTime![index].toString(),
                       onSelect: () {
                         selectTime(state.freeTime!.freeTime![index].toString());
                         if (selectedTime ==
@@ -70,16 +70,14 @@ class _AllFreeTimeState extends State<AllFreeTime> {
                   );
                 });
           }
-        } else if(state is FreeTimesEmpty){
+        } else if (state is FreeTimesEmpty) {
           return Center(
-              child: Text(
-                "No Appoinments for this day",
-                style: Styels.textStyle20_700(context),
-              ),
-            );
-        }
-        
-        else {
+            child: Text(
+              "No Appoinments for this day",
+              style: Styels.textStyle20_700(context),
+            ),
+          );
+        } else {
           return Center(
             child: Text(
               "",

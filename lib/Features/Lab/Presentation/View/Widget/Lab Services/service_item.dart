@@ -35,10 +35,10 @@ class ServiceItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Icon(
-                      FontAwesomeIcons.prescriptionBottle,
-                      size: 35,
-                      color: AppColors.kPrimaryColor,
-                    ),
+                FontAwesomeIcons.prescriptionBottle,
+                size: 35,
+                color: AppColors.kPrimaryColor,
+              ),
               const SizedBox(
                 height: 8,
               ),

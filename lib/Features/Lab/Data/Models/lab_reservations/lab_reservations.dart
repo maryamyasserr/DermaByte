@@ -7,7 +7,7 @@ class LabReservations {
   String? id;
   DateTime? date;
   Patient? patient;
-  Lab? lab; 
+  Lab? lab;
   List<Test>? test;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -31,7 +31,7 @@ class LabReservations {
         patient: json['patient'] == null
             ? null
             : Patient.fromJson(json['patient'] as Map<String, dynamic>),
-         lab: json['lab'] == null
+        lab: json['lab'] == null
             ? null
             : Lab.fromJson(json['lab'] as Map<String, dynamic>),
         test: (json['test'] as List<dynamic>?)
