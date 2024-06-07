@@ -41,7 +41,7 @@ class ProfileBody extends StatelessWidget {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
-            child: const Column(
+            child:  ListView(
               children: [
                 CustomAppBar(title: "Profile"),
                 SizedBox(height: 32),

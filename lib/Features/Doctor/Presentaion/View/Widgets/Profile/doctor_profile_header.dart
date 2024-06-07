@@ -28,7 +28,7 @@ class DoctorProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${doctor.firstName} " "${doctor.firstName}",
+                  "${doctor.firstName} " "${doctor.lastName}",
                   style: Styels.textStyle20_700(context),
                 ),
                 Text(
