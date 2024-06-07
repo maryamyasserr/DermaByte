@@ -1,5 +1,6 @@
 import 'package:dermabyte/Core/Widgets/custom_appBar.dart';
 import 'package:dermabyte/Core/Widgets/delete_alert.dart';
+import 'package:dermabyte/Core/Widgets/empty.dart';
 import 'package:dermabyte/Core/Widgets/err_widget.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/info_alert.dart';
@@ -10,8 +11,6 @@ import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/custom_card.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View/Widgets/header_text.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Delete_Doctor_Reservation_Cubit/delete_doctor_reservation_cubit.dart';
-import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Lab%20Reservation/patiaent_lab_reservation_cubit.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Presentaion/View_Model/Preservation_Cubit/preservation_info_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View_Model/Cubits/Reports%20Cubit/reports_cubit.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ import 'package:go_router/go_router.dart';
 
 class AppoinmentsBody extends StatefulWidget {
   const AppoinmentsBody({super.key});
-  
+
   @override
   State<AppoinmentsBody> createState() => _AppoinmentsBodyState();
 }
@@ -28,14 +27,12 @@ class AppoinmentsBody extends StatefulWidget {
 class _AppoinmentsBodyState extends State<AppoinmentsBody> {
   @override
   void initState() {
-    BlocProvider.of<PreservationInfoCubit>(context).getPatientReservationInfo(
-        token: BlocProvider.of<AuthCubit>(context).patient!.token);
-    BlocProvider.of<ReportCubit>(context).getPatientConults(
-        token: BlocProvider.of<AuthCubit>(context).patient!.token);
-      BlocProvider.of<PatientLabReservationCubit>(context)
-          .getPatientLabReservations(
-              token: BlocProvider.of<AuthCubit>(context).patient!.token);
     super.initState();
+    final authCubit = BlocProvider.of<AuthCubit>(context);
+    BlocProvider.of<PreservationInfoCubit>(context)
+        .getPatientReservationInfo(token: authCubit.patient!.token);
+    BlocProvider.of<ReportCubit>(context)
+        .getPatientConults(token: authCubit.patient!.token);
   }
 
   @override
@@ -58,168 +55,154 @@ class _AppoinmentsBodyState extends State<AppoinmentsBody> {
           BlocBuilder<PreservationInfoCubit, PreservationInfoState>(
             builder: (context, state) {
               if (state is PreservationInfoFailure) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 200),
-                  child: ErrWidget(
-                    onTap: () async {
-                      final authCubit = BlocProvider.of<AuthCubit>(context);
-                      await BlocProvider.of<PreservationInfoCubit>(context)
-                          .getPatientReservationInfo(
-                        token: authCubit.patient!.token,
-                      );
-                      await BlocProvider.of<ReportCubit>(context)
-                          .getPatientConults(
-                        token: token,
-                      );
-                      await BlocProvider.of<PatientLabReservationCubit>(context)
-                          .getPatientLabReservations(
-                        token: token,
-                      );
-                    },
-                    errMessage: state.errMessage,
-                  ),
-                );
-              } else if (state is PreservationInfoSuccess) {
-                if (state.pReservationInfo.isEmpty) {
-                  return const SizedBox();
-                } else {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state.pReservationInfo.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 8),
-                        child: CustomCard(
-                          antoherButton: true,
-                          onDelete: () async {
-                            deleteAlert(
-                                context: context,
-                                onConfirm: () async {
-                                  GoRouter.of(context).pop();
-                                  await BlocProvider.of<
-                                          DeleteDoctorReservationCubit>(context)
-                                      .deleteReservation(
-                                    id: state.pReservationInfo[index].id!,
-                                    token: token,
-                                  );
-                                  await BlocProvider.of<PreservationInfoCubit>(
-                                          context)
-                                      .getPatientReservationInfo(
-                                    token: token,
-                                  );
-                                });
-                          },
-                          textButton2: 'Delete',
-                          iconCard: null,
-                          cardTitle: "Follow Up",
-                          cardSubTitle:
-                              "You Have Reserved With Dr. ${state.pReservationInfo[index].dermatologist.firstName} ${state.pReservationInfo[index].dermatologist.lastName} on ${state.pReservationInfo[index].date.day}/${state.pReservationInfo[index].date.month}/${state.pReservationInfo[index].date.year} At ${timeTitle(state.pReservationInfo[index].date.hour)}:${state.pReservationInfo[index].date.minute.toString().padLeft(2, '0')} ${night(state.pReservationInfo[index].date.hour)}",
-                          onPressed: () {
-                            BlocProvider.of<PreservationInfoCubit>(context)
-                                .setId = state.pReservationInfo[index].id!;
-                            BlocProvider.of<ReportCubit>(context).setReporId =
-                                state.pReservationInfo[index].dermatologist.id!;
-                            if (BlocProvider.of<ReportCubit>(context)
-                                        .patientReport ==
-                                    null ||
-                                BlocProvider.of<PreservationInfoCubit>(context)
-                                        .currentReservation ==
-                                    null) {
-                              failedAlert(context,
-                                  "Something is wrong ,Delete this reservation and try again");
-                            } else {
-                              GoRouter.of(context).push(
-                                AppRoutes.kFollowUp,
-                                extra: state.pReservationInfo[index].id,
-                              );
-                            }
-                          },
-                          textButton: "View",
-                        ),
-                      );
-                    },
-                  );
-                }
-              } else {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 20
-                  ),
-                  child: LoadingIndicator(
-                    color: AppColors.kPrimaryColor,
-                  ),
+                return Column(
+                  children: [
+                    const SizedBox(height: 230),
+                    ErrWidget(
+                      onTap: () async {
+                        final authCubit = BlocProvider.of<AuthCubit>(context);
+                        await BlocProvider.of<PreservationInfoCubit>(context)
+                            .getPatientReservationInfo(
+                          token: authCubit.patient!.token,
+                        );
+                        await BlocProvider.of<ReportCubit>(context)
+                            .getPatientConults(
+                          token: token,
+                        );
+                        
+                      },
+                      errMessage: state.errMessage,
+                    ),
+                  ],
                 );
               }
-            },
-          ),
-          BlocBuilder<PatientLabReservationCubit, PatientLabReservationState>(
-            builder: (context, state) {
-              if (state is PatiaentLabReservationSuccess) {
-                if (state.reservations.isEmpty) {
-                  return const SizedBox();
-                } else {
-                  return Column(
+              if (state is PreservationInfoSuccess) {
+                if (state.allReservationModel.doctorReservations.isEmpty &&
+                    state.allReservationModel.labReservations.isEmpty) {
+                  return const Column(
                     children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: state.reservations.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 12, left: 8, right: 8),
-                            child: CustomCard(
-                              antoherButton: true,
-                              onDelete: () async {
-                                deleteAlert(
-                                    context: context,
-                                    onConfirm: () async {
-                                      GoRouter.of(context).pop();
-                                      await BlocProvider.of<
-                                                  PatientLabReservationCubit>(
-                                              context)
-                                          .deleteLabReservation(
-                                              token: token,
-                                              id: state
-                                                  .reservations[index].id!);
-                                     
-                                    });
-                              },
-                              textButton2: 'Delete',
-                              iconCard:
-                                  state.reservations[index].lab!.profilePic,
-                              cardTitle: "Follow Up",
-                              cardSubTitle:
-                                  "You Have Reserved With lab. ${state.reservations[index].lab!.firstName} with ${state.reservations[index].test!.length} Test",
-                              onPressed: () {
-                                infoAlert(
-                                    context: context,
-                                    location: "Giza",
-                                    tests: state.reservations[index]);
-                              },
-                              textButton: "View",
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      )
+                      SizedBox(height: 230),
+                      EmptyWidget(text: 'No Appoinments Yet'),
                     ],
                   );
                 }
-              }
-              if (state is PatiaentLabReservationLoading) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 20
-                  ),
-                  child: LoadingIndicator(color: AppColors.kPrimaryColor),
+                return Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount:
+                          state.allReservationModel.doctorReservations.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8),
+                          child: CustomCard(
+                            antoherButton: true,
+                            onDelete: () async {
+                              deleteAlert(
+                                  context: context,
+                                  onConfirm: () async {
+                                    GoRouter.of(context).pop();
+                                    await BlocProvider.of<
+                                            PreservationInfoCubit>(context)
+                                        .deleteReservation(
+                                      id: state.allReservationModel
+                                          .doctorReservations[index].id!,
+                                      token: token,
+                                    );
+                                  });
+                            },
+                            textButton2: 'Delete',
+                            iconCard: null,
+                            cardTitle: "Follow Up",
+                            cardSubTitle:
+                                "You Have Reserved With Dr. ${state.allReservationModel.doctorReservations[index].dermatologist.firstName} ${state.allReservationModel.doctorReservations[index].dermatologist.lastName} on ${state.allReservationModel.doctorReservations[index].date.day}/${state.allReservationModel.doctorReservations[index].date.month}/${state.allReservationModel.doctorReservations[index].date.year} At ${timeTitle(state.allReservationModel.doctorReservations[index].date.hour)}:${state.allReservationModel.doctorReservations[index].date.minute.toString().padLeft(2, '0')} ${night(state.allReservationModel.doctorReservations[index].date.hour)}",
+                            onPressed: () {
+                              BlocProvider.of<PreservationInfoCubit>(context)
+                                      .setId =
+                                  state.allReservationModel
+                                      .doctorReservations[index].id!;
+                              BlocProvider.of<ReportCubit>(context).setReporId =
+                                  state
+                                      .allReservationModel
+                                      .doctorReservations[index]
+                                      .dermatologist
+                                      .id!;
+                              if (BlocProvider.of<ReportCubit>(context)
+                                          .patientReport ==
+                                      null ||
+                                  BlocProvider.of<PreservationInfoCubit>(
+                                              context)
+                                          .currentReservation ==
+                                      null) {
+                                failedAlert(context,
+                                    "Something is wrong ,Delete this reservation and try again");
+                              } else {
+                                GoRouter.of(context).push(
+                                  AppRoutes.kFollowUp,
+                                  extra: state.allReservationModel
+                                      .doctorReservations[index].id,
+                                );
+                              }
+                            },
+                            textButton: "View",
+                          ),
+                        );
+                      },
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount:
+                          state.allReservationModel.labReservations.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8),
+                          child: CustomCard(
+                            antoherButton: true,
+                            onDelete: () async {
+                              deleteAlert(
+                                  context: context,
+                                  onConfirm: () async {
+                                    GoRouter.of(context).pop();
+                                    await BlocProvider.of<
+                                            PreservationInfoCubit>(context)
+                                        .deleteLabReservation(
+                                            token: token,
+                                            id: state.allReservationModel
+                                                .labReservations[index].id!);
+                                  });
+                            },
+                            textButton2: 'Delete',
+                            iconCard: state.allReservationModel
+                                .labReservations[index].lab!.profilePic,
+                            cardTitle: "Follow Up",
+                            cardSubTitle:
+                                "You Have Reserved With lab. ${state.allReservationModel.labReservations[index].lab!.firstName} with ${state.allReservationModel.labReservations[index].test!.length} Test",
+                            onPressed: () {
+                              infoAlert(
+                                  context: context,
+                                  location: "Giza",
+                                  tests: state.allReservationModel
+                                      .labReservations[index]);
+                            },
+                            textButton: "View",
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    )
+                  ],
                 );
               } else {
-                return const SizedBox();
+                return const Padding(
+                  padding: EdgeInsets.only(top: 260),
+                  child: LoadingIndicator(color: AppColors.kPrimaryColor),
+                );
               }
             },
           ),

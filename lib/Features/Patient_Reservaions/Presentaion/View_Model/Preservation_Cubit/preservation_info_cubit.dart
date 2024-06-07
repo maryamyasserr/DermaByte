@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/lab_reseervation_model/lab_reseervation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/preservation_model/preservation_model.dart';
+import 'package:dermabyte/Features/Patient_Reservaions/Data/Models/reservation_model.dart';
 import 'package:dermabyte/Features/Patient_Reservaions/Data/Repo/preservation_info_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'preservation_info_state.dart';
@@ -9,7 +11,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
       : super(PreservationInfoInitial());
   PreservationInfoRepo preservationInfoRepo;
   String? _id;
-  List<PreservationModel> reservations = [];
+  List<PreservationModel> doctorReservations = [];
 
   Future<void> getPatientReservationInfo({required String token}) async {
     emit(PreservationInfoLoading());
@@ -17,14 +19,23 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
         await preservationInfoRepo.getPatientDoctorReservation(token: token);
     result.fold((failure) {
       emit(PreservationInfoFailure(errMessage: failure.errMessage));
-    }, (preservationinfo) {
-      reservations = preservationinfo;
-      for (int i = 0; i < reservations.length; i++) {
-        if (reservations[i].date.isBefore(DateTime.now()) == true) {
-          reservations.remove(reservations[i]);
+    }, (preservationinfo) async {
+      doctorReservations = preservationinfo;
+      for (int i = 0; i < doctorReservations.length; i++) {
+        if (doctorReservations[i].date.isBefore(DateTime.now()) == true) {
+          doctorReservations.remove(doctorReservations[i]);
         }
       }
-      emit(PreservationInfoSuccess(pReservationInfo: reservations));
+      var response =
+        await preservationInfoRepo.getPatientLabReservation(token: token);
+    response.fold(
+        (failure) =>
+            emit(PreservationInfoFailure(errMessage: failure.errMessage)),
+        (data) {
+      labReservations = data;
+      
+    });
+      emit(PreservationInfoSuccess(allReservationModel: AllReservationModel(labReservations: labReservations, doctorReservations: doctorReservations)));
     });
   }
 
@@ -37,7 +48,7 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
         token: token, id: id, body: body);
     response.fold(
         (fail) => emit(PreservationInfoFailure(errMessage: fail.errMessage)),
-        (done) => emit(PreservationInfoSuccess(pReservationInfo: const [])));
+        (done) => emit(PreservationInfoSuccess(allReservationModel: AllReservationModel(labReservations: [], doctorReservations: []))));
   }
 
   set setId(String id) {
@@ -46,7 +57,8 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
 
   PreservationModel? get currentReservation {
     try {
-      return reservations.firstWhere((reservation) => reservation.id == _id);
+      return doctorReservations
+          .firstWhere((reservation) => reservation.id == _id);
     } catch (e) {
       return null;
     }
@@ -63,5 +75,40 @@ class PreservationInfoCubit extends Cubit<PreservationInfoState> {
     } else {
       return false;
     }
+  }
+
+  List<PLabReservationModel> labReservations = [];
+
+  Future<void> getPatientLabReservations({required String token}) async {
+    emit(PreservationInfoLoading());
+    var response =
+        await preservationInfoRepo.getPatientLabReservation(token: token);
+    response.fold(
+        (failure) =>
+            emit(PreservationInfoFailure(errMessage: failure.errMessage)),
+        (data) {
+      labReservations = data;
+      
+    });
+  }
+
+  Future<void> deleteReservation(
+      {required String id, required String token}) async {
+    emit(PreservationInfoLoading());
+    var response = await preservationInfoRepo.deleteDoctorReservation(
+        token: token, id: id);
+    response.fold(
+        (failure) =>
+            emit(PreservationInfoFailure(errMessage: failure.errMessage)),
+        (success) async {
+      await getPatientReservationInfo(token: token);
+    });
+  }
+
+  Future<void> deleteLabReservation(
+      {required String token, required String id}) async {
+    emit(PreservationInfoLoading());
+    await preservationInfoRepo.deletePLabReservation(token: token, id: id);
+    await getPatientReservationInfo(token: token);
   }
 }

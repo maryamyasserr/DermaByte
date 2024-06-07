@@ -9,9 +9,9 @@ final class PreservationInfoLoading extends PreservationInfoState {}
 final class UpdateSLoading extends PreservationInfoState {}
 
 final class PreservationInfoSuccess extends PreservationInfoState {
-  final List<PreservationModel> pReservationInfo;
+  final AllReservationModel allReservationModel;
 
-  PreservationInfoSuccess({required this.pReservationInfo});
+  PreservationInfoSuccess({required this.allReservationModel});
 }
 
 final class PreservationInfoFailure extends PreservationInfoState {
