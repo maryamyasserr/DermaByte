@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
          android:enableOnBackInvokedCallback="true"
-        android:label="dermabyte"
+        android:label="Dermabyte"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
