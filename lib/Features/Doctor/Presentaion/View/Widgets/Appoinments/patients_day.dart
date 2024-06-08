@@ -37,7 +37,7 @@ class _PatientsDayState extends State<PatientsDay> {
           if (state.reservation == null ||
               state.reservation!.isEmpty ||
               BlocProvider.of<MyReservationCubit>(context).myDates.isEmpty) {
-            return const EmptyWidget(text: 'No Appoinents Yey');
+            return const EmptyWidget(text: 'No Appoinments Yet');
           } else {
             return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
