@@ -140,7 +140,7 @@ class _PatientsDayState extends State<PatientsDay> {
                                 diagnose: () {
                                   BlocProvider.of<MyPatientReportCubit>(context)
                                           .setId =
-                                      state.reservation![index].report![index]
+                                      state.reservation![index].report![0]
                                           .id!;
                                   if (BlocProvider.of<MyPatientReportCubit>(
                                               context)
