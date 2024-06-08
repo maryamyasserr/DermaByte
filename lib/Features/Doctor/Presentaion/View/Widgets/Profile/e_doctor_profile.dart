@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View%20Model/Update%20Doctor%20Profile/update_doctor_profile_cubit.dart';
 import 'package:dermabyte/Features/Doctor/Presentaion/View/Widgets/Profile/doctor_profile_header.dart';
@@ -38,16 +39,21 @@ class EdoctorProfile extends StatelessWidget {
           ); 
         } else {
           return Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.06,
-                horizontal: MediaQuery.of(context).size.width * 0.05),
+            padding: const EdgeInsets.symmetric(
+               horizontal: 16,
+               vertical: 32
+               ),
             child:  ListView(
-              children: const [
-                DoctorProfileHeader(),
-                SizedBox(
+              children:  [
+                const DoctorProfileHeader(),
+                const SizedBox(
                   height: 32,
                 ),
-                DoctorProfileItems()
+                const DoctorProfileItems(),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Center(child: Text("dermabyte2024@gmail.com",style: Styels.textStyle18_600(context),)),
+                )
               ],
             ),
           );

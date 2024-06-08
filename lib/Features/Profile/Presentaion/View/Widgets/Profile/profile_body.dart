@@ -4,6 +4,7 @@ import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/assets.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Profile/Presentaion/View/Widgets/Profile/items_list_view.dart';
@@ -42,50 +43,26 @@ class ProfileBody extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage(Assets.kBackground), fit: BoxFit.cover)),
             child:  ListView(
-              children: [
-                CustomAppBar(title: "Profile"),
-                SizedBox(height: 32),
-                Padding(
+              children:  [
+                const CustomAppBar(title: "Profile"),
+                const SizedBox(height: 32),
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   child: ProfileHeaderSection(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 32,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   child: ItemsListView(),
                 ),
-                SizedBox(height: 7),
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal:  16.0),
-                //   child: Divider(
-                //     thickness: 0.7,
-                //     color: Colors.black,
-                //   ),
-                // ),
-                // SizedBox(height: 16),
-                // Align(
-                //     alignment: Alignment.centerLeft,
-                //     child: Text(
-                //       "Doctors you have consulted",
-                //       style: Styels.textStyle18_600(context),
-                //     )),
-                // const SizedBox(
-                //   height: 12,
-                // ),
-                // CarddItem(
-                //   bottomText: '',
-                //   imageCard: null,
-                //   title: "Dr. Luka Modrich",
-                //   subTitle:
-                //       "An eye doctor to spread magic, creativity and happiness to us",
-                //   textButton: "View",
-                //   onPressed: () {},
-                // ),
-                // const SizedBox(
-                //   height: 8,
-                // )
+                const SizedBox(height: 7),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Center(child: Text("dermabyte2024@gmail.com",style: Styels.textStyle18_600(context),)),
+                )
+               
               ],
             ),
           );

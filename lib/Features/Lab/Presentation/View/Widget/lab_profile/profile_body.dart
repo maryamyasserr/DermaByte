@@ -2,6 +2,7 @@ import 'package:dermabyte/Core/Widgets/done_alert.dart';
 import 'package:dermabyte/Core/Widgets/failed_alert.dart';
 import 'package:dermabyte/Core/Widgets/loading_indicator.dart';
 import 'package:dermabyte/Core/utils/colors.dart';
+import 'package:dermabyte/Core/utils/font_styels.dart';
 import 'package:dermabyte/Core/utils/routes.dart';
 import 'package:dermabyte/Features/Authentication/Presentation/View%20Model/Auth%20Cubit/auth_cubit.dart';
 import 'package:dermabyte/Features/Lab/Presentation/View/Widget/lab_profile/e_lab_listview_items.dart';
@@ -36,14 +37,18 @@ class ElabProfile extends StatelessWidget {
             child: LoadingIndicator(color: AppColors.kPrimaryColor),
           );
         } else {
-          return Padding(
+          return  Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Column(
-              children: [
+            child: ListView(
+              children:  [
                 const SizedBox(height: 64),
                 const ElabProfileHeaderSection(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                const SizedBox(height: 32),
                 const ElabItemsListView(),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Center(child: Text("dermabyte2024@gmail.com",style: Styels.textStyle18_600(context),)),
+                )
               ],
             ),
           );

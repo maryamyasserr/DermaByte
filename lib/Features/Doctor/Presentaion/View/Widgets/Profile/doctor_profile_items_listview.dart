@@ -134,7 +134,7 @@ class DoctorProfileItems extends StatelessWidget {
     return Column(
       children: items.map((e) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.only(bottom: 6),
           child: DoctorProfileItem(
             profileItemModel: e,
             onTap: e.onTap,
