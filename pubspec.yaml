@@ -38,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
+  flutter_launcher_icons: ^0.13.1
   flutter_svg: ^2.0.9
   font_awesome_flutter: ^10.6.0
   get_it: ^7.6.7
@@ -51,6 +52,11 @@ dependencies:
   mime: ^1.0.5
   url_launcher: ^6.2.6
   weekly_calendar: ^0.1.2
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/DermaLogo.png"
 
 dev_dependencies:
   flutter_lints: ^2.0.0

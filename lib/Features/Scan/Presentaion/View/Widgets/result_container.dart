@@ -41,7 +41,7 @@ class ResutlContainer extends StatelessWidget {
                     state.scanResult.description!,
                     style:
                         Styels.textStyle20_300(context).copyWith(fontSize: 16),
-                    maxLines: 6,
+                    maxLines: 7,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
                   ),
